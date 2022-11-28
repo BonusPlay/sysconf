@@ -19,7 +19,7 @@ in with p4netConfig;
             route = "198.18.69.2";
             publicKey = "dYowB7h2BOdVtjcLyuDmnSebKNr6DVE7lWyy+augoF0=";
             allowedIPs = [ "198.18.66.2" "198.18.67.0/24" "198.18.68.0/24" "198.18.69.0/24" ];
-            endpoint = "shakuras.bonusplay.pl:51830"
+            endpoint = "shakuras.bonusplay.pl:51830";
           }
           { # artanis
             publicKey = "Cx9jMlATpGfYI5Z+9y/4vTPcYbr5xdtPtnbSJ4EekwY=";
