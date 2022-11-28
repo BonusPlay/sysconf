@@ -176,7 +176,7 @@
   programs.waybar = {
     enable = true;
     style = builtins.readFile ../files/waybar.css;
-    settings = builtins.readFile ../files/waybar.json;
+    settings = builtins.fromJSON ( builtins.readFile ../files/waybar.json );
   };
 
   services.kanshi = {
