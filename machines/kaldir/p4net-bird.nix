@@ -12,7 +12,7 @@ in with p4netConfig;
     config = let
       peerIPs = builtins.concatStringSep ", " (pkgs.lib.mapAttrsToList (_: peer: peer.linkIP + "/32") peers);
       mkProtocolEntry = name: peer: "protocol bgp ${name} from p4peers { neighbor ${peer.linkIP} as ${toString peer.ASN}; };";
-      bgpPeerEntries = builtins.concatStringSep "\n" (pkgs.lib.mapAttrsToList mkProtocolEntry peers)
+      bgpPeerEntries = builtins.concatStringSep "\n" (pkgs.lib.mapAttrsToList mkProtocolEntry peers);
     in ''
       define OWNAS =  65069;
       define OWNIP =  198.18.69.1;
