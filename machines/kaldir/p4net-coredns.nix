@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let
   p4netConfig = (import ./p4net-config.nix);
 
