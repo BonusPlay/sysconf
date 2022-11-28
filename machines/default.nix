@@ -26,6 +26,7 @@
     modules = [
       ./kaldir
       agenix.nixosModule
+      p4net.nixosModule
     ];
   };
 
