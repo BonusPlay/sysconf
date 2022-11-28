@@ -21,7 +21,7 @@ in with p4netConfig;
         peers = [{
           route = "198.18.1.1";
           publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
-          allowedIPs = [ "${cfg.p4subnet}" ];
+          allowedIPs = [ "${p4subnet}" ];
           endpoint = "130.61.129.131:51820";
         }];
       };
@@ -30,7 +30,7 @@ in with p4netConfig;
         peers = [{
           route = "198.18.57.1";
           publicKey = "O9E4d7jJaguaZLgosbPhpWUKA8EYX2doMTsJeMiC3W8=";
-          allowedIPs = [ "${cfg.p4subnet}" ];
+          allowedIPs = [ "${p4subnet}" ];
           endpoint = "duck.dominikoso.me:51821";
         }];
       };
@@ -39,7 +39,7 @@ in with p4netConfig;
         peers = [{
           route = "198.18.70.1";
           publicKey = "3hnEZtMv/k9PnoSAbEMrccG6bA3Paq1vwOafppGJlRc=";
-          allowedIPs = [ "${cfg.p4subnet}" ];
+          allowedIPs = [ "${p4subnet}" ];
           endpoint = "145.239.81.240:51820";
         }];
       };
@@ -48,6 +48,6 @@ in with p4netConfig;
 
   networking.firewall = {
     # wireguard
-    allowedUDPPorts = pkgs.lib.mapAttrsToList (_: peer: peer.listenPort) cfg.peers;
+    allowedUDPPorts = pkgs.lib.mapAttrsToList (_: peer: peer.listenPort) p4netConfig.peers;
   };
 }
