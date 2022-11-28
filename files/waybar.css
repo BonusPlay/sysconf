@@ -1,0 +1,151 @@
+@keyframes blink-warning {
+    70% {
+        color: @light;
+    }
+    to {
+        color: @light;
+        background-color: @yellow;
+    }
+}
+@keyframes blink-critical {
+    70% {
+      color: @light;
+    }
+    to {
+        color: @light;
+        background-color: @red;
+    }
+}
+
+@define-color bg #2E3440;
+@define-color light #434C5E;
+@define-color text #D8DEE9;
+
+@define-color green #A3BE8C;
+@define-color yellow #EBCB8B;
+@define-color red #BF616A;
+
+@define-color workspacesfocused #4C566A;
+
+* {
+    border: none;
+    border-radius: 3px;
+    min-height: 0;
+    margin: 0.2em 0.3em 0.2em 0.3em;
+}
+
+#waybar {
+    background: @bg;
+    color: @light;
+    font-family: "Cantarell", "Font Awesome 5 Pro";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#battery,
+#clock,
+#cpu,
+#custom-layout,
+#memory,
+#mode,
+#network,
+#pulseaudio,
+#temperature,
+#custom-pacman,
+#custom-brightness,
+#custom-scratchpad-indicator,
+#custom-yubikey,
+#tray,
+#bluetooth,
+#backlight,
+#language,
+#custom-cpugovernor {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    background: @light;
+    color: @text;
+}
+
+/* Each module that should blink */
+#memory,
+#temperature,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#memory.critical,
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+    color: @red;
+}
+
+/* Each critical that should blink */
+#memory.critical,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#network.disconnected,
+#memory.warning,
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+    background: @yellow;
+    color: @light;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#mode {
+    color: @text;
+    background: @red;
+}
+
+#workspaces button {
+    background: @light;
+    color: @text;
+    font-weight: bold;
+    padding: 0 0.4em;
+    font-size: 1em;
+}
+
+#workspaces button.focused {
+    background: @workspacesfocused;
+    padding: 0 0.6em;
+    border: 1px solid @text;
+}
+
+#workspaces button.urgent {
+    border: 1px solid @red;
+}
+
+#bluetooth {
+    font-size: 1.2em;
+}
+
+#battery.charging {
+    color: @green;
+}
+
+#pulseaudio.muted {
+    background: #BF616A;
+}
+
+#pulseaudio.source-muted {
+    background: #D08770;
+}
+
+#tray {
+    background: #434C5E;
+}

@@ -1,0 +1,11 @@
+--require('colorizer').setup()
+--require('feline').setup()
+--require("transparent").setup({
+--    enable = true,
+--})
+--require('Comment').setup({
+--    toggler = {
+--        line = '<space>cs',
+--        block = '<space>cs'
+--    }
+--})
