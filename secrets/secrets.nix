@@ -3,10 +3,11 @@ let
   users = [ bonus ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDM0mEeN9Z7TRf0cnx0Gpkv8at2tl0++Sr1MmxpWIZn";
-  systems = [ artanis ];
+  kaldir = "";
+  systems = [ artanis kaldir ];
 in
 {
   "artanis-p4net.age".publicKeys = users ++ [ artanis ];
-
+  "kaldir-p4net-ext.age".publicKeys = users ++ [ kaldir ];
   "wifi.age".publicKeys = users ++ [ artanis ];
 }
