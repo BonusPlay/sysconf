@@ -1,6 +1,4 @@
-let
-  p4netConfig = (import ./p4net-config.nix);
-in with p4netConfig;
+{ config, ... }:
 {
   age.secrets.p4netInternal = {
     file = ../../secrets/kaldir-p4net-int.age;
