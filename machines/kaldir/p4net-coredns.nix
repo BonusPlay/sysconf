@@ -27,7 +27,7 @@ let
       whoami
     }
   '';
-  entries = lib.mapAttrsToList mkPeerEntry p4netConfig.peers;
+  entries = builtins.concatStringsSep "\n" ( lib.mapAttrsToList mkPeerEntry p4netConfig.peers );
 in with p4netConfig;
 {
   services.coredns = {
