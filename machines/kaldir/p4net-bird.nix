@@ -1,3 +1,4 @@
+{ lib, ... }:
 let
   p4netConfig = (import ./p4net-config.nix);
 in with p4netConfig;
@@ -10,9 +11,9 @@ in with p4netConfig;
   services.bird2 = {
     enable = true;
     config = let
-      peerIPs = builtins.concatStringsSep ", " (pkgs.lib.mapAttrsToList (_: peer: peer.linkIP + "/32") peers);
+      peerIPs = builtins.concatStringsSep ", " (lib.mapAttrsToList (_: peer: peer.linkIP + "/32") peers);
       mkProtocolEntry = name: peer: "protocol bgp ${name} from p4peers { neighbor ${peer.linkIP} as ${toString peer.ASN}; };";
-      bgpPeerEntries = builtins.concatStringsSep "\n" (pkgs.lib.mapAttrsToList mkProtocolEntry peers);
+      bgpPeerEntries = builtins.concatStringsSep "\n" (lib.mapAttrsToList mkProtocolEntry peers);
     in ''
       define OWNAS =  65069;
       define OWNIP =  198.18.69.1;
