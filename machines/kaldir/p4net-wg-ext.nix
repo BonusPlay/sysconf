@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 let
   p4netConfig = (import ./p4net-config.nix);
 in with p4netConfig;
@@ -48,6 +49,6 @@ in with p4netConfig;
 
   networking.firewall = {
     # wireguard
-    allowedUDPPorts = pkgs.lib.mapAttrsToList (_: peer: peer.listenPort) p4netConfig.peers;
+    allowedUDPPorts = lib.mapAttrsToList (_: peer: peer.listenPort) p4netConfig.peers;
   };
 }
