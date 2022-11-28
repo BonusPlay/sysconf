@@ -5,7 +5,7 @@
     ./networking.nix
     ./p4net-bird.nix
     ./p4net-coredns.nix
-    ./p4net-wg-int.nix
+    #./p4net-wg-int.nix
     ./p4net-wg-ext.nix
   ];
 
