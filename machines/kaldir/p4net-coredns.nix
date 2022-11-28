@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   p4netConfig = (import ./p4net-config.nix);
 
@@ -27,7 +27,7 @@ let
       whoami
     }
   '';
-  entries = pkgs.lib.mapAttrsToList mkPeerEntry p4netConfig.peers;
+  entries = lib.mapAttrsToList mkPeerEntry p4netConfig.peers;
 in with p4netConfig;
 {
   services.coredns = {
