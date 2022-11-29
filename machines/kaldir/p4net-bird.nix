@@ -20,7 +20,8 @@ in with p4netConfig;
       define OWNNETSET = [ 198.18.66.0/24+, 198.18.67.0/24+, 198.18.68.0/24+, 198.18.69.0/24+ ];
       define ALLSET = [ ${p4subnet}+ ];
 
-      log "/var/log/bird.log" { debug, trace, info, remote, warning, error, auth, fatal, bug };
+      log syslog all;
+      log stderr all;
       router id OWNIP;
 
       function is_self_net() {
