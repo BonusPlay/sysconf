@@ -66,7 +66,7 @@ in with p4netConfig;
         };
       };
       
-      template bgp dnpeers {
+      template bgp p4peers {
         local as OWNAS;
         path metric 1;
         multihop;
