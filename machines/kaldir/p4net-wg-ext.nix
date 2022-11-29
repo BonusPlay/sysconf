@@ -3,7 +3,7 @@ let
   p4netConfig = (import ./p4net-config.nix);
 in with p4netConfig;
 {
-  security.pki.certificates = [ (builtins.readFile ../files/p4net-ca.crt) ];
+  security.pki.certificates = [ (builtins.readFile ../../files/p4net/p4net-ca.crt) ];
 
   age.secrets.p4netExternal = {
     file = ../../secrets/kaldir-p4net-ext.age;
