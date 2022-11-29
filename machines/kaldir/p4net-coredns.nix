@@ -19,13 +19,6 @@ let
     ${mkArpaAddr peer.linkIP}.in-addr.arpa {
       forward . ${peer.linkIP}
     }
-
-    bonus.p4 {
-      file ${../../files/p4net/zone.conf}
-    }
-    69.18.198-in.addr.arpa {
-      whoami
-    }
   '';
   entries = builtins.concatStringsSep "\n" ( lib.mapAttrsToList mkPeerEntry p4netConfig.peers );
 in with p4netConfig;
@@ -35,9 +28,16 @@ in with p4netConfig;
     config = ''
       ${entries}
 
+      bonus.p4 {
+        file ${../../files/p4net/zone.conf}
+      }
+      69.18.198-in.addr.arpa {
+        whoami
+      }
+
       . {
-          cache
-      	errors
+        cache
+        errors
       }
     '';
   };
