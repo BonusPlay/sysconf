@@ -18,7 +18,7 @@ in with p4netConfig;
     instances = {
       "p4net-chv" = {
         listenPort = 51820;
-        ips = "198.18.69.1";
+        ips = [ "198.18.69.1" ];
         peers = [{
           route = "198.18.1.1";
           publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
