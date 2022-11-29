@@ -17,7 +17,7 @@ in with p4netConfig;
     privateKeyFile = config.age.secrets.p4netExternal.path;
     ips = "198.18.69.1";
     instances = {
-      chv = {
+      "p4net-chv" = {
         listenPort = 51820;
         peers = [{
           route = "198.18.1.1";
@@ -26,7 +26,7 @@ in with p4netConfig;
           endpoint = "130.61.129.131:51820";
         }];
       };
-      dms = {
+      "p4net-dms" = {
         listenPort = 51821;
         peers = [{
           route = "198.18.57.1";
@@ -35,7 +35,7 @@ in with p4netConfig;
           endpoint = "duck.dominikoso.me:51821";
         }];
       };
-      msm = {
+      "p4net-msm" = {
         listenPort = 51822;
         peers = [{
           route = "198.18.70.1";
