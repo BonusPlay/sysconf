@@ -9,7 +9,8 @@
     agenix.url = "github:ryantm/agenix";
 
     p4net = {
-      url = "github:Patient-Engineering/p4net-nix/master";
+      #url = "github:Patient-Engineering/p4net-nix/master";
+      url = "github:BonusPlay/p4net-nix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
