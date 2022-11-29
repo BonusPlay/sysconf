@@ -76,11 +76,12 @@ in with p4netConfig;
             if is_valid_network() && !is_self_net() then accept;
             reject;
           };
-    
+
+          import limit 1000 action block;
+
           export filter {
             if is_valid_network() && source ~ [RTS_STATIC, RTS_BGP] then accept;
             reject;
-            import limit 1000 action block;
           };
         };
       }
