@@ -14,7 +14,7 @@ in with p4netConfig;
       peerIPs = builtins.concatStringsSep ", " (lib.mapAttrsToList (_: peer: peer.linkIP + "/32") peers);
       mkProtocolEntry = name: peer: "protocol bgp ${name} from p4peers { neighbor ${peer.linkIP} as ${toString peer.ASN}; };";
       bgpPeerEntries = builtins.concatStringsSep "\n" (lib.mapAttrsToList mkProtocolEntry peers);
-    in builtins.concatStringsSep "\n" (''
+    in builtins.concatStringsSep "\n" (bgpPeerEntries ''
       define OWNAS =  65069;
       define OWNIP =  198.18.69.1;
       define OWNNETSET = [ 198.18.66.0/24+, 198.18.67.0/24+, 198.18.68.0/24+, 198.18.69.0/24+ ];
@@ -84,6 +84,6 @@ in with p4netConfig;
           };
         };
       }
-    '' ++ bgpPeerEntries);
+    '');
   };
 }
