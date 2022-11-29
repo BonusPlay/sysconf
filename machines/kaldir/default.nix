@@ -36,6 +36,7 @@
     wget
     tmux
     htop
+    git
   ];
 
   services.openssh.enable = true;
