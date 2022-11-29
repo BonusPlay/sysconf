@@ -55,6 +55,8 @@ in
     kubectl
     kubectx
     wireguard-tools
+    gef
+    gdb
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
