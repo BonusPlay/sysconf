@@ -44,7 +44,7 @@ in
     yt-dlp
     virt-manager
     kicad
-    docker-compose_2
+    docker-compose
     slack
     pass
     file
