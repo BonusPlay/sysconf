@@ -5,6 +5,6 @@
     port = "8080";
     serverUrl = "https://kaldir.bonusplay.pl";
     tls.letsencrypt.hostname = "*.bonusplay.pl";
-    tls.letsencrypt.listen = ":8080";
+    tls.letsencrypt.httpListen = ":8080";
   };
 }
