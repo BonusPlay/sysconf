@@ -5,8 +5,8 @@
     ./networking.nix
     ./p4net-bird.nix
     ./p4net-coredns.nix
-    #./p4net-wg-int.nix
-    ./p4net-wg-ext.nix
+    ./p4net-wg.nix
+    ./khala.nix
   ];
 
   nix.extraOptions = ''
@@ -45,5 +45,5 @@
   system.autoUpgrade.flake = "github:BonusPlay/sysconf";
   system.autoUpgrade.enable = true;
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
