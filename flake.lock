@@ -126,11 +126,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669922969,
-        "narHash": "sha256-PwLQDyssA8in1TX3443YGyDizvY5X0Jb0QVpPfGeIuU=",
+        "lastModified": 1669923337,
+        "narHash": "sha256-pbgEil4Zxnhf+Yjg0WdSlFwGIb30bbVN6nVpOTY19Ck=",
         "owner": "BonusPlay",
         "repo": "p4net-nix",
-        "rev": "893be69f94212a7b1d41f0c767d1e3d62941badf",
+        "rev": "053b8d500cebcacb981056f87175c8669f8c4c27",
         "type": "github"
       },
       "original": {
