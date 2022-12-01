@@ -24,16 +24,16 @@
         "BonusSpot".psk = "@WIFI_2_PASS@";
         "klisie".psk = "@WIFI_3_PASS@";
         "Galaxy S20 FE31E6".psk = "@WIFI_4_PASS@";
+        "stm-guest" = {
+          psk = "@WIFI_5_PASS@";
+          hidden = true;
+        };
         "WEiTI".auth = ''
           key_mgmt=WPA-EAP
           eap=PEAP
           identity="aklis@mion"
-          password="@WIFI_5_PASS@"
+          password="@WIFI_6_PASS@"
         '';
-        "stm-guest" = {
-          psk = "@WIFI_6_PASS@";
-          hidden = true;
-        };
       };
     };
     firewall = {
