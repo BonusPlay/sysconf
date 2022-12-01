@@ -55,7 +55,7 @@
       ];
       home.username = "bonus";
       home.homeDirectory = "/home/bonus";
-      home.stateVersion = "22.05";
+      home.stateVersion = "22.11";
     };
   };
 
@@ -100,5 +100,5 @@
     source-code-pro
   ];
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
 }
