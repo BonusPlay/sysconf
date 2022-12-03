@@ -31,4 +31,6 @@
       ip_prefixes = "198.18.66.0/24";
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 51850 ];
 }
