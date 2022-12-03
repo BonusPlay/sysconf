@@ -9,12 +9,13 @@
     acceptTerms = true;
     certs = {
       wildcard = {
-        dnsProvider = "cloudflare";
-        renewInterval = "weekly";
-        email = "cloudflare@bonusplay.pl";
-        reloadServices = [ "headscale" ];
         domain = "*.bonusplay.pl";
+        dnsProvider = "cloudflare";
         credentialsFile = config.age.secrets.cloudflare.path;
+        email = "cloudflare@bonusplay.pl";
+        renewInterval = "weekly";
+        group = "headscale";
+        reloadServices = [ "headscale" ];
       };
     };
   };
