@@ -2,8 +2,7 @@
 {
   age.secrets.cloudflare = {
     file = ../../secrets/cloudflare.age;
-    mode = "0440";
-    group = "headscale";
+    mode = "0400";
   };
 
   security.acme = {
