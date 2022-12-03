@@ -19,6 +19,7 @@ in with p4netConfig;
       "p4net-chv" = {
         listenPort = 51820;
         ips = [ "198.18.69.1" ];
+        allowedIPsAsRoutes = false;
         peers = [{
           route = "198.18.1.1";
           publicKey = "n95378M/NgKYPLl2vpxYA32tLt8JJ3u3BsNP0ykSiS8=";
@@ -29,6 +30,7 @@ in with p4netConfig;
       "p4net-dms" = {
         listenPort = 51821;
         ips = [ "198.18.69.1" ];
+        allowedIPsAsRoutes = false;
         peers = [{
           route = "198.18.57.1";
           publicKey = "O9E4d7jJaguaZLgosbPhpWUKA8EYX2doMTsJeMiC3W8=";
@@ -39,6 +41,7 @@ in with p4netConfig;
       "p4net-msm" = {
         listenPort = 51822;
         ips = [ "198.18.69.1" ];
+        allowedIPsAsRoutes = false;
         peers = [{
           route = "198.18.70.1";
           publicKey = "3hnEZtMv/k9PnoSAbEMrccG6bA3Paq1vwOafppGJlRc=";
