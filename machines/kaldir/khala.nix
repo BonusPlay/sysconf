@@ -27,5 +27,8 @@
     serverUrl = "https://kaldir.bonusplay.pl";
     tls.keyFile = "/var/lib/acme/wildcard/key.pem";
     tls.certFile = "/var/lib/acme/wildcard/cert.pem";
+    settings = {
+      ip_prefixes = "198.18.66.0/24";
+    };
   };
 }
