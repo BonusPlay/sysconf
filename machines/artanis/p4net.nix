@@ -8,6 +8,8 @@
     group = "systemd-network";
   };
 
+  services.tailscale.enable = true;
+
   systemd.network = {
     enable = true;
     netdevs = {
