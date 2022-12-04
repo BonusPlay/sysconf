@@ -34,4 +34,9 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 51850 ];
+
+  services.tailscale = {
+    enable = true;
+    interfaceName = "p4net-khala";
+  };
 }
