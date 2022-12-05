@@ -61,7 +61,7 @@
 
   systemd.services.khalaPolicyRouting = {
     wantedBy = [ "network-online.target" ];
-    after = "network-interfaces.target";
+    after = [ "network-interfaces.target" ];
     description = "Add policy routing for khala interface";
     script = ''
       ${pkgs.iproute2}/bin/ip rule add from 10.0.2.10 lookup khala
