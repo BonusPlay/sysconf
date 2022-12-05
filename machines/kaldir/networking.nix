@@ -8,9 +8,12 @@
       allowedUDPPorts = [ 13337 ];
     };
     dhcpcd.enable = false;
-    iproute2.rttablesExtraConfig = ''
-      1 hive
-    '';
+    iproute2 = {
+      enabled = true;
+      rttablesExtraConfig = ''
+        1 hive
+      '';
+    };
     interfaces.enp0s3 = {
       useDHCP = false;
       ipv4 = {
