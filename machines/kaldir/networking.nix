@@ -16,20 +16,6 @@
       '';
     };
 
-    systemd.services.khalaPolicyRouting = {
-      wantedBy = [ "network-online.target" ];
-      after = "network-interfaces.target";
-      description = "Add policy routing for khala interface";
-      script = ''
-        ${pkgs.iproute2}/bin/ip rule add from 10.0.2.10 lookup khala
-        ${pkgs.iproute2}/bin/ip rule add from 10.0.2.1 lookup khala
-      '';
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-      };
-    };
-
     interfaces.enp0s3 = {
       useDHCP = false;
       ipv4 = {
@@ -70,6 +56,20 @@
           }
         ];
       };
+    };
+  };
+
+  systemd.services.khalaPolicyRouting = {
+    wantedBy = [ "network-online.target" ];
+    after = "network-interfaces.target";
+    description = "Add policy routing for khala interface";
+    script = ''
+      ${pkgs.iproute2}/bin/ip rule add from 10.0.2.10 lookup khala
+      ${pkgs.iproute2}/bin/ip rule add from 10.0.2.1 lookup khala
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
     };
   };
 }
