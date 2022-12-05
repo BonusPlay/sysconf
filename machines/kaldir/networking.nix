@@ -9,7 +9,7 @@
     };
     dhcpcd.enable = false;
     iproute2 = {
-      enabled = true;
+      enable = true;
       rttablesExtraConfig = ''
         1 hive
       '';
