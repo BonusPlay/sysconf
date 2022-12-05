@@ -8,19 +8,22 @@
       allowedUDPPorts = [ 13337 ];
     };
     dhcpcd.enable = false;
-    defaultGateway = {
-      address = "10.0.0.1";
-      interface = "enp0s3";
-    };
     iproute2.rttablesExtraConfig = ''
       1 hive
     '';
     interfaces.enp0s3 = {
       useDHCP = false;
-      addresses = [{
-        address = "10.0.0.49";
-        prefixLength = 24;
-      }];
+      ipv4 = {
+        addresses = [{
+          address = "10.0.0.49";
+          prefixLength = 24;
+        }];
+        routes = [{
+          address = "0.0.0.0";
+          prefixLength = 0;
+          via = "10.0.0.1";
+        }];
+      };
     };
     interfaces.enp1s0 = {
       useDHCP = false;
