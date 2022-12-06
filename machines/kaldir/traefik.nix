@@ -29,8 +29,15 @@
         http3 = true;
       };
       entryPoints = {
-        web.address = ":80";
-        websecure.address = ":443";
+        web = {
+          address = ":80";
+          redirections.entrypoint.to = "websecure";
+          redirections.entrypoint.scheme = "https";
+        };
+        websecure = {
+          address = ":443";
+          tls = true;
+        };
       };
     };
     dynamicConfigOptions = {
@@ -54,6 +61,9 @@
           }];
         };
       };
+      tls.certificates = [{
+        certFile = "/var/lib/acme/wildcard/cert.pem";
+        keyFile = "/var/lib/acme/wildcard/key.pem";
     };
   };
 }
