@@ -31,12 +31,14 @@
       entryPoints = {
         web = {
           address = ":80";
-          redirections.entrypoint.to = "websecure";
-          redirections.entrypoint.scheme = "https";
+          http = {
+            redirections.entrypoint.to = "websecure";
+            redirections.entrypoint.scheme = "https";
+          };
         };
         websecure = {
           address = ":443";
-          tls = true;
+          http.tls = true;
         };
       };
     };
