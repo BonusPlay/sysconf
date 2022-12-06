@@ -64,6 +64,7 @@
       tls.certificates = [{
         certFile = "/var/lib/acme/wildcard/cert.pem";
         keyFile = "/var/lib/acme/wildcard/key.pem";
+      }];
     };
   };
 }
