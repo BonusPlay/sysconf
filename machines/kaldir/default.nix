@@ -7,6 +7,7 @@
     ./p4net-coredns.nix
     ./p4net-wg.nix
     ./khala.nix
+    ./traefik.nix
   ];
 
   nix.extraOptions = ''
