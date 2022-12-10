@@ -3,6 +3,7 @@
   age.secrets = {
     matrixSynapseSigningKey = {
       file = ../../secrets/matrix-synapse-signing-key.age;
+      path = "/var/lib/matrix-synapse/homeserver.signing.key";
       group = "matrix-synapse";
       mode = "0440";
     };
