@@ -40,7 +40,7 @@ in with p4netConfig;
       };
       "p4net-msm" = {
         listenPort = 51822;
-        ips = [ "198.18.70.1" ];
+        ips = [ "198.18.69.1" ];
         allowedIPsAsRoutes = false;
         peers = [{
           route = "198.18.70.1";
