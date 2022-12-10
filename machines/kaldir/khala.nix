@@ -3,7 +3,7 @@
     enable = true;
     address = "0.0.0.0";
     port = 4040;
-    serverUrl = "https://kaldir.bonusplay.pl";
+    serverUrl = "https://khala.bonusplay.pl";
     aclPolicyFile = "/etc/headscale/acl.json";
     settings = {
       ip_prefixes = "198.18.66.0/24";

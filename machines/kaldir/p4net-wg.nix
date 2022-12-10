@@ -55,5 +55,8 @@ in with p4netConfig;
   networking.firewall = {
     # wireguard
     allowedUDPPorts = lib.mapAttrsToList (_: peer: peer.listenPort) p4netConfig.peers;
+    extraCommands = ''
+      iptables -A FORWARD -s 198.18.0.0/16 -d 198.18.0.0/16 -j ACCEPT
+    '';
   };
 }
