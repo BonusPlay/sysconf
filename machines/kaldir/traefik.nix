@@ -43,6 +43,7 @@
       };
     };
     dynamicConfigOptions = {
+      # TODO: rewrite using nix
       http = {
         routers = {
           khala = {
@@ -53,6 +54,10 @@
             rule = "Host(`khala.bonusplay.pl`) && PathPrefix(`/web`)";
             service = "khala-ui";
           };
+          matrix = {
+            rule = "Host(`matrix.bonusplay.pl`)";
+            service = "matrix";
+          };
         };
         services = {
           khala.loadBalancer.servers = [{
@@ -60,6 +65,9 @@
           }];
           khala-ui.loadBalancer.servers = [{
             url = "http://localhost:4050";
+          }];
+          matrix.loadBalancer.servers = [{
+            url = "http://localhost:4080";
           }];
         };
       };

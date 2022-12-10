@@ -30,19 +30,19 @@
     ];
   };
 
-  shakuras = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./shakuras
-      agenix.nixosModule
-    ];
-  };
+  #shakuras = nixpkgs.lib.nixosSystem {
+  #  system = "x86_64-linux";
+  #  modules = [
+  #    ./shakuras
+  #    agenix.nixosModule
+  #  ];
+  #};
 
-  endion = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./endion
-      agenix.nixosModule
-    ];
-  };
+  #endion = nixpkgs.lib.nixosSystem {
+  #  system = "x86_64-linux";
+  #  modules = [
+  #    ./endion
+  #    agenix.nixosModule
+  #  ];
+  #};
 }

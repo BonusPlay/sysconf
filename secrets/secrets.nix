@@ -9,6 +9,9 @@ in
 {
   "artanis-p4net.age".publicKeys = users ++ [ artanis ];
   "kaldir-p4net-ext.age".publicKeys = users ++ [ kaldir ];
+
   "cloudflare.age".publicKeys = users ++ [ kaldir ];
+  "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
+  "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "wifi.age".publicKeys = users ++ [ artanis ];
 }

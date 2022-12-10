@@ -8,6 +8,7 @@
     ./p4net-wg.nix
     ./khala.nix
     ./traefik.nix
+    ./matrix-synapse.nix
   ];
 
   nix.extraOptions = ''
