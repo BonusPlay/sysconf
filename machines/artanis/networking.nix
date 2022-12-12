@@ -9,6 +9,9 @@
   # load passwords
   systemd.services.wpa_supplicant.serviceConfig.EnvironmentFile = "${config.age.secrets.wifi.path}";
 
+  # use systemd-networkd
+  systemd.network.enable = true;
+
   networking = {
     hostName = "artanis";
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
