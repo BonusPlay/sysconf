@@ -22,7 +22,7 @@ set.relativenumber = true
 -- dark bg
 set.background = "dark"
 set.termguicolors = true
-vim.cmd[[colorscheme darkblue]]
+vim.cmd[[colorscheme evening]]
 
 -- UTF-8
 set.encoding = "UTF8"
