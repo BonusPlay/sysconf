@@ -4,6 +4,7 @@
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
+    allowedBridges = [ "br-vms" "br-mullvad" "br-danger" ];
   };
 
   systemd.network = {
@@ -35,11 +36,4 @@
     iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i br-vms -o wlan0 -j ACCEPT
   '';
-
-  #networking = {
-  #    dhcpcd.denyInterfaces = [ "br-vms" ];
-  #    bridges = {
-  #        "br-vms".interfaces = [];
-  #    };
-  #};
 }
