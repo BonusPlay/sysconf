@@ -5,7 +5,7 @@ let
 in
 {
   networking.nat.forwardPorts = [{
-    destination = "${containerIP}:${port}";
+    destination = "${containerIP}:${toString port}";
     proto = "tcp";
     sourcePort = port;
   }];

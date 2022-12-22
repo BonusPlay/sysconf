@@ -9,6 +9,7 @@
     ./khala.nix
     ./traefik.nix
     ./matrix-synapse.nix
+    ./mosquitto.nix
   ];
 
   nix.extraOptions = ''
