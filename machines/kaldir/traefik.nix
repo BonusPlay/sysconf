@@ -40,6 +40,9 @@
           address = ":443";
           http.tls = true;
         };
+        mqtt = {
+          address = ":8883";
+        };
       };
     };
     dynamicConfigOptions = {
@@ -68,6 +71,20 @@
           }];
           matrix.loadBalancer.servers = [{
             url = "http://localhost:4080";
+          }];
+        };
+      };
+      tcp = {
+        routers = {
+          mqtt = {
+            rule = "HostSNI(`mqtt.bonusplay.pl`)";
+            service = "mqtt";
+            tls = {};
+          };
+        };
+        services = {
+          mqtt.loadBalancer.servers = [{
+            address = "http://localhost:8883";
           }];
         };
       };

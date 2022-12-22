@@ -16,6 +16,12 @@
     #  '';
     #};
 
+    nat = {
+      enable = true;
+      externalInterface = "enp0s3";
+      internalInterfaces = ["ve-+"];
+    };
+
     interfaces.enp0s3 = {
       useDHCP = false;
       ipv4 = {
