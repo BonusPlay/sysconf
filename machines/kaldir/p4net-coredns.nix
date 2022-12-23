@@ -23,6 +23,11 @@ let
   entries = builtins.concatStringsSep "\n" ( lib.mapAttrsToList mkPeerEntry p4netConfig.peers );
 in with p4netConfig;
 {
+  networking.firewall = {
+    allowedTCPPorts = [ 53 ];
+    allowedUDPPorts = [ 53 ];
+  };
+
   services.coredns = {
     enable = true;
     config = ''
