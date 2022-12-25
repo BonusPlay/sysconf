@@ -16,7 +16,7 @@
     interfaceName = "p4net-khala";
   };
 
-  config.virtualisation.oci-containers.containers = {
+  virtualisation.oci-containers.containers = {
     "headscale-ui" = {
       image = "ghcr.io/gurucomputing/headscale-ui:beta";
       ports = ["80:4050"];
