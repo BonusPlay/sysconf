@@ -19,7 +19,7 @@
   virtualisation.oci-containers.containers = {
     "headscale-ui" = {
       image = "ghcr.io/gurucomputing/headscale-ui:beta";
-      ports = ["80:4050"];
+      ports = ["4050:80"];
     };
   };
 
