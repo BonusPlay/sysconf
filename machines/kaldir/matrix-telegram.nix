@@ -21,6 +21,6 @@
       bridge.permissions = {
         "@bonus:bonusplay.pl" = "admin";
       };
-    }
+    };
   };
 }
