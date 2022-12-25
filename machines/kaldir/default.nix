@@ -6,7 +6,7 @@
     ./p4net-bird.nix
     ./p4net-coredns.nix
     ./p4net-wg.nix
-    ./khala.nix
+    ./p4net-zerotier.nix
     ./traefik.nix
     ./matrix-synapse.nix
     ./mosquitto.nix
