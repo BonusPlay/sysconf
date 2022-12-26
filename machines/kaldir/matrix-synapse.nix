@@ -35,9 +35,9 @@
         type = "http";
         x_forwarded = true;
       }];
-      app_service_config_files = [
-        "/var/lib/mautrix-telegram/telegram-registration.yaml"
-      ];
+      #app_service_config_files = [
+      #  "/var/lib/mautrix-telegram/telegram-registration.yaml"
+      #];
     };
   };
 

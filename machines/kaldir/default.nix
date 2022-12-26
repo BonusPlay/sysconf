@@ -9,7 +9,7 @@
     ./p4net-zerotier.nix
     ./traefik.nix
     ./matrix-synapse.nix
-    ./matrix-telegram.nix
+    #./matrix-telegram.nix
     ./mosquitto.nix
   ];
 
