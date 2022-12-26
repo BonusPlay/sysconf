@@ -11,6 +11,20 @@
 
   # use systemd-networkd
   systemd.network.enable = true;
+  networking.dhcpcd.enable = false;
+
+  systemd.network = {
+    networks = {
+      "wlan0" = {
+        name = "wlan0";
+        DHCP = "yes";
+      };
+      "wired" = {
+        name = "enp0s13f0u1";
+        DHCP = "yes";
+      };
+    };
+  };
 
   networking = {
     hostName = "artanis";

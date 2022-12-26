@@ -36,4 +36,6 @@
     iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
     iptables -A FORWARD -i br-vms -o wlan0 -j ACCEPT
   '';
+
+  systemd.network.wait-online.ignoredInterfaces = [ "br-vms" ];
 }
