@@ -57,6 +57,7 @@ in
     wireguard-tools
     gef
     gdb
+    mtr
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
