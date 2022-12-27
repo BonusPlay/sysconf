@@ -20,7 +20,9 @@
         DHCP = "yes";
       };
       "wired" = {
-        name = "enp0s13f0u1";
+        matchConfig = {
+          MACAddress = "00:e0:4c:34:8d:eb";
+        };
         DHCP = "yes";
       };
     };
