@@ -21,6 +21,7 @@
       ];
     };
 
+  # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
     modules = [
@@ -30,10 +31,20 @@
     ];
   };
 
+  # p4net exit node
   vanass = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
       ./vanass
+      agenix.nixosModule
+    ];
+  };
+
+  # kncyber VM
+  braxis = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./braxis
       agenix.nixosModule
     ];
   };
