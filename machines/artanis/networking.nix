@@ -31,10 +31,6 @@
   networking = {
     hostName = "artanis";
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
-
-    # TODO: use systemd-networkd
-    #dhcpcd.enable = false;
-
     wireless = {
       enable = true;
       userControlled.enable = true;

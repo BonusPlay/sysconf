@@ -42,7 +42,7 @@
 
   users.users.bonus = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "libvirtd" "wireshark" ];
+    extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" ];
   };
 
   home-manager = {
