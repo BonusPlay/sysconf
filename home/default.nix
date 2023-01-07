@@ -61,6 +61,7 @@ in
     iotop
     iftop
     nfs-utils
+    openssl
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
