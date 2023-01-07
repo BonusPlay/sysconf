@@ -1,4 +1,7 @@
-{ lib, config, pkgs, nixpkgs-unstable, home-manager, ... }:
+{ lib, config, nixpkgs-unstable, home-manager, ... }:
+let
+  pkgs = nixpkgs-unstable;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -11,7 +14,7 @@
   '';
 
   boot = {
-    loader.efi.canTouchEfiVariables = true;
+    loader.grub.device = "/dev/sda";
     tmpOnTmpfs = true;
     cleanTmpDir = true;
   };
@@ -37,6 +40,5 @@
   security.sudo.wheelNeedsPassword = false;
   system.autoUpgrade.flake = "github:BonusPlay/sysconf";
   system.autoUpgrade.enable = true;
-
   system.stateVersion = "22.11";
 }

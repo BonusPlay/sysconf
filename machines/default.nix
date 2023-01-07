@@ -41,7 +41,7 @@
   };
 
   # kncyber VM
-  braxis = nixpkgs.lib.nixosSystem {
+  braxis = nixpkgs-unstable.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
       ./braxis
