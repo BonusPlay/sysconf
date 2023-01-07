@@ -9,7 +9,7 @@
   age.secrets.tunnelPass = {
     file = ../../secrets/keycloak-tunnel.age;
     mode = "0440";
-    group = "keycloak";
+    group = "cloudflared";
   };
 
   services.keycloak = {
