@@ -12,8 +12,11 @@ in
   "kaldir-p4net-ext.age".publicKeys = users ++ [ kaldir ];
 
   "cloudflare.age".publicKeys = users ++ [ kaldir ];
+  "cloudflare-tunnel.age".publicKeys = users;
+
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];
+  "keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
   "wifi.age".publicKeys = users ++ [ artanis ];
 }
