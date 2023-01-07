@@ -58,6 +58,9 @@ in
     gef
     gdb
     mtr
+    iotop
+    iftop
+    nfs-utils
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
