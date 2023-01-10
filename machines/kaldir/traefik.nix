@@ -103,7 +103,7 @@
             tls = {};
           };
           services."${entry.name}".loadBalancer.servers = [{
-            address = "tcp://localhost:${toString entry.port}";
+            address = "localhost:${toString entry.port}";
           }];
         };
 
