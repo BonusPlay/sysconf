@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   services.prometheus = {
     enable = true;
@@ -10,8 +11,14 @@
         static_configs = [
           {
             targets = [
-              "198.18.66.10:9100"
+              "198.18.66.1:${toString config.services.prometheus.exporters.node.port}"
+              "198.18.66.1:${toString config.services.prometheus.exporters.bird.port}"
+              "198.18.66.1:${toString config.services.prometheus.exporters.systemd.port}"
+              "198.18.66.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
+            labels = {
+              alias = "kaldir.bonus.p4";
+            };
           }
         ];
       }
