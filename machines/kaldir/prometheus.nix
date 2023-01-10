@@ -7,9 +7,11 @@
       {
         job_name = "nodes";
         static_configs = [
-          targets = [
-            "198.18.66.10:9100"
-          ];
+          {
+            targets = [
+              "198.18.66.10:9100"
+            ];
+          }
         ];
       }
     ];

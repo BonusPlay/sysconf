@@ -7,6 +7,7 @@
     ./p4net-coredns.nix
     ./p4net-wg.nix
     ./p4net-zerotier.nix
+    ./prometheus.nix
     ./traefik.nix
     ./matrix-synapse.nix
     #./matrix-telegram.nix
