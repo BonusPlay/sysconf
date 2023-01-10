@@ -11,6 +11,12 @@
     owner = "traefik";
   };
 
+  age.secrets.grafanaCertKey = {
+    file = ../../secrets/grafana-ssl-key.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -80,6 +86,13 @@
             domain = config.services.prometheus.webExternalUrl;
             kind = "http";
             port = config.services.prometheus.port;
+            p4net = true;
+          }
+          {
+            name = "grafana";
+            domain = config.services.grafana.settings.server.domain;
+            kind = "http";
+            port = config.services.grafana.settings.server.http_port;
             p4net = true;
           }
         ];

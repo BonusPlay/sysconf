@@ -1,6 +1,7 @@
 { lib, config, pkgs, nixpkgs-unstable, home-manager, ... }:
 {
   imports = [
+    ./grafana.nix
     ./hardware-configuration.nix
     ./networking.nix
     ./p4net-bird.nix

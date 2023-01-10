@@ -15,6 +15,7 @@ in
   "cloudflare-tunnel.age".publicKeys = users;
 
   "prometheus-ssl-key.age".publicKeys = users ++ [ kaldir ];
+  "grafana-ssl-key.age".publicKeys = users ++ [ kaldir ];
 
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
