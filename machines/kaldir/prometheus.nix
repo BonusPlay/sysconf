@@ -1,6 +1,7 @@
 {
   services.prometheus = {
-    webExternalUrl = "prom.bonus.p4";
+    enable = true;
+    webExternalUrl = "prometheus.bonus.p4";
     # retentionTime = for the future
     port = 4050;
     scrapeConfigs = [
