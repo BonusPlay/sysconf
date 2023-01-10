@@ -37,10 +37,10 @@
           "--dbus-user.talk=org.freedesktop.Notifications"  # enable native notifications
         ];
       };
-      libreoffice = {
-        executable = "${pkgs.libreoffice}/bin/libreoffice";
-        profile = "${pkgs.firejail}/etc/firejail/libreoffice.profile";
-      };
+      #libreoffice = {
+      #  executable = "${pkgs.libreoffice}/bin/libreoffice";
+      #  profile = "${pkgs.firejail}/etc/firejail/libreoffice.profile";
+      #};
     };
   };
 }
