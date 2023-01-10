@@ -77,7 +77,7 @@
           }
           {
             name = "prometheus";
-            domain = "prometheus.bonus.p4";
+            domain = config.services.prometheus.webExternalUrl;
             kind = "http";
             port = config.services.prometheus.port;
             p4net = true;
