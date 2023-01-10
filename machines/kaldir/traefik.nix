@@ -46,6 +46,10 @@
           address = ":443";
           http.tls = true;
         };
+        p4net = {
+          address = "198.18.66.10:443";
+          http.tls = true;
+        };
         mqtt = {
           address = ":8883";
         };
@@ -79,7 +83,7 @@
             name = "prometheus";
             domain = "prometheus.bonus.p4";
             kind = "http";
-            port = 4060;
+            port = config.services.prometheus.port;
             p4net = true;
           }
         ];
