@@ -1,8 +1,14 @@
-{ config, ... }:
+{ lib, config, ... }:
 {
   age.secrets.cloudflare = {
     file = ../../secrets/cloudflare.age;
     mode = "0400";
+  };
+
+  age.secrets.prometheusCertKey = {
+    file = ../../secrets/prometheus-ssl-key.age;
+    mode = "0400";
+    owner = "traefik";
   };
 
   security.acme = {
@@ -45,53 +51,82 @@
         };
       };
     };
-    dynamicConfigOptions = {
-      # TODO: rewrite using nix
-      http = {
-        routers = {
-          khala = {
-            rule = "Host(`khala.bonusplay.pl`)";
-            service = "khala";
+    dynamicConfigOptions =
+      let
+        entries = [
+          {
+            name = "matrix";
+            domain = "matrix.bonusplay.pl";
+            kind = "http";
+            port = 4080;
+            p4net = false;
+          }
+          {
+            name = "dr";
+            domain = "dr.bonusplay.pl";
+            kind = "http";
+            port = 4070;
+            p4net = false;
+          }
+          {
+            name = "mqtt";
+            domain = "mqtt.bonusplay.pl";
+            kind = "tcp";
+            port = 8883;
+            p4net = false;
+          }
+          {
+            name = "prometheus";
+            domain = "prometheus.bonus.p4";
+            kind = "http";
+            port = 4060;
+            p4net = true;
+          }
+        ];
+        isHttp = entry: entry.kind == "http";
+        isTcp = entry: entry.kind == "tcp";
+
+        mkHttpEntry = entry: {
+          routers."${entry.name}" = {
+            rule = "Host(`${entry.domain}`)";
+            service = entry.name;
           };
-          khala-ui = {
-            rule = "Host(`khala.bonusplay.pl`) && PathPrefix(`/web`)";
-            service = "khala-ui";
-          };
-          matrix = {
-            rule = "Host(`matrix.bonusplay.pl`)";
-            service = "matrix";
-          };
+          services."${entry.name}".loadBalancer.servers = [{
+            url = "http://localhost:${toString entry.port}";
+          }];
         };
-        services = {
-          khala.loadBalancer.servers = [{
-            url = "http://localhost:4040";
-          }];
-          khala-ui.loadBalancer.servers = [{
-            url = "http://localhost:4050";
-          }];
-          matrix.loadBalancer.servers = [{
-            url = "http://localhost:4080";
-          }];
-        };
-      };
-      tcp = {
-        routers = {
-          mqtt = {
-            rule = "HostSNI(`mqtt.bonusplay.pl`)";
-            service = "mqtt";
+
+        mkTcpEntry = entry: {
+          routers."${entry.name}" = {
+            rule = "HostSNI(`${entry.domain}`)";
+            service = entry.name;
             tls = {};
           };
-        };
-        services = {
-          mqtt.loadBalancer.servers = [{
-            address = "http://localhost:8883";
+          services."${entry.name}".loadBalancer.servers = [{
+            address = "tcp://localhost:${toString entry.port}";
           }];
         };
+
+        httpEntries = map mkHttpEntry (lib.filter isHttp entries);
+        tcpEntries = map mkTcpEntry (lib.filter isTcp entries);
+
+        httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
+        tcpConfig = lib.foldl' lib.recursiveUpdate {} tcpEntries;
+      in
+      {
+        # TODO: rewrite using nix
+        http = httpConfig;
+        tcp = tcpConfig;
+        tls.certificates = [
+          {
+            certFile = "/var/lib/acme/wildcard/cert.pem";
+            keyFile = "/var/lib/acme/wildcard/key.pem";
+          }
+          {
+            certFile = "/etc/nixos/files/p4net/prometheus.bonus.p4.crt";
+            keyFile = config.age.secrets.prometheusCertKey.path;
+          }
+        ];
       };
-      tls.certificates = [{
-        certFile = "/var/lib/acme/wildcard/cert.pem";
-        keyFile = "/var/lib/acme/wildcard/key.pem";
-      }];
-    };
   };
 }
