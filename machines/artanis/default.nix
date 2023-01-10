@@ -12,6 +12,8 @@
   nixpkgs.config.allowUnfree = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
+    extra-substituters = https://cache.garnix.io
+    extra-trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
   '';
 
   # TODO: ping nixpkgs to not update every time
