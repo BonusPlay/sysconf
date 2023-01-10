@@ -46,10 +46,6 @@
           address = ":443";
           http.tls = true;
         };
-        p4net = {
-          address = "198.18.66.1:443";
-          http.tls = true;
-        };
         mqtt = {
           address = ":8883";
         };
