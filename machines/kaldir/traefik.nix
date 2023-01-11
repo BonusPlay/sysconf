@@ -87,7 +87,7 @@
           }
           {
             name = "prometheus";
-            domain = config.services.prometheus.webExternalUrl;
+            domain = lib.strings.removeSuffix "/" (lib.strings.removePrefix "https://" config.services.prometheus.webExternalUrl);
             kind = "http";
             port = config.services.prometheus.port;
             p4net = true;
