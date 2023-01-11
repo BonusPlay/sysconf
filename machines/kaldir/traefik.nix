@@ -40,6 +40,10 @@
       experimental = {
         http3 = true;
       };
+      api = {
+        dashboard = true;
+        insecure = true;
+      };
       entryPoints = {
         web = {
           address = ":80";
