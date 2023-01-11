@@ -136,8 +136,12 @@
             keyFile = "/var/lib/acme/wildcard/key.pem";
           }
           {
-            certFile = "/etc/nixos/files/p4net/prometheus.bonus.p4.crt";
+            certFile = "/etc/nixos/files/p4net/prom.bonus.p4.crt";
             keyFile = config.age.secrets.prometheusCertKey.path;
+          }
+          {
+            certFile = "/etc/nixos/files/p4net/graf.bonus.p4.crt";
+            keyFile = config.age.secrets.grafanaCertKey.path;
           }
         ];
       };
