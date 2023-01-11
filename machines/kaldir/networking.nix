@@ -30,4 +30,6 @@
       };
     };
   };
+
+  services.nscd.enableNsncd = true;
 }
