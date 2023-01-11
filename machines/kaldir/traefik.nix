@@ -160,6 +160,10 @@
             certFile = "/etc/nixos/files/p4net/graf.bonus.p4.crt";
             keyFile = config.age.secrets.grafanaCertKey.path;
           }
+          {
+            certFile = "/etc/nixos/files/p4net/loki.bonus.p4.crt";
+            keyFile = config.age.secrets.lokiCertKey.path;
+          }
         ];
       };
   };
