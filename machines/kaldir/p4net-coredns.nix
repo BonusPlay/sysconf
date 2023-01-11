@@ -41,8 +41,11 @@ in with p4netConfig;
       }
 
       . {
+        forward . 1.1.1.1 8.8.8.8 {
+          except .p4
+        }
+        log
         cache
-        errors
       }
     '';
   };
