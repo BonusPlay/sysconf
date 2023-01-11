@@ -12,14 +12,14 @@
   '';
 
   systemd.network = {
-    networks."50-zerotier" = {
-      name = "p4net";
-      dns = [ "198.18.66.1" ];
-      domains = [ "p4" ];
-      networkConfig = {
-        DNSSEC = false;
-      };
-    };
+    #networks."50-zerotier" = {
+    #  name = "p4net";
+    #  dns = [ "198.18.66.1" ];
+    #  domains = [ "p4" ];
+    #  networkConfig = {
+    #    DNSSEC = false;
+    #  };
+    #};
     wait-online.ignoredInterfaces = [ "p4net" ];
   };
 }
