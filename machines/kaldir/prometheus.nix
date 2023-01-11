@@ -17,7 +17,7 @@
               "198.18.66.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
             labels = {
-              alias = "kaldir.bonus.p4";
+              host = "kaldir";
             };
           }
           {
@@ -25,7 +25,7 @@
               "198.18.66.10:${toString config.services.prometheus.exporters.node.port}"
             ];
             labels = {
-              alias = "zero.bonus.p4";
+              host = "zero";
             };
           }
         ];
