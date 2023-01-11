@@ -2,7 +2,7 @@
 {
   networking = {
     hostName = "kaldir";
-    domain = "bonus.p4";
+    #domain = "bonus.p4";
     useNetworkd = true;
     dhcpcd.enable = false;
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
