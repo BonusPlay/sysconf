@@ -26,10 +26,10 @@
           "--dbus-user.talk=org.freedesktop.Notifications"  # enable native notifications
         ];
       };
-      signal-desktop = {
-        executable = "${pkgs.signal-desktop}/bin/signal-desktop";
-        profile = "${pkgs.firejail}/etc/firejail/signal-desktop.profile";
-      };
+      #signal-desktop = {
+      #  executable = "${pkgs.signal-desktop}/bin/signal-desktop";
+      #  profile = "${pkgs.firejail}/etc/firejail/signal-desktop.profile";
+      #};
       discord = {
         executable = "${nixpkgs-unstable.discord}/bin/discord";
         profile = "${pkgs.firejail}/etc/firejail/discord.profile";

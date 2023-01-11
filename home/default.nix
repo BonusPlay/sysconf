@@ -66,5 +66,6 @@ in
     imhex
     tor-browser-bundle-bin
     ghidra-bin
+    signal-desktop
   ]);
 }
