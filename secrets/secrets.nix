@@ -16,6 +16,7 @@ in
 
   "prometheus-ssl-key.age".publicKeys = users ++ [ kaldir ];
   "grafana-ssl-key.age".publicKeys = users ++ [ kaldir ];
+  "loki-ssl-key.age".publicKeys = users ++ [ kaldir ];
 
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];

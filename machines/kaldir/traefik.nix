@@ -17,6 +17,12 @@
     owner = "traefik";
   };
 
+  age.secrets.lokiCertKey = {
+    file = ../../secrets/loki-ssl-key.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -97,6 +103,13 @@
             domain = config.services.grafana.settings.server.domain;
             kind = "http";
             port = config.services.grafana.settings.server.http_port;
+            p4net = true;
+          }
+          {
+            name = "loki";
+            domain = "loki.bonus.p4";
+            kind = "http";
+            port = config.services.loki.configuration.server.http_listen_port;
             p4net = true;
           }
         ];
