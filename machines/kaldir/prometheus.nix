@@ -20,6 +20,14 @@
               alias = "kaldir.bonus.p4";
             };
           }
+          {
+            targets = [
+              "198.18.66.10:${toString config.services.prometheus.exporters.node.port}"
+            ];
+            labels = {
+              alias = "zero.bonus.p4";
+            };
+          }
         ];
       }
     ];

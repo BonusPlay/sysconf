@@ -3,6 +3,7 @@
   imports = [
     ./grafana.nix
     ./hardware-configuration.nix
+    ./loki.nix
     ./networking.nix
     ./p4net-bird.nix
     ./p4net-coredns.nix
