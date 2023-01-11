@@ -17,6 +17,11 @@
             name = "prometheus";
             url = "https://prom.bonus.p4";
           }
+          {
+            type = "loki";
+            name = "loki";
+            url = "https://loki.bonus.p4";
+          }
         ];
       };
     };
