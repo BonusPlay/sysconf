@@ -149,11 +149,12 @@
             rule = "HostSNI(`${entry.domain}`)";
             service = entry.name;
             tls = {};
+            middlewares = lib.flatten (map lib.attrNames entry.middlewares);
           };
           services."${entry.name}".loadBalancer.servers = [{
             address = "localhost:${toString entry.port}";
           }];
-          middlewares = entry.middlewares;
+          middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
         };
 
         httpEntries = map mkHttpEntry (lib.filter isHttp entries);
