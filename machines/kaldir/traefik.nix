@@ -102,7 +102,6 @@
             kind = "tcp";
             port = 8883;
             p4net = false;
-            middlewares = [];
           }
           {
             name = "prometheus";
@@ -149,12 +148,10 @@
             rule = "HostSNI(`${entry.domain}`)";
             service = entry.name;
             tls = {};
-            middlewares = lib.flatten (map lib.attrNames entry.middlewares);
           };
           services."${entry.name}".loadBalancer.servers = [{
             address = "localhost:${toString entry.port}";
           }];
-          middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
         };
 
         httpEntries = map mkHttpEntry (lib.filter isHttp entries);
