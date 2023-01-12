@@ -136,6 +136,7 @@
           routers."${entry.name}" = {
             rule = "Host(`${entry.domain}`)";
             service = entry.name;
+            middlewares = lib.flatten (map lib.attrNames entry.middlewares);
           };
           services."${entry.name}".loadBalancer.servers = [{
             url = "http://localhost:${toString entry.port}";
