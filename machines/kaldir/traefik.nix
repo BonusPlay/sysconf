@@ -141,7 +141,7 @@
           services."${entry.name}".loadBalancer.servers = [{
             url = "http://localhost:${toString entry.port}";
           }];
-          middlewares = entry.middlewares;
+          middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
         };
 
         mkTcpEntry = entry: {
