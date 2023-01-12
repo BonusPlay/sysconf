@@ -102,6 +102,7 @@
             kind = "tcp";
             port = 8883;
             p4net = false;
+            entrypoints = [ "mqtt" ];
           }
           {
             name = "prometheus";
@@ -136,6 +137,7 @@
             rule = "Host(`${entry.domain}`)";
             service = entry.name;
             middlewares = lib.flatten (map lib.attrNames entry.middlewares);
+            entrypoints = [ "websecure" ];
           };
           services."${entry.name}".loadBalancer.servers = [{
             url = "http://localhost:${toString entry.port}";
@@ -148,6 +150,7 @@
             rule = "HostSNI(`${entry.domain}`)";
             service = entry.name;
             tls = {};
+            entrypoints = entry.entrypoints;
           };
           services."${entry.name}".loadBalancer.servers = [{
             address = "localhost:${toString entry.port}";
