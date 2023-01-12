@@ -18,6 +18,8 @@ in
   "grafana-ssl-key.age".publicKeys = users ++ [ kaldir ];
   "loki-ssl-key.age".publicKeys = users ++ [ kaldir ];
 
+  "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
+
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];

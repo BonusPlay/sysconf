@@ -1,6 +1,7 @@
 { lib, config, pkgs, nixpkgs-unstable, home-manager, ... }:
 {
   imports = [
+    ./docker-registry.nix
     ./grafana.nix
     ./hardware-configuration.nix
     ./loki.nix

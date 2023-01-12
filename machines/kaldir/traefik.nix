@@ -23,6 +23,12 @@
     owner = "traefik";
   };
 
+  age.secrets.drUsersFile = {
+    file = ../../secrets/dr-bonus-p4-users.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -76,6 +82,7 @@
             kind = "http";
             port = 4080;
             p4net = false;
+            middlewares = [];
           }
           {
             name = "dr";
@@ -83,6 +90,11 @@
             kind = "http";
             port = 4070;
             p4net = false;
+            middlewares = [
+              {
+                drAuth.basicAuth.usersFile = config.age.secrets.drUsersFile.path;
+              }
+            ];
           }
           {
             name = "mqtt";
@@ -90,6 +102,7 @@
             kind = "tcp";
             port = 8883;
             p4net = false;
+            middlewares = [];
           }
           {
             name = "prometheus";
@@ -97,6 +110,7 @@
             kind = "http";
             port = config.services.prometheus.port;
             p4net = true;
+            middlewares = [];
           }
           {
             name = "grafana";
@@ -104,6 +118,7 @@
             kind = "http";
             port = config.services.grafana.settings.server.http_port;
             p4net = true;
+            middlewares = [];
           }
           {
             name = "loki";
@@ -111,6 +126,7 @@
             kind = "http";
             port = config.services.loki.configuration.server.http_listen_port;
             p4net = true;
+            middlewares = [];
           }
         ];
         isHttp = entry: entry.kind == "http";
@@ -124,6 +140,7 @@
           services."${entry.name}".loadBalancer.servers = [{
             url = "http://localhost:${toString entry.port}";
           }];
+          middlewares = entry.middlewares;
         };
 
         mkTcpEntry = entry: {
@@ -135,6 +152,7 @@
           services."${entry.name}".loadBalancer.servers = [{
             address = "localhost:${toString entry.port}";
           }];
+          middlewares = entry.middlewares;
         };
 
         httpEntries = map mkHttpEntry (lib.filter isHttp entries);
@@ -144,7 +162,6 @@
         tcpConfig = lib.foldl' lib.recursiveUpdate {} tcpEntries;
       in
       {
-        # TODO: rewrite using nix
         http = httpConfig;
         tcp = tcpConfig;
         tls.certificates = [
