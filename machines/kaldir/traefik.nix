@@ -89,6 +89,7 @@
             domain = "dr.bonusplay.pl";
             kind = "http";
             port = 4070;
+            target = config.containers.dockerRegistry.localAddress;
             p4net = false;
             middlewares = [
               {
@@ -101,6 +102,7 @@
             domain = "mqtt.bonusplay.pl";
             kind = "tcp";
             port = 8883;
+            target = config.containers.mosquitto.localAddress;
             p4net = false;
             entrypoints = [ "mqtt" ];
           }
@@ -140,7 +142,7 @@
             entrypoints = [ "websecure" ];
           };
           services."${entry.name}".loadBalancer.servers = [{
-            url = "http://localhost:${toString entry.port}";
+            url = "http://${entry.target or "localhost"}:${toString entry.port}";
           }];
           middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
         };
@@ -153,7 +155,7 @@
             entrypoints = entry.entrypoints;
           };
           services."${entry.name}".loadBalancer.servers = [{
-            address = "localhost:${toString entry.port}";
+            address = "${entry.target or "localhost"}:${toString entry.port}";
           }];
         };
 

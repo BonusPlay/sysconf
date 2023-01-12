@@ -4,12 +4,6 @@ let
   port = 4070;
 in
 {
-  networking.nat.forwardPorts = [{
-    destination = "${containerIP}:${toString port}";
-    proto = "tcp";
-    sourcePort = port;
-  }];
-
   containers.dockerRegistry = {
     autoStart = true;
     privateNetwork = true;

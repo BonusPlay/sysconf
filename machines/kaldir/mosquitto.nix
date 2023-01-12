@@ -4,12 +4,6 @@ let
   port = 8883;
 in
 {
-  networking.nat.forwardPorts = [{
-    destination = "${containerIP}:${toString port}";
-    proto = "tcp";
-    sourcePort = port;
-  }];
-
   containers.mosquitto = {
     autoStart = true;
     privateNetwork = true;
