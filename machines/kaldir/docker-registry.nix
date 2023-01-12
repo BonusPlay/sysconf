@@ -10,7 +10,7 @@ in
     sourcePort = port;
   }];
 
-  containers.mosquitto = {
+  containers.dockerRegistry = {
     autoStart = true;
     privateNetwork = true;
     hostAddress = hostIP;
