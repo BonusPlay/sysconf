@@ -75,13 +75,15 @@
     };
     dynamicConfigOptions =
       let
+        p4netMiddleware = {
+          p4net.ipwhitelist.sourcerange=127.0.0.1/32, 198.18.0.0/16";
+        };
         entries = [
           {
             name = "matrix";
             domain = "matrix.bonusplay.pl";
             kind = "http";
             port = 4080;
-            p4net = false;
             middlewares = [];
           }
           {
@@ -90,7 +92,6 @@
             kind = "http";
             port = 4070;
             target = config.containers.dockerRegistry.localAddress;
-            p4net = false;
             middlewares = [
               {
                 drAuth.basicAuth.usersFile = config.age.secrets.drUsersFile.path;
@@ -103,7 +104,6 @@
             kind = "tcp";
             port = 8883;
             target = config.containers.mosquitto.localAddress;
-            p4net = false;
             entrypoints = [ "mqtt" ];
           }
           {
@@ -112,23 +112,21 @@
             kind = "http";
             port = config.services.prometheus.port;
             p4net = true;
-            middlewares = [];
+            middlewares = [ p4netMiddleware ];
           }
           {
             name = "grafana";
             domain = config.services.grafana.settings.server.domain;
             kind = "http";
             port = config.services.grafana.settings.server.http_port;
-            p4net = true;
-            middlewares = [];
+            middlewares = [ p4netMiddleware ];
           }
           {
             name = "loki";
             domain = "loki.bonus.p4";
             kind = "http";
             port = config.services.loki.configuration.server.http_listen_port;
-            p4net = true;
-            middlewares = [];
+            middlewares = [ p4netMiddleware ];
           }
         ];
         isHttp = entry: entry.kind == "http";
