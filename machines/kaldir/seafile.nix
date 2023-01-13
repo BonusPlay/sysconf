@@ -21,13 +21,13 @@ in
           port = 4030;
         };
         ccnetSettings.General.SERVICE_URL = "https://s.bonusplay.pl";
-        seahubExtraConf = ''
-          ALLOWED_HOSTS = [ "s.bonusplay.pl" ];
-          CSRF_COOKIE_SECURE = True;
-          CSRF_COOKIE_SAMESITE = "Strict";
-          TIME_ZONE = "Europe/Warsaw";
-          SITE_TITLE = "Bonus's Seafile";
-        '';
+        #seahubExtraConf = ''
+        #  ALLOWED_HOSTS = [ "s.bonusplay.pl" ];
+        #  CSRF_COOKIE_SECURE = True;
+        #  CSRF_COOKIE_SAMESITE = "Strict";
+        #  TIME_ZONE = "Europe/Warsaw";
+        #  SITE_TITLE = "Bonus's Seafile";
+        #'';
       };
 
       system.stateVersion = "22.11";
