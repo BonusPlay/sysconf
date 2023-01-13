@@ -128,6 +128,14 @@
             port = config.services.loki.configuration.server.http_listen_port;
             middlewares = [ p4netMiddleware ];
           }
+          {
+            name = "seafile";
+            domain = "s.bonusplay.pl";
+            kind = "http";
+            port = 4030;
+            target = config.containers.seafile.localAddress;
+            middlewares = [];
+          }
         ];
         isHttp = entry: entry.kind == "http";
         isTcp = entry: entry.kind == "tcp";

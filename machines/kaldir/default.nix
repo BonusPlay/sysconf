@@ -11,6 +11,7 @@
     ./p4net-wg.nix
     ./p4net-zerotier.nix
     ./prometheus.nix
+    ./seafile.nix
     ./traefik.nix
     ./matrix-synapse.nix
     #./matrix-telegram.nix

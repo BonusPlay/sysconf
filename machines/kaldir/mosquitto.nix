@@ -7,8 +7,8 @@ in
   containers.mosquitto = {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "192.168.100.1";
-    localAddress = "192.168.100.10";
+    hostAddress = hostIP;
+    localAddress = containerIP;
 
     config = { config, pkgs, ... }: {
 
