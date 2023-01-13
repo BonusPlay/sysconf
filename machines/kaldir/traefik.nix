@@ -76,7 +76,7 @@
     dynamicConfigOptions =
       let
         p4netMiddleware = {
-          p4net.ipwhitelist.sourcerange=127.0.0.1/32, 198.18.0.0/16";
+          p4net.ipwhitelist.sourcerange = "127.0.0.1/32, 198.18.0.0/16";
         };
         entries = [
           {
