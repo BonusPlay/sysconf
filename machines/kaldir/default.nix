@@ -15,6 +15,7 @@
     ./traefik.nix
     ./matrix-synapse.nix
     #./matrix-telegram.nix
+    ./matrix-facebook.nix
     ./mosquitto.nix
   ];
 
