@@ -36,7 +36,7 @@ in
         virtualHosts."s.bonusplay.pl" = {
           locations."/" = {
             proxyPass = "http://unix:/run/seahub/gunicorn.sock";
-            proxy_set_header = "Host $host:${port};"
+            proxy_set_header = "Host $host:${port}";
           };
         };
       };
