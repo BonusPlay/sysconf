@@ -132,7 +132,7 @@
             name = "seafile";
             domain = "s.bonusplay.pl";
             kind = "http";
-            port = 4030;
+            port = 80; # nginx inside container does proxy pass to unix socket
             target = config.containers.seafile.localAddress;
             middlewares = [];
           }

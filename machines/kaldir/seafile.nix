@@ -33,21 +33,8 @@ in
       # https://github.com/NixOS/nixpkgs/pull/178873
       services.nginx = {
         enable = true;
-        virtualHosts."10.233.2.2" = {
+        virtualHosts."s.bonusplay.pl" = {
           locations."/".proxyPass = "http://unix:/run/seahub/gunicorn.sock";
-          locations."/seafdav".proxyPass = "http://127.0.0.1:6001/seafdav";
-          locations."/seafhttp" = {
-            proxyPass = "http://127.0.0.1:8082";
-            extraConfig = ''
-              rewrite ^/seafhttp(.*)$ $1 break;
-              client_max_body_size 0;
-              proxy_connect_timeout  36000s;
-              proxy_read_timeout  36000s;
-              proxy_send_timeout  36000s;
-              send_timeout  36000s;
-              proxy_http_version 1.1;
-            '';
-          };
         };
       };
 
