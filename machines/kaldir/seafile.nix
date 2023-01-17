@@ -22,11 +22,11 @@ in
         };
         ccnetSettings.General.SERVICE_URL = "https://s.bonusplay.pl";
         seahubExtraConf = ''
-          ALLOWED_HOSTS = [ "s.bonusplay.pl" ];
-        #  CSRF_COOKIE_SECURE = True;
-        #  CSRF_COOKIE_SAMESITE = "Strict";
-          TIME_ZONE = "Europe/Warsaw";
-          SITE_TITLE = "Bonus's Seafile";
+            ALLOWED_HOSTS = [ "s.bonusplay.pl" ];
+        #   CSRF_COOKIE_SECURE = True;
+        #   CSRF_COOKIE_SAMESITE = "Strict";
+            TIME_ZONE = "Europe/Warsaw";
+            SITE_TITLE = "Bonus's Seafile";
         '';
       };
 
