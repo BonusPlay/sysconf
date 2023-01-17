@@ -5,6 +5,7 @@
     ./yubikey.nix
     ./firejail.nix
     ./p4net.nix
+    ./steam.nix
     ./networking.nix
     ./virtualisation.nix
   ];
