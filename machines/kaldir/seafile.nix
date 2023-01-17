@@ -1,7 +1,7 @@
 let
   hostIP = "192.168.102.1";
   containerIP = "192.168.102.10";
-  port = 4030;
+  port = 80;
 in
 {
   containers.seafile = {
