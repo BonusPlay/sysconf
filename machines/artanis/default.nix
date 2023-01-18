@@ -64,6 +64,7 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+    git
     wget
     tmux
     htop
