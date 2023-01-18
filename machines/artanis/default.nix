@@ -66,7 +66,14 @@
     neovim
     wget
     tmux
+    htop
+    iotop
+    iftop
   ];
+
+  # why is sudo so bloated
+  security.doas.enable = true;
+  security.sudo.enable = false;
 
   programs.wireshark.enable = true;
 

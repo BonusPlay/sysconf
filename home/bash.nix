@@ -14,6 +14,9 @@
       chmod = "chmod --preserve-root";
       chgrp = "chgrp --preserve-root";
 
+      # old habbits die hard
+      sudo = "doas";
+
       # typos
       "cd.." = "cd ..";
       ll = "ls -lh";
