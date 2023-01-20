@@ -32,6 +32,7 @@
         version = 4;
       };
       grub.enable = false;
+      generic-extlinux-compatible.enable = false;
     };
   };
 
@@ -56,7 +57,7 @@
   };
 
   nix = {
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
