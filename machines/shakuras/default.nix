@@ -2,7 +2,6 @@
 {
   imports = [
     ./networking.nix
-    ./p4net.nix
   ];
 
   fileSystems = {
