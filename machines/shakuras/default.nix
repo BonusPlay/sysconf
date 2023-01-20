@@ -16,6 +16,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_rpi4;
     tmpOnTmpfs = true;
+    cleanTmpDir = true;
     initrd.availableKernelModules = [ "usbhid" "usb_storage" ];
     # ttyAMA0 is the serial console broken out to the GPIO
     kernelParams = [
@@ -47,6 +48,7 @@
   ];
 
   services.openssh.enable = true;
+  security.sudo.wheelNeedsPassword = false;
 
   users = {
     mutableUsers = false;
@@ -67,6 +69,7 @@
     extraOptions = ''
       min-free = ${toString (100 * 1024 * 1024)}
       max-free = ${toString (1024 * 1024 * 1024)}
+      experimental-features = nix-command flakes
     '';
   };
 }
