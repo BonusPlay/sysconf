@@ -56,7 +56,7 @@
   };
 
   nix = {
-    autoOptimiseStore = true;
+    auto-optimise-store = true;
     gc = {
       automatic = true;
       dates = "weekly";
@@ -69,4 +69,6 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  system.stateVersion = "22.11";
 }
