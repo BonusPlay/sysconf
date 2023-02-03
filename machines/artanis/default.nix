@@ -5,9 +5,10 @@
     ./yubikey.nix
     ./firejail.nix
     ./p4net.nix
-    ./steam.nix
+    ./games.nix
     ./networking.nix
     ./virtualisation.nix
+    ./development.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

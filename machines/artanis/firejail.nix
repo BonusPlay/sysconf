@@ -10,6 +10,8 @@
           "--dbus-user.talk=org.freedesktop.Notifications"  # enable native notifications
           "--dbus-user.talk=org.freedesktop.portal.Desktop" # screen sharing
           "--whitelist=/home/bonus/.config/pipelight-widevine"  # widevine # TODO: FIXME
+          #"browser-allow-drm yes"
+          #"browser-disable-u2f no"
         ];
       };
       mattermost-desktop = {

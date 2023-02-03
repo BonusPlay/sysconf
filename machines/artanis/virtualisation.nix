@@ -4,38 +4,7 @@
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
-    allowedBridges = [ "br-vms" "br-mullvad" "br-danger" ];
-  };
-
-  systemd.network = {
-    netdevs = {
-      "br-vms".netdevConfig = {
-        Kind = "bridge";
-        Name = "br-vms";
-      };
-      "br-mullvad".netdevConfig = {
-        Kind = "bridge";
-        Name = "br-mullvad";
-      };
-      "br-danger".netdevConfig = {
-        Kind = "bridge";
-        Name = "br-danger";
-      };
-      "br-host".netdevConfig = {
-        Kind = "bridge";
-        Name = "br-host";
-      };
-    };
-    networks = {
-      "20-br-vms" = {
-        name = "br-vms";
-        address = [ "192.168.50.1/24" ];
-      };
-      "20-br-host" = {
-        name = "br-host";
-        address = [ "192.168.55.1/24" ];
-      };
-    };
+    allowedBridges = [ "br-vms" "br-mullvad" "br-danger" "br-host" ];
   };
 
   networking.firewall.extraCommands = ''
