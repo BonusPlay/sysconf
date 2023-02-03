@@ -12,6 +12,11 @@
       group = "matrix-synapse";
       mode = "0440";
     };
+    matrixTelegramRegistration = {
+      file = ../../secrets/matrix-telegram-registration.age;
+      mode = "0400";
+      owner = "matrix-synapse";
+    };
   };
 
   services.matrix-synapse = {
@@ -35,9 +40,9 @@
         type = "http";
         x_forwarded = true;
       }];
-      #app_service_config_files = [
-      #  "/var/lib/mautrix-telegram/telegram-registration.yaml"
-      #];
+      app_service_config_files = [
+        config.age.secrets.matrixTelegramRegistration.path
+      ];
     };
   };
 
