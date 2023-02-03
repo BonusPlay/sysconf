@@ -14,8 +14,8 @@
     ./seafile.nix
     ./traefik.nix
     ./matrix-synapse.nix
-    #./matrix-telegram.nix
     ./matrix-facebook.nix
+    ./matrix-telegram.nix
     ./mosquitto.nix
   ];
 
