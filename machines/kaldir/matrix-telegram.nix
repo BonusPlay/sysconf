@@ -1,6 +1,14 @@
+{ config, ... }:
 {
+  age.secrets.matrixTelegramEnv = {
+    file = ../../secrets/matrix-telegram-environment.age
+    mode = "0400";
+    owner = "matrix-synapse";
+  };
+
   services.mautrix-telegram = {
     enable = true;
+    environmentFile = config.age.secrets.matrixTelegramEnv.path;
     settings = {
       homeserver = {
         address = "http://localhost:4080";

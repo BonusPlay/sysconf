@@ -22,6 +22,10 @@ in
 
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
+  "matrix-facebook-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix-telegram-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix-telegram-environment.age".publicKeys = users ++ [ kaldir ];
+
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];
   "keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
   "wifi.age".publicKeys = users ++ [ artanis ];
