@@ -74,7 +74,7 @@
             "tooltip": false
         },
         "network#wifi": {
-            "interface": "wlan0",
+            "interface": "wlp166s0",
             "format-wifi": "{essid}: {ipaddr}/{cidr} ",
             "format-disconnected": " ",
             "family": "ipv4",

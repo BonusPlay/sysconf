@@ -15,8 +15,8 @@
 
   systemd.network = {
     networks = {
-      "wlan0" = {
-        name = "wlan0";
+      "wlp166s0" = {
+        name = "wlp166s0";
         DHCP = "yes";
       };
       "wired" = {
