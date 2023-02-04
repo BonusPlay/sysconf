@@ -16,7 +16,7 @@
         nixos-hardware.nixosModules.framework-12th-gen-intel
         nur.nixosModules.nur
         home-manager.nixosModules.home-manager
-        agenix.nixosModule
+        agenix.nixosModules.default
         p4net.nixosModule
       ];
     };
@@ -26,7 +26,7 @@
     system = "aarch64-linux";
     modules = [
       ./kaldir
-      agenix.nixosModule
+      agenix.nixosModules.default
       p4net.nixosModule
     ];
   };
@@ -36,7 +36,7 @@
     system = "x86_64-linux";
     modules = [
       ./vanass
-      agenix.nixosModule
+      agenix.nixosModules.default
     ];
   };
 
@@ -45,7 +45,7 @@
     system = "x86_64-linux";
     modules = [
       ./braxis
-      agenix.nixosModule
+      agenix.nixosModules.default
     ];
   };
 
@@ -54,7 +54,7 @@
     system = "aarch64-linux";
     modules = [
       ./shakuras
-      agenix.nixosModule
+      agenix.nixosModules.default
       p4net.nixosModule
       nixos-hardware.nixosModules.raspberry-pi-4
     ];
