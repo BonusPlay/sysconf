@@ -16,7 +16,7 @@
       };
 
       appservice = {
-        address = "http://localhost:8080";
+        address = "http://localhost:8082";
         hostname = "127.0.0.1";
         port = 4082;
       };
