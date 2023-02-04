@@ -12,18 +12,13 @@
     settings = {
       homeserver = {
         address = "http://localhost:4080";
-        domain = "bonusplay.pl";
+        domain = config.services.matrix-synapse.settings.server_name;
       };
 
       appservice = {
-        address = "http://localhost:4080";
+        address = "http://localhost:4081";
         hostname = "127.0.0.1";
         port = 4081;
-        public = {
-          enabled = true;
-          prefix = "/telegram";
-          external = "https://matrix.bonusplay.pl/telegram";
-        };
       };
 
       bridge.permissions = {
