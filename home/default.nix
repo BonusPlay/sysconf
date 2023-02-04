@@ -39,10 +39,8 @@ in
     git
     qt5.qtwayland
     qt6.qtwayland
-    virt-manager
     blender
     yt-dlp
-    virt-manager
     kicad
     docker-compose
     slack
@@ -62,10 +60,12 @@ in
     iftop
     nfs-utils
     openssl
+    bridge-utils
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
     ghidra-bin
     signal-desktop
+    virt-manager
   ]);
 }
