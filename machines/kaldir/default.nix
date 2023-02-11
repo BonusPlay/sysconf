@@ -16,6 +16,7 @@
     ./matrix-synapse.nix
     ./matrix-facebook.nix
     ./matrix-telegram.nix
+    ./matrix-irc.nix
     ./mosquitto.nix
   ];
 
