@@ -48,6 +48,7 @@
       app_service_config_files = [
         config.age.secrets.matrixTelegramRegistration.path
         config.age.secrets.matrixFacebookRegistration.path
+        "/var/lib/heisenbridge/registration.yml"
       ];
     };
   };
