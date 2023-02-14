@@ -183,4 +183,9 @@
     enable = true;
     profiles = {};
   };
+
+  home.packages = with pkgs; [
+    wdisplays
+    wl-clipboard
+  ];
 }
