@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./keycloak.nix
+    ./discord-bot.nix
   ];
 
   nix.extraOptions = ''

@@ -29,5 +29,7 @@ in
 
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];
   "keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
+  "discord-bot.age".publicKeys = users ++ [ braxis ];
+
   "wifi.age".publicKeys = users ++ [ artanis ];
 }
