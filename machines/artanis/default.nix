@@ -74,7 +74,14 @@
   ];
 
   # why is sudo so bloated
-  security.doas.enable = true;
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      users = [ "bonus" ];
+      keepEnv = true;
+      persist = true;
+    }];
+  };
   security.sudo.enable = false;
 
   programs.wireshark.enable = true;
