@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ./yubikey.nix
     ./firejail.nix
-    ./p4net.nix
+    ./zerotier.nix
     ./games.nix
     ./networking.nix
     ./virtualisation.nix

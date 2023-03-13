@@ -4,11 +4,12 @@
 
   services.zerotierone = {
     enable = true;
-    joinNetworks = [ "b15644912e097589" ];
+    joinNetworks = [ "b15644912e097589" "93afae59633bb8b8" ];
   };
 
   system.activationScripts.bonus = ''
     echo "b15644912e097589=p4net" > /var/lib/zerotier-one/devicemap;
+    echo "93afae59633bb8b8=kncyber" >> /var/lib/zerotier-one/devicemap;
   '';
 
   systemd.network = {
@@ -20,6 +21,6 @@
     #    DNSSEC = false;
     #  };
     #};
-    wait-online.ignoredInterfaces = [ "p4net" ];
+    wait-online.ignoredInterfaces = [ "p4net" "kncyber" ];
   };
 }
