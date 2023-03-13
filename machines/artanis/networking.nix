@@ -54,6 +54,9 @@
     firewall = {
       allowedTCPPorts = [ 13337 ];
       allowedUDPPorts = [ 13337 ];
+      extraCommands = ''
+        iptables -P FORWARD DROP
+      '';
     };
   };
 }
