@@ -12,6 +12,7 @@
     ./p4net-zerotier.nix
     ./prometheus.nix
     ./seafile.nix
+    ./taskserver.nix
     ./traefik.nix
     ./matrix-synapse.nix
     ./matrix-facebook.nix
