@@ -61,6 +61,8 @@ in
     nfs-utils
     openssl
     bridge-utils
+    taskwarrior
+    taskwarrior-tui
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
