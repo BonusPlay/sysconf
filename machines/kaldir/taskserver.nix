@@ -9,7 +9,7 @@ in
       {
         sourcePort = 5070;
         proto = "tcp";
-        destination = "${containerIP}:${port}";
+        destination = "${containerIP}:${toString port}";
       }
     ];
   };
