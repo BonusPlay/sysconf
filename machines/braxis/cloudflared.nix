@@ -26,7 +26,7 @@
             service = "http://localhost:3010";
           };
         };
-      }
+      };
     };
   };
 }
