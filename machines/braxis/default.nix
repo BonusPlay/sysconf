@@ -6,6 +6,7 @@
     ./keycloak.nix
     ./discord-bot.nix
     ./hedgedoc.nix
+    ./cloudflared.nix
   ];
 
   nix.extraOptions = ''
