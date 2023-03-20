@@ -5,6 +5,7 @@
     ./networking.nix
     ./keycloak.nix
     ./discord-bot.nix
+    ./hedgedoc.nix
   ];
 
   nix.extraOptions = ''
