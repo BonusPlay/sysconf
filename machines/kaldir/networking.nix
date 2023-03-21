@@ -32,4 +32,5 @@
   };
 
   services.nscd.enableNsncd = true;
+  services.resolved.enable = false;
 }
