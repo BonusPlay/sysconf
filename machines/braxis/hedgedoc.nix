@@ -26,7 +26,7 @@
         tokenURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/token";
         authorizationURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/auth";
         providerName = "Keycloak";
-        clientSecret = "$OAUTH2_SECRET";
+        clientSecret = "\${OAUTH2_SECRET}";
         clientID = "hedgedoc";
       };
 
