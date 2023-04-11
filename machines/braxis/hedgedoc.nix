@@ -19,12 +19,12 @@
       port = 3010;
 
       oauth2 = {
-        userProfileURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/userinfo";
+        userProfileURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/userinfo";
         userProfileUsernameAttr = "preferred_username";
         userProfileEmailAttr = "email";
         userProfileDisplayNameAttr = "name";
-        tokenURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/token";
-        authorizationURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/auth";
+        tokenURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/token";
+        authorizationURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/auth";
         providerName = "Keycloak";
         clientSecret = "$OAUTH2_SECRET";
         clientID = "hedgedoc";
