@@ -8,6 +8,7 @@
 
   services.hedgedoc = {
     enable = true;
+    environmentFile = config.age.secrets.hedgedoc-env.path;
     settings = {
       db = {
         dialect = "sqlite";
@@ -16,7 +17,6 @@
       domain = "md.kncyber.pl";
       protocolUseSSL = true;
       port = 3010;
-      environmentFile = config.age.secrets.hedgedoc-env.path;
 
       oauth2 = {
         userProfileURL = "https://keycloak.kncyber.pl/auth/realms/leaks/protocol/openid-connect/userinfo";
