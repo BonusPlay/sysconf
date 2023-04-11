@@ -63,6 +63,7 @@ in
     bridge-utils
     taskwarrior
     taskwarrior-tui
+    nmap
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
