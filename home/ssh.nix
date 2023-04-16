@@ -19,6 +19,11 @@
           RemoteCommand = "sudo machinectl shell xakep@chromium /bin/bash";
         };
       };
+      "jc" = {
+        hostname = "192.168.50.26";
+        user = "xakep";
+        identityFile = [ "/home/bonus/.ssh/id_jcvm" ];
+      };
     };
   };
 }
