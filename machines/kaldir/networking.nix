@@ -5,7 +5,7 @@
     #domain = "bonus.p4";
     useNetworkd = true;
     dhcpcd.enable = false;
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+    nameservers = [ "127.0.0.1" ];
     firewall = {
       allowedTCPPorts = [ 13337 ];
       allowedUDPPorts = [ 13337 ];
