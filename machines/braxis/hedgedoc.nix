@@ -20,7 +20,7 @@
 
       oauth2 = {
         userProfileURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/userinfo";
-        userProfileUsernameAttr = "name";
+        userProfileUsernameAttr = "sid";
         userProfileEmailAttr = "email";
         userProfileDisplayNameAttr = "preferred_username";
         tokenURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/token";
