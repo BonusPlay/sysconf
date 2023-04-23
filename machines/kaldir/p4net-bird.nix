@@ -66,6 +66,16 @@ in with p4netConfig;
           export none;
         };
       };
+
+      filter p4_input {
+        if is_valid_network() && !is_self_net() then accept;
+        reject;
+      };
+
+      filter p4_output {
+        if is_valid_network() && source ~ [RTS_STATIC, RTS_BGP] then accept;
+        reject;
+      };
       
       template bgp p4peers {
         local as OWNAS;
@@ -73,17 +83,9 @@ in with p4netConfig;
         multihop;
     
         ipv4 {
-          import filter {
-            if is_valid_network() && !is_self_net() then accept;
-            reject;
-          };
-
+          import filter p4_input;
+          export filter p4_output;
           import limit 1000 action block;
-
-          export filter {
-            if is_valid_network() && source ~ [RTS_STATIC, RTS_BGP] then accept;
-            reject;
-          };
         };
       }
     '' bgpPeerEntries];
