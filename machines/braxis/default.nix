@@ -9,9 +9,18 @@
     ./cloudflared.nix
   ];
 
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix = {
+    gc.automatic = true;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:BonusPlay/sysconf";
+    allowReboot = true;
+  };
 
   boot = {
     loader.grub.device = "/dev/sda";
@@ -38,7 +47,5 @@
   services.openssh.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
-  system.autoUpgrade.flake = "github:BonusPlay/sysconf";
-  system.autoUpgrade.enable = true;
   system.stateVersion = "22.11";
 }
