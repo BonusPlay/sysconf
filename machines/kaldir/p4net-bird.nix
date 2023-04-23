@@ -22,6 +22,7 @@ in with p4netConfig;
 
       log syslog all;
       log stderr all;
+      timeformat protocol iso long;
       router id OWNIP;
 
       function is_self_net() {
