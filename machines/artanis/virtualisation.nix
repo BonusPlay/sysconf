@@ -1,6 +1,7 @@
 {
   virtualisation.docker.enable = true;
 
+  virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
