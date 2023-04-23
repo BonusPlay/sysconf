@@ -50,6 +50,7 @@
       shitssh = "ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss,ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa";
 
       agenix = "nix run github:ryantm/agenix -- ";
+      nvim = "betterNvim";
     };
     initExtra = ''
       mkcd() {

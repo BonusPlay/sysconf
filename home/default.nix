@@ -17,6 +17,7 @@ in
   ];
 
   home.packages = (with pkgs; [
+    (import ./neovim.nix pkgs)
     imv
     htop
     vlc
