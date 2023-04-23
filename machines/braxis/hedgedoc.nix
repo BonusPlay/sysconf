@@ -22,7 +22,7 @@
         userProfileURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/userinfo";
         userProfileUsernameAttr = "preferred_username";
         userProfileEmailAttr = "email";
-        userProfileDisplayNameAttr = "name";
+        userProfileDisplayNameAttr = "preferred_username";
         tokenURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/token";
         authorizationURL = "https://keycloak.kncyber.pl/realms/leaks/protocol/openid-connect/auth";
         providerName = "Keycloak";
