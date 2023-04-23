@@ -28,6 +28,7 @@
         providerName = "Keycloak";
         clientSecret = "$OAUTH2_SECRET";
         clientID = "hedgedoc";
+        scope = "openid email profile";
       };
 
       # disable email signup
