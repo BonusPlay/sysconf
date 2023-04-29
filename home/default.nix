@@ -65,6 +65,7 @@ in
     taskwarrior
     taskwarrior-tui
     nmap
+    hexyl
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
