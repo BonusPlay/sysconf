@@ -18,6 +18,7 @@
     ./matrix-facebook.nix
     ./matrix-telegram.nix
     ./matrix-irc.nix
+    ./matrix-hookshot.nix
     ./mosquitto.nix
   ];
 
