@@ -52,6 +52,7 @@
       enable = true;
       dockerSocket.enable = true;
       defaultNetwork.dnsname.enable = true;
+      dockerCompat = true;
     };
   };
 
