@@ -42,8 +42,20 @@
     tmux
     htop
     git
+    arion
   ];
 
+  # arion dependencies
+  virtualisation = {
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      defaultNetwork.dnsname.enable = true;
+    };
+  };
+
+  services.qemuGuest.enable = true;
   services.openssh.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
