@@ -16,17 +16,19 @@
               "198.18.66.1:${toString config.services.prometheus.exporters.systemd.port}"
               "198.18.66.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
-            labels = {
-              host = "kaldir";
-            };
+            labels.host = "kaldir";
+          }
+          {
+            targets = [
+              "198.18.66.5:${toString config.services.prometheus.exporters.node.port}"
+            ];
+            labels.host = "warpgate";
           }
           {
             targets = [
               "198.18.66.10:${toString config.services.prometheus.exporters.node.port}"
             ];
-            labels = {
-              host = "zero";
-            };
+            labels.host = "zero";
           }
         ];
       }
