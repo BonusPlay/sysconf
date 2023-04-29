@@ -1,33 +1,40 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, agenix, p4net, ... }:
-{
-  artanis = let
-    system = "x86_64-linux";
-  in
-    nixpkgs.lib.nixosSystem {
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, agenix, p4net, arion, ... }:
+let
+  addUnstable = system: {
+    nixpkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      specialArgs = {
-        nixpkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-      modules = [
-        ./artanis 
-        nixos-hardware.nixosModules.framework-12th-gen-intel
-        nur.nixosModules.nur
-        home-manager.nixosModules.home-manager
-        agenix.nixosModules.default
-        p4net.nixosModule
-      ];
+      config.allowUnfree = true;
     };
+  };
+  nixTrick = ({ ... }: {
+    nix.registry.nixpkgs.flake = nixpkgs;
+    nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+  });
+in
+{
+  artanis = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = addUnstable "x86_64-linux";
+    modules = [
+      ./artanis
+      nixos-hardware.nixosModules.framework-12th-gen-intel
+      nur.nixosModules.nur
+      home-manager.nixosModules.home-manager
+      agenix.nixosModules.default
+      p4net.nixosModule
+      nixTrick
+    ];
+  };
 
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
+    specialArgs = addUnstable "x86_64-linux";
     modules = [
       ./kaldir
       agenix.nixosModules.default
       p4net.nixosModule
+      nixTrick
     ];
   };
 
@@ -37,6 +44,7 @@
     modules = [
       ./vanass
       agenix.nixosModules.default
+      nixTrick
     ];
   };
 
@@ -46,6 +54,8 @@
     modules = [
       ./braxis
       agenix.nixosModules.default
+      arion.nixosModules.arion
+      nixTrick
     ];
   };
 

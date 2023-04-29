@@ -11,7 +11,7 @@
     resolvectl = "${pkgs.systemd}/bin/resolvectl";
   in ''
     ${resolvectl} dns p4net 198.18.66.1
-    ${resolvectl} domain p4net 'p4'
+    ${resolvectl} domain p4net '~p4'
     ${resolvectl} dnssec p4net off
   '';
 

@@ -18,10 +18,6 @@
     extra-trusted-public-keys = cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
   '';
 
-  # TODO: ping nixpkgs to not update every time
-  # nix.registry.nixpkgs.flake = pkgs;
-  # nix.nixPath = [ "nixpkgs=${pkgs}" ];
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 5;
@@ -117,6 +113,7 @@
     liberation_ttf
     unifont
     source-code-pro
+    corefonts
   ];
 
   system.stateVersion = "22.11";
