@@ -48,12 +48,12 @@
   # arion dependencies
   virtualisation = {
     docker.enable = false;
-    podman = {
-      enable = true;
-      dockerSocket.enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
+    #podman = {
+    #  enable = true;
+    #  dockerSocket.enable = true;
+    #  dockerCompat = true;
+    #  defaultNetwork.settings.dns_enabled = true;
+    #};
   };
 
   services.qemuGuest.enable = true;
