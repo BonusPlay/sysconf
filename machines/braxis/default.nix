@@ -47,7 +47,7 @@
 
   # arion dependencies
   virtualisation = {
-    docker.enable = false;
+    docker.enable = true;
     #podman = {
     #  enable = true;
     #  dockerSocket.enable = true;
