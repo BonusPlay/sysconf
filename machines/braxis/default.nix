@@ -7,7 +7,6 @@
     ./discord-bot.nix
     ./hedgedoc.nix
     ./cloudflared.nix
-    ./p4net.nix
   ];
 
   nix = {
