@@ -35,20 +35,21 @@
       enable = true;
       userControlled.enable = true;
       networks = {
-        ":)".psk = "@WIFI_1_PASS@";
-        "BonusSpot".psk = "@WIFI_2_PASS@";
-        "klisie".psk = "@WIFI_3_PASS@";
-        "Galaxy S20 FE31E6".psk = "@WIFI_4_PASS@";
-        "stm-guest" = {
+        "@WIFI_1_NAME@".psk = "@WIFI_1_PASS@";
+        "@WIFI_2_NAME@".psk = "@WIFI_2_PASS@";
+        "@WIFI_3_NAME@".psk = "@WIFI_3_PASS@";
+        "@WIFI_4_NAME@".psk = "@WIFI_4_PASS@";
+        "@WIFI_5_NAME@" = {
           psk = "@WIFI_5_PASS@";
           hidden = true;
         };
-        "WEiTI".auth = ''
+        "@WIFI_6_NAME@".auth = ''
           key_mgmt=WPA-EAP
           eap=PEAP
           identity="aklis@mion"
           password="@WIFI_6_PASS@"
         '';
+        "@WIFI_7_NAME@".psk = "@WIFI_7_PASS@";
       };
     };
     firewall = {
