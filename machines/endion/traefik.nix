@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
   age.secrets.giteaCertKey = {
-    file = ../../secrets/prometheus-ssl-key.age;
+    file = ../../secrets/gitea-ssl-key.age;
     mode = "0400";
     owner = "traefik";
   };
