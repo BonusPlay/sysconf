@@ -70,5 +70,13 @@ in
     ];
   };
 
-  #endion
+  # self-hosted development
+  endion = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./endion
+      agenix.nixosModules.default
+      nixTrick
+    ];
+  };
 }
