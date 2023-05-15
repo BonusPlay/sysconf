@@ -24,8 +24,8 @@
 
   boot = {
     loader.grub.device = "/dev/sda";
-    boot.tmp.useTmpfs = true;
-    boot.tmp.cleanOnBoot = true;
+    tmp.useTmpfs = true;
+    tmp.cleanOnBoot = true;
   };
 
   time.timeZone = "UTC";
