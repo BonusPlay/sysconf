@@ -8,7 +8,7 @@
         enable = true;
         settings = {
           session.COOKIE_SECURE = true;
-          #service.DISABLE_REGISTRATION = true;
+          service.DISABLE_REGISTRATION = true;
           server.SSH_PORT = 2222;
         };
         rootUrl = "https://git.bonus.p4";
