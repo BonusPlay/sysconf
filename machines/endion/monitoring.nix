@@ -1,5 +1,10 @@
 { config, ... }:
 {
+  allowedTCPPorts = [
+    config.services.prometheus.exporters.node.port
+    config.services.prometheus.exporters.systemd.port
+  ];
+
   services.prometheus = {
     exporters = {
       node = {
