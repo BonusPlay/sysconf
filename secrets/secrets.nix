@@ -5,6 +5,8 @@ let
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDM0mEeN9Z7TRf0cnx0Gpkv8at2tl0++Sr1MmxpWIZn";
   kaldir = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBlMeDxPYW6dBbDfeCbfpn5UJpPHjyoE7NJQitfuKVPy";
   braxis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUkgnjpgtrJOg9oIIsxE8mmmmmc8KsSfirQu+cD4u/n";
+  endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
+
   systems = [ artanis kaldir braxis ];
 in
 {
@@ -17,6 +19,7 @@ in
   "prometheus-ssl-key.age".publicKeys = users ++ [ kaldir ];
   "grafana-ssl-key.age".publicKeys = users ++ [ kaldir ];
   "loki-ssl-key.age".publicKeys = users ++ [ kaldir ];
+  "gitea-ssl-key.age".publicKeys = users ++ [ endion ];
 
   "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
 
