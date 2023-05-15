@@ -6,6 +6,7 @@
     ./zerotier.nix
     ./traefik.nix
     ./gitea.nix
+    ./monitoring.nix
   ];
 
   nix = {
