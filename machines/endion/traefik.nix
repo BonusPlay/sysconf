@@ -46,9 +46,6 @@
             middlewares = [ p4netMiddleware ];
           }
         ];
-        isHttp = entry: entry.kind == "http";
-        isTcp = entry: entry.kind == "tcp";
-
         mkHttpEntry = entry: {
           routers."${entry.name}" = {
             rule = "Host(`${entry.domain}`)";
@@ -61,28 +58,11 @@
           }];
           middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
         };
-
-        mkTcpEntry = entry: {
-          routers."${entry.name}" = {
-            rule = "HostSNI(`${entry.domain}`)";
-            service = entry.name;
-            tls = {};
-            entrypoints = entry.entrypoints;
-          };
-          services."${entry.name}".loadBalancer.servers = [{
-            address = "${entry.target or "localhost"}:${toString entry.port}";
-          }];
-        };
-
-        httpEntries = map mkHttpEntry (lib.filter isHttp entries);
-        tcpEntries = map mkTcpEntry (lib.filter isTcp entries);
-
+        httpEntries = map mkHttpEntry entries;
         httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
-        tcpConfig = lib.foldl' lib.recursiveUpdate {} tcpEntries;
       in
       {
         http = httpConfig;
-        tcp = tcpConfig;
         tls.certificates = [
           {
             certFile = "/etc/nixos/files/p4net/git.bonus.p4.crt";
