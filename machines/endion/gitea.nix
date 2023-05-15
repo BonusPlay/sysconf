@@ -9,13 +9,15 @@
         settings = {
           session.COOKIE_SECURE = true;
           service.DISABLE_REGISTRATION = true;
-          server.SSH_PORT = 2222;
           actions.ENABLED = true;
+          server = {
+            DOMAIN = "bonus.p4";
+            SSH_PORT = 2222;
+            ROOT_URL = "https://git.bonus.p4";
+            HTTP_ADDRESS = "127.0.0.1";
+          };
         };
-        rootUrl = "https://git.bonus.p4";
         lfs.enable = true;
-        httpAddress = "127.0.0.1";
-        domain = "bonus.p4";
         appName = "Bonus's git";
       };
 
