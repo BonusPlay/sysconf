@@ -71,7 +71,7 @@ in
   };
 
   # self-hosted development
-  endion = nixpkgs.lib.nixosSystem {
+  endion = nixpkgs-unstable.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
       ./endion
