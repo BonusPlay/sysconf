@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  allowedTCPPorts = [
+  networking.firewall.allowedTCPPorts = [
     config.services.prometheus.exporters.node.port
     config.services.prometheus.exporters.systemd.port
   ];
