@@ -16,13 +16,13 @@
       useDHCP = false;
       ipv4 = {
         addresses = [{
-          address = "198.18.68.20";
+          address = "192.168.4.10";
           prefixLength = 24;
         }];
         routes = [{
           address = "0.0.0.0";
           prefixLength = 0;
-          via = "198.18.68.1";
+          via = "192.168.4.10";
         }];
       };
     };
