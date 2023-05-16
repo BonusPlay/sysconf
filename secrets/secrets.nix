@@ -23,6 +23,8 @@ in
 
   "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
 
+  "gitea-runner-linux-token.age".publicKeys = users ++ [ endion ];
+
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "matrix-facebook-registration.age".publicKeys = users ++ [ kaldir ];

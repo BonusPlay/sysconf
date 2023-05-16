@@ -6,6 +6,7 @@
     ./zerotier.nix
     ./traefik.nix
     ./gitea.nix
+    ./gitea-runner.nix
     ./monitoring.nix
   ];
 

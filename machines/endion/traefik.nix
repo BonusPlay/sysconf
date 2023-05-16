@@ -42,7 +42,7 @@
             name = "git";
             domain = "git.bonus.p4";
             kind = "http";
-            port = config.services.gitea.httpPort;
+            port = config.services.gitea.settings.server.HTTP_PORT;
             middlewares = [ p4netMiddleware ];
           }
         ];

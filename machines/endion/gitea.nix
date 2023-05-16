@@ -24,7 +24,7 @@
       system.stateVersion = "22.11";
       networking.firewall = {
         enable = true;
-        allowedTCPPorts = [ config.services.gitea.httpPort config.services.gitea.settings.server.SSH_PORT ];
+        allowedTCPPorts = [ config.services.gitea.settings.server.HTTP_PORT config.services.gitea.settings.server.SSH_PORT ];
       };
     };
   };
