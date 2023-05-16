@@ -24,7 +24,7 @@ in
         labels = [ "linux_amd64:host" ];
       };
 
-      system.stateVersion = "22.11";
+      system.stateVersion = "unstable";
       networking.firewall = {
         enable = true;
       };
