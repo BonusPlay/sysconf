@@ -15,9 +15,18 @@
     ${resolvectl} dnssec p4net off
   '';
 
-  system.activationScripts.bonus = ''
+  system.activationScripts.bonus = let
+    local = builtins.toJSON {
+      settings = {
+        interfacePrefixBlacklist = [ "br-" "docker0" ];
+      };
+    };
+  in ''
     echo "b15644912e097589=p4net" > /var/lib/zerotier-one/devicemap;
     echo "93afae59633bb8b8=kncyber" >> /var/lib/zerotier-one/devicemap;
+    cat << EOF > /var/lib/zerotier-one/local.conf
+      ${local}
+    EOF
   '';
 
   systemd.network = {
