@@ -2,7 +2,7 @@
 {
   networking = {
     hostName = "braxis";
-    nameservers = [ "198.18.66.1" ];
+    nameservers = [ "1.1.1.1" ];
     dhcpcd.enable = false;
     useDHCP = false;
 
