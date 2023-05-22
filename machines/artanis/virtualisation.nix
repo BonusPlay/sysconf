@@ -8,12 +8,9 @@
     allowedBridges = [ "br-vms" "br-mullvad" "br-danger" "br-host" ];
   };
 
-  networking.firewall.extraCommands = ''
-    # masquerade from br-vms to wlp166s0
-    iptables -t nat -A POSTROUTING -o wlp166s0 -j MASQUERADE
-    iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-    iptables -A FORWARD -i br-vms -o wlp166s0 -j ACCEPT
-  '';
-
   systemd.network.wait-online.ignoredInterfaces = [ "br-vms" "br-host" ];
+
+  # required for VMs to use tunelling
+  # https://github.com/tailscale/tailscale/issues/4432#issuecomment-1112819111
+  networking.firewall.checkReversePath = "loose";
 }
