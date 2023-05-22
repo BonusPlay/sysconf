@@ -12,17 +12,26 @@
       allowedUDPPorts = [ 13337 ];
     };
 
-    interfaces.ens18 = {
-      useDHCP = false;
-      ipv4 = {
-        addresses = [{
-          address = "192.168.4.20";
+    interfaces = {
+      ens18 = {
+        useDHCP = false;
+        ipv4 = {
+          addresses = [{
+            address = "192.168.4.20";
+            prefixLength = 24;
+          }];
+          routes = [{
+            address = "0.0.0.0";
+            prefixLength = 0;
+            via = "192.168.4.1";
+          }];
+        };
+      };
+      ens19 = {
+        useDHCP = false;
+        ipv4.addresses = [{
+          address = "10.0.0.1";
           prefixLength = 24;
-        }];
-        routes = [{
-          address = "0.0.0.0";
-          prefixLength = 0;
-          via = "192.168.4.1";
         }];
       };
     };
