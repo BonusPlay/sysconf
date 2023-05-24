@@ -3,7 +3,6 @@
     autoStart = true;
 
     config = { config, pkgs, ... }: {
-
       services.gitea = {
         enable = true;
         settings = {
@@ -15,6 +14,7 @@
             SSH_PORT = 2222;
             ROOT_URL = "https://git.bonus.p4";
             HTTP_ADDRESS = "127.0.0.1";
+            START_SSH_SERVER = true;
           };
         };
         lfs.enable = true;
