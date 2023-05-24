@@ -1,4 +1,11 @@
+let
+  SSH_PORT = 2222;
+in
 {
+  # needs to be setup on host's iptables
+  # TODO: replace with NAT ?
+  networking.firewall.allowedTCPPorts = [ SSH_PORT ];
+
   containers.gitea = {
     autoStart = true;
 
@@ -11,7 +18,7 @@
           actions.ENABLED = true;
           server = {
             DOMAIN = "bonus.p4";
-            SSH_PORT = 2222;
+            SSH_PORT = SSH_PORT;
             ROOT_URL = "https://git.bonus.p4";
             HTTP_ADDRESS = "127.0.0.1";
             START_SSH_SERVER = true;
