@@ -59,16 +59,7 @@ in
     ];
   };
 
-  # dev rpi
-  shakuras = nixpkgs-unstable.lib.nixosSystem {
-    system = "aarch64-linux";
-    modules = [
-      ./shakuras
-      agenix.nixosModules.default
-      p4net.nixosModule
-      nixos-hardware.nixosModules.raspberry-pi-4
-    ];
-  };
+  # shakuras
 
   # self-hosted development
   endion = nixpkgs-unstable.lib.nixosSystem {
