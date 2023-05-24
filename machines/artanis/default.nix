@@ -13,16 +13,18 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings = {
-    substituters = [
-      "https://cache.garnix.io"
-    ];
-    trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-    ];
+  nix = {
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+    settings = {
+      substituters = [
+        "https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
+    };
   };
 
   boot.loader.systemd-boot.enable = true;
