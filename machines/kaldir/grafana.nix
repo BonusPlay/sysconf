@@ -3,7 +3,7 @@
     enable = true;
     settings.server = {
       domain = "graf.bonus.p4";
-      rootUrl = "https://graf.bonus.p4/";
+      root_url = "https://graf.bonus.p4/";
       http_addr = "127.0.0.1";
       http_port = 4060;
     };
