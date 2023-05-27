@@ -23,6 +23,7 @@ in
   "gitea-ssl-key.age".publicKeys = users ++ [ endion ];
 
   "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
+  "dr-bonus-p4-services.age".publicKeys = users ++ [ shakuras ];
 
   "gitea-runner-linux-token.age".publicKeys = users ++ [ shakuras ];
 

@@ -5,6 +5,12 @@
     mode = "0444";
   };
 
+  age.secrets.dockerRegistryCreds = {
+    file = ../../secrets/dr-bonus-p4-services.age;
+    mode = "0400";
+    path = "/etc/docker/config.json";
+  };
+
   security.pki.certificates = [ (builtins.readFile ../../files/p4net/p4net-ca.crt) ];
 
   virtualisation.docker = {
