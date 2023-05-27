@@ -8,8 +8,13 @@
   age.secrets.dockerRegistryCreds = {
     file = ../../secrets/dr-bonus-p4-services.age;
     mode = "0400";
-    path = "/etc/docker/config.json";
+    path = "/root/.docker/config.json";
   };
+
+  # hack to downlaod image to node
+  system.activationScripts.pullDockerImages = ''
+    docker pull dr.bonusplay.pl/p4net/node:16-bullseye
+  '';
 
   security.pki.certificates = [ (builtins.readFile ../../files/p4net/p4net-ca.crt) ];
 
