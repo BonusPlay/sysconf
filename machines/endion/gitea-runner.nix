@@ -8,6 +8,8 @@ in
     mode = "0444";
   };
 
+  security.pki.certificates = [ (builtins.readFile ../../files/p4net/p4net-ca.crt) ];
+
   containers.gitea-runner = {
     autoStart = true;
     bindMounts.runnerToken = {
