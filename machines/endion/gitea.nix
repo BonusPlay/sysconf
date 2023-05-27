@@ -16,6 +16,7 @@ in
           session.COOKIE_SECURE = true;
           service.DISABLE_REGISTRATION = true;
           actions.ENABLED = true;
+          repository.DEFAULT_BRANCH = "master";
           server = {
             DOMAIN = "bonus.p4";
             SSH_PORT = SSH_PORT;
