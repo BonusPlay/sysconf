@@ -1,18 +1,18 @@
 { config, ... }:
 let
-  tokenFile = "/run/giteaToken";
+  tokenFile = "/var/lib/gitea-runner/token";
 in
 {
   age.secrets.giteaRunnerLinuxToken = {
     file = ../../secrets/gitea-runner-linux-token.age;
-    mode = "0400";
-    owner = "gitea-runner";
+    mode = "0444";
   };
 
   containers.gitea-runner = {
     autoStart = true;
-    bindMounts."${tokenFile}" = {
+    bindMounts.runnerToken = {
       hostPath = config.age.secrets.giteaRunnerLinuxToken.path;
+      mountPoint = tokenFile;
       isReadOnly = true;
     };
 
