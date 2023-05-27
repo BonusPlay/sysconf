@@ -19,6 +19,7 @@ in
     config = { config, pkgs, ... }: {
       services.gitea-actions-runner.instances.linux_amd64 = {
         enable = true;
+        name = "linux_amd64";
         url = "https://git.bonus.p4";
         tokenFile = tokenFile;
         labels = [ "linux_amd64:host" ];
