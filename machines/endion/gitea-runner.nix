@@ -29,7 +29,11 @@ in
         name = "linux_amd64";
         url = "https://git.bonus.p4";
         tokenFile = tokenFile;
-        labels = [ "linux_amd64:host" ];
+        labels = [
+          "linux_amd64:docker://alpine:3"
+          "linux_amd64:docker://python:3"
+          "linux_amd64:docker://debian:11"
+        ];
       };
 
       system.stateVersion = "23.05";
