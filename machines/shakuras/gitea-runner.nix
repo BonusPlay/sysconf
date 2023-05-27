@@ -2,8 +2,7 @@
 {
   age.secrets.giteaRunnerLinuxToken = {
     file = ../../secrets/gitea-runner-linux-token.age;
-    owner = "gitea-runner";
-    mode = "0400";
+    mode = "0444";
   };
 
   security.pki.certificates = [ (builtins.readFile ../../files/p4net/p4net-ca.crt) ];
