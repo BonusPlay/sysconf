@@ -18,9 +18,6 @@
     url = "https://git.bonus.p4";
     tokenFile = config.age.secrets.giteaRunnerLinuxToken.path;
     labels = [
-      "linux_amd64:docker://alpine:3"
-      "linux_amd64:docker://python:3"
-      "linux_amd64:docker://debian:11"
       "linux_amd64:docker://node:16-bullseye"
     ];
   };
