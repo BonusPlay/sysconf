@@ -18,7 +18,7 @@
     url = "https://git.bonus.p4";
     tokenFile = config.age.secrets.giteaRunnerLinuxToken.path;
     labels = [
-      "linux_amd64:docker://node:16-bullseye"
+      "linux_amd64:docker://dr.bonusplay.pl/p4net/node:16-bullseye"
     ];
   };
 }
