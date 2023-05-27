@@ -21,7 +21,7 @@ in
 
       virtualisation.docker = {
         enable = true;
-        storageDriver = "btrfs"
+        storageDriver = "btrfs";
       };
 
       services.gitea-actions-runner.instances.linux_amd64 = {
