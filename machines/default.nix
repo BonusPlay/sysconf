@@ -59,7 +59,15 @@ in
     ];
   };
 
-  # shakuras
+  # shakuras (git runner)
+  shakuras = nixpkgs-unstable.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./shakuras
+      agenix.nixosModules.default
+      nixTrick
+    ];
+  };
 
   # self-hosted development
   endion = nixpkgs-unstable.lib.nixosSystem {

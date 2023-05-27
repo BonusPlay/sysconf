@@ -3,10 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./zerotier.nix
-    ./traefik.nix
-    ./gitea.nix
-    ./monitoring.nix
+    ./gitea-runner.nix
   ];
 
   nix = {
@@ -49,5 +46,5 @@
   services.openssh.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

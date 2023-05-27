@@ -6,6 +6,7 @@ let
   kaldir = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBlMeDxPYW6dBbDfeCbfpn5UJpPHjyoE7NJQitfuKVPy";
   braxis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUkgnjpgtrJOg9oIIsxE8mmmmmc8KsSfirQu+cD4u/n";
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
+  shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
 
   systems = [ artanis kaldir braxis ];
 in
@@ -23,7 +24,7 @@ in
 
   "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
 
-  "gitea-runner-linux-token.age".publicKeys = users ++ [ endion ];
+  "gitea-runner-linux-token.age".publicKeys = users ++ [ shakuras ];
 
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
