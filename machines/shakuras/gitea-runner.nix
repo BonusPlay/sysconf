@@ -1,16 +1,5 @@
 { config, ... }:
 {
-  age.secrets.giteaRunnerLinuxToken = {
-    file = ../../secrets/gitea-runner-linux-token.age;
-    mode = "0444";
-  };
-
-  age.secrets.dockerRegistryCreds = {
-    file = ../../secrets/docker-registry-service-account.age;
-    mode = "0400";
-    path = "/root/.docker/config.json";
-  };
-
   virtualisation.docker = {
     enable = true;
     storageDriver = "btrfs";
