@@ -8,7 +8,7 @@
     ./networking.nix
     ./zerotier.nix
     ./prometheus.nix
-    ./seafile.nix
+    #./seafile.nix
     ./taskserver.nix
     ./traefik.nix
     ./matrix-synapse.nix
