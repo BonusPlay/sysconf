@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./gitea-runner.nix
+    ./monitoring.nix
   ];
 
   nix = {
