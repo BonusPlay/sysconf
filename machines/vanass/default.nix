@@ -19,10 +19,9 @@
   };
 
   boot = {
-    loader.efi.canTouchEfiVariables = true;
+    loader.grub.device = "/dev/sda";
     tmp.useTmpfs = true;
     tmp.cleanOnBoot = true;
-    isContainer = true;
   };
 
   time.timeZone = "UTC";
@@ -41,6 +40,7 @@
     git
   ];
 
+  services.qemuGuest.enable = true;
   services.openssh.enable = true;
   security.sudo.wheelNeedsPassword = false;
 
