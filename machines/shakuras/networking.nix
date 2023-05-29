@@ -2,6 +2,7 @@
 {
   networking = {
     hostName = "shakuras";
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
     dhcpcd.enable = false;
     useDHCP = false;
 
@@ -16,13 +17,13 @@
         useDHCP = false;
         ipv4 = {
           addresses = [{
-            address = "10.20.30.101";
+            address = "10.20.31.31";
             prefixLength = 24;
           }];
           routes = [{
             address = "0.0.0.0";
             prefixLength = 0;
-            via = "10.20.30.5";
+            via = "10.20.31.11";
           }];
         };
       };
