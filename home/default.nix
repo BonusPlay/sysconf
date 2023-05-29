@@ -1,8 +1,4 @@
 { pkgs, nixpkgs-unstable, ... }:
-let
-  udp2raw = pkgs.callPackage ../pkgs/udp2raw.nix {};
-  gsocket = pkgs.callPackage ../pkgs/gsocket.nix {};
-in
 {
   imports = [
     ./alacritty.nix
@@ -48,9 +44,7 @@ in
     pass
     file
     gimp
-    udp2raw
     magic-wormhole
-    gsocket
     kubectl
     kubectx
     wireguard-tools
