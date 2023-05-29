@@ -1,17 +1,11 @@
 let
-  hostIP = "192.168.100.1";
-  containerIP = "192.168.100.10";
   port = 8883;
 in
 {
   containers.mosquitto = {
     autoStart = true;
-    privateNetwork = true;
-    hostAddress = hostIP;
-    localAddress = containerIP;
 
     config = { config, pkgs, ... }: {
-
       services.mosquitto = {
         enable = true;
         listeners = [{
@@ -29,12 +23,11 @@ in
         }];
       };
 
-      system.stateVersion = "22.11";
+      system.stateVersion = "23.05";
       networking.firewall = {
         enable = true;
         allowedTCPPorts = [ port ];
       };
-      environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
     };
   };
 }

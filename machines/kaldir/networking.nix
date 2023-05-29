@@ -2,18 +2,12 @@
 {
   networking = {
     hostName = "kaldir";
-    #domain = "bonus.p4";
     useNetworkd = true;
     dhcpcd.enable = false;
-    nameservers = [ "127.0.0.1" ];
+    nameservers = [ "1.1.1.1" ];
     firewall = {
       allowedTCPPorts = [ 13337 ];
       allowedUDPPorts = [ 13337 ];
-    };
-    nat = {
-      enable = true;
-      externalInterface = "enp0s3";
-      internalInterfaces = ["ve-+"];
     };
     interfaces.enp0s3 = {
       useDHCP = false;

@@ -11,19 +11,11 @@ let
   systems = [ artanis kaldir braxis ];
 in
 {
-  "artanis-p4net.age".publicKeys = users ++ [ artanis ];
-  "kaldir-p4net-ext.age".publicKeys = users ++ [ kaldir ];
-
   "cloudflare.age".publicKeys = users ++ [ kaldir ];
   "cloudflare-tunnel.age".publicKeys = users;
 
-  "prometheus-ssl-key.age".publicKeys = users ++ [ kaldir ];
-  "grafana-ssl-key.age".publicKeys = users ++ [ kaldir ];
-  "loki-ssl-key.age".publicKeys = users ++ [ kaldir ];
-  "gitea-ssl-key.age".publicKeys = users ++ [ endion ];
-
-  "dr-bonus-p4-users.age".publicKeys = users ++ [ kaldir ];
-  "dr-bonus-p4-services.age".publicKeys = users ++ [ shakuras ];
+  "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
+  "docker-registry-service-account.age".publicKeys = users;
 
   "gitea-runner-linux-token.age".publicKeys = users ++ [ shakuras ];
 

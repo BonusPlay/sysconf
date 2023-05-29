@@ -1,9 +1,23 @@
 { lib, config, ... }:
 {
-  age.secrets.giteaCertKey = {
-    file = ../../secrets/gitea-ssl-key.age;
+  age.secrets.cloudflare = {
+    file = ../../secrets/cloudflare.age;
     mode = "0400";
-    owner = "traefik";
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    certs = {
+      "mlwr.dev" = {
+        domain = "*.mlwr.dev";
+        dnsProvider = "cloudflare";
+        credentialsFile = config.age.secrets.cloudflare.path;
+        email = "cloudflare@bonusplay.pl";
+        renewInterval = "weekly";
+        group = "traefik";
+        reloadServices = [ "traefik" ];
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 443 ];
@@ -37,8 +51,7 @@
         entries = [
           {
             name = "git";
-            domain = "git.bonus.p4";
-            kind = "http";
+            domain = "git.mlwr.dev";
             port = config.services.gitea.settings.server.HTTP_PORT;
           }
         ];
@@ -59,8 +72,8 @@
         http = httpConfig;
         tls.certificates = [
           {
-            certFile = "/etc/nixos/files/p4net/git.bonus.p4.crt";
-            keyFile = config.age.secrets.giteaCertKey.path;
+            certFile = "/var/lib/acme/mlwr.dev/cert.pem";
+            keyFile = "/var/lib/acme/mlwr.dev/key.pem";
           }
         ];
       };

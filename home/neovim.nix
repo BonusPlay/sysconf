@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  packages = with pkgs; [ nodejs cargo clang clang-tools unzip ];
+  packages = with pkgs; [ nodejs cargo clang clang-tools unzip rust-analyzer rustc ];
   helpers = map (p: "${p}/bin") packages;
   path = builtins.concatStringsSep ":" helpers;
 in

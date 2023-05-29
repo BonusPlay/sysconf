@@ -27,12 +27,18 @@
     };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
-  boot.tmpOnTmpfs = true;
-  boot.tmpOnTmpfsSize = "32G";
-  boot.kernelModules = [ "lkrg" ];
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.configurationLimit = 5;
+    };
+    tmp = {
+      tmpfsSize = "32G";
+      useTmpfs = true;
+    };
+    kernelModules = [ "lkrg" ];
+  };
 
   services.fwupd.enable = true;
   services.tlp.enable = true;
@@ -64,7 +70,7 @@
       ];
       home.username = "bonus";
       home.homeDirectory = "/home/bonus";
-      home.stateVersion = "22.11";
+      home.stateVersion = "23.05";
     };
   };
 
@@ -125,5 +131,5 @@
     corefonts
   ];
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

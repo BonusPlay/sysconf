@@ -89,7 +89,7 @@
 
       clients = [
         {
-          url = "https://loki.bonus.p4/loki/api/v1/push";
+          url = "https://loki.mlwr.dev/loki/api/v1/push";
         }
       ];
 

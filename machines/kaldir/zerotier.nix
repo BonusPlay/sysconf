@@ -3,17 +3,17 @@
 
   services.zerotierone = {
     enable = true;
-    joinNetworks = [ "b15644912e097589" ];
+    joinNetworks = [ "52b337794f08427d" ];
   };
 
   system.activationScripts.bonus = let
     local = builtins.toJSON {
       settings = {
-        interfacePrefixBlacklist = [ "p4net-" "ve-" ];
+        interfacePrefixBlacklist = [ "ve-" "br-" ];
       };
     };
   in ''
-    echo "b15644912e097589=p4net-khala" > /var/lib/zerotier-one/devicemap;
+    echo "52b337794f08427d=warp-net" > /var/lib/zerotier-one/devicemap;
     cat << EOF > /var/lib/zerotier-one/local.conf
       ${local}
     EOF

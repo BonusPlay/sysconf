@@ -6,10 +6,7 @@
     ./hardware-configuration.nix
     ./loki.nix
     ./networking.nix
-    ./p4net-bird.nix
-    ./p4net-coredns.nix
-    ./p4net-wg.nix
-    ./p4net-zerotier.nix
+    ./zerotier.nix
     ./prometheus.nix
     ./seafile.nix
     ./taskserver.nix
@@ -18,7 +15,6 @@
     ./matrix-facebook.nix
     ./matrix-telegram.nix
     ./matrix-irc.nix
-    ./matrix-hookshot.nix
     ./mosquitto.nix
   ];
 
@@ -36,11 +32,15 @@
   };
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    loader.systemd-boot.configurationLimit = 5;
-    tmpOnTmpfs = true;
-    cleanTmpDir = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.configurationLimit = 5;
+    };
+    tmp = {
+      useTmpfs = true;
+      cleanOnBoot = true;
+    };
   };
 
   services.fwupd.enable = true;
@@ -65,5 +65,5 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

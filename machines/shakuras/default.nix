@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./gitea-runner.nix
-    ./zerotier.nix
   ];
 
   nix = {

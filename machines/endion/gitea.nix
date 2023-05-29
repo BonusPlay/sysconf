@@ -18,9 +18,9 @@ in
           actions.ENABLED = true;
           repository.DEFAULT_BRANCH = "master";
           server = {
-            DOMAIN = "bonus.p4";
+            DOMAIN = "mlwr.dev";
             SSH_PORT = SSH_PORT;
-            ROOT_URL = "https://git.bonus.p4";
+            ROOT_URL = "https://git.mlwr.dev";
             HTTP_ADDRESS = "127.0.0.1";
             START_SSH_SERVER = true;
           };

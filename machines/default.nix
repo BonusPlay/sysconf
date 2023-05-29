@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, nur, agenix, p4net, arion, ... }:
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, arion, ... }:
 let
   addUnstable = system: {
     nixpkgs-unstable = import nixpkgs-unstable {
@@ -18,10 +18,8 @@ in
     modules = [
       ./artanis
       nixos-hardware.nixosModules.framework-12th-gen-intel
-      nur.nixosModules.nur
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
-      p4net.nixosModule
       nixTrick
     ];
   };
@@ -33,20 +31,11 @@ in
     modules = [
       ./kaldir
       agenix.nixosModules.default
-      p4net.nixosModule
       nixTrick
     ];
   };
 
-  # p4net exit node
-  vanass = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./vanass
-      agenix.nixosModules.default
-      nixTrick
-    ];
-  };
+  # vanass
 
   # kncyber VM
   braxis = nixpkgs-unstable.lib.nixosSystem {

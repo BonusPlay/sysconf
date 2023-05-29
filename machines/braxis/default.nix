@@ -24,8 +24,10 @@
 
   boot = {
     loader.grub.device = "/dev/sda";
-    tmpOnTmpfs = true;
-    cleanTmpDir = true;
+    tmp = {
+      useTmpfs = true;
+      cleanOnBoot = true;
+    };
   };
 
   time.timeZone = "UTC";
@@ -60,5 +62,5 @@
   services.openssh.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 }

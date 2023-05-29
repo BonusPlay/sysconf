@@ -2,8 +2,8 @@
   services.grafana = {
     enable = true;
     settings.server = {
-      domain = "graf.bonus.p4";
-      root_url = "https://graf.bonus.p4/";
+      domain = "graf.mlwr.dev";
+      root_url = "https://graf.mlwr.dev/";
       http_addr = "127.0.0.1";
       http_port = 4060;
     };
@@ -15,12 +15,12 @@
           {
             type = "prometheus";
             name = "prometheus";
-            url = "https://prom.bonus.p4";
+            url = "https://prom.mlwr.dev";
           }
           {
             type = "loki";
             name = "loki";
-            url = "https://loki.bonus.p4";
+            url = "https://loki.mlwr.dev";
           }
         ];
       };

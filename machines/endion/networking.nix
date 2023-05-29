@@ -2,7 +2,6 @@
 {
   networking = {
     hostName = "endion";
-    nameservers = [ "198.18.66.1" ];
     dhcpcd.enable = false;
     useDHCP = false;
 
@@ -17,22 +16,15 @@
         useDHCP = false;
         ipv4 = {
           addresses = [{
-            address = "192.168.4.20";
+            address = "10.20.30.100";
             prefixLength = 24;
           }];
           routes = [{
             address = "0.0.0.0";
             prefixLength = 0;
-            via = "192.168.4.1";
+            via = "10.20.30.5";
           }];
         };
-      };
-      ens19 = {
-        useDHCP = false;
-        ipv4.addresses = [{
-          address = "10.0.0.1";
-          prefixLength = 24;
-        }];
       };
     };
   };

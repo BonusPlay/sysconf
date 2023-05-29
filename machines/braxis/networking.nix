@@ -3,8 +3,6 @@
   networking = {
     hostName = "braxis";
     nameservers = [ "1.1.1.1" ];
-    dhcpcd.enable = false;
-    useDHCP = false;
 
     firewall = {
       enable = true;
@@ -16,13 +14,13 @@
       useDHCP = false;
       ipv4 = {
         addresses = [{
-          address = "192.168.4.10";
+          address = "10.20.30.120";
           prefixLength = 24;
         }];
         routes = [{
           address = "0.0.0.0";
           prefixLength = 0;
-          via = "192.168.4.1";
+          via = "10.20.30.5";
         }];
       };
     };

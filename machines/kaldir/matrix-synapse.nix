@@ -22,6 +22,11 @@
       mode = "0400";
       owner = "matrix-synapse";
     };
+    matrixHookshotRegistration = {
+      file = ../../secrets/matrix-hookshot-registration.age;
+      mode = "0400";
+      owner = "matrix-synapse";
+    };
   };
 
   services.matrix-synapse = {
@@ -48,6 +53,7 @@
       app_service_config_files = [
         config.age.secrets.matrixTelegramRegistration.path
         config.age.secrets.matrixFacebookRegistration.path
+        config.age.secrets.matrixHookshotRegistration.path
         "/var/lib/heisenbridge/registration.yml"
       ];
     };
