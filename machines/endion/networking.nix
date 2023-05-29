@@ -2,6 +2,7 @@
 {
   networking = {
     hostName = "endion";
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
     dhcpcd.enable = false;
     useDHCP = false;
 
