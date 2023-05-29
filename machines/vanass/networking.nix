@@ -2,6 +2,7 @@
 let
   ext = "ens18";
   int = "ens19";
+  warp = "warp-net";
 in
 {
   networking = {
@@ -17,7 +18,7 @@ in
     nat = {
       enable = true;
       externalInterface = ext;
-      internalInterfaces = [ int ];
+      internalInterfaces = [ int warp ];
     };
 
     interfaces = {
