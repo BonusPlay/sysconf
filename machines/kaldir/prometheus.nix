@@ -11,29 +11,36 @@
         static_configs = [
           {
             targets = [
-              "198.18.66.1:${toString config.services.prometheus.exporters.node.port}"
-              "198.18.66.1:${toString config.services.prometheus.exporters.systemd.port}"
+              "kaldir.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
+              "kaldir.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
             ];
             labels.host = "kaldir";
           }
           {
             targets = [
-              "198.18.66.5:${toString config.services.prometheus.exporters.node.port}"
+              "gate.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
             ];
             labels.host = "warpgate";
           }
           {
             targets = [
-              "198.18.66.10:${toString config.services.prometheus.exporters.node.port}"
+              "zero.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
             ];
             labels.host = "zero";
           }
           {
             targets = [
-              "198.18.66.100:${toString config.services.prometheus.exporters.node.port}"
-              "198.18.66.100:${toString config.services.prometheus.exporters.systemd.port}"
+              "endion.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
+              "endion.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
             ];
             labels.host = "endion";
+          }
+          {
+            targets = [
+              "shakuras.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
+              "shakuras.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
+            ];
+            labels.host = "shakuras";
           }
         ];
       }
