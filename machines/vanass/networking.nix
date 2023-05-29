@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  ext = "ens18";
+  int = "ens19";
 {
   networking = {
     hostName = "vanass";
@@ -12,12 +15,13 @@
 
     nat = {
       enable = true;
-      externalInterface = "wan";
-      internalInterfaces = [ "warp-net" ];
+      externalInterface = ext;
+      internalInterfaces = [ int ];
     };
 
     interfaces = {
-      "warp-net".ipv4 = {
+      ${ext}.useDHCP = true;
+      ${int}.ipv4 = {
         addresses = [{
           address = "10.20.31.11";
           prefixLength = 24;
