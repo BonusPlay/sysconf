@@ -12,9 +12,7 @@
           {
             targets = [
               "198.18.66.1:${toString config.services.prometheus.exporters.node.port}"
-              "198.18.66.1:${toString config.services.prometheus.exporters.bird.port}"
               "198.18.66.1:${toString config.services.prometheus.exporters.systemd.port}"
-              "198.18.66.1:${toString config.services.prometheus.exporters.wireguard.port}"
             ];
             labels.host = "kaldir";
           }
@@ -44,16 +42,8 @@
       node = {
         enable = true;
       };
-      bird = {
-        enable = true;
-        birdVersion = 2;
-      };
       systemd = {
         enable = true;
-      };
-      wireguard = {
-        enable = true;
-        withRemoteIp = true;
       };
     };
   };
