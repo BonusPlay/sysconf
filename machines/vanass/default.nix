@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./zerotier.nix
+    ./monitoring.nix
   ];
 
   nix = {
