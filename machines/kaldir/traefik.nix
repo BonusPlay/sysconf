@@ -59,9 +59,6 @@
           address = ":443";
           http.tls = true;
         };
-        mqtt = {
-          address = ":8883";
-        };
       };
     };
     dynamicConfigOptions =
@@ -77,7 +74,7 @@
             middlewares = [];
           }
           {
-            name = "dr";
+            name = "docker-registry";
             domain = "dr.bonusplay.pl";
             port = 4070;
             middlewares = [{
