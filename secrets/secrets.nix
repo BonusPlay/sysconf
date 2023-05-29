@@ -11,7 +11,7 @@ let
   systems = [ artanis kaldir braxis ];
 in
 {
-  "cloudflare.age".publicKeys = users ++ [ kaldir ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion ];
   "cloudflare-tunnel.age".publicKeys = users;
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
