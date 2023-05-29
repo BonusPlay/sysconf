@@ -42,6 +42,13 @@
             ];
             labels.host = "shakuras";
           }
+          {
+            targets = [
+              "vanass.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
+              "vanass.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
+            ];
+            labels.host = "vanass";
+          }
         ];
       }
     ];
