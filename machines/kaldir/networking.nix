@@ -2,7 +2,6 @@
 {
   networking = {
     hostName = "kaldir";
-    useNetworkd = true;
     dhcpcd.enable = false;
     nameservers = [ "1.1.1.1" ];
     firewall = {
@@ -24,7 +23,4 @@
       };
     };
   };
-
-  services.nscd.enableNsncd = true;
-  services.resolved.enable = false;
 }
