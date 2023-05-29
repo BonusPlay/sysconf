@@ -2,6 +2,7 @@
 let
   ext = "ens18";
   int = "ens19";
+in
 {
   networking = {
     hostName = "vanass";
