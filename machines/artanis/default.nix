@@ -29,7 +29,7 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 5;
     };
@@ -39,6 +39,10 @@
     };
     kernelModules = [ "lkrg" ];
     bootspec.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
   };
 
   services.fwupd.enable = true;
