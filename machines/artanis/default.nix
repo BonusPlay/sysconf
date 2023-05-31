@@ -38,6 +38,7 @@
       useTmpfs = true;
     };
     kernelModules = [ "lkrg" ];
+    bootspec.enable = true;
   };
 
   services.fwupd.enable = true;
@@ -82,6 +83,7 @@
     htop
     iotop
     iftop
+    sbctl
   ];
 
   # why is sudo so bloated

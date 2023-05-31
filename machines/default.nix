@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, arion, ... }:
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, arion, lanzaboote, ... }:
 let
   addUnstable = system: {
     nixpkgs-unstable = import nixpkgs-unstable {
@@ -20,6 +20,7 @@ in
       nixos-hardware.nixosModules.framework-12th-gen-intel
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
+      lanzaboote.nixosModules.lanzaboote
       nixTrick
     ];
   };
