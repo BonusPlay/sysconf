@@ -56,6 +56,7 @@
     #  dockerCompat = true;
     #  defaultNetwork.settings.dns_enabled = true;
     };
+    oci-containers.backend = "docker";
   };
 
   services.qemuGuest.enable = true;
