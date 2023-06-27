@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ./yubikey.nix
     ./zerotier.nix
-    ./games.nix
     ./networking.nix
     ./virtualisation.nix
     ./development.nix
@@ -45,15 +44,11 @@
   };
 
   services.fwupd.enable = true;
-  services.tlp.enable = true;
   hardware.enableAllFirmware = true;
   hardware.opengl.enable = true;
-  hardware.bluetooth.enable = true;
 
   time.timeZone = "Europe/Warsaw";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  services.printing.enable = true;
 
   sound.enable = true;
   services.pipewire.enable = true;
@@ -102,7 +97,7 @@
 
   programs.wireshark.enable = true;
 
-  # smol hack, artanis doesn't run ssh server
+  # smol hack, zeratul doesn't run ssh server
   age.identityPaths = [
     "/etc/ssh/ssh_host_ed25519_key"
   ];

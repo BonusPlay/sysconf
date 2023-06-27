@@ -60,6 +60,11 @@
     taskwarrior-tui
     nmap
     hexyl
+    firefox-wayland
+    mattermost-desktop
+    element-desktop
+    libreoffice
+    discord
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin

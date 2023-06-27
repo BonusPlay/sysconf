@@ -25,6 +25,18 @@ in
     ];
   };
 
+  zeratul = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = addUnstable "x86_64-linux";
+    modules = [
+      ./zeratul
+      home-manager.nixosModules.home-manager
+      agenix.nixosModules.default
+      lanzaboote.nixosModules.lanzaboote
+      nixTrick
+    ];
+  };
+
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
