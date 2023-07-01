@@ -7,6 +7,7 @@
     ./networking.nix
     ./virtualisation.nix
     ./development.nix
+    ./gaming.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
