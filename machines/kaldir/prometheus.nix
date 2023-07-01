@@ -13,6 +13,7 @@
             targets = [
               "kaldir.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
               "kaldir.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
+              "kaldir.mlwr.dev:${toString config.services.prometheus.port}"
             ];
             labels.host = "kaldir";
           }
