@@ -26,6 +26,21 @@
     fsType = "vfat";
   };
 
+  # decrytped using crypttab
+  fileSystems."/storage" = {
+    device = "/dev/disk/by-uuid/0c220e47-fb07-404b-b035-cf79a3bdce30";
+    fsType = "btrfs";
+    options = [ "compress=zstd" ];
+  };
+
+  environment.etc.crypttab = {
+    text = ''
+      crypt-sda UUID=a58b6d4a-3123-4b51-92d8-8dfe67d6fa5c /etc/luksKey luks,noearly,discard
+      crypt-sdb UUID=5210d1d9-dddf-404b-b5fb-fda99c79cf99 /etc/luksKey luks,noearly,discard
+    '';
+    mode = "0444";
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
