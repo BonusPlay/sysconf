@@ -58,8 +58,13 @@
           cd "$1"
       }
 
+      case $(cat /etc/hostname) in
+          artanis) BASH_HOST_COLOR="0;38;5;200m";;
+          zeratul) BASH_HOST_COLOR="0;38;5;75m";;
+          *      ) BASH_HOST_COLOR="0;38;5;125m";;
+      esac
+
       BASH_PROMPT_COLOR="1;32m";
-      BASH_HOST_COLOR="0;38;5;200m";
       export PS1="\[\033[$BASH_PROMPT_COLOR\]\u@\[$(tput sgr0)\]\[\033[$BASH_HOST_COLOR\]\h\[$(tput sgr0)\]\[\033[$BASH_PROMPT_COLOR\]:\w\\$ \[$(tput sgr0)\]"
     '';
   };
