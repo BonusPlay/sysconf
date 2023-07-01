@@ -27,10 +27,16 @@
   };
 
   # decrytped using crypttab
-  fileSystems."/storage" = {
+  fileSystems."/storage/public" = {
     device = "/dev/disk/by-uuid/0c220e47-fb07-404b-b035-cf79a3bdce30";
     fsType = "btrfs";
-    options = [ "compress=zstd" ];
+    options = [ "subvol=public" "compress=zstd" ];
+  };
+
+  fileSystems."/storage/private" = {
+    device = "/dev/disk/by-uuid/0c220e47-fb07-404b-b035-cf79a3bdce30";
+    fsType = "btrfs";
+    options = [ "subvol=private" "compress=zstd" ];
   };
 
   environment.etc.crypttab = {
