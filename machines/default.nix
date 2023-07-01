@@ -88,4 +88,14 @@ in
       nixTrick
     ];
   };
+
+  # nas
+  glacius = nixpkgs-unstable.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./glacius
+      agenix.nixosModules.default
+      nixTrick
+    ];
+  };
 }
