@@ -8,6 +8,7 @@
     ./networking.nix
     ./virtualisation.nix
     ./development.nix
+    ./tailscale.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
