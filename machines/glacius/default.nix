@@ -40,7 +40,7 @@
             "/etc/initrd/ssh_host_rsa_key"
             "/etc/initrd/ssh_host_ed25519_key"
           ];
-          authorizedKeys = [ builtins.readFile ./../../files/yubi.ssh ];
+          authorizedKeys = [ (builtins.readFile ./../../files/yubi.ssh) ];
         };
       };
     };
