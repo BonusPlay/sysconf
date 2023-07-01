@@ -46,6 +46,7 @@
     };
   };
 
+  services.btrfs.autoScrub.enable = true;
   services.fwupd.enable = true;
 
   time.timeZone = "UTC";
