@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./zerotier.nix
-    ./prometheus.nix
+    ./monitoring.nix
   ];
 
   nix = {
