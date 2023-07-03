@@ -49,29 +49,38 @@
       };
       entryPoints = {
         web = {
-          address = ":80";
+          address = "10.0.0.131:80";
           http = {
             redirections.entrypoint.to = "websecure";
             redirections.entrypoint.scheme = "https";
           };
         };
         websecure = {
-          address = ":443";
+          address = "10.0.0.131:443";
+          http.tls = true;
+        };
+        warp = {
+          address = "100.98.118.66:80";
+          http = {
+            redirections.entrypoint.to = "websecure";
+            redirections.entrypoint.scheme = "https";
+          };
+        };
+        warpsecure = {
+          address = "100.98.118.66:443";
           http.tls = true;
         };
       };
     };
     dynamicConfigOptions =
       let
-        warpnetMiddleware = {
-          warpnet.ipwhitelist.sourcerange = "127.0.0.1/32, 10.20.30.0/24";
-        };
         entries = [
           {
             name = "matrix";
             domain = "matrix.bonusplay.pl";
             port = 4080;
             middlewares = [];
+            entrypoints = [ "websecure" ];
           }
           {
             name = "docker-registry";
@@ -80,30 +89,35 @@
             middlewares = [{
               drAuth.basicAuth.usersFile = config.age.secrets.drUsersFile.path;
             }];
+            entrypoints = [ "websecure" ];
           }
           {
             name = "prometheus";
             domain = lib.strings.removeSuffix "/" (lib.strings.removePrefix "https://" config.services.prometheus.webExternalUrl);
             port = config.services.prometheus.port;
-            middlewares = [ warpnetMiddleware ];
+            middlewares = [];
+            entrypoints = [ "warpsecure" ];
           }
           {
             name = "grafana";
             domain = config.services.grafana.settings.server.domain;
             port = config.services.grafana.settings.server.http_port;
-            middlewares = [ warpnetMiddleware ];
+            middlewares = [];
+            entrypoints = [ "warpsecure" ];
           }
           {
             name = "loki";
             domain = "loki.mlwr.dev";
             port = config.services.loki.configuration.server.http_listen_port;
-            middlewares = [ warpnetMiddleware ];
+            middlewares = [];
+            entrypoints = [ "warpsecure" ];
           }
           {
             name = "seafile";
             domain = "s.bonusplay.pl";
             port = 80; # nginx inside container does proxy pass to unix socket
             middlewares = [];
+            entrypoints = [ "warpsecure" ];
           }
         ];
         mkHttpEntry = entry: {
@@ -111,7 +125,7 @@
             rule = "Host(`${entry.domain}`)";
             service = entry.name;
             middlewares = lib.flatten (map lib.attrNames entry.middlewares);
-            entrypoints = [ "websecure" ];
+            entrypoints = entry.entrypoints;
           };
           services."${entry.name}".loadBalancer.servers = [{
             url = "http://127.0.0.1:${toString entry.port}";
