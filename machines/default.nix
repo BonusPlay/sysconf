@@ -48,15 +48,7 @@ in
     ];
   };
 
-  # warp-vm router
-  vanass = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./vanass
-      agenix.nixosModules.default
-      nixTrick
-    ];
-  };
+  # vanass
 
   # kncyber VM
   braxis = nixpkgs-unstable.lib.nixosSystem {

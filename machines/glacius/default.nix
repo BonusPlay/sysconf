@@ -3,7 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./zerotier.nix
+    ./tailscale.nix
     ./monitoring.nix
   ];
 

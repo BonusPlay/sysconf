@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./yubikey.nix
-    ./zerotier.nix
     ./networking.nix
     ./virtualisation.nix
     ./development.nix
