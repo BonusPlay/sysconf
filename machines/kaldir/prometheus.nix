@@ -45,13 +45,6 @@
           }
           {
             targets = [
-              "vanass.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
-              "vanass.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
-            ];
-            labels.host = "vanass";
-          }
-          {
-            targets = [
               "glacius.mlwr.dev:${toString config.services.prometheus.exporters.node.port}"
               "glacius.mlwr.dev:${toString config.services.prometheus.exporters.systemd.port}"
             ];
