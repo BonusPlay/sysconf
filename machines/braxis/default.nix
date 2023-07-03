@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./tailscale.nix
     ./keycloak.nix
     ./discord-bot.nix
     ./hedgedoc.nix

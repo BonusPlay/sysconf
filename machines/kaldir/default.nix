@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./loki.nix
     ./networking.nix
+    ./tailscale.nix
     ./prometheus.nix
     #./seafile.nix
     ./taskserver.nix

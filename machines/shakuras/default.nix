@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./tailscale.nix
     ./gitea-runner.nix
     ./monitoring.nix
   ];

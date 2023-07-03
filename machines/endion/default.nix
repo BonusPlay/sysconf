@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./tailscale.nix
     ./traefik.nix
     ./gitea.nix
     ./monitoring.nix
