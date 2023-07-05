@@ -1,10 +1,14 @@
+{ lib, ... }:
 {
   services.nfs.server = {
     enable = true;
-    exports = ''
-      /storage          10.20.30.0/24(rw,fsid=0,no_subtree_check) 10.20.31.0/24(rw,fsid=0,no_subtree_check) 10.20.30.0/24
-      /storage/public   10.20.
-      /storage/private  10.20.32.0/24
+    exports = let
+      subnets = [ "100.64.0.0/10" "192.168.5.0/24" "192.168.10.0/24" ];
+      line = builtins.concatStringsSep " " (builtins.map (x: x + "(rw,sync,no_subtree_check)"));
+    in ''
+      /storage/general  ${line}
+      /storage/backups  ${line}
+      /storage/vms      192.168.10.10(rw,async,no_subtree_check,no_root_squash)
     '';
   };
 
