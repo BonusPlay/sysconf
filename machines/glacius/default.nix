@@ -5,6 +5,7 @@
     ./networking.nix
     ./tailscale.nix
     ./monitoring.nix
+    ./nfs.nix
   ];
 
   nix = {
