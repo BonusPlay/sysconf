@@ -119,6 +119,13 @@
             middlewares = [];
             entrypoints = [ "warpsecure" ];
           }
+          {
+            name = "changedetection";
+            domain = "cd.bonusplay.pl";
+            port = config.services.changedetection-io.port;
+            middlewares = [];
+            entrypoints = [ "websecure" ];
+          }
         ];
         mkHttpEntry = entry: {
           routers."${entry.name}" = {

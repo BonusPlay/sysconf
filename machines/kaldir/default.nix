@@ -16,6 +16,7 @@
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./mosquitto.nix
+    ./changedetection-io.nix
   ];
 
   nix = {
