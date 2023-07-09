@@ -11,6 +11,12 @@
     owner = "traefik";
   };
 
+  age.secrets.cdUsersFile = {
+    file = ../../secrets/changedetection-users.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -123,7 +129,9 @@
             name = "changedetection";
             domain = "cd.bonusplay.pl";
             port = config.services.changedetection-io.port;
-            middlewares = [];
+            middlewares = [{
+              cdAuth.basicAuth.usersFile = config.age.secrets.cdUsersFile.path;
+            }];
             entrypoints = [ "websecure" ];
           }
         ];
