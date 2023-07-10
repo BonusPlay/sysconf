@@ -25,6 +25,8 @@
     };
   };
 
+  services.openssh.enable = true;
+
   custom.base.enable = true;
   custom.workstation.enable = true;
   custom.warp-net.enable = true;
