@@ -17,7 +17,7 @@ in
         enable = true;
         listenHost = "0.0.0.0";
         listenPort = port;
-        fqdn = "ts.bonusplay.pl";
+        fqdn = "task.bonusplay.pl";
         organisations.xakep.users = [ "bonus" ];
         pki.auto.expiration = {
           ca = 3650;
