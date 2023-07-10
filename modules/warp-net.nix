@@ -19,5 +19,7 @@ in
       interfaceName = "warp-net";
       useRoutingFeatures = if cfg.exitNode then "both" else "client";
     };
+
+    systemd.network.wait-online.ignoredInterfaces = [ "warp-net" ];
   };
 }
