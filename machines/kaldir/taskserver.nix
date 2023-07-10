@@ -1,18 +1,23 @@
 let
-  port = 5070;
+  port = 7070;
 in
 {
   networking.firewall.allowedTCPPorts = [ port ];
 
   containers.taskserver = {
     autoStart = true;
+    forwardPorts = [{
+      hostPort = port;
+      containerPort = port;
+      protocol = "TCP";
+    }];
 
     config = { config, pkgs, ... }: {
       services.taskserver = {
         enable = true;
         listenHost = "0.0.0.0";
         listenPort = port;
-        fqdn = "taskserver.bonusplay.pl";
+        fqdn = "ts.bonusplay.pl";
         organisations.xakep.users = [ "bonus" ];
         pki.auto.expiration = {
           ca = 3650;
