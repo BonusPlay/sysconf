@@ -4,6 +4,10 @@ let
   cfg = config.custom.workstation;
 in
 {
+  imports = [
+    ./taskwarrior.nix
+  ];
+
   options.custom.workstation = {
     enable = mkEnableOption "base configuration of Bonus's workstations";
   };

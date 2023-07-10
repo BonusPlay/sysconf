@@ -7,8 +7,7 @@ let
   braxis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUkgnjpgtrJOg9oIIsxE8mmmmmc8KsSfirQu+cD4u/n";
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
   shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
-
-  systems = [ artanis kaldir braxis ];
+  zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in
 {
   "cloudflare.age".publicKeys = users ++ [ kaldir endion ];
@@ -27,6 +26,10 @@ in
   "matrix-facebook-environment.age".publicKeys = users ++ [ kaldir ];
   "matrix-telegram-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix-telegram-environment.age".publicKeys = users ++ [ kaldir ];
+
+  "taskwarrior/ca.age".publicKeys = users;
+  "taskwarrior/server.age".publicKeys = users;
+  "taskwarrior/bonus.age".publicKeys = users ++ [ artanis zeratul ];
 
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];
   "keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
