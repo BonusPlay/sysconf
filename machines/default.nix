@@ -17,6 +17,9 @@ in
     specialArgs = addUnstable "x86_64-linux";
     modules = [
       ./artanis
+      ../modules/base.nix
+      ../modules/workstation.nix
+      ../modules/warp-net.nix
       nixos-hardware.nixosModules.framework-12th-gen-intel
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
@@ -30,6 +33,9 @@ in
     specialArgs = addUnstable "x86_64-linux";
     modules = [
       ./zeratul
+      ../modules/base.nix
+      ../modules/workstation.nix
+      ../modules/warp-net.nix
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
