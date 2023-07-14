@@ -11,6 +11,11 @@ in
       default = "23.05";
       description = "stateVersion to use";
     };
+    allowReboot = mkOption {
+      type = types.bool;
+      default = true;
+      description = "allow reboot (in case of luks)";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +37,7 @@ in
     system.autoUpgrade = {
       enable = true;
       flake = "github:BonusPlay/sysconf";
-      allowReboot = true;
+      allowReboot = cfg.allowReboot;
     };
 
     time.timeZone = mkDefault "UTC";
