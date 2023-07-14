@@ -18,7 +18,7 @@
   system.autoUpgrade = {
     enable = true;
     flake = "github:BonusPlay/sysconf";
-    allowReboot = true;
+    allowReboot = false;
   };
 
   boot = {
