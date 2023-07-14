@@ -18,6 +18,8 @@
             server = "task.bonusplay.pl:7070";
             credentials = "xakep/bonus/edfd87da-e25f-4d95-a09e-070d152c832c";
           };
+          weekstart = "Monday";
+          dateformat = "D/M/Y";
         };
       };
       services.taskwarrior-sync.enable = true;
