@@ -19,7 +19,7 @@ let
     warp = {
       address = "${cfg.warpIP}:80";
       http = {
-        redirections.entrypoint.to = "websecure";
+        redirections.entrypoint.to = "warpsecure";
         redirections.entrypoint.scheme = "https";
       };
     };
