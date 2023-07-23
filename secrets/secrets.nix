@@ -8,9 +8,10 @@ let
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
   shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
+  glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAjgL7ZGbCxc0XG0Lf3FViJLgKwBcaEYFeUrnd8Rroe";
 in
 {
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion glacius ];
   "cloudflare-tunnel.age".publicKeys = users;
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
