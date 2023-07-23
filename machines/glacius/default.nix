@@ -3,22 +3,31 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./tailscale.nix
-    ./monitoring.nix
     ./nfs.nix
+    ./sabnzbd.nix
   ];
 
-  nix = {
-    gc.automatic = true;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  system.autoUpgrade = {
-    enable = true;
-    flake = "github:BonusPlay/sysconf";
-    allowReboot = false;
+  custom = {
+    base = {
+      enable = true;
+      allowReboot = false;
+    };
+    server = {
+      enable = true;
+      vm = false;
+    };
+    monitoring.enable = true;
+    traefik = {
+      enable = true;
+      warpIP = "100.70.210.5";
+      entries = [{
+        name = "sabnzbd";
+        domain = "nzb.mlwr.dev";
+        port = 8080;
+        entrypoints = [ "warpsecure" ];
+      }];
+    };
+    warp-net.enable = true;
   };
 
   boot = {
@@ -49,25 +58,4 @@
 
   services.btrfs.autoScrub.enable = true;
   services.fwupd.enable = true;
-
-  time.timeZone = "UTC";
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  users.users.bonus = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-  };
-
-  environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    tmux
-    htop
-    git
-  ];
-
-  services.openssh.enable = true;
-  security.sudo.wheelNeedsPassword = false;
-
-  system.stateVersion = "23.05";
 }
