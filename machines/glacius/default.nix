@@ -25,8 +25,10 @@
         domain = "nzb.mlwr.dev";
         port = 8080;
         entrypoints = [ "warpsecure" ];
+        target = config.containers.sabnzbd.localAddress;
       }];
     };
+
     warp-net.enable = true;
   };
 

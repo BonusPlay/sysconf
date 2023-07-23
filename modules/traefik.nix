@@ -49,12 +49,19 @@ in
           port = mkOption {
             type = types.int;
           };
+          target = mkOption {
+            type = types.str;
+            default = "localhost";
+            description = "host to forward to";
+          };
           middlewares = mkOption {
             # too lazy to setup this properly
             type = types.listOf types.attrs;
           };
           entrypoints = mkOption {
             type = types.listOf types.str;
+            default = [ "websecure" ];
+            description = "list of entrypoints to listen on";
           };
         };
       });
@@ -121,10 +128,10 @@ in
             routers."${entry.name}" = {
               rule = "Host(`${entry.domain}`)";
               service = entry.name;
-              entrypoints = entry.entrypoints or [ "websecure" ];
+              entrypoints = entry.entrypoints;
             };
             services."${entry.name}".loadBalancer.servers = [{
-              url = "http://${entry.target or "localhost"}:${toString entry.port}";
+              url = "http://${entry.target}:${toString entry.port}";
             }];
           };
           httpEntries = map mkHttpEntry cfg.entries;

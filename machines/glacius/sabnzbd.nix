@@ -4,11 +4,6 @@
     privateNetwork = true;
     hostAddress = "172.28.0.1";
     localAddress = "172.28.0.11";
-    forwardPorts = [{
-      containerPort = 8080;
-      hostPort = 8080;
-      protocol = "tcp";
-    }];
 
     config = { lib, ... }: {
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
