@@ -5,7 +5,9 @@ let
 in
 {
   imports = [
+    ./base.nix
     ./taskwarrior.nix
+    ./warp-net.nix
   ];
 
   options.custom.workstation = {

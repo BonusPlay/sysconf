@@ -3,7 +3,6 @@ with lib;
 let
   cfg = config.custom.monitoring;
 in
-}:
 {
   options.custom.monitoring = {
     enable = mkEnableOption "monitoring using prom-node-exporter + promtail";
@@ -26,7 +25,7 @@ in
       };
     };
 
-    services.promtail = assert config.services.tailscale.enabled; {
+    services.promtail = assert config.services.tailscale.enable; {
       enable = true;
       configuration = {
         server = {

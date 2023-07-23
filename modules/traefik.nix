@@ -1,27 +1,85 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.custom.traefik;
+  publicEntrypoint = if (isNull cfg.publicIP) then {} else {
+    web = {
+      address = "${cfg.publicIP}:80";
+      http = {
+        redirections.entrypoint.to = "websecure";
+        redirections.entrypoint.scheme = "https";
+      };
+    };
+    websecure = {
+      address = "${cfg.publicIP}:443";
+      http.tls = true;
+    };
+  };
+  warpEntrypoint = if (isNull cfg.warpIP) then {} else {
+    warp = {
+      address = "${cfg.warpIP}:80";
+      http = {
+        redirections.entrypoint.to = "websecure";
+        redirections.entrypoint.scheme = "https";
+      };
+    };
+    warpsecure = {
+      address = "${cfg.warpIP}:443";
+      http.tls = true;
+    };
+  };
 in
-}:
 {
   options.custom.traefik = {
     enable = mkEnableOption "traefik with nix-declared config";
     acmeDomains = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ "mlwr.dev" ];
       description = "domains to request TLS certs for using cloudflare";
     };
     entries = mkOption {
-      type = types.listOf types.attrs;
-      default = [];
+      type = types.listOf (types.submodule {
+        options = {
+          name = mkOption {
+            type = types.str;
+          };
+          domain = mkOption {
+            type = types.str;
+          };
+          port = mkOption {
+            type = types.int;
+          };
+          middlewares = mkOption {
+            # too lazy to setup this properly
+            type = types.listOf types.attrs;
+          };
+          entrypoints = mkOption {
+            type = types.listOf types.str;
+          };
+        };
+      });
       description = "traefik config entries";
+    };
+    email = mkOption {
+      type = types.str;
+      default = "cloudflare@bonusplay.pl";
+      description = "admin email for acme";
+    };
+    publicIP = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "public IP to listen on";
+    };
+    warpIP = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "warp-net IP to listen on";
     };
   };
 
   config = mkIf cfg.enable {
     age.secrets.cloudflare = {
-      file = ../../secrets/cloudflare.age;
+      file = ../secrets/cloudflare.age;
       mode = "0400";
     };
 
@@ -31,7 +89,7 @@ in
           domain = "*.${domain}";
           dnsProvider = "cloudflare";
           credentialsFile = config.age.secrets.cloudflare.path;
-          email = "cloudflare@bonusplay.pl";
+          email = cfg.email;
           renewInterval = "weekly";
           group = "traefik";
           reloadServices = [ "traefik" ];
@@ -55,19 +113,7 @@ in
         api = {
           dashboard = true;
         };
-        entryPoints = {
-          web = {
-            address = ":80";
-            http = {
-              redirections.entrypoint.to = "websecure";
-              redirections.entrypoint.scheme = "https";
-            };
-          };
-          websecure = {
-            address = ":443";
-            http.tls = true;
-          };
-        };
+        entryPoints = publicEntrypoint // warpEntrypoint;
       };
       dynamicConfigOptions =
         let
