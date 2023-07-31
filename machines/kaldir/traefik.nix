@@ -11,12 +11,6 @@
     owner = "traefik";
   };
 
-  age.secrets.cdUsersFile = {
-    file = ../../secrets/changedetection-users.age;
-    mode = "0400";
-    owner = "traefik";
-  };
-
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -124,15 +118,6 @@
             port = 80; # nginx inside container does proxy pass to unix socket
             middlewares = [];
             entrypoints = [ "warpsecure" ];
-          }
-          {
-            name = "changedetection";
-            domain = "cd.bonusplay.pl";
-            port = config.services.changedetection-io.port;
-            middlewares = [{
-              cdAuth.basicAuth.usersFile = config.age.secrets.cdUsersFile.path;
-            }];
-            entrypoints = [ "websecure" ];
           }
         ];
         mkHttpEntry = entry: {

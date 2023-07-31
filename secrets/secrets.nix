@@ -17,8 +17,6 @@ in
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
   "docker-registry-service-account.age".publicKeys = users;
 
-  "changedetection-users.age".publicKeys = users ++ [ kaldir ];
-
   "gitea-runner-linux-token.age".publicKeys = users ++ [ shakuras ];
 
   "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
