@@ -12,12 +12,12 @@
         enable = true;
         config = {
           taskd = {
-            certificate = ../files/taskserver/bonus.cert;
             key = config.age.secrets.taskwarrior-key.path;
             # tried using relative nix-path but for some reason
             # it requires rebuilding almost every 5 minutes
             # using fullpath is easier
             ca = "/etc/nixos/files/taskserver/ca.cert";
+            certificate = "/etc/nixos/files/taskserver/bonus.cert";
             server = "task.bonusplay.pl:7070";
             credentials = "xakep/bonus/edfd87da-e25f-4d95-a09e-070d152c832c";
           };
