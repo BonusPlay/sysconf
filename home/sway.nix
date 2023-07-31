@@ -16,10 +16,11 @@
       export XDG_CURRENT_DESKTOP=sway
       export CLUTTER_BACKEND=wayland
       export NIXOS_OZONE_WL=1
+
+      if [ "$HOSTNAME" = "zeratul" ]; then
+        export WLR_NO_HARDWARE_CURSORS=1
+      fi
     '';
-    #extraConfig = ''
-    #  exec /home/bonus/priv/gachi-login/run.sh
-    #'';
     config = {
       modifier = "Mod4";
       left = "Left";
