@@ -13,6 +13,12 @@
     nvidiaSettings = true;
   };
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
   services.xserver = {
     enable = true;
     desktopManager.plasma5.enable = true;
