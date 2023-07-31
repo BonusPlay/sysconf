@@ -7,6 +7,8 @@
     osu-lazer-bin
   ];
 
+  # apparently nvidia module still uses this on wayland
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
