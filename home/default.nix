@@ -65,6 +65,7 @@
     element-desktop
     libreoffice
     discord
+    obsidian
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
