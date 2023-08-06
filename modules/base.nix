@@ -12,7 +12,7 @@ in
       description = "stateVersion to use";
     };
     autoUpgrade = mkOption {
-      type = types.bool
+      type = types.bool;
       default = true;
       description = "allow auto upgrade mechanism";
     };
