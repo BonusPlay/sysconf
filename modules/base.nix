@@ -11,6 +11,11 @@ in
       default = "23.05";
       description = "stateVersion to use";
     };
+    autoUpgrade = mkOption {
+      type = types.bool
+      default = true;
+      description = "allow auto upgrade mechanism";
+    };
     allowReboot = mkOption {
       type = types.bool;
       default = true;
@@ -37,7 +42,7 @@ in
     };
 
     system.autoUpgrade = {
-      enable = true;
+      enable = cfg.autoUpgrade;
       flake = "github:BonusPlay/sysconf";
       allowReboot = cfg.allowReboot;
     };

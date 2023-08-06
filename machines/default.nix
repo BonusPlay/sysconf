@@ -51,7 +51,16 @@ in
     ];
   };
 
-  # vanass
+  # vanass (vpn gateway)
+  vanass = nixpkgs-unstable.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./vanass
+      ../modules/server.nix
+      agenix.nixosModules.default
+      nixTrick
+    ];
+  };
 
   # kncyber VM
   braxis = nixpkgs-unstable.lib.nixosSystem {
