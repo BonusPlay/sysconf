@@ -25,7 +25,7 @@ in
       };
     };
 
-    services.promtail = assert config.services.tailscale.enable; {
+    services.promtail = {
       enable = true;
       configuration = {
         server = {
