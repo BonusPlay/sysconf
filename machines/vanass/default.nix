@@ -18,7 +18,7 @@
   };
 
   boot = {
-    loader.grub.device = "/dev/sda";
+    loader.grub.device = "/dev/vda";
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
