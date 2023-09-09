@@ -5,10 +5,10 @@
   virtualisation.libvirtd = {
     enable = true;
     onBoot = "ignore";
-    allowedBridges = [ "br-vms" "br-host" ];
+    allowedBridges = [ "br-nat" "br-host" ];
   };
 
-  systemd.network.wait-online.ignoredInterfaces = [ "br-vms" "br-host" ];
+  systemd.network.wait-online.ignoredInterfaces = [ "br-nat" "br-host" ];
 
   # required for VMs to use tunelling
   # https://github.com/tailscale/tailscale/issues/4432#issuecomment-1112819111
