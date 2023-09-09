@@ -1,8 +1,7 @@
 require('nvim-treesitter.configs').setup {
-    ensure_installed = "maintained",
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = false,
-    ignore_install = { "beancount", "clojure", "comment", "commonlisp", "dart", "devicetree", "elixir", "elm", "erlang", "fennel", "fish", "fortran", "gdscript", "glimmer", "haskell", "hcl", "julia", "ledger", "lua", "nix", "ocaml", "ocaml_interface", "ocamllex", "php", "ql", "r", "rst", "ruby", "scala", "sparql", "supercollider", "svelte", "swift", "teal", "turtle", "yang", "zig" },
+    ignore_install = { "beancount", "clojure", "comment", "commonlisp", "dart", "devicetree", "elixir", "elm", "erlang", "fennel", "fish", "fortran", "glimmer", "haskell", "hcl", "julia", "ledger", "ocaml", "ocaml_interface", "ocamllex", "php", "ql", "r", "rst", "ruby", "scala", "sparql", "supercollider", "svelte", "swift", "teal", "turtle", "yang" },
     highlight = {
         enable = true,
         disable = {},
@@ -11,8 +10,5 @@ require('nvim-treesitter.configs').setup {
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
-    },
-    ident = {
-        enable = true
     }
 }
