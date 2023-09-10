@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, arion, lanzaboote, ... }:
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, ... }:
 let
   addUnstable = system: {
     nixpkgs-unstable = import nixpkgs-unstable {
@@ -69,7 +69,6 @@ in
       ./braxis
       ../modules/server.nix
       agenix.nixosModules.default
-      arion.nixosModules.arion
       nixTrick
     ];
   };

@@ -8,6 +8,7 @@
     ./discord-bot.nix
     ./hedgedoc.nix
     ./cloudflared.nix
+    ./taiga.nix
   ];
 
   nix = {
@@ -45,18 +46,10 @@
     tmux
     htop
     git
-    arion
   ];
 
-  # arion dependencies
   virtualisation = {
     docker.enable = true;
-    podman = {
-      enable = false;
-    #  dockerSocket.enable = true;
-    #  dockerCompat = true;
-    #  defaultNetwork.settings.dns_enabled = true;
-    };
     oci-containers.backend = "docker";
   };
 

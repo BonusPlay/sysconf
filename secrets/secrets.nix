@@ -14,6 +14,9 @@ in
 {
   "cloudflare.age".publicKeys = users ++ [ kaldir endion glacius ];
   "cloudflare-tunnel.age".publicKeys = users;
+  "cloudflare/keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
+  "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
+  "cloudflare/taiga-tunnel.age".publicKeys = users ++ [ braxis ];
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
   "docker-registry-service-account.age".publicKeys = users;
@@ -34,8 +37,6 @@ in
   "mullvad/vanass.age".publicKeys = users ++ [ vanass ];
 
   "keycloak-pass.age".publicKeys = users ++ [ braxis ];
-  "keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
-  "hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
   "hedgedoc-env.age".publicKeys = users ++ [ braxis ];
   "discord-bot.age".publicKeys = users ++ [ braxis ];
   "taiga-secrets.age".publicKeys = users ++ [ braxis ];

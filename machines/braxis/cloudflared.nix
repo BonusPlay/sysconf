@@ -1,13 +1,19 @@
 { config, ... }:
 {
   age.secrets.keycloakPass = {
-    file = ../../secrets/keycloak-tunnel.age;
+    file = ../../secrets/cloudflare/keycloak-tunnel.age;
     mode = "0440";
     group = "cloudflared";
   };
 
   age.secrets.hedgedocPass = {
-    file = ../../secrets/hedgedoc-tunnel.age;
+    file = ../../secrets/cloudflare/hedgedoc-tunnel.age;
+    mode = "0440";
+    group = "cloudflared";
+  };
+
+  age.secrets.taigaPass = {
+    file = ../../secrets/cloudflare/taiga-tunnel.age;
     mode = "0440";
     group = "cloudflared";
   };
@@ -30,6 +36,15 @@
         ingress = {
           "md.kncyber.pl" = {
             service = "http://localhost:3010";
+          };
+        };
+      };
+      "c37a8bd7-f81c-49a6-a290-b08dcaa1e0c5" = {
+        credentialsFile = config.age.secrets.taigaPass.path;
+        default = "http_status:404";
+        ingress = {
+          "taiga.kncyber.pl" = {
+            service = "http://localhost:9000";
           };
         };
       };
