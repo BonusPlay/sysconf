@@ -30,6 +30,13 @@ in
   "matrix-telegram-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix-telegram-environment.age".publicKeys = users ++ [ kaldir ];
 
+  "matrix/synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
+  "matrix/synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
+  "matrix/facebook-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix/facebook-environment.age".publicKeys = users ++ [ kaldir ];
+  "matrix/telegram-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix/telegram-environment.age".publicKeys = users ++ [ kaldir ];
+
   "taskwarrior/ca.age".publicKeys = users;
   "taskwarrior/server.age".publicKeys = users;
   "taskwarrior/bonus.age".publicKeys = users ++ [ artanis zeratul ];

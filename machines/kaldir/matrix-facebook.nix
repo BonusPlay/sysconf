@@ -1,7 +1,7 @@
 { config, ... }:
 {
   age.secrets.matrixFacebookEnv = {
-    file = ../../secrets/matrix-facebook-environment.age;
+    file = ../../secrets/matrix/facebook-environment.age;
     mode = "0400";
     owner = "matrix-synapse";
   };

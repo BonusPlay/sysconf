@@ -1,7 +1,7 @@
 { config, ... }:
 {
   age.secrets.matrixTelegramEnv = {
-    file = ../../secrets/matrix-telegram-environment.age;
+    file = ../../secrets/matrix/telegram-environment.age;
     mode = "0400";
     owner = "matrix-synapse";
   };

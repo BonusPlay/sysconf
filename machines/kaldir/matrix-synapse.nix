@@ -2,23 +2,23 @@
 {
   age.secrets = {
     matrixSynapseSigningKey = {
-      file = ../../secrets/matrix-synapse-signing-key.age;
+      file = ../../secrets/matrix/synapse-signing-key.age;
       path = "/var/lib/matrix-synapse/homeserver.signing.key";
       group = "matrix-synapse";
       mode = "0440";
     };
     matrixSynapseExtraConfig = {
-      file = ../../secrets/matrix-synapse-extra-config.age;
+      file = ../../secrets/matrix/synapse-extra-config.age;
       group = "matrix-synapse";
       mode = "0440";
     };
     matrixTelegramRegistration = {
-      file = ../../secrets/matrix-telegram-registration.age;
+      file = ../../secrets/matrix/telegram-registration.age;
       mode = "0400";
       owner = "matrix-synapse";
     };
     matrixFacebookRegistration = {
-      file = ../../secrets/matrix-facebook-registration.age;
+      file = ../../secrets/matrix/facebook-registration.age;
       mode = "0400";
       owner = "matrix-synapse";
     };
