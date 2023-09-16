@@ -27,8 +27,9 @@
     serviceConfig.PrivateNetwork = true;
   };
 
+  environment.etc."netns/mullvad/resolv.conf".text = "nameserver 10.64.0.1";
+
   networking = {
-    nameservers = [ "10.64.0.1" ];
     firewall.checkReversePath = "loose";
     wireguard.interfaces.mullvad = {
       interfaceNamespace = "mullvad";
