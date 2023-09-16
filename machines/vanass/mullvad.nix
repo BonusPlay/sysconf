@@ -12,7 +12,7 @@
       Type = "oneshot";
       RemainAfterExit = true;
       PrivateNetwork = true;
-      ExecStart = "${pkgs.writers.writeShellScript "netns-up" ''
+      ExecStart = "${pkgs.writeShellScript "netns-up" ''
         ${pkgs.iproute}/bin/ip netns add $1
         ${pkgs.utillinux}/bin/umount /var/run/netns/$1
         ${pkgs.utillinux}/bin/mount --bind /proc/self/ns/net /var/run/netns/$1
