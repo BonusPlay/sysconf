@@ -40,7 +40,9 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
       PrivateNetwork = true;
-      ExecStart = "echo Starting netns mullvad";
+      ExecStart = "${pkgs.writeShellScript "netns-init" ''
+        echo Starting netns mullvad
+      ''}";
     };
   };
 
