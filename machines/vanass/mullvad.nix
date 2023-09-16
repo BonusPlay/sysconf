@@ -5,7 +5,7 @@ let
 
   netNs = "mullvad";
 
-  execInNs = cmd: "${pkgs.iproute}/bin/ip netns ${netNs} exec ${cmd}";
+  execInNs = cmd: "${pkgs.iproute}/bin/ip netns exec ${netNs} ${cmd}";
   splitLines = text: lib.strings.splitString "\n" text;
   concatLines = lines: lib.strings.concatStringsSep "\n" lines;
   execBatchInNs = script: concatLines (map execInNs (splitLines script));
