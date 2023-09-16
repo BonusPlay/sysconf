@@ -3,7 +3,9 @@ let
   lanIface = "ens19";
   vpnIface = "mullvad";
 
-  execInNs = cmd: "${pkgs.iproute}/bin/ip netns mullvad exec ${cmd}";
+  netNs = "mullvad";
+
+  execInNs = cmd: "${pkgs.iproute}/bin/ip netns ${netNs} exec ${cmd}";
   splitLines = text: lib.strings.splitString "\n" text;
   concatLines = lines: lib.strings.concatStringsSep "\n" lines;
   execBatchInNs = script: concatLines (map execInNs (splitLines script));
@@ -23,7 +25,6 @@ in
       PrivateNetwork = true;
       ExecStart = "${pkgs.writeShellScript "netns-up" ''
         ${pkgs.iproute}/bin/ip netns add $1
-        ${pkgs.iproute}/bin/ip link set ${lanIface} netns $1
         ${pkgs.utillinux}/bin/umount /var/run/netns/$1
         ${pkgs.utillinux}/bin/mount --bind /proc/self/ns/net /var/run/netns/$1
       ''} %I";
@@ -33,15 +34,15 @@ in
 
   # dummy to start netns
   systemd.services.netns-init = {
-    bindsTo = [ "netns@mullvad.service" ];
-    wantedBy = [ "wireguard-mullvad.service" ];
-    unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
+    bindsTo = [ "netns@${netNs}.service" ];
+    wantedBy = [ "wireguard-${vpnIface}.service" ];
+    unitConfig.JoinsNamespaceOf = "netns@${netNs}.service";
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       PrivateNetwork = true;
       ExecStart = "${pkgs.writeShellScript "netns-init" ''
-        echo Starting netns mullvad
+        echo Starting netns ${netNs}
       ''}";
     };
   };
@@ -52,12 +53,12 @@ in
   #  serviceConfig.PrivateNetwork = true;
   #};
 
-  environment.etc."netns/mullvad/resolv.conf".text = "nameserver 10.64.0.1";
+  environment.etc."netns/${netNs}/resolv.conf".text = "nameserver 10.64.0.1";
 
   networking = {
     firewall.checkReversePath = "loose";
     wireguard.interfaces.${vpnIface} = {
-      interfaceNamespace = "mullvad";
+      interfaceNamespace = netNs;
       ips = [ "10.64.92.80/32" "fc00:bbbb:bbbb:bb01::1:5c4f/128" ];
       peers = [
         {
@@ -107,8 +108,8 @@ in
 
   # additional kea config
   systemd.services.kea-dhcp4-server = {
-    bindsTo = [ "netns@mullvad.service" ];
-    unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
+    bindsTo = [ "netns@${netNs}.service" ];
+    unitConfig.JoinsNamespaceOf = "netns@${netNs}.service";
     serviceConfig.PrivateNetwork = true;
   };
 }
