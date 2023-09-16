@@ -40,7 +40,7 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
       PrivateNetwork = true;
-      ExecStart = "";
+      ExecStart = "echo Starting netns mullvad";
     };
   };
 
