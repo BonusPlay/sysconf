@@ -45,6 +45,17 @@ in
     };
   };
 
+  # move lanIface to netns
+  systemd.services.netns-iface = {
+    after = [ "netns-init.service" ];
+    wantedBy = [ "kea-dhcp4-server.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
+    };
+  };
+
   #systemd.services.wireguard-mullvad = {
   #  bindsTo = [ "netns@mullvad.service" ];
   #  unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
@@ -110,7 +121,6 @@ in
     unitConfig.JoinsNamespaceOf = "netns@${netNs}.service";
     serviceConfig = {
       PrivateNetwork = true;
-      ExecStartPre = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
     };
   };
 }
