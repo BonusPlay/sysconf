@@ -6,9 +6,7 @@ let
   netNs = "mullvad";
 
   execInNs = cmd: "${pkgs.iproute}/bin/ip netns exec ${netNs} ${cmd}";
-  splitLines = text: lib.strings.splitString "\n" text;
-  concatLines = lines: lib.strings.concatStringsSep "\n" lines;
-  execBatchInNs = script: concatLines (map execInNs (splitLines script));
+  execBatchInNs = lines: lib.strings.concatStringsSep "\n" (map execInNs lines);
 in
 {
   age.secrets.mullvadPrivateKey = {
@@ -68,18 +66,18 @@ in
         }
       ];
       privateKeyFile = config.age.secrets.mullvadPrivateKey.path;
-      postSetup = execBatchInNs ''
-        ${pkgs.iptables}/bin/iptables -A FORWARD -i ${lanIface} -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -A FORWARD -i ${lanIface} -j ACCEPT
-        ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE
-      '';
-      postShutdown = execBatchInNs ''
-        ${pkgs.iptables}/bin/iptables -D FORWARD -i ${lanIface} -j ACCEPT
-        ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ${vpnIface} -j MASQUERADE
-        ${pkgs.iptables}/bin/ip6tables -D FORWARD -i ${lanIface} -j ACCEPT
-        ${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -o ${vpnIface} -j MASQUERADE
-      '';
+      postSetup = execBatchInNs [
+        "${pkgs.iptables}/bin/iptables -A FORWARD -i ${lanIface} -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE"
+        "${pkgs.iptables}/bin/ip6tables -A FORWARD -i ${lanIface} -j ACCEPT"
+        "${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE"
+      ];
+      postShutdown = execBatchInNs [
+        "${pkgs.iptables}/bin/iptables -D FORWARD -i ${lanIface} -j ACCEPT"
+        "${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ${vpnIface} -j MASQUERADE"
+        "${pkgs.iptables}/bin/ip6tables -D FORWARD -i ${lanIface} -j ACCEPT"
+        "${pkgs.iptables}/bin/ip6tables -t nat -D POSTROUTING -o ${vpnIface} -j MASQUERADE"
+      ];
     };
   };
 
