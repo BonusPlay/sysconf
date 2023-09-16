@@ -108,6 +108,9 @@ in
   systemd.services.kea-dhcp4-server = {
     bindsTo = [ "netns@${netNs}.service" ];
     unitConfig.JoinsNamespaceOf = "netns@${netNs}.service";
-    serviceConfig.PrivateNetwork = true;
+    serviceConfig = {
+      PrivateNetwork = true;
+      ExecStartPre = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
+    };
   };
 }
