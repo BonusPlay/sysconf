@@ -18,9 +18,9 @@ in
       PrivateNetwork = true;
       ExecStart = "${pkgs.writeShellScript "netns-up" ''
         ${pkgs.iproute}/bin/ip netns add $1
+        ${pkgs.iproute}/bin/ip link set ${lanIface} netns $1
         ${pkgs.utillinux}/bin/umount /var/run/netns/$1
         ${pkgs.utillinux}/bin/mount --bind /proc/self/ns/net /var/run/netns/$1
-        ${pkgs.iproute}/bin/ip link set ${lanIface} netns $1
       ''} %I";
       ExecStop = "${pkgs.iproute}/bin/ip netns del %I";
     };
