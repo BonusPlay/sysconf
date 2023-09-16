@@ -53,10 +53,10 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStartPre = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
-      ExecStart = "${pkgs.writeShellScript "netns-iface" (execInNs ''
-        ${pkgs.iproute}/bin/ip link set dev ${lanIface} up
-        ${pkgs.iproute}/bin/ip addr add dev ${lanIface} 192.168.60.1/24
-      '')}";
+      ExecStart = "${pkgs.writeShellScript "netns-iface" (execBatchInNs [
+        "${pkgs.iproute}/bin/ip link set dev ${lanIface} up"
+        "${pkgs.iproute}/bin/ip addr add dev ${lanIface} 192.168.60.1/24"
+      ])}";
     };
   };
 
