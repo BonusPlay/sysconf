@@ -33,12 +33,12 @@
     firewall.checkReversePath = "loose";
     wireguard.interfaces.mullvad = {
       interfaceNamespace = "mullvad";
-      ips = [ "10.65.123.173/32" "fc00:bbbb:bbbb:bb01::2:7bac/128" ];
+      ips = [ "10.64.92.80/32" "fc00:bbbb:bbbb:bb01::1:5c4f/128" ];
       peers = [
         {
           allowedIPs = [ "0.0.0.0/0" "::0/0" ];
-          endpoint = "178.249.209.162:51820";
-          publicKey = "5FZW+fNA2iVBSY99HFl+KjGc9AFVNE+UFAedLNhu8lc=";
+          endpoint = "185.65.135.72:51820";
+          publicKey = "5rVa0M13oMNobMY7ToAMU1L/Mox7AYACvV+nfsE7zF0=";
         }
       ];
       privateKeyFile = config.age.secrets.mullvadPrivateKey.path;
