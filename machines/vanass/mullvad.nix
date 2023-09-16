@@ -52,7 +52,10 @@ in
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
+      ExecStartPre = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
+      ExecStart = "${pkgs.writeShellScript "netns-iface" (execInNs ''
+        ${pkgs.iproute}/bin/ip addr set dev ${lanIface} addr 192.168.60.1/24
+      '')}";
     };
   };
 
