@@ -40,6 +40,7 @@ in
       Type = "oneshot";
       RemainAfterExit = true;
       PrivateNetwork = true;
+      ExecStart = "";
     };
   };
 
