@@ -31,6 +31,18 @@ in
     };
   };
 
+  # dummy to start netns
+  systemd.services.netns-init = {
+    bindsTo = [ "netns@mullvad.service" ];
+    wantedBy = [ "wireguard-mullvad.service" ];
+    unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      PrivateNetwork = true;
+    };
+  };
+
   #systemd.services.wireguard-mullvad = {
   #  bindsTo = [ "netns@mullvad.service" ];
   #  unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
