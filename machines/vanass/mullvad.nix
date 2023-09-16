@@ -21,11 +21,11 @@
     };
   };
 
-  systemd.services.wireguard-mullvad = {
-    bindsTo = [ "netns@mullvad.service" ];
-    unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
-    serviceConfig.PrivateNetwork = true;
-  };
+  #systemd.services.wireguard-mullvad = {
+  #  bindsTo = [ "netns@mullvad.service" ];
+  #  unitConfig.JoinsNamespaceOf = "netns@mullvad.service";
+  #  serviceConfig.PrivateNetwork = true;
+  #};
 
   environment.etc."netns/mullvad/resolv.conf".text = "nameserver 10.64.0.1";
 
