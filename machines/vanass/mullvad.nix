@@ -54,7 +54,8 @@ in
       RemainAfterExit = true;
       ExecStartPre = "${pkgs.iproute}/bin/ip link set ${lanIface} netns ${netNs}";
       ExecStart = "${pkgs.writeShellScript "netns-iface" (execInNs ''
-        ${pkgs.iproute}/bin/ip addr set dev ${lanIface} addr 192.168.60.1/24
+        ${pkgs.iproute}/bin/ip link set dev ${lanIface} up
+        ${pkgs.iproute}/bin/ip addr add dev ${lanIface} 192.168.60.1/24
       '')}";
     };
   };
