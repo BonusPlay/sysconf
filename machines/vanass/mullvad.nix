@@ -47,13 +47,13 @@ in
         }
       ];
       privateKeyFile = config.age.secrets.mullvadPrivateKey.path;
-      postUp = ''
+      postSetup = ''
         ${pkgs.iptables}/bin/iptables -A FORWARD -i ${lanIface} -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -A FORWARD -i ${lanIface} -j ACCEPT
         ${pkgs.iptables}/bin/ip6tables -t nat -A POSTROUTING -o ${vpnIface} -j MASQUERADE
       '';
-      preDown = ''
+      postShutdown = ''
         ${pkgs.iptables}/bin/iptables -D FORWARD -i ${lanIface} -j ACCEPT
         ${pkgs.iptables}/bin/iptables -t nat -D POSTROUTING -o ${vpnIface} -j MASQUERADE
         ${pkgs.iptables}/bin/ip6tables -D FORWARD -i ${lanIface} -j ACCEPT
