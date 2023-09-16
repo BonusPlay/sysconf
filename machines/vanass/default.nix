@@ -15,6 +15,7 @@
       enable = true;
       vm = true;
     };
+    warp-net.enable = false;
   };
 
   boot = {
