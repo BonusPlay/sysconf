@@ -1,13 +1,17 @@
 let
-  port = 13100;
+  ports = [ 13100 13101 13102 ];
+  mkPair = port: "${port}:${port}";
 in
 {
-  networking.firewall.allowedTCPPorts = [ port ];
+  networking.firewall.allowedTCPPorts = ports;
 
   virtualisation.oci-containers.containers.ghidra = {
     image = "blacktop/ghidra:10.3.3-alpine";
-    ports = [ "${toString port}:${toString port}" ];
+    ports = map mkPair (map toString ports);
     volumes = [ "/var/lib/ghidra:/repos" ];
     cmd = [ "server" ];
+    environment = {
+      GHIDRA_USERS = "bonus";
+    };
   };
 }
