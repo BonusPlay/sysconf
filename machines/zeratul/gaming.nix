@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   hardware.steam-hardware.enable = true;
   programs.steam.enable = true;
@@ -21,7 +21,7 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.plasma5.enable = true;
+    windowManager.i3.enable = true;
     # apparently nvidia module still uses this on wayland
     videoDrivers = ["nvidia"];
   };
