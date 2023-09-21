@@ -5,6 +5,7 @@ in
 {
   networking.firewall.allowedTCPPorts = ports;
 
+  virtualisation.oci-containers.backend = "docker";
   virtualisation.oci-containers.containers.ghidra = {
     image = "blacktop/ghidra:10.3.3-alpine";
     ports = map mkPair (map toString ports);
