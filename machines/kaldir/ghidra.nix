@@ -11,6 +11,7 @@ in
     volumes = [ "/var/lib/ghidra:/repos" ];
     cmd = [ "server" ];
     environment = {
+      GHIDRA_IP = "0.0.0.0";
       GHIDRA_USERS = "bonus";
     };
   };
