@@ -31,7 +31,7 @@ in
   };
 
   boot.kernel.sysctl = {
-    net.ipv4.ip_forward = 1;
+    "net.ipv4.ip_forward" = 1;
   };
 
   # dummy to start netns
