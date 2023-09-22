@@ -7,9 +7,7 @@ let
   registrationFile = "${dataDir}/googlechat-registration.yaml";
   cfg = config.services.mautrix-googlechat;
   settingsFormat = pkgs.formats.json {};
-  settingsFile =
-    settingsFormat.generate "mautrix-googlechat-config.json" cfg.settings;
-
+  settingsFile = settingsFormat.generate "mautrix-googlechat-config.json" cfg.settings;
 in {
   options = {
     services.mautrix-googlechat = {
