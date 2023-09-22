@@ -36,6 +36,10 @@ in
   "matrix/facebook-environment.age".publicKeys = users ++ [ kaldir ];
   "matrix/telegram-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix/telegram-environment.age".publicKeys = users ++ [ kaldir ];
+  "matrix/googlechat-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix/googlechat-environment.age".publicKeys = users ++ [ kaldir ];
+  "matrix/slack-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix/slack-environment.age".publicKeys = users ++ [ kaldir ];
 
   "taskwarrior/ca.age".publicKeys = users;
   "taskwarrior/server.age".publicKeys = users;

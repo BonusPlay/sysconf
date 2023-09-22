@@ -46,6 +46,8 @@ in
     modules = [
       ./kaldir
       ../modules/server.nix
+      ../modules/mautrix-slack.nix
+      ../modules/mautrix-googlechat.nix
       agenix.nixosModules.default
       nixTrick
     ];
