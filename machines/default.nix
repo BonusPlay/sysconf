@@ -42,7 +42,7 @@ in
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     system = "aarch64-linux";
-    specialArgs = addUnstable "x86_64-linux";
+    specialArgs = addUnstable "aarch64-linux";
     modules = [
       ./kaldir
       ../modules/server.nix
