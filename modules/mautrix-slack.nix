@@ -6,7 +6,7 @@ let
   cfg = config.services.mautrix-slack;
   settingsFormat = pkgs.formats.json {};
   settingsFile = settingsFormat.generate "mautrix-slack-config.json" cfg.settings;
-  mautrix-slack = callPackage ../pkgs/mautrix-slack.nix {};
+  mautrix-slack = pkgs.callPackage ../pkgs/mautrix-slack.nix {};
 in
 {
   options = {
@@ -40,7 +40,7 @@ in
             writers = [
               {
                 type = "stdout";
-                format: "pretty-colored";
+                format = "pretty-colored";
               }
             ];
           };

@@ -154,7 +154,7 @@ in {
         if [ ! -f '${registrationFile}' ]; then
           ${pkgs.mautrix-googlechat}/bin/mautrix-googlechat \
             --generate-registration \
-            --base-config='${pkgs.mautrix-googlechat}/${pkgs.mautrix-googlechat.pythonModule.sitePackages}/googlechat/example-config.yaml' \
+            --base-config='${pkgs.mautrix-googlechat}/share/mautrix-googlechat/example-config.yaml' \
             --config='${settingsFile}' \
             --registration='${registrationFile}'
         fi
