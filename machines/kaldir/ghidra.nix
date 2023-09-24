@@ -2,7 +2,7 @@
 let
   ports = [ 13100 13101 13102 ];
   mkPair = port: "${port}:${port}";
-  ipcmd = "${pkgs.dig}/bin/dig +short ghidra.bonusplay.pl | tail -1 | tr -d '\n'";
+  ipcmd = "${pkgs.dig}/bin/dig +short ghidra.bonusplay.pl | tail -1 | tr -d '\\n'";
 in
 {
   networking.firewall.allowedTCPPorts = ports;
