@@ -2,7 +2,6 @@
 let
   ports = [ 13100 13101 13102 ];
   mkPair = port: "${port}:${port}";
-  ipcmd = "${pkgs.dig}/bin/dig +short ghidra.bonusplay.pl | tail -1 | tr -d '\\n'";
 in
 {
   networking.firewall.allowedTCPPorts = ports;
@@ -15,7 +14,8 @@ in
     volumes = [ "/var/lib/ghidra:/repos" ];
     cmd = [ "server" ];
     environment = {
-      GHIDRA_IP = "$(${ipcmd})";
+      # TODO: somehow avoid hardcoding IPs (this does need to be a public IP)
+      GHIDRA_IP = "130.162.49.48";
       GHIDRA_USERS = "bonus";
     };
   };
