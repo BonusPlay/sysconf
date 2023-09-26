@@ -2,8 +2,8 @@ return require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
 
   -- treesitter
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }
+  -- use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  -- use { "nvim-treesitter/nvim-treesitter-textobjects", after = "nvim-treesitter" }
 
   -- surround
   use { "kylechui/nvim-surround", tag = "*", config = function()
