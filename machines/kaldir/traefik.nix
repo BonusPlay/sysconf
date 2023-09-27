@@ -113,9 +113,9 @@
             entrypoints = [ "warpsecure" ];
           }
           {
-            name = "seafile";
-            domain = "s.bonusplay.pl";
-            port = 80; # nginx inside container does proxy pass to unix socket
+            name = "influx";
+            domain = "influx.mlwr.dev";
+            port = lib.toInt (lib.strings.removePrefix "localhost:" config.services.influxdb2.settings.http-bind-address);
             middlewares = [];
             entrypoints = [ "warpsecure" ];
           }

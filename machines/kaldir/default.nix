@@ -19,6 +19,7 @@
     ./matrix-slack.nix
     ./mosquitto.nix
     ./ghidra.nix
+    ./influx.nix
   ];
 
   nix = {
