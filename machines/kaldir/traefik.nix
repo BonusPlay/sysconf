@@ -115,7 +115,7 @@
           {
             name = "influx";
             domain = "influx.mlwr.dev";
-            port = lib.toInt (lib.strings.removePrefix "localhost:" config.services.influxdb2.settings.http-bind-address);
+            port = lib.toInt (lib.strings.removePrefix "127.0.0.1:" config.services.influxdb2.settings.http-bind-address);
             middlewares = [];
             entrypoints = [ "warpsecure" ];
           }
