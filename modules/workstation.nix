@@ -17,6 +17,8 @@ in
   config = mkIf cfg.enable {
     nixpkgs.config.allowUnfree = true;
 
+    custom.base.autoUpgrade = false;
+
     services.fwupd.enable = true;
     hardware.enableAllFirmware = true;
     hardware.opengl.enable = true;
