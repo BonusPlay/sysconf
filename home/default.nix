@@ -66,6 +66,7 @@
     libreoffice
     discord
     obsidian
+    vscode
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
