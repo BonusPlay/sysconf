@@ -12,6 +12,7 @@ in
     config = { config, pkgs, ... }: {
       services.gitea = {
         enable = true;
+        package = pkgs.forgejo;
         settings = {
           session.COOKIE_SECURE = true;
           service.DISABLE_REGISTRATION = true;
