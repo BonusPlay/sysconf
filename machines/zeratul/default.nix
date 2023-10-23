@@ -5,6 +5,7 @@
     ./networking.nix
     ./virtualisation.nix
     ./gaming.nix
+    ./ctf.nix
   ];
 
   boot = {
