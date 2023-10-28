@@ -10,6 +10,7 @@
     ./ssh.nix
     ./sway.nix
     ./tmux.nix
+    ./vscode.nix
   ];
 
   home.packages = (with pkgs; [
@@ -66,7 +67,6 @@
     libreoffice
     discord
     obsidian
-    vscode
     virt-viewer
   ]) ++ (with nixpkgs-unstable; [
     imhex
