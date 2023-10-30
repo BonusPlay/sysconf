@@ -12,7 +12,7 @@
   };
 
   age.secrets.nextcloudUsersFile = {
-    file = ../../secrets/nextcloud-users.age;
+    file = ../../secrets/nextcloud/basic-auth.age;
     mode = "0400";
     owner = "traefik";
   };

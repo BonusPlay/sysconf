@@ -41,7 +41,8 @@ in
   "matrix/slack-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix/slack-environment.age".publicKeys = users ++ [ kaldir ];
 
-  "nextcloud-users.age".publicKeys = users ++ [ kaldir ];
+  "nextcloud/admin-pass.age".publicKeys = users ++ [ kaldir ];
+  "nextcloud/basic-auth.age".publicKeys = users ++ [ kaldir ];
 
   "taskwarrior/ca.age".publicKeys = users;
   "taskwarrior/server.age".publicKeys = users;
