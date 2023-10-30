@@ -26,7 +26,7 @@ in
         enable = true;
         hostName = "nextcloud.bonusplay.pl";
         https = true;
-        #configureRedis = true;
+        configureRedis = true;
         #extraApps = with config.services.nextcloud.package.packages.apps; {
         #  inherit news contacts calendar tasks;
         #};
