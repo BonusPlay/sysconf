@@ -126,7 +126,7 @@
             entrypoints = [ "warps" ];
           }
           {
-            name = "influx";
+            name = "nextcloud";
             domain = "nextcloud.bonusplay.pl";
             target = config.containers.nextcloud.localAddress;
             port = 80;
