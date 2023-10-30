@@ -6,7 +6,7 @@ let
 in
 {
   age.secrets.nextcloud-admin-pass = {
-    file = ../secrets/nextcloud/admin-pass.age;
+    file = ../../secrets/nextcloud/admin-pass.age;
     mode = "0444";
     owner = "root";
   };
