@@ -129,10 +129,12 @@ in
               rule = "Host(`${entry.domain}`)";
               service = entry.name;
               entrypoints = entry.entrypoints;
+              middlewares = lib.flatten (map lib.attrNames entry.middlewares);
             };
             services."${entry.name}".loadBalancer.servers = [{
               url = "http://${entry.target}:${toString entry.port}";
             }];
+            middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
           };
           httpEntries = map mkHttpEntry cfg.entries;
           httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
