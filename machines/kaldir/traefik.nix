@@ -12,7 +12,7 @@
     owner = "traefik";
   };
 
-  custom.traefk = {
+  custom.traefik = {
     enable = true;
     acmeDomains = [ "bonusplay.pl" "mlwr.dev" ];
     publicIP = "10.0.0.131";
