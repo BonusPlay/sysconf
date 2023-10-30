@@ -1,6 +1,5 @@
 { config, ... }:
 let
-  hostPort = 4075;
   containerPort = 80;
   adminPassFile = "/run/adminPassFile";
 in
@@ -13,11 +12,6 @@ in
 
   containers.nextcloud = {
     autoStart = true;
-    forwardPorts = [{
-      hostPort = hostPort;
-      containerPort = containerPort;
-      protocol = "TCP";
-    }];
     bindMounts.adminpassFile = {
       hostPath = config.age.secrets.nextcloud-admin-pass.path;
       mountPoint = adminPassFile;
