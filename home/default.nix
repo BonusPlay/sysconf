@@ -42,7 +42,6 @@
     kicad
     docker-compose
     slack
-    pass
     file
     gimp
     magic-wormhole
