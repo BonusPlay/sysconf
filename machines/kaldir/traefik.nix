@@ -63,7 +63,16 @@
         target = config.containers.nextcloud.localAddress;
         port = 80;
         middlewares = [{
-          nextcloudAuth.basicAuth.usersFile = config.age.secrets.nextcloudUsersFile.path;
+          nextcloudAuth.basicAuth = {
+            usersFile = config.age.secrets.nextcloudUsersFile.path;
+            removeHeader = true;
+          };
+          nextcloudHeaders.headers = {
+            hostsProxyHeaders = [
+              "X-Forwarded-Host"
+            ];
+            referrerPolicy = "same-origin";
+          };
         }];
         entrypoints = [ "webs" ];
       }
