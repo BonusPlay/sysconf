@@ -3,27 +3,27 @@ with lib;
 let
   cfg = config.custom.traefik;
   publicEntrypoint = if (isNull cfg.publicIP) then {} else {
-    web = {
+    webunsafe = {
       address = "${cfg.publicIP}:80";
       http = {
-        redirections.entrypoint.to = "websecure";
+        redirections.entrypoint.to = "webs";
         redirections.entrypoint.scheme = "https";
       };
     };
-    websecure = {
+    webs = {
       address = "${cfg.publicIP}:443";
       http.tls = true;
     };
   };
   warpEntrypoint = if (isNull cfg.warpIP) then {} else {
-    warp = {
+    warpunsecure = {
       address = "${cfg.warpIP}:80";
       http = {
-        redirections.entrypoint.to = "warpsecure";
+        redirections.entrypoint.to = "warps";
         redirections.entrypoint.scheme = "https";
       };
     };
-    warpsecure = {
+    warps = {
       address = "${cfg.warpIP}:443";
       http.tls = true;
     };
@@ -60,7 +60,7 @@ in
           };
           entrypoints = mkOption {
             type = types.listOf types.str;
-            default = [ "websecure" ];
+            default = [ "webs" ];
             description = "list of entrypoints to listen on";
           };
         };
