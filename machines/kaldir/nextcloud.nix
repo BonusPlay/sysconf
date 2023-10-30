@@ -6,7 +6,7 @@ in
   containers.nextcloud = {
     autoStart = true;
     forwardPorts = [{
-      hostPort = port;
+      hostPort = hostPort;
       containerPort = containerPort;
       protocol = "TCP";
     }];
