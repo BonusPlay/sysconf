@@ -23,6 +23,9 @@ in
       mountPoint = adminPassFile;
       isReadOnly = true;
     };
+    privateNetwork = true;
+    hostAddress = "192.168.102.1";
+    localAddress = "192.168.102.2";
 
     config = { config, pkgs, ... }: {
       services.nextcloud = {

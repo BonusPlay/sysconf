@@ -15,7 +15,7 @@
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./matrix-googlechat.nix
-    ./matrix-slack.nix
+    #./matrix-slack.nix
     ./mosquitto.nix
     ./ghidra.nix
     ./influx.nix
