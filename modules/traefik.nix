@@ -57,6 +57,8 @@ in
           middlewares = mkOption {
             # too lazy to setup this properly
             type = types.listOf types.attrs;
+            default = [];
+            description = "traefik middlewares to use";
           };
           entrypoints = mkOption {
             type = types.listOf types.str;
