@@ -128,7 +128,7 @@
           {
             name = "influx";
             domain = "nextcloud.bonusplay.pl";
-            port = (lib.take 1 (config.containers.nextcloud.forwardPorts).hostPort;
+            port = (lib.take 1 config.containers.nextcloud.forwardPorts).hostPort;
             middlewares = [{
               nextcloudAuth.basicAuth.usersFile = config.age.secrets.nextcloudUsersFile.path;
             }];
