@@ -8,7 +8,6 @@
     ./networking.nix
     ./tailscale.nix
     ./prometheus.nix
-    #./seafile.nix
     ./taskserver.nix
     ./traefik.nix
     ./matrix-synapse.nix
@@ -20,6 +19,7 @@
     ./mosquitto.nix
     ./ghidra.nix
     ./influx.nix
+    ./nextcloud.nix
   ];
 
   nix = {

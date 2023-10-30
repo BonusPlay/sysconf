@@ -11,6 +11,12 @@
     owner = "traefik";
   };
 
+  age.secrets.nextcloudUsersFile = {
+    file = ../../secrets/nextcloud-users.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
   security.acme = {
     acceptTerms = true;
     certs = {
@@ -48,25 +54,25 @@
         insecure = true;
       };
       entryPoints = {
-        web = {
+        webunsafe = {
           address = "10.0.0.131:80";
           http = {
-            redirections.entrypoint.to = "websecure";
+            redirections.entrypoint.to = "webs";
             redirections.entrypoint.scheme = "https";
           };
         };
-        websecure = {
+        webs = {
           address = "10.0.0.131:443";
           http.tls = true;
         };
         warp = {
           address = "100.98.118.66:80";
           http = {
-            redirections.entrypoint.to = "websecure";
+            redirections.entrypoint.to = "webs";
             redirections.entrypoint.scheme = "https";
           };
         };
-        warpsecure = {
+        warps = {
           address = "100.98.118.66:443";
           http.tls = true;
         };
@@ -80,7 +86,7 @@
             domain = "matrix.bonusplay.pl";
             port = 4080;
             middlewares = [];
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "webs" ];
           }
           {
             name = "docker-registry";
@@ -89,35 +95,44 @@
             middlewares = [{
               drAuth.basicAuth.usersFile = config.age.secrets.drUsersFile.path;
             }];
-            entrypoints = [ "websecure" ];
+            entrypoints = [ "webs" ];
           }
           {
             name = "prometheus";
             domain = lib.strings.removeSuffix "/" (lib.strings.removePrefix "https://" config.services.prometheus.webExternalUrl);
             port = config.services.prometheus.port;
             middlewares = [];
-            entrypoints = [ "warpsecure" ];
+            entrypoints = [ "warps" ];
           }
           {
             name = "grafana";
             domain = config.services.grafana.settings.server.domain;
             port = config.services.grafana.settings.server.http_port;
             middlewares = [];
-            entrypoints = [ "warpsecure" ];
+            entrypoints = [ "warps" ];
           }
           {
             name = "loki";
             domain = "loki.mlwr.dev";
             port = config.services.loki.configuration.server.http_listen_port;
             middlewares = [];
-            entrypoints = [ "warpsecure" ];
+            entrypoints = [ "warps" ];
           }
           {
             name = "influx";
             domain = "influx.mlwr.dev";
             port = lib.toInt (lib.strings.removePrefix "127.0.0.1:" config.services.influxdb2.settings.http-bind-address);
             middlewares = [];
-            entrypoints = [ "warpsecure" ];
+            entrypoints = [ "warps" ];
+          }
+          {
+            name = "influx";
+            domain = "nextcloud.bonusplay.pl";
+            port = (lib.take 1 (config.containers.nextcloud.forwardPorts).hostPort;
+            middlewares = [{
+              nextcloudAuth.basicAuth.usersFile = config.age.secrets.nextcloudUsersFile.path;
+            }];
+            entrypoints = [ "webs" ];
           }
         ];
         mkHttpEntry = entry: {
