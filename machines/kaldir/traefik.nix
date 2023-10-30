@@ -16,7 +16,7 @@
     enable = true;
     acmeDomains = [ "bonusplay.pl" "mlwr.dev" ];
     publicIP = "10.0.0.131";
-    warpIP = "100.98.118.66:80";
+    warpIP = "100.98.118.66";
     entries = [
       {
         name = "matrix";
