@@ -143,8 +143,9 @@ in
             }];
             middlewares = dummyMiddleware // (lib.foldl' lib.recursiveUpdate {} entry.middlewares);
           };
+          middlewares = lib.foldl' lib.recursiveUpdate {} (map (entry: lib.foldl' lib.recursiveUpdate {} entry.middlewares) cfg.entries);
           httpEntries = map mkHttpEntry cfg.entries;
-          httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
+          httpConfig = (lib.foldl' lib.recursiveUpdate {} httpEntries) // middlewares;
 
           mkTlsEntry = domain: {
             certFile = "/var/lib/acme/${domain}/cert.pem";
