@@ -24,8 +24,8 @@
         name = "sabnzbd";
         domain = "nzb.mlwr.dev";
         port = 8080;
-        entrypoints = [ "warpsecure" ];
-        target = config.containers.sabnzbd.localAddress;
+        entrypoints = [ "warps" ];
+        target = config.containers.sabnzbd.extraVeths.side.localAddress;
       }];
     };
 
