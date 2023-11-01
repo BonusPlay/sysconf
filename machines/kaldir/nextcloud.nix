@@ -37,6 +37,7 @@ in
         };
         config = {
           adminpassFile = adminPassFile;
+          extraTrustedDomains = [ "nextcloud-int.bonusplay.pl" ];
         };
       };
 
