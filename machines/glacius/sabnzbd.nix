@@ -1,9 +1,15 @@
 {
+  networking = {
+  };
+
   containers.sabnzbd = {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = "172.28.0.1";
-    localAddress = "172.28.0.11";
+    hostBridge = "br-mullvad";
+    extraVeths.side = {
+      hostAddress = "172.28.0.1";
+      localAddress = "172.28.0.2";
+    };
 
     config = { lib, ... }: {
       nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -14,9 +20,12 @@
       # TODO: add FQDN to host_whitelist in config file
       services.sabnzbd.enable = true;
 
-      networking.firewall = {
-        enable = true;
-        allowedTCPPorts = [ 8080 ];
+      networking = {
+        interfaces.eth0.useDHCP = true;
+        firewall = {
+          enable = true;
+          allowedTCPPorts = [ 8080 ];
+        };
       };
 
       system.stateVersion = "23.05";

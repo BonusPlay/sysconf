@@ -2,27 +2,34 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./networking.nix
-    ./mullvad.nix
+    ./change-detection.nix
   ];
 
   custom = {
     base = {
       enable = true;
-      autoUpgrade = false;
+      autoUpgrade = true;
     };
     server = {
       enable = true;
       vm = true;
     };
-    warp-net.enable = false;
+    warp-net.enable = true;
+    monitoring.enable = true;
   };
 
   boot = {
-    loader.grub.device = "/dev/vda";
+    loader.grub.device = "/dev/sda";
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
     };
+  };
+
+  networking = {
+    hostName = "vanass";
+    useDHCP = false;
+    interfaces.enp6s18.useDHCP = true;
+    bridges.br-neo.interfaces = [ "enp6s19" ];
   };
 }
