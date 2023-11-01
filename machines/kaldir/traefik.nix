@@ -1,4 +1,12 @@
 { lib, config, ... }:
+let
+  nextcloudHeaders.headers = {
+    hostsProxyHeaders = [
+      "X-Forwarded-Host"
+    ];
+    referrerPolicy = "same-origin";
+  };
+in
 {
   age.secrets.drUsersFile = {
     file = ../../secrets/docker-registry-users.age;
@@ -58,23 +66,36 @@
         entrypoints = [ "warps" ];
       }
       {
-        name = "nextcloud";
+        name = "nextcloud-pub";
         domain = "nextcloud.bonusplay.pl";
         target = config.containers.nextcloud.localAddress;
         port = 80;
-        middlewares = [{
-          nextcloudAuth.basicAuth = {
-            usersFile = config.age.secrets.nextcloudUsersFile.path;
-            removeHeader = true;
-          };
-          nextcloudHeaders.headers = {
-            hostsProxyHeaders = [
-              "X-Forwarded-Host"
-            ];
-            referrerPolicy = "same-origin";
-          };
-        }];
+        middlewares = [
+          {
+            nextcloudAuth.basicAuth = {
+              usersFile = config.age.secrets.nextcloudUsersFile.path;
+              removeHeader = true;
+            };
+          }
+          nextcloudHeaders
+        ];
         entrypoints = [ "webs" ];
+      }
+      {
+        name = "nextcloud-int";
+        domain = "nextcloud-int.bonusplay.pl";
+        target = config.containers.nextcloud.localAddress;
+        port = 80;
+        middlewares = [
+          {
+            nextcloudInt.replacePathRegex = {
+              regex = "^(https?://)nextcloud-int\\.bonusplay\\.pl/(.*)$";
+              replacement = "''\${1}nextcloud.bonusplay.pl/''\${2}";
+            };
+          }
+          nextcloudHeaders
+        ];
+        entrypoints = [ "warps" ];
       }
     ];
   };
