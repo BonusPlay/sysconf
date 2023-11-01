@@ -7,7 +7,7 @@ let
       ];
       referrerPolicy = "same-origin";
     };
-  }
+  };
 in
 {
   age.secrets.drUsersFile = {
