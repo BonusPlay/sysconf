@@ -1,11 +1,13 @@
 { lib, config, ... }:
 let
-  nextcloudHeaders.headers = {
-    hostsProxyHeaders = [
-      "X-Forwarded-Host"
-    ];
-    referrerPolicy = "same-origin";
-  };
+  nextcloudMiddleware = {
+    nextcloudHeaders.headers = {
+      hostsProxyHeaders = [
+        "X-Forwarded-Host"
+      ];
+      referrerPolicy = "same-origin";
+    };
+  }
 in
 {
   age.secrets.drUsersFile = {
@@ -77,7 +79,7 @@ in
               removeHeader = true;
             };
           }
-          nextcloudHeaders
+          nextcloudMiddleware
         ];
         entrypoints = [ "webs" ];
       }
@@ -93,7 +95,7 @@ in
               replacement = "''\${1}nextcloud.bonusplay.pl/''\${2}";
             };
           }
-          nextcloudHeaders
+          nextcloudMiddleware
         ];
         entrypoints = [ "warps" ];
       }
