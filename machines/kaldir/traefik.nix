@@ -89,12 +89,6 @@ in
         target = config.containers.nextcloud.localAddress;
         port = 80;
         middlewares = [
-          {
-            nextcloudInt.replacePathRegex = {
-              regex = "^(https?://)nextcloud-int\\.bonusplay\\.pl/(.*)$";
-              replacement = "''\${1}nextcloud.bonusplay.pl/''\${2}";
-            };
-          }
           nextcloudMiddleware
         ];
         entrypoints = [ "warps" ];
