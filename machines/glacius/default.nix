@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./nfs.nix
-    ./sabnzbd.nix
   ];
 
   custom = {
@@ -17,18 +16,6 @@
       vm = false;
     };
     monitoring.enable = true;
-    traefik = {
-      enable = true;
-      warpIP = "100.70.210.5";
-      entries = [{
-        name = "sabnzbd";
-        domain = "nzb.mlwr.dev";
-        port = 8080;
-        entrypoints = [ "warps" ];
-        target = config.containers.sabnzbd.extraVeths.side.localAddress;
-      }];
-    };
-
     warp-net.enable = true;
   };
 
