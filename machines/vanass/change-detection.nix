@@ -2,7 +2,7 @@
 {
   custom.traefik = {
     enable = true;
-    warpIP = "100.70.210.5";
+    warpIP = "100.123.104.26";
     entries = [{
       name = "changedetection";
       domain = "cd.mlwr.dev";
