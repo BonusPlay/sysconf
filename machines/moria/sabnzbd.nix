@@ -1,4 +1,15 @@
+{ config, ... }:
 {
+  custom.traefik.entries = [
+    {
+      name = "sabnzbd";
+      domain = "nzb.mlwr.dev";
+      port = 8080;
+      target = config.containers.sabnzbd.extraVeths.ve-sabnzbd.localAddress;
+      entrypoints = [ "warps" ];
+    }
+  ];
+
   containers.sabnzbd = {
     autoStart = true;
     privateNetwork = true;
@@ -6,6 +17,12 @@
     extraVeths.ve-sabnzbd = {
       hostAddress = "172.28.0.1";
       localAddress = "172.28.0.2";
+    };
+    bindMounts = {
+      "/storage" = {
+        hostPath = "/storage/sabnzbd";
+        isReadOnly = false;
+      };
     };
 
     config = { lib, ... }: {
