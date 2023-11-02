@@ -1,7 +1,4 @@
 {
-  networking = {
-  };
-
   containers.sabnzbd = {
     autoStart = true;
     privateNetwork = true;
