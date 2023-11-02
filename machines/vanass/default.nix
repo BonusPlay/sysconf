@@ -29,10 +29,6 @@
   networking = {
     useDHCP = false;
     interfaces.enp6s18.useDHCP = true;
-    vlans.neo = {
-      id = 20;
-      interface = "enp6s18";
-    };
-    bridges.br-neo.interfaces = [ "neo" ];
+    bridges.br-neo.interfaces = [ "enp6s19" ];
   };
 }
