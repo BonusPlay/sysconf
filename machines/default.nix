@@ -107,4 +107,14 @@ in
       nixTrick
     ];
   };
+
+  # downloader VM
+  moria = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./moria
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }

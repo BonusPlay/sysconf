@@ -1,12 +1,9 @@
 {
-  networking = {
-  };
-
   containers.sabnzbd = {
     autoStart = true;
     privateNetwork = true;
     hostBridge = "br-mullvad";
-    extraVeths.side = {
+    extraVeths.ve-sabnzbd = {
       hostAddress = "172.28.0.1";
       localAddress = "172.28.0.2";
     };

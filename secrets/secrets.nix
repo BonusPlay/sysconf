@@ -9,10 +9,11 @@ let
   shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
   glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAjgL7ZGbCxc0XG0Lf3FViJLgKwBcaEYFeUrnd8Rroe";
-  vanass = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMXMkZzANMxUpUrcArx2Eu/5EHMgGi0Ebbg82gDnGh6c";
+  vanass = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqvoKwglg4CX6Kt4RVQvILeCsJQbi/m0AuBCgPHywcI";
+  moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMc8a5YtCK/C0cS962UESqvJ9Ap1u/7ipza9p1ah16MQ";
 in
 {
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion glacius vanass ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion vanass moria ];
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
