@@ -39,10 +39,16 @@
     options = [ "subvol=backups" "compress=zstd" ];
   };
 
-  fileSystems."/storage/vms" = {
+  fileSystems."/storage/moria" = {
     device = "/dev/disk/by-uuid/0c220e47-fb07-404b-b035-cf79a3bdce30";
     fsType = "btrfs";
-    options = [ "subvol=vms" "compress=zstd" "noatime" ];
+    options = [ "subvol=moria" "compress=zstd" ];
+  };
+
+  fileSystems."/storage/proxmox" = {
+    device = "/dev/disk/by-uuid/0c220e47-fb07-404b-b035-cf79a3bdce30";
+    fsType = "btrfs";
+    options = [ "subvol=proxmox" "compress=zstd" ];
   };
 
   environment.etc.crypttab = {

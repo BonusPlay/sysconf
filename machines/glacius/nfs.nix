@@ -8,6 +8,8 @@
     in ''
       /storage/general ${line}
       /storage/backups ${line}
+      /storage/moria   ${line}
+      /storage/proxmox 100.64.0.0/10(rw,async,no_subtree_check)
     '';
   };
 
