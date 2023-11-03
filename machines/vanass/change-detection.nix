@@ -11,7 +11,7 @@
       domain = "cd.mlwr.dev";
       port = config.containers.cd-io.config.services.changedetection-io.port;
       entrypoints = [ "warps" ];
-      target = config.containers.cd-io.extraVeths.side.localAddress;
+      target = config.containers.cd-io.extraVeths.ve-cd.localAddress;
     }];
   };
 
