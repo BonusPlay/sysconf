@@ -25,6 +25,7 @@
       services.changedetection-io = {
         enable = true;
         webDriverSupport = true;
+        listenAddress = "172.28.0.2";
         port = 4090;
         behindProxy = true;
         baseURL = "https://cd.mlwr.dev";
