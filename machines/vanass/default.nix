@@ -27,6 +27,7 @@
   };
 
   networking = {
+    hostName = "vanass";
     useDHCP = false;
     interfaces.enp6s18.useDHCP = true;
     bridges.br-neo.interfaces = [ "enp6s19" ];
