@@ -1,22 +1,25 @@
 { config, ... }:
 {
+  # using cd-io instead of changedetection-io, because
+  # some stuff has to be short (like interface names)
+
   custom.traefik = {
     enable = true;
     warpIP = "100.123.104.26";
     entries = [{
       name = "changedetection";
       domain = "cd.mlwr.dev";
-      port = config.containers.changedetection-io.config.services.changedetection-io.port;
+      port = config.containers.cd-io.config.services.changedetection-io.port;
       entrypoints = [ "warps" ];
-      target = config.containers.changedetection-io.extraVeths.side.localAddress;
+      target = config.containers.cd-io.extraVeths.side.localAddress;
     }];
   };
 
-  containers.changedetection-io = {
+  containers.cd-io = {
     autoStart = true;
     privateNetwork = true;
     hostBridge = "br-neo";
-    extraVeths.side = {
+    extraVeths.ve-cd = {
       hostAddress = "172.28.0.1";
       localAddress = "172.28.0.2";
     };
