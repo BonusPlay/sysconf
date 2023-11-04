@@ -20,6 +20,7 @@
     ./ghidra.nix
     ./influx.nix
     ./nextcloud.nix
+    ./hedgedoc.nix
   ];
 
   custom = {
