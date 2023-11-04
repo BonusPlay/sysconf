@@ -2,6 +2,14 @@
 let
   containerPort = 80;
   adminPassFile = "/run/adminPassFile";
+  nextcloudMiddleware = {
+    nextcloudHeaders.headers = {
+      hostsProxyHeaders = [
+        "X-Forwarded-Host"
+      ];
+      referrerPolicy = "same-origin";
+    };
+  };
 in
 {
   age.secrets.nextcloud-admin-pass = {
@@ -9,6 +17,41 @@ in
     mode = "0444";
     owner = "root";
   };
+
+  age.secrets.nextcloudUsersFile = {
+    file = ../../secrets/nextcloud/basic-auth.age;
+    mode = "0400";
+    owner = "traefik";
+  };
+
+  custom.traefik.entries = [
+    {
+      name = "nextcloud-pub";
+      domain = "nextcloud.bonusplay.pl";
+      target = config.containers.nextcloud.localAddress;
+      port = 80;
+      middlewares = [
+        {
+          nextcloudAuth.basicAuth = {
+            usersFile = config.age.secrets.nextcloudUsersFile.path;
+            removeHeader = true;
+          };
+        }
+        nextcloudMiddleware
+      ];
+      entrypoints = [ "webs" ];
+    }
+    {
+      name = "nextcloud-int";
+      domain = "nextcloud-int.bonusplay.pl";
+      target = config.containers.nextcloud.localAddress;
+      port = 80;
+      middlewares = [
+        nextcloudMiddleware
+      ];
+      entrypoints = [ "warps" ];
+    }
+  ];
 
   containers.nextcloud = {
     autoStart = true;
@@ -18,8 +61,8 @@ in
       isReadOnly = true;
     };
     privateNetwork = true;
-    hostAddress = "192.168.102.1";
-    localAddress = "192.168.102.2";
+    hostAddress = "172.28.3.1";
+    localAddress = "172.28.3.2";
 
     config = { config, pkgs, ... }: {
       services.nextcloud = {

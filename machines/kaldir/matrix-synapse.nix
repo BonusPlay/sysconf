@@ -39,6 +39,15 @@
     #};
   };
 
+  custom.traefik.entries = [
+    {
+      name = "matrix";
+      domain = "matrix.bonusplay.pl";
+      port = 4080;
+      entrypoints = [ "webs" ];
+    }
+  ];
+
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;

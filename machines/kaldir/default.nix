@@ -1,15 +1,12 @@
 { lib, config, pkgs, nixpkgs-unstable, home-manager, ... }:
 {
   imports = [
+    ./hardware-configuration.nix
+    ./networking.nix
+
     ./docker-registry.nix
     ./grafana.nix
-    ./hardware-configuration.nix
-    ./loki.nix
-    ./networking.nix
-    ./tailscale.nix
-    ./prometheus.nix
     ./taskserver.nix
-    ./traefik.nix
     ./matrix-synapse.nix
     ./matrix-facebook.nix
     ./matrix-telegram.nix
@@ -28,6 +25,13 @@
     server = {
       enable = true;
       vm = false;
+    };
+    warp-net.enable = true;
+    monitoring.enable = true;
+    traefik = {
+      enable = true;
+      publicIP = "10.0.0.131";
+      warpIP = "100.98.118.66";
     };
   };
 
