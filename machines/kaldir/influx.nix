@@ -7,7 +7,7 @@ in
     {
       name = "influx";
       domain = "influx.mlwr.dev";
-      target = config.containers.grafana.localAddress;
+      target = config.containers.influx.localAddress;
       port = port;
       entrypoints = [ "warps" ];
     }
