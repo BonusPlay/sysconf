@@ -27,6 +27,10 @@
           domain = "md.bonusplay.pl";
           protocolUseSSL = true;
 
+          # for some reason hedgedoc binds on "localhost"
+          # but in the end only listens for IPv6, wtf
+          host = "192.168.103.2";
+
           # disable email signup
           email = false;
           allowEmailRegister = false;
