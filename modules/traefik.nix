@@ -126,6 +126,11 @@ in
       };
       dynamicConfigOptions =
         let
+          # traefik fails to load config if there are no middlewares
+          # but middleware field is empty, this is a hacky workaround
+          dummyMiddleware = {
+            dummy.headers.customResponseHeaders.hehe = "potega";
+          };
           mkHttpEntry = entry: {
             routers."${entry.name}" = {
               rule = "Host(`${entry.domain}`)";
@@ -136,7 +141,7 @@ in
             services."${entry.name}".loadBalancer.servers = [{
               url = "http://${entry.target}:${toString entry.port}";
             }];
-            middlewares = lib.foldl' lib.recursiveUpdate {} entry.middlewares;
+            middlewares = dummyMiddleware // (lib.foldl' lib.recursiveUpdate {} entry.middlewares);
           };
           httpEntries = map mkHttpEntry cfg.entries;
           httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
