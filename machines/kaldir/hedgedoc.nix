@@ -31,8 +31,9 @@
           # but in the end only listens for IPv6, wtf
           host = "192.168.103.2";
 
+          # enable email login
+          email = true;
           # disable email signup
-          email = false;
           allowEmailRegister = false;
 
           # security
