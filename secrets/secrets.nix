@@ -56,5 +56,7 @@ in
   "discord-bot.age".publicKeys = users ++ [ braxis ];
   "taiga-env.age".publicKeys = users ++ [ braxis ];
 
+  "telegraf-env.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius vanass moria ];
+
   "wifi.age".publicKeys = users ++ [ artanis ];
 }

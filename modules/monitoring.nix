@@ -5,62 +5,50 @@ let
 in
 {
   options.custom.monitoring = {
-    enable = mkEnableOption "monitoring using prom-node-exporter + promtail";
+    enable = mkEnableOption "monitoring using telegraf";
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [
-      config.services.prometheus.exporters.node.port
-      config.services.prometheus.exporters.systemd.port
-    ];
-
-    services.prometheus = {
-      exporters = {
-        node = {
-          enable = true;
-        };
-        systemd = {
-          enable = true;
-        };
-      };
+    age.secrets.telegraf = {
+      file = ../secrets/telegraf-env.age;
+      mode = "0400";
+      owner = "telegraf";
     };
 
-    services.promtail = {
+    services.telegraf = {
       enable = true;
-      configuration = {
-        server = {
-          http_listen_port = 28183;
-          grpc_listen_port = 0;
+      environmentFiles = [ config.age.secrets.telegraf.path ];
+      extraConfig = {
+        inputs = {
+          cpu = {
+            ## Whether to report per-cpu stats or not
+            percpu = true;
+            ## Whether to report total system cpu stats or not
+            totalcpu = true;
+            ## If true, collect raw CPU time metrics
+            collect_cpu_time = false;
+            ## If true, compute and report the sum of all non-idle CPU states
+            report_active = false;
+          };
+          disk = {
+            ignore_fs = [ "tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs" ];
+          };
+          diskio = {};
+          mem = {};
+          nstat = {};
+          processes = {};
+          swap = {};
+          system = {};
         };
-
-        positions = {
-          filename = "/tmp/positions.yaml";
+        outputs = {
+          influxdb_v2 = {
+            urls = [ "https://influx.mlwr.dev" ];
+            token = "$INFLUX_TOKEN";
+            organization = "khala";
+            bucket = "hosts";
+            content_encoding = "gzip";
+          };
         };
-
-        clients = [
-          {
-            url = "https://loki.mlwr.dev/loki/api/v1/push";
-          }
-        ];
-
-        scrape_configs = [
-          {
-            job_name = "journal";
-            journal = {
-              max_age = "12h";
-              labels = {
-                job = "systemd-journal";
-                host = "${config.networking.hostName}";
-              };
-            };
-            relabel_configs = [
-              {
-                source_labels = [ "__journal__systemd_unit" ];
-                target_label = "unit";
-              }
-            ];
-          }
-        ];
       };
     };
   };
