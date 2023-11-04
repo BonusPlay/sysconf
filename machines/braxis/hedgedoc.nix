@@ -6,6 +6,22 @@
     group = "hedgedoc";
   };
 
+  age.secrets.hedgedocPass = {
+    file = ../../secrets/cloudflare/hedgedoc-tunnel.age;
+    mode = "0440";
+    group = "cloudflared";
+  };
+
+  services.cloudflared.tunnels."3ebda45f-5c0b-4d17-a6fb-6f1d7d3f1d4c" = {
+    credentialsFile = config.age.secrets.hedgedocPass.path;
+    default = "http_status:404";
+    ingress = {
+      "md.kncyber.pl" = {
+        service = "http://localhost:3010";
+      };
+    };
+  };
+
   services.hedgedoc = {
     enable = true;
     environmentFile = config.age.secrets.hedgedoc-env.path;
