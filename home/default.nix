@@ -40,7 +40,6 @@
     blender
     yt-dlp
     kicad
-    docker-compose
     slack
     file
     gimp
@@ -73,5 +72,6 @@
     ghidra-bin
     signal-desktop
     virt-manager
+    docker-compose
   ]);
 }
