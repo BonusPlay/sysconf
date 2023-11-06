@@ -4,6 +4,8 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    nixpkgs-ghidra.url = "github:roblabla/nixpkgs?rev=25ec5c2344a9b64616701f57e5da216c33d7765f";
+
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";

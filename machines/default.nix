@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, ... }:
+{ nixpkgs, nixpkgs-unstable, nixpkgs-ghidra, home-manager, nixos-hardware, agenix, lanzaboote, ... }:
 let
   addUnstable = system: {
     nixpkgs-unstable = import nixpkgs-unstable {
@@ -10,6 +10,13 @@ let
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   });
+  ghidra = {
+    nixpkgs.overlays = [
+      (final: prev: {
+        ghidra = nixpkgs-ghidra.legacyPackages.${prev.system}.ghidra;
+      })
+    ];
+  };
 in
 {
   artanis = nixpkgs.lib.nixosSystem {
@@ -36,6 +43,7 @@ in
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
       nixTrick
+      ghidra
     ];
   };
 

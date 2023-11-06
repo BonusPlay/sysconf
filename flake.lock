@@ -242,6 +242,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-ghidra": {
+      "locked": {
+        "lastModified": 1697669474,
+        "narHash": "sha256-4+pH1NiznF4ndm41coYto4Px349vIK2fG3znceVg2l8=",
+        "owner": "roblabla",
+        "repo": "nixpkgs",
+        "rev": "25ec5c2344a9b64616701f57e5da216c33d7765f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roblabla",
+        "repo": "nixpkgs",
+        "rev": "25ec5c2344a9b64616701f57e5da216c33d7765f",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1685801374,
@@ -312,6 +328,7 @@
         "lanzaboote": "lanzaboote",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-ghidra": "nixpkgs-ghidra",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
     },
