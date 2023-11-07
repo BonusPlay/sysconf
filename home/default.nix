@@ -66,10 +66,10 @@
     discord
     obsidian
     virt-viewer
+    ghidra
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
-    ghidra-bin
     signal-desktop
     virt-manager
     docker-compose
