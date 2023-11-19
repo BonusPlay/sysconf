@@ -1,11 +1,11 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   custom.traefik.entries = [
     {
       name = "transmission";
       domain = "tpb.mlwr.dev";
       port = 9091;
-      target = config.containers.transmission.extraVeths.ve-transmission.localAddress;
+      target = lib.strings.removeSuffix "/24" config.containers.transmission.extraVeths.ve-transmission.localAddress;
       entrypoints = [ "warps" ];
     }
   ];

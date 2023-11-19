@@ -1,11 +1,11 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   custom.traefik.entries = [
     {
       name = "sabnzbd";
       domain = "nzb.mlwr.dev";
       port = 8080;
-      target = config.containers.sabnzbd.extraVeths.ve-sabnzbd.localAddress;
+      target = lib.strings.removeSuffix "/24" config.containers.sabnzbd.extraVeths.ve-sabnzbd.localAddress;
       entrypoints = [ "warps" ];
     }
   ];
