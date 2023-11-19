@@ -15,7 +15,7 @@
     privateNetwork = true;
     hostBridge = "br-mullvad";
     extraVeths.ve-sabnzbd = {
-      hostAddress = "172.28.0.1";
+      hostBridge = "br-arr";
       localAddress = "172.28.0.2";
     };
     bindMounts = {

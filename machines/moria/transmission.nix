@@ -15,8 +15,8 @@
     privateNetwork = true;
     hostBridge = "br-mullvad";
     extraVeths.ve-transmission = {
-      hostAddress = "172.28.1.1";
-      localAddress = "172.28.1.2";
+      hostBridge = "br-arr";
+      localAddress = "172.28.0.3";
     };
     bindMounts = {
       "/storage" = {
@@ -33,8 +33,8 @@
           incomplete-dir-enabled = true;
           incomplete-dir = "/storage/incomplete";
           download-dir = "/storage/download";
-          rpc-bind-address = "172.28.1.2";
-          rpc-whitelist = "172.28.1.1";
+          rpc-bind-address = "172.28.0.3";
+          rpc-whitelist = "172.28.0.*";
           rpc-host-whitelist = "tpb.mlwr.dev";
         };
       };

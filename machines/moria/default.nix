@@ -30,7 +30,14 @@
 
   networking = {
     hostName = "moria";
-    bridges.br-mullvad.interfaces = [ "enp6s19" ];
+    bridges = {
+      br-mullvad.interfaces = [ "enp6s19" ];
+      br-arr.interfaces = [];
+    };
+    interfaces.br-arr.ipv4.addresses = [{
+      address = "172.28.0.1";
+      prefixLength = 24;
+    }];
   };
 
   fileSystems."/storage" = {
