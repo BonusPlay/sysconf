@@ -26,10 +26,6 @@
     };
 
     config = { lib, ... }: {
-      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "unrar"
-      ];
-
       services.radarr = {
         enable = true;
         openFirewall = true;
