@@ -120,7 +120,7 @@
           "${cfg.config.modifier}+r" = "mode resize";
 
           # Screenshot helper
-          Print = "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
+          Print = "exec ${pkgs.flameshot}/bin/flameshot gui";
 
           XF86AudioRaiseVolume = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5% && ${pkgs.pulseaudio}/bin/pactl get-sink-volume @DEFAULT_SINK@";
           XF86AudioLowerVolume = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5% && ${pkgs.pulseaudio}/bin/pactl get-sink-volume @DEFAULT_SINK@";

@@ -3,6 +3,7 @@
   imports = [
     ./alacritty.nix
     ./bash.nix
+    ./flameshot.nix
     ./git.nix
     ./gpg.nix
     ./nix-index.nix
