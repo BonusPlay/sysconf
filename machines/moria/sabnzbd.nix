@@ -26,6 +26,10 @@
     };
 
     config = { lib, ... }: {
+      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "unrar"
+      ];
+
       # TODO: this requires manual fix, as sabnzbd listens on 127.0.0.1
       # TODO: add FQDN to host_whitelist in config file
       services.sabnzbd.enable = true;
