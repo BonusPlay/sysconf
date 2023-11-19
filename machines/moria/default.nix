@@ -5,6 +5,7 @@
     ./sabnzbd.nix
     ./transmission.nix
     ./radarr.nix
+    ./prowlarr.nix
   ];
 
   boot = {
