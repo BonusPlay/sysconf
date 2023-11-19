@@ -4,7 +4,7 @@
     {
       name = "prowlar";
       domain = "prowlar.mlwr.dev";
-      port = 7878;
+      port = 9696;
       target = lib.strings.removeSuffix "/24" config.containers.prowlarr.extraVeths.ve-prowlarr.localAddress;
       entrypoints = [ "warps" ];
     }
