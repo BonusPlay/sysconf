@@ -16,7 +16,7 @@
     hostBridge = "br-mullvad";
     extraVeths.ve-sabnzbd = {
       hostBridge = "br-arr";
-      localAddress = "172.28.0.2";
+      localAddress = "172.28.0.2/24";
     };
     bindMounts = {
       "/storage" = {
