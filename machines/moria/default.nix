@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./sabnzbd.nix
     ./transmission.nix
+    ./radarr.nix
   ];
 
   boot = {
