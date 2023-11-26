@@ -28,6 +28,7 @@
     traefik = {
       enable = true;
       warpIP = "100.71.139.158";
+      acmeDomains = [ "bonusplay.pl" ];
     };
   };
 
