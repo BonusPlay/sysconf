@@ -27,7 +27,10 @@
         "plexmediaserver"
       ];
 
-      services.plex.enable = true;
+      services.plex = {
+        enable = true;
+        openFirewall = true;
+      };
 
       networking = {
         interfaces.eth0.useDHCP = true;
