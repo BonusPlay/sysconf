@@ -22,7 +22,11 @@
       };
     };
 
-    config = { lib, ... }: {
+    config = { config, lib, ... }: {
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+        "plexmediaserver"
+      ];
+
       services.plex.enable = true;
 
       networking = {
