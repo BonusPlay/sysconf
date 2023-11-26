@@ -3,7 +3,7 @@
   custom.traefik.entries = [
     {
       name = "prowlar";
-      domain = "prowlar.mlwr.dev";
+      domain = "prowlar.bonusplay.pl";
       port = 9696;
       target = lib.strings.removeSuffix "/24" config.containers.prowlarr.extraVeths.ve-prowlarr.localAddress;
       entrypoints = [ "warps" ];

@@ -3,7 +3,7 @@
   custom.traefik.entries = [
     {
       name = "radarr";
-      domain = "radar.mlwr.dev";
+      domain = "radar.bonusplay.pl";
       port = 7878;
       target = lib.strings.removeSuffix "/24" config.containers.radarr.extraVeths.ve-radarr.localAddress;
       entrypoints = [ "warps" ];

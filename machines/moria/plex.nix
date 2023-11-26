@@ -3,7 +3,7 @@
   custom.traefik.entries = [
     {
       name = "plex";
-      domain = "plex.mlwr.dev";
+      domain = "plex.bonusplay.pl";
       port = 32400;
       target = config.containers.plex.localAddress;
       entrypoints = [ "warps" ];

@@ -3,7 +3,7 @@
   custom.traefik.entries = [
     {
       name = "transmission";
-      domain = "tpb.mlwr.dev";
+      domain = "tpb.bonusplay.pl";
       port = 9091;
       target = lib.strings.removeSuffix "/24" config.containers.transmission.extraVeths.ve-transmission.localAddress;
       entrypoints = [ "warps" ];
@@ -35,7 +35,7 @@
           download-dir = "/storage/download";
           rpc-bind-address = "172.28.0.3";
           rpc-whitelist = "172.28.0.*";
-          rpc-host-whitelist = "tpb.mlwr.dev";
+          rpc-host-whitelist = "tpb.bonusplay.pl";
         };
       };
 
