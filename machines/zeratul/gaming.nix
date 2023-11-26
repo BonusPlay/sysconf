@@ -24,5 +24,6 @@
     windowManager.i3.enable = true;
     # apparently nvidia module still uses this on wayland
     videoDrivers = ["nvidia"];
+    layout = "pl";
   };
 }

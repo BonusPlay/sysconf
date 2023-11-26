@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.custom.workstation;
+
 in
 {
   imports = [
@@ -12,6 +13,11 @@ in
 
   options.custom.workstation = {
     enable = mkEnableOption "base configuration of Bonus's workstations";
+    useWayland = mkOption {
+      type = types.bool;
+      default = true;
+      description = "use sway or i3";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -45,6 +51,7 @@ in
       users.bonus = {
         imports = [
           ../home
+          (if cfg.useWayland then ../home/sway.nix else ../home/i3.nix)
         ];
         home.username = "bonus";
         home.homeDirectory = "/home/bonus";

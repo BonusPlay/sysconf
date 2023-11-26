@@ -9,7 +9,6 @@
     ./nix-index.nix
     ./pass.nix
     ./ssh.nix
-    ./sway.nix
     ./tmux.nix
     ./vscode.nix
   ];

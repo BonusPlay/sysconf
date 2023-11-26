@@ -28,7 +28,12 @@
 
   services.openssh.enable = true;
 
-  custom.base.enable = true;
-  custom.workstation.enable = true;
-  custom.warp-net.enable = true;
+  custom = {
+    base.enable = true;
+    workstation = {
+      enable = true;
+      useWayland = false;
+    };
+    warp-net.enable = true;
+  };
 }
