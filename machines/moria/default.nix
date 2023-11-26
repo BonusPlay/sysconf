@@ -6,6 +6,7 @@
     ./transmission.nix
     ./radarr.nix
     ./prowlarr.nix
+    ./plex.nix
   ];
 
   boot = {
