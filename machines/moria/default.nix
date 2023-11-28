@@ -42,6 +42,10 @@
       address = "172.28.0.1";
       prefixLength = 24;
     }];
+    nat = {
+      enable = true;
+      externalInterface = "enp6s18";
+    };
   };
 
   fileSystems."/storage" = {

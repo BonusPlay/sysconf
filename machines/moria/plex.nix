@@ -10,6 +10,8 @@
     }
   ];
 
+  networking.nat.internalInterfaces = ["ve-plex"];
+
   containers.plex = {
     autoStart = true;
     privateNetwork = true;
