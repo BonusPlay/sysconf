@@ -35,7 +35,9 @@
       networking = {
         interfaces.eth0.useDHCP = true;
         firewall.enable = true;
+        useHostResolvConf = mkForce false;
       };
+      services.resolved.enable = true;
 
       system.stateVersion = "23.05";
     };
