@@ -33,7 +33,6 @@
       };
 
       networking = {
-        interfaces.eth0.useDHCP = true;
         firewall.enable = true;
         useHostResolvConf = lib.mkForce false;
       };
