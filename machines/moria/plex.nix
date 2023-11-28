@@ -35,7 +35,7 @@
       networking = {
         interfaces.eth0.useDHCP = true;
         firewall.enable = true;
-        useHostResolvConf = mkForce false;
+        useHostResolvConf = lib.mkForce false;
       };
       services.resolved.enable = true;
 
