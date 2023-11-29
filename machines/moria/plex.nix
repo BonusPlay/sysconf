@@ -34,12 +34,7 @@
         openFirewall = true;
       };
 
-      networking = {
-        firewall.enable = true;
-        useHostResolvConf = lib.mkForce false;
-      };
-      services.resolved.enable = true;
-
+      networking.firewall.enable = true;
       system.stateVersion = "23.05";
     };
   };
