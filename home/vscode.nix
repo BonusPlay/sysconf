@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib,  ... }:
+let
+  inherit (pkgs.vscode-utils) buildVscodeMarketplaceExtension;
+in
 {
   programs.vscode = {
     enable = true;
@@ -7,6 +10,14 @@
       bbenoist.nix
       ms-python.python
       wholroyd.jinja
+      (buildVscodeMarketplaceExtension {
+        mktplcRef = {
+          publisher = "mshr-h";
+          name = "VerilogHDL";
+          version = "1.13.0";
+          sha256 = "sha256-axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA=";
+        };
+      })
     ];
   };
 }
