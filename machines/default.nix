@@ -125,4 +125,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # artemis VM
+  zhakul = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    modules = [
+      ./zhakul
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }
