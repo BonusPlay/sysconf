@@ -11,9 +11,10 @@ let
   glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAjgL7ZGbCxc0XG0Lf3FViJLgKwBcaEYFeUrnd8Rroe";
   vanass = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJqvoKwglg4CX6Kt4RVQvILeCsJQbi/m0AuBCgPHywcI";
   moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMc8a5YtCK/C0cS962UESqvJ9Ap1u/7ipza9p1ah16MQ";
+  zhakul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPO4gx3kfwSmuP5QGhx7M0dMEComlnf4/IWDkj+bkGE";
 in
 {
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion vanass moria ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion vanass moria zhakul ];
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
@@ -56,7 +57,7 @@ in
   "discord-bot.age".publicKeys = users ++ [ braxis ];
   "taiga-env.age".publicKeys = users ++ [ braxis ];
 
-  "telegraf-env.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius vanass moria ];
+  "telegraf-env.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius vanass moria zhakul ];
 
   "wifi.age".publicKeys = users ++ [ artanis ];
 }
