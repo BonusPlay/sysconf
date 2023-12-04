@@ -25,6 +25,12 @@
     };
   };
 
+  # can't really do much about it for now
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-24.8.6"
+  ];
+
+
   services.tlp.enable = true;
 
   custom.base.enable = true;
