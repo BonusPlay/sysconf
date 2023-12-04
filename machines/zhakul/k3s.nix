@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   containerIP = lib.strings.removeSuffix "/24" config.containers.k3s.extraVeths.ve-k3s.localAddress;
-  k8sApiPort = lib.toInt lib.last (lib.strings.split ":" config.containers.k3s.config.services.k3s.serverAddr);
+  k8sApiPort = 6443;
   artemisPort = 5000;
   dashboardPort = 5001;
 in
