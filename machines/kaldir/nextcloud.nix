@@ -75,8 +75,8 @@ in
         #};
         #extraAppsEnable = true;
         phpOptions = {
-          upload_max_filesize = "1G";
-          post_max_size = "1G";
+          upload_max_filesize = "512M";
+          post_max_size = "512M";
         };
         config = {
           adminpassFile = adminPassFile;
