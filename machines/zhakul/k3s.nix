@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  containerIP = lib.strings.removeSuffix "/24" config.containers.k3s.extraVeths.ve-k3s.localAddress;
+  containerIP = config.containers.k3s.extraVeths.ve-k3s.localAddress;
   k8sApiPort = 6443;
   artemisPort = 5000;
   dashboardPort = 5001;
@@ -35,8 +35,8 @@ in
     privateNetwork = true;
     hostBridge = "br-mullvad";
     extraVeths.ve-k3s = {
-      localAddress = "172.28.0.2/24";
-      hostAddress = "172.28.0.1/24";
+      localAddress = "172.28.0.2";
+      hostAddress = "172.28.0.1";
     };
     config = { lib, ... }: {
       services.k3s = {
