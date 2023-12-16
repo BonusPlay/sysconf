@@ -41,7 +41,7 @@ in
     bindMounts.obsidian-env = {
       hostPath = config.age.secrets.obsidian-env.path;
       mountPoint = obsidianEnvFile;
-      isReadOnly = true;
+      isReadOnly = false;
     };
 
     config = { config, ... }: {
