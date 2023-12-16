@@ -40,7 +40,7 @@ in
     localAddress = containerIP;
     bindMounts.obsidian-env = {
       hostPath = config.age.secrets.obsidian-env.path;
-      mountPoint = adminPassFile;
+      mountPoint = obsidianEnvFile;
       isReadOnly = true;
     };
 
