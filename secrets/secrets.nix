@@ -59,5 +59,7 @@ in
 
   "telegraf-env.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius vanass moria zhakul ];
 
+  "obsidian-env.age".publicKeys = users ++ [ kaldir ];
+
   "wifi.age".publicKeys = users ++ [ artanis ];
 }

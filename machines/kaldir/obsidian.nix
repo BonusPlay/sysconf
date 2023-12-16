@@ -13,8 +13,15 @@ let
       accessControlAllowCredentials = true;
     };
   };
+  obsidianEnvFile = "/run/obsidian-env";
 in
 {
+  age.secrets.obsidian-env = {
+    file = ../../secrets/obsidian-env.age;
+    mode = "0600";
+    owner = "couchdb";
+  };
+
   custom.traefik.entries = [
     {
       name = "obsidian";
@@ -31,11 +38,17 @@ in
     privateNetwork = true;
     hostAddress = hostIP;
     localAddress = containerIP;
+    bindMounts.obsidian-env = {
+      hostPath = config.age.secrets.obsidian-env.path;
+      mountPoint = adminPassFile;
+      isReadOnly = true;
+    };
 
     config = { config, ... }: {
       services.couchdb = {
         enable = true;
         bindAddress = containerIP;
+        configFile = obsidianEnvFile;
         # https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server.md#configure
         extraConfig = ''
           [couchdb]
