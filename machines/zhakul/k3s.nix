@@ -16,14 +16,14 @@ in
     }
     {
       name = "dashboard";
-      domain = "dashboard.artemis.mlwr.dev";
+      domain = "artemis-dashboard.mlwr.dev";
       port = 9091;
       target = containerIP;
       entrypoints = [ "warps" ];
     }
     {
       name = "k8s-api";
-      domain = "k3s.artemis.mlwr.dev";
+      domain = "artemis-k3s.mlwr.dev";
       port = k8sApiPort;
       target = containerIP;
       entrypoints = [ "warps" ];
