@@ -18,6 +18,7 @@
     ./influx.nix
     ./nextcloud.nix
     ./hedgedoc.nix
+    ./obsidian.nix
   ];
 
   custom = {
