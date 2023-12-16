@@ -19,7 +19,7 @@ in
   age.secrets.obsidian-env = {
     file = ../../secrets/obsidian-env.age;
     mode = "0600";
-    owner = "couchdb";
+    owner = "106"; # hope this works?
   };
 
   custom.traefik.entries = [
