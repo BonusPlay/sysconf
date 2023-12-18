@@ -18,7 +18,10 @@
   };
 
   custom = {
-    base.enable = true;
+    base = {
+      enable = true;
+      allowReboot = false;
+    };
     server = {
       enable = true;
       vm = true;
