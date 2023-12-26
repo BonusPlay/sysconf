@@ -25,10 +25,11 @@
       };
     };
 
-    config = { lib, ... }: {
+    config = { lib, pkgs, ... }: {
       services.transmission = {
         enable = true;
         openPeerPorts = true;
+        package = pkgs.transmission_4;
         settings = {
           incomplete-dir-enabled = true;
           incomplete-dir = "/storage/incomplete";
