@@ -10,6 +10,7 @@ in
       bbenoist.nix
       ms-python.python
       wholroyd.jinja
+      rust-lang.rust-analyzer
       (buildVscodeMarketplaceExtension {
         mktplcRef = {
           publisher = "mshr-h";
