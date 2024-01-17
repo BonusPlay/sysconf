@@ -11,13 +11,9 @@ in
         listeners = [{
           port = port;
           users = {
-            "uganda-door" = {
-              acl = [ "readwrite uganda/#" ];
-              hashedPassword = "$7$101$xlt6Ba/4UwrqfweJ$QjNP5Vc49qFqPC/90QDfoKS+n9gRunzkiSYSANQ3jb1JrLoP6i5Mc5d8JTctnCxLvRZYdkDm8h0ehXCi47YcmA==";
-            };
-            "uganda-chat" = {
-              acl = [ "readwrite uganda/#" ];
-              hashedPassword = "$7$101$JkamWLMhVyWJsd3L$PI2Sht1k4815G3VMvjfyXMkgl1X7o1ShN53ylXEhsbjJh9xfh4AgY0Zoy8rwY0ntGI/tTFep7VT7ls/LXdOc3g==";
+            "esp32" = {
+              acl = [ "readwrite esp32/#" ];
+              hashedPassword = "$7$101$/JRnReEzuZpPuDIO$H9tGTGSv8y6+l8UJsHuYjlJxxeDqfzxM2MeXBavoYigJ57UASmwnpY8s88RaSBBGyenZy8BGsyRtdsFXGICayA==";
             };
           };
         }];
