@@ -2,6 +2,8 @@ let
   port = 8883;
 in
 {
+  networking.firewall.allowedTCPPorts = [ port ];
+
   containers.mosquitto = {
     autoStart = true;
 
