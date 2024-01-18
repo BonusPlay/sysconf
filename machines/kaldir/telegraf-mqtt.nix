@@ -31,14 +31,12 @@ in
               username = "influx";
               password = "$MQTT_PASSWORD";
 
-              name_override = "sensor_data";
-              tag_keys = ["sensor_type"];
+              topic_parsing = {
+                topic = "sensors/+";
+                measurement = "_/measurement";
+                tags = "sensor_id/_";
+              };
             };
-          };
-          processors.strings = {
-            namepass = ["sensor_data"];
-            tag = "sensor_type";
-            separator = "/";
           };
           outputs = {
             influxdb_v2 = {
