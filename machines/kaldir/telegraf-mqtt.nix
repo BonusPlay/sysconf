@@ -16,6 +16,8 @@ in
       mountPoint = telegraf-mqtt-env;
       isReadOnly = true;
     };
+    # required for memguard (dependency of telegraf)
+    additionalCapabilities = [ "CAP_IPC_LOCK" ];
 
     config = { config, ... }: {
       services.telegraf = {
