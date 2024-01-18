@@ -14,11 +14,11 @@ in
           port = port;
           users = {
             "esp32" = {
-              acl = [ "readwrite esp32/#" ];
+              acl = [ "readwrite sensors/esp32/#" ];
               hashedPassword = "$7$101$/JRnReEzuZpPuDIO$H9tGTGSv8y6+l8UJsHuYjlJxxeDqfzxM2MeXBavoYigJ57UASmwnpY8s88RaSBBGyenZy8BGsyRtdsFXGICayA==";
             };
             "influx" = {
-              acl = [ "read #" ];
+              acl = [ "read sensors/#" ];
               hashedPassword = "$7$101$xYbNIGLUm0/j7aN/$zjfObOh7NqO1LRQET1dNxj2F1ft20W5beb7cpT35Q75MP1ObKgizlQ1yJITBFNN40qQGx8z4hD7jOblwWK8k6g==";
             };
             "bonus" = {
