@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   age.secrets.telegraf-mqtt = {
-    file = ../secrets/telegraf-mqtt-env.age;
+    file = ../../secrets/telegraf-mqtt-env.age;
     mode = "0400";
     owner = "telegraf";
   };
