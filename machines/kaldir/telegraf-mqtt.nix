@@ -30,12 +30,13 @@ in
               topics = [ "sensors/#" ];
               username = "influx";
               password = "$MQTT_PASSWORD";
-
-              topic_parsing = {
-                topic = "sensors/+";
-                measurement = "_/measurement";
-                tags = "sensor_id/_";
-              };
+              topic_parsing = [
+                {
+                  topic = "sensors/+";
+                  measurement = "_/measurement";
+                  tags = "sensor_id/_";
+                }
+              ];
             };
           };
           outputs = {
