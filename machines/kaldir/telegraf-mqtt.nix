@@ -30,7 +30,8 @@ in
               topics = [ "sensors/#" ];
               username = "influx";
               password = "$MQTT_PASSWORD";
-              data_format = "float";
+              data_format = "value";
+              data_type = "float";
               topic_parsing = [
                 {
                   topic = "sensors/+";
