@@ -13,6 +13,14 @@ in
       rust-lang.rust-analyzer
       (buildVscodeMarketplaceExtension {
         mktplcRef = {
+          publisher = "Vue";
+          name = "volar";
+          version = "1.8.27";
+          sha256 = "sha256-axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA=";
+        };
+      })
+      (buildVscodeMarketplaceExtension {
+        mktplcRef = {
           publisher = "mshr-h";
           name = "VerilogHDL";
           version = "1.13.0";
