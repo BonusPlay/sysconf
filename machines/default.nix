@@ -19,20 +19,6 @@ let
   };
 in
 {
-  artanis = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    specialArgs = addUnstable "x86_64-linux";
-    modules = [
-      ./artanis
-      ../modules/workstation.nix
-      nixos-hardware.nixosModules.framework-12th-gen-intel
-      home-manager.nixosModules.home-manager
-      agenix.nixosModules.default
-      lanzaboote.nixosModules.lanzaboote
-      nixTrick
-    ];
-  };
-
   zeratul = nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = addUnstable "x86_64-linux";
