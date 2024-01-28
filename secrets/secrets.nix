@@ -58,6 +58,7 @@ in
   "taiga-env.age".publicKeys = users ++ [ braxis ];
 
   "telegraf-env.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius vanass moria zhakul ];
+  "telegraf-mqtt-env.age".publicKeys = users ++ [ kaldir ];
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
