@@ -13,6 +13,10 @@ in
     }
   ];
 
+  networking.nat = {
+    internalInterfaces = [ "ve-influx" ];
+  };
+
   containers.influx = {
     autoStart = true;
     privateNetwork = true;

@@ -22,5 +22,9 @@
         }];
       };
     };
+    nat = {
+      enable = true;
+      externalInterface = "enp3s0";
+    };
   };
 }
