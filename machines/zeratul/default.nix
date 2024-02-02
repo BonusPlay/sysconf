@@ -14,10 +14,6 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 5;
     };
-    tmp = {
-      tmpfsSize = "32G";
-      useTmpfs = true;
-    };
     kernelModules = [ "lkrg" ];
     bootspec.enable = true;
     lanzaboote = {
