@@ -9,29 +9,22 @@
 
 buildGoModule rec {
   pname = "mautrix-slack";
-  version = "0.0.0";
+  version = "unstable-25-09-2023";
 
   src = fetchFromGitHub {
     owner = "mautrix";
     repo = "slack";
-    rev = "466ff2417b33d9caa23d0c9a4d7a692f33adf83b";
-    sha256 = "iG9pjqB82HupA1q09flIa8/TEjCqzH84VxWlKeM+ltk=";
+    rev = "4530ff397d08d93b673cd71da4c2a75d969ca0df";
+    hash = "sha256-zq5Qzdw6MhBJDMmi2SWHTEyOghpfLiQOEf0e2Fn+ww8=";
   };
 
-  vendorSha256 = "Adfz6mHYa22OqEZZHrvst31XdZFo7LuxQI20whq3Zes=";
+  vendorHash = "sha256-Adfz6mHYa22OqEZZHrvst31XdZFo7LuxQI20whq3Zes=";
 
   ldflags = [ "-s" "-w" ];
 
   buildInputs = [ olm ];
 
   doCheck = false;
-
-  #passthru = {
-  #  updateScript = nix-update-script { };
-  #  tests.version = testers.testVersion {
-  #    package = mautrix-slack;
-  #  };
-  #};
 
   meta = with lib; {
     description = "A Matrix-Slack puppeting bridge";

@@ -1,154 +1,207 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.services.mautrix-slack;
   dataDir = "/var/lib/mautrix-slack";
   registrationFile = "${dataDir}/slack-registration.yaml";
-  cfg = config.services.mautrix-slack;
+  settingsFile = "${dataDir}/config.json";
+  settingsFileUnsubstituted = settingsFormat.generate "mautrix-slack-config-unsubstituted.json" cfg.settings;
   settingsFormat = pkgs.formats.json {};
-  settingsFile = settingsFormat.generate "mautrix-slack-config.json" cfg.settings;
-  mautrix-slack = pkgs.callPackage ../pkgs/mautrix-slack.nix {};
-in
-{
-  options = {
-    services.mautrix-slack = {
-      enable = mkEnableOption (lib.mdDoc "A Matrix-Slack puppeting bridge");
+  appservicePort = 29318;
 
-      settings = mkOption rec {
-        apply = recursiveUpdate default;
-        inherit (settingsFormat) type;
-        default = {
-          homeserver = {
-            software = "standard";
-          };
-
-          appservice = rec {
-            database = "sqlite:///${dataDir}/mautrix-slack.db";
-            database_opts = {};
-            hostname = "0.0.0.0";
-            port = 8080;
-            address = "http://localhost:${toString port}";
-          };
-
-          bridge = {
-            permissions."*" = "relay";
-            double_puppet_server_map = {};
-            login_shared_secret_map = {};
-          };
-
-          logging = {
-            min_level = "info";
-            writers = [
-              {
-                type = "stdout";
-                format = "pretty-colored";
-              }
-            ];
-          };
-        };
-        example = literalExpression ''
-          {
-            homeserver = {
-              address = "http://localhost:8008";
-              domain = "public-domain.tld";
-            };
-
-            appservice.public = {
-              prefix = "/public";
-              external = "https://public-appservice-address/public";
-            };
-
-            bridge.permissions = {
-              "example.com" = "full";
-              "@admin:example.com" = "admin";
-            };
-          }
-        '';
-        description = lib.mdDoc ''
-          {file}`config.yaml` configuration as a Nix attribute set.
-          Configuration options should match those described in
-          [example-config.yaml](https://github.com/mautrix/slack/blob/main/example-config.yaml).
-
-          Secret tokens should be specified using {option}`environmentFile`
-          instead of this world-readable attribute set.
-        '';
-      };
-
-      environmentFile = mkOption {
-        type = types.nullOr types.path;
-        default = null;
-        description = lib.mdDoc ''
-          File containing environment variables to be passed to the mautrix-slack service,
-          in which secret tokens can be specified securely by defining values for e.g.
-          `MAUTRIX_SLACK_APPSERVICE_AS_TOKEN`,
-          `MAUTRIX_SLACK_APPSERVICE_HS_TOKEN`.
-
-          These environment variables can also be used to set other options by
-          replacing hierarchy levels by `.`, converting the name to uppercase
-          and prepending `MAUTRIX_SLACK_`.
-          For example, the first value above maps to
-          {option}`settings.appservice.as_token`.
-
-          The environment variable values can be prefixed with `json::` to have
-          them be parsed as JSON. For example, `login_shared_secret_map` can be
-          set as follows:
-          `MAUTRIX_SLACK_BRIDGE_LOGIN_SHARED_SECRET_MAP=json::{"example.com":"secret"}`.
-        '';
-      };
-
-      serviceDependencies = mkOption {
-        type = with types; listOf str;
-        default = optional config.services.matrix-synapse.enable "matrix-synapse.service";
-        defaultText = literalExpression ''
-          optional config.services.matrix-synapse.enable "matrix-synapse.service"
-        '';
-        description = lib.mdDoc ''
-          List of Systemd services to require and wait for when starting the application service.
-        '';
+  mkDefaults = lib.mapAttrsRecursive (n: v: lib.mkDefault v);
+  defaultConfig = {
+    homeserver.address = "http://localhost:8448";
+    appservice = {
+      hostname = "[::]";
+      port = appservicePort;
+      database.type = "sqlite3";
+      database.uri = "${dataDir}/mautrix-slack.db";
+      id = "slack";
+      bot.username = "slackbot";
+      bot.displayname = "Slack Bridge Bot";
+      as_token = "";
+      hs_token = "";
+    };
+    bridge = {
+      username_template = "slack_{{.}}";
+      displayname_template: "{{.RealName}} (S)"
+      bot_displayname_template: "{{.Name}} (bot)"
+      channel_name_template: "#{{.Name}}"
+      double_puppet_server_map = {};
+      login_shared_secret_map = {};
+      command_prefix = "!slack";
+      permissions."*" = "relay";
+      relay.enabled = true;
+    };
+    logging = {
+      min_level = "info";
+      writers = lib.singleton {
+        type = "stdout";
+        format = "pretty-colored";
+        time_format = " ";
       };
     };
   };
 
-  config = mkIf cfg.enable {
-    systemd.services.mautrix-slack = {
-      description = "A Matrix-Slack puppeting bridge";
+in {
+  options.services.mautrix-slack = {
+    enable = lib.mkEnableOption (lib.mdDoc "mautrix-slack, a puppeting/relaybot bridge between Matrix and Slack.");
 
-      wantedBy = [ "multi-user.target" ];
-      wants = [ "network-online.target" ] ++ cfg.serviceDependencies;
-      after = [ "network-online.target" ] ++ cfg.serviceDependencies;
+    settings = lib.mkOption {
+      type = settingsFormat.type;
+      default = defaultConfig;
+      description = lib.mdDoc ''
+        {file}`config.yaml` configuration as a Nix attribute set.
+        Configuration options should match those described in
+        [example-config.yaml](https://github.com/mautrix/slack/blob/master/example-config.yaml).
+        Secret tokens should be specified using {option}`environmentFile`
+        instead of this world-readable attribute set.
+      '';
+      example = {
+        appservice = {
+          database = {
+            type = "postgres";
+            uri = "postgresql:///mautrix_slack?host=/run/postgresql";
+          };
+          id = "slack";
+          ephemeral_events = false;
+        };
+        bridge = {
+          history_sync = {
+            request_full_sync = true;
+          };
+          private_chat_portal_meta = true;
+          mute_bridging = true;
+          encryption = {
+            allow = true;
+            default = true;
+            require = true;
+          };
+          provisioning = {
+            shared_secret = "disable";
+          };
+          permissions = {
+            "example.com" = "user";
+          };
+        };
+      };
+    };
+    environmentFile = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = lib.mdDoc ''
+        File containing environment variables to be passed to the mautrix-slack service,
+        in which secret tokens can be specified securely by optionally defining a value for
+        `MAUTRIX_SLACK_BRIDGE_LOGIN_SHARED_SECRET`.
+      '';
+    };
+
+    serviceDependencies = lib.mkOption {
+      type = with lib.types; listOf str;
+      default = lib.optional config.services.matrix-synapse.enable config.services.matrix-synapse.serviceUnit;
+      defaultText = lib.literalExpression ''
+        optional config.services.matrix-synapse.enable config.services.matrix-synapse.serviceUnits
+      '';
+      description = lib.mdDoc ''
+        List of Systemd services to require and wait for when starting the application service.
+      '';
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+
+    users.users.mautrix-slack = {
+      isSystemUser = true;
+      group = "mautrix-slack";
+      home = dataDir;
+      description = "Mautrix-Slack bridge user";
+    };
+
+    users.groups.mautrix-slack = {};
+
+    services.mautrix-slack.settings = lib.mkMerge (map mkDefaults [
+      defaultConfig
+      # Note: this is defined here to avoid the docs depending on `config`
+      { homeserver.domain = config.services.matrix-synapse.settings.server_name; }
+    ]);
+
+    systemd.services.mautrix-slack = {
+      description = "Mautrix-Slack Service - A Slack bridge for Matrix";
+
+      wantedBy = ["multi-user.target"];
+      wants = ["network-online.target"] ++ cfg.serviceDependencies;
+      after = ["network-online.target"] ++ cfg.serviceDependencies;
 
       preStart = ''
+        # substitute the settings file by environment variables
+        # in this case read from EnvironmentFile
+        test -f '${settingsFile}' && rm -f '${settingsFile}'
+        old_umask=$(umask)
+        umask 0177
+        ${pkgs.envsubst}/bin/envsubst \
+          -o '${settingsFile}' \
+          -i '${settingsFileUnsubstituted}'
+        umask $old_umask
+
         # generate the appservice's registration file if absent
         if [ ! -f '${registrationFile}' ]; then
-          ${mautrix-slack}/bin/mautrix-slack \
+          ${pkgs.mautrix-slack}/bin/mautrix-slack \
             --generate-registration \
             --config='${settingsFile}' \
             --registration='${registrationFile}'
         fi
+        chmod 640 ${registrationFile}
+
+        umask 0177
+        ${pkgs.yq}/bin/yq -s '.[0].appservice.as_token = .[1].as_token
+          | .[0].appservice.hs_token = .[1].hs_token
+          | .[0]' '${settingsFile}' '${registrationFile}' \
+          > '${settingsFile}.tmp'
+        mv '${settingsFile}.tmp' '${settingsFile}'
+        umask $old_umask
       '';
 
       serviceConfig = {
-        Type = "simple";
-        Restart = "always";
-
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        ProtectKernelTunables = true;
-        ProtectKernelModules = true;
-        ProtectControlGroups = true;
-
-        DynamicUser = true;
-        PrivateTmp = true;
-        StateDirectory = baseNameOf dataDir;
-        UMask = "0027";
+        User = "mautrix-slack";
+        Group = "mautrix-slack";
         EnvironmentFile = cfg.environmentFile;
-
+        StateDirectory = baseNameOf dataDir;
+        WorkingDirectory = dataDir;
         ExecStart = ''
-          ${mautrix-slack}/bin/mautrix-slack \
-            --config='${settingsFile}'
+          ${pkgs.mautrix-slack}/bin/mautrix-slack \
+          --config='${settingsFile}' \
+          --registration='${registrationFile}'
         '';
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        NoNewPrivileges = true;
+        PrivateDevices = true;
+        PrivateTmp = true;
+        PrivateUsers = true;
+        ProtectClock = true;
+        ProtectControlGroups = true;
+        ProtectHome = true;
+        ProtectHostname = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectSystem = "strict";
+        Restart = "on-failure";
+        RestartSec = "30s";
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        SystemCallArchitectures = "native";
+        SystemCallErrorNumber = "EPERM";
+        SystemCallFilter = ["@system-service"];
+        Type = "simple";
+        UMask = 0027;
       };
+      restartTriggers = [settingsFileUnsubstituted];
     };
   };
-
-  #meta.maintainers = with maintainers; [ pacien vskilet ];
+  meta.maintainers = with lib.maintainers; [frederictobiasc];
 }

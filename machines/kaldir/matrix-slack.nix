@@ -6,7 +6,7 @@ in
   age.secrets.matrixSlackEnv = {
     file = ../../secrets/matrix/slack-environment.age;
     mode = "0400";
-    owner = "matrix-synapse";
+    group = "matrix-slack";
   };
 
   services.mautrix-slack = {
@@ -22,6 +22,11 @@ in
         address = "http://localhost:${toString port}";
         hostname = "127.0.0.1";
         port = port;
+      };
+
+      bridge.encryption = {
+        allow = true;
+        default = true;
       };
 
       bridge.permissions = {
