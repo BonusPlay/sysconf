@@ -28,9 +28,9 @@
     };
     bridge = {
       username_template = "slack_{{.}}";
-      displayname_template: "{{.RealName}} (S)"
-      bot_displayname_template: "{{.Name}} (bot)"
-      channel_name_template: "#{{.Name}}"
+      displayname_template = "{{.RealName}} (S)";
+      bot_displayname_template = "{{.Name}} (bot)";
+      channel_name_template = "#{{.Name}}";
       double_puppet_server_map = {};
       login_shared_secret_map = {};
       command_prefix = "!slack";
