@@ -11,6 +11,7 @@
   settingsFileUnsubstituted = settingsFormat.generate "mautrix-slack-config-unsubstituted.json" cfg.settings;
   settingsFormat = pkgs.formats.json {};
   appservicePort = 29318;
+  mautrix-slack-pkg = pkgs.callPackage ../pkgs/mautrix-slack.nix {};
 
   mkDefaults = lib.mapAttrsRecursive (n: v: lib.mkDefault v);
   defaultConfig = {
@@ -149,7 +150,7 @@ in {
 
         # generate the appservice's registration file if absent
         if [ ! -f '${registrationFile}' ]; then
-          ${pkgs.mautrix-slack}/bin/mautrix-slack \
+          ${mautrix-slack-pkg}/bin/mautrix-slack \
             --generate-registration \
             --config='${settingsFile}' \
             --registration='${registrationFile}'
@@ -172,7 +173,7 @@ in {
         StateDirectory = baseNameOf dataDir;
         WorkingDirectory = dataDir;
         ExecStart = ''
-          ${pkgs.mautrix-slack}/bin/mautrix-slack \
+          ${mautrix-slack-pkg}/bin/mautrix-slack \
           --config='${settingsFile}' \
           --registration='${registrationFile}'
         '';
