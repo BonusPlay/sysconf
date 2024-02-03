@@ -66,6 +66,7 @@
     discord
     obsidian
     virt-viewer
+    fd
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
