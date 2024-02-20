@@ -6,6 +6,7 @@ in
   programs.vscode = {
     enable = true;
     enableUpdateCheck = false;
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup clang ]);
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       ms-python.python
