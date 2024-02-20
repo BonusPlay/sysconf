@@ -8,8 +8,6 @@
     ./ctf.nix
   ];
 
-  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-
   boot = {
     loader = {
       systemd-boot.enable = lib.mkForce false;
