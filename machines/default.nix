@@ -121,4 +121,15 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # rpi whatsapp matrix bridge
+  redstone = nixpkgs.lib.nixosSystem {
+    system = "aarch64-linux";
+    specialArgs = addUnstable "aarch64-linux";
+    modules = [
+      ./redstone
+      agenix.nixosModules.default
+      nixos-hardware.nixosModules.raspberry-pi-4
+    ];
+  };
 }
