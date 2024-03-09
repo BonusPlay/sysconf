@@ -128,6 +128,7 @@ in
     specialArgs = addUnstable "aarch64-linux";
     modules = [
       ./redstone
+      ../modules/server.nix
       agenix.nixosModules.default
       nixos-hardware.nixosModules.raspberry-pi-4
     ];
