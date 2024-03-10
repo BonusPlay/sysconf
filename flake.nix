@@ -51,6 +51,10 @@
           buildOnTarget = true;
           privilegeEscalationCommand = ["doas" "--"];
         };
+
+        kaldir.deployment = {
+          buildOnTarget = true;
+        };
       };
   };
 }
