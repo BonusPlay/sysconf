@@ -40,7 +40,7 @@ in
     ];
   };
 
-  # vanass (vpn gateway)
+  # vanass (change detection)
   vanass = nixpkgs-unstable.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
@@ -95,16 +95,6 @@ in
     system = "x86_64-linux";
     modules = [
       ./moria
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
-
-  # artemis VM
-  zhakul = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./zhakul
       ../modules/server.nix
       agenix.nixosModules.default
     ];
