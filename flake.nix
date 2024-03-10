@@ -33,7 +33,7 @@
   in {
     nixosConfigurations = (import ./machines inputs);
     colmena = lib.recursiveUpdate
-      (builtins.mapAttrs (k: v: { imports = v._module.args.modules; deployment.targetHost = "${k}.mlwr.dev"; }) self.nixosConfigurations)
+      (builtins.mapAttrs (k: v: { imports = v._module.args.modules; }) self.nixosConfigurations)
       {
         meta = {
           nixpkgs = import nixpkgs {
