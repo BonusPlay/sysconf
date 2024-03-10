@@ -14,8 +14,6 @@
     monitoring.enable = true;
   };
 
-  services.fwupd.enable = true;
-
   hardware.raspberry-pi."4".fkms-3d.enable = true;
   virtualisation.waydroid.enable = true;
 
