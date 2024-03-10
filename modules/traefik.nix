@@ -122,6 +122,7 @@ in
         api = {
           dashboard = true;
         };
+        accessLog = {};
         entryPoints = publicEntrypoint // warpEntrypoint;
       };
       dynamicConfigOptions =
