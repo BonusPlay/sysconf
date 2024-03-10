@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, ... }:
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, colmena, ... }:
 let
   addUnstable = system: {
     nixpkgs-unstable = import nixpkgs-unstable {
@@ -21,7 +21,8 @@ in
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
-      nixTrick
+      #colmena.nixosModules.deploymentOptions
+      #nixTrick
     ];
   };
 
@@ -46,7 +47,6 @@ in
       ./vanass
       ../modules/server.nix
       agenix.nixosModules.default
-      nixTrick
     ];
   };
 
@@ -57,7 +57,6 @@ in
       ./braxis
       ../modules/server.nix
       agenix.nixosModules.default
-      nixTrick
     ];
   };
 
@@ -68,7 +67,6 @@ in
       ./shakuras
       ../modules/server.nix
       agenix.nixosModules.default
-      nixTrick
     ];
   };
 
@@ -79,7 +77,6 @@ in
       ./endion
       ../modules/server.nix
       agenix.nixosModules.default
-      nixTrick
     ];
   };
 
@@ -90,7 +87,6 @@ in
       ./glacius
       ../modules/server.nix
       agenix.nixosModules.default
-      nixTrick
     ];
   };
 

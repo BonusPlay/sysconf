@@ -18,9 +18,39 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        stable.follows = "nixpkgs";
+      };
+    };
   };
 
-  outputs = { ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: let
+    lib = nixpkgs.lib;
+  in {
     nixosConfigurations = (import ./machines inputs);
+    colmena = lib.recursiveUpdate
+      (builtins.mapAttrs (k: v: { imports = v._module.args.modules; deployment.targetHost = "${k}.mlwr.dev"; }) self.nixosConfigurations)
+      {
+        meta = {
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [];
+          };
+          nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
+          nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs) self.nixosConfigurations;
+        };
+
+        defaults.deployment.targetUser = "bonus";
+
+        zeratul.deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
+          privilegeEscalationCommand = ["doas" "--"];
+        };
+      };
   };
 }
