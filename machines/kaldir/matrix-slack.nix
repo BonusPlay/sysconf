@@ -6,7 +6,7 @@ in
   age.secrets.matrixSlackEnv = {
     file = ../../secrets/matrix/slack-environment.age;
     mode = "0400";
-    group = "matrix-slack";
+    group = "mautrix-slack";
   };
 
   services.mautrix-slack = {
