@@ -67,6 +67,7 @@
     obsidian
     virt-viewer
     fd
+    colmena
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin

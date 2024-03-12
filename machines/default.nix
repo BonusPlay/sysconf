@@ -22,7 +22,7 @@ in
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
       #colmena.nixosModules.deploymentOptions
-      #nixTrick
+      nixTrick
     ];
   };
 
