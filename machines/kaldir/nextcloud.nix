@@ -27,7 +27,7 @@ in
   custom.traefik.entries = [
     {
       name = "nextcloud-pub";
-      domain = "nextcloud.bonusplay.pl";
+      domain = "nextcloud-pub.bonusplay.pl";
       target = config.containers.nextcloud.localAddress;
       port = 80;
       middlewares = [
@@ -43,7 +43,7 @@ in
     }
     {
       name = "nextcloud-int";
-      domain = "nextcloud-int.bonusplay.pl";
+      domain = "nextcloud.bonusplay.pl";
       target = config.containers.nextcloud.localAddress;
       port = 80;
       middlewares = [
@@ -78,10 +78,10 @@ in
           upload_max_filesize = "512M";
           post_max_size = "512M";
         };
-        config = {
-          adminpassFile = adminPassFile;
-          extraTrustedDomains = [ "nextcloud-int.bonusplay.pl" ];
+        extraOptions = {
+          trusted_domains = [ "nextcloud-pub.bonusplay.pl" "nextcloud.bonusplay.pl" ];
         };
+        config.adminpassFile = adminPassFile;
       };
 
       system.stateVersion = "23.05";

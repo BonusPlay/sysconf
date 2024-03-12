@@ -17,7 +17,7 @@
     ./ghidra.nix
     ./influx.nix
     ./telegraf-mqtt.nix
-    #./nextcloud.nix
+    ./nextcloud.nix
     ./hedgedoc.nix
     ./obsidian.nix
   ];
