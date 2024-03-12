@@ -27,5 +27,8 @@ in
     services.qemuGuest.enable = cfg.vm;
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
+
+    # for now we do this, later we can add separate account
+    nix.settings.trusted-users = [ "bonus" ];
   };
 }

@@ -47,14 +47,44 @@
 
         defaults.deployment.targetUser = "bonus";
 
-        zeratul.deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
-          privilegeEscalationCommand = ["doas" "--"];
+        braxis.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        endion.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        glacius.deployment = {
+          tags = [ "phys" "server" ];
         };
 
         kaldir.deployment = {
+          tags = [ "phys" "server" ];
           buildOnTarget = true;
+        };
+
+        moria.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        redstone.deployment = {
+          tags = [ "phys" "server" ];
+        };
+
+        shakuras.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        vanass.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        zeratul.deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
+          tags = [ "phys" ];
+          privilegeEscalationCommand = ["doas" "--"];
         };
       };
   };
