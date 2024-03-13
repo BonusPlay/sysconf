@@ -8,8 +8,8 @@ in
 
   virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.ghidra = {
-    # 11.0.1-alpine
-    image = "blacktop/ghidra@sha256:f93de31b54d6ba98fb31c247ce534a342ab587db2340943c4ad899d808469a46";
+    # 11.0.1-alpine ARM!!!
+    image = "blacktop/ghidra@sha256:64c777f1db42fb5c842b43d1de7737408bf1061656224d2727161aea1f954cb5";
     ports = map mkPair (map toString ports);
     volumes = [ "/var/lib/ghidra:/repos" ];
     cmd = [ "server" ];
