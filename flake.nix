@@ -76,10 +76,6 @@
           tags = [ "vm" "server" ];
         };
 
-        vanass.deployment = {
-          tags = [ "vm" "server" ];
-        };
-
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;
