@@ -10,7 +10,7 @@
         filemode = false;
       };
       submodule = {
-        recruse = true;
+        recurse = true;
       };
       init = {
         defaultBranch = "master";
