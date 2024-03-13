@@ -5,48 +5,52 @@ let
 in
 {
   options.custom.monitoring = {
-    enable = mkEnableOption "monitoring using telegraf";
+    enable = mkEnableOption "monitoring using vector-dev";
   };
 
   config = mkIf cfg.enable {
-    age.secrets.telegraf = {
-      file = ../secrets/telegraf-env.age;
-      mode = "0400";
-      owner = "telegraf";
+    age.secrets.vector-dev = {
+      file = ../secrets/vector-dev.age;
+      mode = "0444";
     };
 
-    services.telegraf = {
+    services.vector = {
       enable = true;
-      environmentFiles = [ config.age.secrets.telegraf.path ];
-      extraConfig = {
-        inputs = {
-          cpu = {
-            ## Whether to report per-cpu stats or not
-            percpu = true;
-            ## Whether to report total system cpu stats or not
-            totalcpu = true;
-            ## If true, collect raw CPU time metrics
-            collect_cpu_time = false;
-            ## If true, compute and report the sum of all non-idle CPU states
-            report_active = false;
+      journaldAccess = true;
+      settings = {
+        sources = {
+          metrics = {
+            type = "host_metrics";
+            filesystem.filesystems.includes = [ "ext*" "btrfs" ];
+            #filesystem.filesystems.excludes = [ "tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs" "efivarfs" "pstore" "bpf" "configfs" "debugfs" "rpc_pipefs" "ramfs" "hugetlbfs" "mqueue" ];
           };
-          disk = {
-            ignore_fs = [ "tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs" ];
+          logs = {
+            type = "journald";
           };
-          diskio = {};
-          mem = {};
-          nstat = {};
-          processes = {};
-          swap = {};
-          system = {};
         };
-        outputs = {
-          influxdb_v2 = {
-            urls = [ "https://influx.mlwr.dev" ];
-            token = "$INFLUX_TOKEN";
-            organization = "khala";
+
+        secret.agenix = {
+          type = "exec";
+          command = [ "cat" config.age.secrets.vector-dev.path ];
+        };
+
+        sinks = {
+          influx_metrics = {
+            type = "influxdb_metrics";
+            inputs = [ "metrics" ];
             bucket = "hosts";
-            content_encoding = "gzip";
+            endpoint = "https://influx.mlwr.dev";
+            org = "khala";
+            token = "SECRET[agenix.influx_token]";
+          };
+          influx_logs = {
+            type = "influxdb_logs";
+            inputs = [ "logs" ];
+            bucket = "hosts";
+            endpoint = "https://influx.mlwr.dev";
+            org = "khala";
+            token = "SECRET[agenix.influx_token]";
+            measurement = "vector-logs";
           };
         };
       };
