@@ -10,6 +10,13 @@ let
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   });
+  agenixExe = {
+    nixpkgs.overlays = [
+      (final: prev: {
+        agenix = agenix.packages.${prev.system}.default;
+      })
+    ];
+  };
 in
 {
   zeratul = nixpkgs.lib.nixosSystem {
@@ -21,8 +28,8 @@ in
       home-manager.nixosModules.home-manager
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
-      #colmena.nixosModules.deploymentOptions
       nixTrick
+      agenixExe
     ];
   };
 

@@ -68,6 +68,7 @@
     virt-viewer
     fd
     colmena
+    agenix
   ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
