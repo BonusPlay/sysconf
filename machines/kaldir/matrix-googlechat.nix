@@ -9,12 +9,9 @@ in
     owner = "matrix-synapse";
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    mautrix-googlechat = nixpkgs-unstable.mautrix-googlechat;
-  };
-
   services.mautrix-googlechat = {
     enable = true;
+    package = nixpkgs-unstable.mautrix-googlechat;
     environmentFile = config.age.secrets.matrixGooglechatEnv.path;
     settings = {
       homeserver = {

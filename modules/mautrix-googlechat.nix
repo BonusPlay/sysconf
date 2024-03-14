@@ -13,6 +13,13 @@ in {
     services.mautrix-googlechat = {
       enable = mkEnableOption (lib.mdDoc "A Matrix-Google Chat puppeting bridge");
 
+      package = mkOption {
+        default = pkgs.mautrix-googlechat;
+        type = types.package;
+        defaultText = literalExpression "pkgs.mautrix-googlechat";
+        description = lib.mdDoc "mautrix-googlechat derivation to use";
+      };
+
       settings = mkOption rec {
         apply = recursiveUpdate default;
         inherit (settingsFormat) type;
@@ -150,15 +157,15 @@ in {
       preStart = ''
         # generate the appservice's registration file if absent
         if [ ! -f '${registrationFile}' ]; then
-          ${pkgs.mautrix-googlechat}/bin/mautrix-googlechat \
+          ${cfg.package}/bin/mautrix-googlechat \
             --generate-registration \
-            --base-config='${pkgs.mautrix-googlechat}/share/mautrix-googlechat/example-config.yaml' \
+            --base-config='${cfg.package}/share/mautrix-googlechat/example-config.yaml' \
             --config='${settingsFile}' \
             --registration='${registrationFile}'
         fi
-      '' + lib.optionalString (pkgs.mautrix-googlechat ? alembic) ''
+      '' + lib.optionalString (cfg.package ? alembic) ''
         # run automatic database init and migration scripts
-        ${pkgs.mautrix-googlechat.alembic}/bin/alembic -x config='${settingsFile}' upgrade head
+        ${cfg.package.alembic}/bin/alembic -x config='${settingsFile}' upgrade head
       '';
 
       serviceConfig = {
@@ -173,13 +180,13 @@ in {
 
         DynamicUser = true;
         PrivateTmp = true;
-        WorkingDirectory = pkgs.mautrix-googlechat; # necessary for the database migration scripts to be found
+        WorkingDirectory = cfg.package; # necessary for the database migration scripts to be found
         StateDirectory = baseNameOf dataDir;
         UMask = "0027";
         EnvironmentFile = cfg.environmentFile;
 
         ExecStart = ''
-          ${pkgs.mautrix-googlechat}/bin/mautrix-googlechat \
+          ${cfg.package}/bin/mautrix-googlechat \
             --config='${settingsFile}'
         '';
       };
