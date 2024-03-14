@@ -2,7 +2,6 @@
 with lib;
 let
   cfg = config.custom.workstation;
-
 in
 {
   imports = [
@@ -21,8 +20,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.config.allowUnfree = true;
-
     custom.base.autoUpgrade = false;
 
     services.fwupd.enable = true;

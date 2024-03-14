@@ -24,11 +24,6 @@
 
   services.openssh.enable = true;
 
-  # can't really do anything about this
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   custom = {
     base.enable = true;
     workstation = {

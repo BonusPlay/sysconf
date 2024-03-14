@@ -1,27 +1,48 @@
 { nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, colmena, ... }:
 let
-  addUnstable = system: {
-    nixpkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
+  agenixOverlay = final: prev: {
+    agenix = agenix.packages.${prev.system}.default;
+  };
+
+  pkgs = system: import nixpkgs {
+    inherit system;
+
+    overlays = [ agenixOverlay ];
+
+    # I'd like to disable this and allow it occasionally, but turns out
+    # it uses way more RAM during flake evaluation :(
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
     };
   };
-  nixTrick = ({ ... }: {
+
+  pkgs-unstable = system: import nixpkgs-unstable {
+    inherit system;
+
+    config = {
+      hostPlatform = system;
+      allowUnfree = true;
+    };
+  };
+
+  addUnstable = system: {
+    nixpkgs-unstable = pkgs-unstable system;
+  };
+
+  nixTrick = {
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-  });
-  agenixExe = {
-    nixpkgs.overlays = [
-      (final: prev: {
-        agenix = agenix.packages.${prev.system}.default;
-      })
-    ];
   };
 in
 {
-  zeratul = nixpkgs.lib.nixosSystem {
+  zeratul = let
     system = "x86_64-linux";
-    specialArgs = addUnstable "x86_64-linux";
+  in nixpkgs.lib.nixosSystem {
+    pkgs = pkgs system;
+    specialArgs = addUnstable system;
     modules = [
       ./zeratul
       ../modules/workstation.nix
@@ -29,14 +50,15 @@ in
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
       nixTrick
-      agenixExe
     ];
   };
 
   # oci vm
-  kaldir = nixpkgs.lib.nixosSystem {
+  kaldir = let
     system = "aarch64-linux";
-    specialArgs = addUnstable "aarch64-linux";
+  in nixpkgs.lib.nixosSystem {
+    pkgs = pkgs system;
+    specialArgs = addUnstable system;
     modules = [
       ./kaldir
       ../modules/server.nix
@@ -48,8 +70,8 @@ in
   };
 
   # kncyber VM
-  braxis = nixpkgs-unstable.lib.nixosSystem {
-    system = "x86_64-linux";
+  braxis = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./braxis
       ../modules/server.nix
@@ -58,8 +80,8 @@ in
   };
 
   # shakuras (git runner)
-  shakuras = nixpkgs-unstable.lib.nixosSystem {
-    system = "x86_64-linux";
+  shakuras = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./shakuras
       ../modules/server.nix
@@ -68,18 +90,20 @@ in
   };
 
   # self-hosted development
-  endion = nixpkgs-unstable.lib.nixosSystem {
-    system = "x86_64-linux";
+  endion = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./endion
       ../modules/server.nix
       agenix.nixosModules.default
+      # idk why THIS SPECIFIC config requires this specified again
+      ({ nixpkgs.hostPlatform = "x86_64-linux"; })
     ];
   };
 
   # nas
-  glacius = nixpkgs-unstable.lib.nixosSystem {
-    system = "x86_64-linux";
+  glacius = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./glacius
       ../modules/server.nix
@@ -87,9 +111,9 @@ in
     ];
   };
 
-  # downloader VM
+  ## downloader VM
   moria = nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./moria
       ../modules/server.nix
@@ -99,8 +123,7 @@ in
 
   # rpi whatsapp matrix bridge
   redstone = nixpkgs.lib.nixosSystem {
-    system = "aarch64-linux";
-    specialArgs = addUnstable "aarch64-linux";
+    pkgs = pkgs "aarch64-linux";
     modules = [
       ./redstone
       ../modules/server.nix

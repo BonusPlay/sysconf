@@ -11,7 +11,6 @@ in
     {
       name = "git";
       domain = "git.mlwr.dev";
-      #target = config.containers.gitea.localAddress;
       port = config.containers.gitea.config.services.gitea.settings.server.HTTP_PORT;
       entrypoints = [ "warps" ];
     }
@@ -21,14 +20,14 @@ in
     autoStart = true;
 
     config = { config, pkgs, ... }: {
-      services.gitea = {
+      services.forgejo = {
         enable = true;
-        package = pkgs.forgejo;
         settings = {
           session.COOKIE_SECURE = true;
           service.DISABLE_REGISTRATION = true;
           actions.ENABLED = true;
           repository.DEFAULT_BRANCH = "master";
+          DEFAULT.APP_NAME = "Bonus's git";
           server = {
             DOMAIN = "mlwr.dev";
             SSH_PORT = SSH_PORT;
@@ -38,13 +37,12 @@ in
           };
         };
         lfs.enable = true;
-        appName = "Bonus's git";
       };
 
-      system.stateVersion = "22.11";
+      system.stateVersion = "23.11";
       networking.firewall = {
         enable = true;
-        allowedTCPPorts = [ config.services.gitea.settings.server.HTTP_PORT config.services.gitea.settings.server.SSH_PORT ];
+        allowedTCPPorts = [ config.services.forgejo.settings.server.HTTP_PORT config.services.forgejo.settings.server.SSH_PORT ];
       };
     };
   };
