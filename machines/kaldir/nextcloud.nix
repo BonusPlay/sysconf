@@ -70,10 +70,10 @@ in
         hostName = "nextcloud.bonusplay.pl";
         https = true;
         configureRedis = true;
-        #extraApps = with config.services.nextcloud.package.packages.apps; {
-        #  inherit news contacts calendar tasks;
-        #};
-        #extraAppsEnable = true;
+        extraApps = with config.services.nextcloud.package.packages.apps; {
+          inherit news contacts calendar tasks;
+        };
+        extraAppsEnable = true;
         phpOptions = {
           upload_max_filesize = "512M";
           post_max_size = "512M";
