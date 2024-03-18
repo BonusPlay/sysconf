@@ -3,6 +3,7 @@
     enable = true;
     sessionVariables = {
       EDITOR = "nvim";
+      HISTCONTROL = "ignorespace";
     };
     shellAliases = {
       # security
