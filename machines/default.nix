@@ -64,6 +64,7 @@ in
       ../modules/server.nix
       ../modules/mautrix-slack.nix
       ../modules/mautrix-googlechat.nix
+      ../modules/mautrix-meta.nix
       agenix.nixosModules.default
       nixTrick
     ];

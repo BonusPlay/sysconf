@@ -17,8 +17,8 @@
       mode = "0400";
       owner = "matrix-synapse";
     };
-    matrixFacebookRegistration = {
-      file = ../../secrets/matrix/facebook-registration.age;
+    matrixMetaRegistration = {
+      file = ../../secrets/matrix/meta-registration.age;
       mode = "0400";
       owner = "matrix-synapse";
     };
@@ -71,7 +71,7 @@
       }];
       app_service_config_files = [
         config.age.secrets.matrixTelegramRegistration.path
-        config.age.secrets.matrixFacebookRegistration.path
+        config.age.secrets.matrixMetaRegistration.path
         config.age.secrets.matrixGooglechatRegistration.path
         config.age.secrets.matrixSlackRegistration.path
         #config.age.secrets.matrixHookshotRegistration.path

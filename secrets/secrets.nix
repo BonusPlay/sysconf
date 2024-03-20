@@ -24,17 +24,10 @@ in
 
   "gitea-runner-linux-token.age".publicKeys = users ++ [ shakuras ];
 
-  "matrix-synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
-  "matrix-synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
-  "matrix-facebook-registration.age".publicKeys = users ++ [ kaldir ];
-  "matrix-facebook-environment.age".publicKeys = users ++ [ kaldir ];
-  "matrix-telegram-registration.age".publicKeys = users ++ [ kaldir ];
-  "matrix-telegram-environment.age".publicKeys = users ++ [ kaldir ];
-
   "matrix/synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix/synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
-  "matrix/facebook-registration.age".publicKeys = users ++ [ kaldir ];
-  "matrix/facebook-environment.age".publicKeys = users ++ [ kaldir ];
+  "matrix/meta-registration.age".publicKeys = users ++ [ kaldir ];
+  "matrix/meta-environment.age".publicKeys = users ++ [ kaldir ];
   "matrix/telegram-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix/telegram-environment.age".publicKeys = users ++ [ kaldir ];
   "matrix/googlechat-registration.age".publicKeys = users ++ [ kaldir ];

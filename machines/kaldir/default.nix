@@ -8,7 +8,7 @@
     ./grafana.nix
     ./taskserver.nix
     ./matrix-synapse.nix
-    ./matrix-facebook.nix
+    ./matrix-meta.nix
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./matrix-googlechat.nix
