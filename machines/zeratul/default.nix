@@ -13,6 +13,7 @@
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 5;
+      timeout = 5;
     };
     kernelModules = [ "lkrg" ];
     bootspec.enable = true;
