@@ -84,6 +84,16 @@ in
       default = null;
       description = "warp-net IP to listen on";
     };
+    staticCfg = mkOption {
+      type = types.attrs;
+      default = {};
+      description = "custom static config appended at the end";
+    };
+    dynamicCfg = mkOption {
+      type = types.attrs;
+      default = {};
+      description = "custom dynamic config appended at the end";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -124,7 +134,7 @@ in
         };
         accessLog = {};
         entryPoints = publicEntrypoint // warpEntrypoint;
-      };
+      } // cfg.staticCfg;
       dynamicConfigOptions =
         let
           # traefik fails to load config if there are no middlewares
@@ -156,7 +166,7 @@ in
         {
           http = httpConfig;
           tls.certificates = tlsConfig;
-        };
+        } // cfg.dynamicCfg;
     };
   };
 }
