@@ -26,6 +26,11 @@
         stable.follows = "nixpkgs";
       };
     };
+
+    authentik-nix = {
+      url = "github:nix-community/authentik-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let

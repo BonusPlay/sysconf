@@ -15,9 +15,9 @@ in
 {
   "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul ];
   "cloudflare-tunnel.age".publicKeys = users;
-  "cloudflare/keycloak-tunnel.age".publicKeys = users ++ [ braxis ];
+  "cloudflare/authentik-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
-  "cloudflare/taiga-tunnel.age".publicKeys = users ++ [ braxis ];
+  "cloudflare/vikunja-tunnel.age".publicKeys = users ++ [ braxis ];
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
   "docker-registry-service-account.age".publicKeys = users;
@@ -42,10 +42,10 @@ in
   "taskwarrior/server.age".publicKeys = users;
   "taskwarrior/bonus.age".publicKeys = users ++ [ artanis zeratul ];
 
-  "keycloak-pass.age".publicKeys = users ++ [ braxis ];
+  "authentik-env.age".publicKeys = users ++ [ braxis ];
   "hedgedoc-env.age".publicKeys = users ++ [ braxis ];
   "discord-bot.age".publicKeys = users ++ [ braxis ];
-  "taiga-env.age".publicKeys = users ++ [ braxis ];
+  "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "vector-dev.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius moria zhakul ];
   "telegraf-mqtt-env.age".publicKeys = users ++ [ kaldir ];

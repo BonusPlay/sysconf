@@ -1,11 +1,10 @@
-{ lib, config, pkgs, home-manager, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    ./keycloak.nix
     ./discord-bot.nix
+    ./authentik.nix
     ./hedgedoc.nix
-    ./taiga.nix
+    ./vikunja.nix
   ];
 
   custom = {
@@ -20,10 +19,7 @@
 
   boot = {
     loader.grub.device = "/dev/sda";
-    tmp = {
-      useTmpfs = true;
-      cleanOnBoot = true;
-    };
+    tmp.cleanOnBoot = true;
   };
 
   networking.hostName = "braxis";

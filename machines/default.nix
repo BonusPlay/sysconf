@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, colmena, ... }:
+{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, authentik-nix, ... }:
 let
   agenixOverlay = final: prev: {
     agenix = agenix.packages.${prev.system}.default;
@@ -77,6 +77,7 @@ in
       ./braxis
       ../modules/server.nix
       agenix.nixosModules.default
+      authentik-nix.nixosModules.default
     ];
   };
 
