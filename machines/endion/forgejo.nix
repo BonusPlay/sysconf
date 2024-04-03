@@ -11,12 +11,12 @@ in
     {
       name = "git";
       domain = "git.mlwr.dev";
-      port = config.containers.gitea.config.services.gitea.settings.server.HTTP_PORT;
+      port = config.containers.forgejo.config.services.forgejo.settings.server.HTTP_PORT;
       entrypoints = [ "warps" ];
     }
   ];
 
-  containers.gitea = {
+  containers.forgejo = {
     autoStart = true;
 
     config = { config, pkgs, ... }: {

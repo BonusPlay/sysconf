@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./gitea.nix
+    ./forgejo.nix
   ];
 
   custom = {
@@ -21,7 +21,6 @@
 
   boot = {
     loader.grub.device = "/dev/sda";
-    tmp.useTmpfs = true;
     tmp.cleanOnBoot = true;
   };
 
