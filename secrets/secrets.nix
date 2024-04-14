@@ -48,7 +48,6 @@ in
   "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "vector-dev.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius moria zhakul ];
-  "telegraf-mqtt-env.age".publicKeys = users ++ [ kaldir ];
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 

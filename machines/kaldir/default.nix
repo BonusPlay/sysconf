@@ -16,7 +16,6 @@
     ./mosquitto.nix
     ./ghidra.nix
     ./influx.nix
-    ./telegraf-mqtt.nix
     ./nextcloud.nix
     ./hedgedoc.nix
     ./obsidian.nix
