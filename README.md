@@ -7,7 +7,7 @@ files     - static files
 home      - home manager configuration
 pkgs      - wip nixos packages not yet merged to nixpkgs
 machines  - nixos configurations per machine
-modules   - 
+modules   - unmerged nixos modules
 secrets   - agenix encrypted secrets
 ```
 
