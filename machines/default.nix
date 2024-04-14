@@ -124,13 +124,23 @@ in
   };
 
   # rpi whatsapp matrix bridge
-  redstone = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "aarch64-linux";
+  #redstone = nixpkgs.lib.nixosSystem {
+  #  pkgs = pkgs "aarch64-linux";
+  #  modules = [
+  #    ./redstone
+  #    ../modules/server.nix
+  #    agenix.nixosModules.default
+  #    nixos-hardware.nixosModules.raspberry-pi-4
+  #  ];
+  #};
+
+  # network bridge
+  warpprism = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
-      ./redstone
+      ./warpprism
       ../modules/server.nix
       agenix.nixosModules.default
-      nixos-hardware.nixosModules.raspberry-pi-4
     ];
   };
 }

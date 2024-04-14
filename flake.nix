@@ -81,6 +81,10 @@
           tags = [ "vm" "server" ];
         };
 
+        warpprism.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;

@@ -11,6 +11,10 @@ let
   glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAjgL7ZGbCxc0XG0Lf3FViJLgKwBcaEYFeUrnd8Rroe";
   moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMc8a5YtCK/C0cS962UESqvJ9Ap1u/7ipza9p1ah16MQ";
   zhakul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPO4gx3kfwSmuP5QGhx7M0dMEComlnf4/IWDkj+bkGE";
+  warpprism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd9N8Cd/3cQGe+vxCCy4Ct7W06kUylfA7GJjozYnjUU";
+
+  all = [ artanis kaldir braxis endion shakuras zeratul glacius moria zhakul warpprism ];
+  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism ];
 in
 {
   "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul ];
@@ -47,7 +51,7 @@ in
   "discord-bot.age".publicKeys = users ++ [ braxis ];
   "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
-  "vector-dev.age".publicKeys = users ++ [ kaldir braxis endion shakuras glacius moria zhakul ];
+  "vector-dev.age".publicKeys = users ++ servers;
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
