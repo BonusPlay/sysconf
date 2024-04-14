@@ -52,6 +52,7 @@ in
   "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "vector-dev.age".publicKeys = users ++ servers;
+  "scv-key.age".publicKeys = users ++ servers;
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 

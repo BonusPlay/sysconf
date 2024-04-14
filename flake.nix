@@ -73,8 +73,12 @@
           tags = [ "vm" "server" ];
         };
 
-        redstone.deployment = {
-          tags = [ "phys" "server" ];
+        #redstone.deployment = {
+        #  tags = [ "phys" "server" ];
+        #};
+
+        scv.deployment = {
+          tags = [ "vm" "server" ];
         };
 
         shakuras.deployment = {

@@ -134,6 +134,16 @@ in
   #  ];
   #};
 
+  # nix builder
+  scv = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./scv
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
   # network bridge
   warpprism = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
