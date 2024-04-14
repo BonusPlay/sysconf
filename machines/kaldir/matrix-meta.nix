@@ -27,10 +27,10 @@ in
           type = "sqlite3-fk-wal";
           uri = "file:${config.services.mautrix-meta.dataDir}/mautrix-meta.db?_txlock=immediate";
         };
-        id = "facebook2";
+        id = "facebook";
         bot = {
-          username = "facebookbot2";
-          displayname = "Facebook bridge bot2";
+          username = "facebookbot";
+          displayname = "Facebook bridge bot";
           avatar = "mxc://maunium.net/ygtkteZsXnGJLJHRchUwYWak";
         };
       };
