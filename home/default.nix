@@ -8,6 +8,7 @@
     ./gpg.nix
     ./nix-index.nix
     ./pass.nix
+    ./redshift.nix
     ./ssh.nix
     ./tmux.nix
     ./vscode.nix
