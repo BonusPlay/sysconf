@@ -13,20 +13,15 @@
     warp-net = {
       enable = true;
       exitNode = true;
+      extraFlags = [ "--advertise-routes=192.168.195.0/24,10.147.18.1/32" ];
     };
     monitoring.enable = true;
   };
 
-  services.tailscale.extraUpFlags = [
-    "--advertise-routes=192.168.195.0/24"
-  ];
-
-  # do iptables nat here
-
   # mikrotik network
   services.zerotierone = {
     enable = true;
-    joinNetworks = [ "9e1948db634c148a" ];
+    joinNetworks = [ "9e1948db634c148a" "93afae59633bb8b8" ];
   };
 
   system.activationScripts.bonus = let
@@ -36,7 +31,8 @@
       };
     };
   in ''
-    echo "9e1948db634c148a=mikrotik" >> /var/lib/zerotier-one/devicemap;
+    echo "9e1948db634c148a=mikrotik" > /var/lib/zerotier-one/devicemap;
+    echo "93afae59633bb8b8=kncyber" >> /var/lib/zerotier-one/devicemap;
   '';
 
   boot = {
