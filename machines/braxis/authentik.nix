@@ -20,6 +20,9 @@
         "auth.kncyber.pl" = {
           service = "http://localhost:9000";
         };
+        "artemis.kncyber.pl" = {
+          service = "http://localhost:9000";
+        };
       };
     };
   };
