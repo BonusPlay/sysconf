@@ -42,10 +42,6 @@ in
   "nextcloud/admin-pass.age".publicKeys = users ++ [ kaldir ];
   "nextcloud/basic-auth.age".publicKeys = users ++ [ kaldir ];
 
-  "taskwarrior/ca.age".publicKeys = users;
-  "taskwarrior/server.age".publicKeys = users;
-  "taskwarrior/bonus.age".publicKeys = users ++ [ artanis zeratul ];
-
   "authentik-env.age".publicKeys = users ++ [ braxis ];
   "hedgedoc-env.age".publicKeys = users ++ [ braxis ];
   "discord-bot.age".publicKeys = users ++ [ braxis ];

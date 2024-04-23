@@ -55,8 +55,6 @@
     nfs-utils
     openssl
     bridge-utils
-    taskwarrior
-    taskwarrior-tui
     nmap
     hexyl
     firefox-wayland

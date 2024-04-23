@@ -6,7 +6,6 @@
 
     ./docker-registry.nix
     ./grafana.nix
-    ./taskserver.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
