@@ -40,6 +40,11 @@ in
     time.timeZone = mkDefault "UTC";
     i18n.defaultLocale = "en_US.UTF-8";
 
+    # solves issue with splitdns cloudflare overwriting our custom DNS
+    services.resolved.extraConfig = ''
+      Cache=no-negative
+    '';
+
     environment.systemPackages = with pkgs; [
       neovim
       wget
