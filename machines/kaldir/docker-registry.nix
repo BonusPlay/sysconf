@@ -40,7 +40,6 @@ in
         enable = true;
         allowedTCPPorts = [ port ];
       };
-      environment.etc."resolv.conf".text = "nameserver 1.1.1.1";
     };
   };
 }

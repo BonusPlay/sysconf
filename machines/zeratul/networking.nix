@@ -5,7 +5,6 @@
 
   networking = {
     hostName = "zeratul";
-    nameservers = [ "1.1.1.1" "8.8.8.8" ];
     useNetworkd = true;
     firewall = {
       allowedTCPPorts = [ 13337 ];
