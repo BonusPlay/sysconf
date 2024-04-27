@@ -4,56 +4,57 @@ let
   cfg = config.custom.monitoring;
 in
 {
+  imports = [
+    ./grafna-alloy.nix
+  ];
+
   options.custom.monitoring = {
-    enable = mkEnableOption "monitoring using vector-dev";
+    enable = mkEnableOption "monitoring";
   };
 
   config = mkIf cfg.enable {
-    age.secrets.vector-dev = {
-      file = ../secrets/vector-dev.age;
-      mode = "0444";
+    age.secrets.grafana-alloy = {
+      file = ../secrets/grafana-alloy.age;
+      mode = "0400";
+      owner = "grafana-alloy";
     };
 
-    services.vector = {
+    services.grafana-alloy = {
       enable = true;
-      journaldAccess = true;
-      settings = {
-        sources = {
-          metrics = {
-            type = "host_metrics";
-            filesystem.filesystems.includes = [ "ext*" "btrfs" ];
-            #filesystem.filesystems.excludes = [ "tmpfs" "devtmpfs" "devfs" "iso9660" "overlay" "aufs" "squashfs" "efivarfs" "pstore" "bpf" "configfs" "debugfs" "rpc_pipefs" "ramfs" "hugetlbfs" "mqueue" ];
-          };
-          logs = {
-            type = "journald";
-          };
-        };
+      environmentFile = config.age.secrets.grafana-alloy.path;
+      configuration = ''
+        prometheus.exporter.unix "local_metrics" {}
 
-        secret.agenix = {
-          type = "exec";
-          command = [ "cat" config.age.secrets.vector-dev.path ];
-        };
+        prometheus.scrape "local_prom" {
+          scrape_interval = "10s"
+          targets = prometheus.exporter.unix.local_metrics.targets
+          forward_to = [ prometheus.remote_write.remote_prom.receiver, ]
+        }
 
-        sinks = {
-          influx_metrics = {
-            type = "influxdb_metrics";
-            inputs = [ "metrics" ];
-            bucket = "hosts";
-            endpoint = "https://influx.mlwr.dev";
-            org = "khala";
-            token = "SECRET[agenix.influx_token]";
-          };
-          influx_logs = {
-            type = "influxdb_logs";
-            inputs = [ "logs" ];
-            bucket = "hosts";
-            endpoint = "https://influx.mlwr.dev";
-            org = "khala";
-            token = "SECRET[agenix.influx_token]";
-            measurement = "vector-logs";
-          };
-        };
-      };
+        loki.source.journal "local_journald" {
+          forward_to    = [ loki.write.remote_loki.receiver ]
+        }
+
+        prometheus.remote_write "remote_prom" {
+          endpoint {
+            url = env("PROMETHEUS_URL")
+            basic_auth {
+              username = env("PROMETHEUS_USERNAME")
+              password = env("PROMETHEUS_PASSWORD")
+            }
+          }
+        }
+
+        loki.write "remote_loki" {
+          endpoint {
+            url = env("LOKI_URL")
+            basic_auth {
+              username = env("LOKI_USERNAME")
+              password = env("LOKI_PASSWORD")
+            }
+          }
+        }
+      '';
     };
   };
 }

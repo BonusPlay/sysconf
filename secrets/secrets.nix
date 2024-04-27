@@ -47,7 +47,7 @@ in
   "discord-bot.age".publicKeys = users ++ [ braxis ];
   "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
-  "vector-dev.age".publicKeys = users ++ servers;
+  "grafana-alloy.age".publicKeys = users ++ servers;
   "scv-key.age".publicKeys = users ++ servers;
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
