@@ -1,4 +1,4 @@
-{ nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, lanzaboote, authentik-nix, ... }:
+{ nixpkgs, home-manager, nixos-hardware, agenix, lanzaboote, authentik-nix, ... }:
 let
   agenixOverlay = final: prev: {
     agenix = agenix.packages.${prev.system}.default;
@@ -19,30 +19,14 @@ let
     };
   };
 
-  pkgs-unstable = system: import nixpkgs-unstable {
-    inherit system;
-
-    config = {
-      hostPlatform = system;
-      allowUnfree = true;
-    };
-  };
-
-  addUnstable = system: {
-    nixpkgs-unstable = pkgs-unstable system;
-  };
-
   nixTrick = {
     nix.registry.nixpkgs.flake = nixpkgs;
     nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
   };
 in
 {
-  zeratul = let
-    system = "x86_64-linux";
-  in nixpkgs.lib.nixosSystem {
-    pkgs = pkgs system;
-    specialArgs = addUnstable system;
+  zeratul = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
     modules = [
       ./zeratul
       ../modules/workstation.nix
@@ -54,11 +38,8 @@ in
   };
 
   # oci vm
-  kaldir = let
-    system = "aarch64-linux";
-  in nixpkgs.lib.nixosSystem {
-    pkgs = pkgs system;
-    specialArgs = addUnstable system;
+  kaldir = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "aarch64-linux";
     modules = [
       ./kaldir
       ../modules/server.nix
@@ -81,16 +62,6 @@ in
     ];
   };
 
-  # shakuras (git runner)
-  shakuras = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./shakuras
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
-
   # self-hosted development
   endion = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
@@ -98,8 +69,16 @@ in
       ./endion
       ../modules/server.nix
       agenix.nixosModules.default
-      # idk why THIS SPECIFIC config requires this specified again
-      ({ nixpkgs.hostPlatform = "x86_64-linux"; })
+    ];
+  };
+
+  # shakuras (git runner)
+  shakuras = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./shakuras
+      ../modules/server.nix
+      agenix.nixosModules.default
     ];
   };
 

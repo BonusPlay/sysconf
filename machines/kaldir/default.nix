@@ -1,4 +1,4 @@
-{ lib, config, pkgs, nixpkgs-unstable, home-manager, ... }:
+{ lib, config, pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix

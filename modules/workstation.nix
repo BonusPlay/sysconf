@@ -1,4 +1,4 @@
-{ config, lib, pkgs, nixpkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 let
   cfg = config.custom.workstation;
@@ -43,7 +43,6 @@ in
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
-      extraSpecialArgs = { inherit nixpkgs-unstable; };
       users.bonus = {
         imports = [
           ../home

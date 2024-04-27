@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./alacritty.nix
@@ -68,7 +68,6 @@
     fd
     colmena
     agenix
-  ]) ++ (with nixpkgs-unstable; [
     imhex
     tor-browser-bundle-bin
     signal-desktop

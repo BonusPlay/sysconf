@@ -1,4 +1,4 @@
-{ config, nixpkgs-unstable, ... }:
+{ config, ... }:
 let
   port = 4083;
 in
@@ -11,7 +11,6 @@ in
 
   services.mautrix-googlechat = {
     enable = true;
-    package = nixpkgs-unstable.mautrix-googlechat;
     environmentFile = config.age.secrets.matrixGooglechatEnv.path;
     settings = {
       homeserver = {
