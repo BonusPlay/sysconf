@@ -12,9 +12,9 @@ let
   moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMc8a5YtCK/C0cS962UESqvJ9Ap1u/7ipza9p1ah16MQ";
   zhakul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPO4gx3kfwSmuP5QGhx7M0dMEComlnf4/IWDkj+bkGE";
   warpprism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd9N8Cd/3cQGe+vxCCy4Ct7W06kUylfA7GJjozYnjUU";
+  scv = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDytxrtFGC30xkdBCPqAyUROA78eLN/PTBXt2v+HZcmg";
 
-  all = [ artanis kaldir braxis endion shakuras zeratul glacius moria zhakul warpprism ];
-  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism ];
+  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv ];
 in
 {
   "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul ];

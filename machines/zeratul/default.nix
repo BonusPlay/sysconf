@@ -26,7 +26,10 @@
   services.openssh.enable = true;
 
   custom = {
-    base.enable = true;
+    base = {
+      enable = true;
+      remoteBuild = false;
+    };
     workstation = {
       enable = true;
       useWayland = false;

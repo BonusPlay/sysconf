@@ -21,6 +21,11 @@ in
       default = true;
       description = "allow reboot (in case of luks)";
     };
+    remoteBuild = mkOption {
+      type = types.bool;
+      default = true;
+      description = "use remote nix builders";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -29,6 +34,27 @@ in
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
+      buildMachines = [
+        {
+          system = "x86_64-linux";
+          sshUser = "builder";
+          sshKey = "/run/agenix/scv-key";
+          maxJobs = 4;
+          hostName = "scv.mlwr.dev";
+        }
+        {
+          system = "aarch64-linux";
+          sshUser = "bonus";
+          #sshKey = "/home/q3k/.ssh/id_ed25519";
+          maxJobs = 2;
+          hostName = "kaldir.bonusplay.pl";
+        }
+      ];
+      distributedBuilds = cfg.remoteBuild;
+    };
+
+    age.secrets.scv-key = mkIf cfg.remoteBuild {
+      file = ../secrets/scv-key.age;
     };
 
     system.autoUpgrade = {
