@@ -11,16 +11,13 @@
 
   boot = {
     loader.grub.device = "/dev/sda";
-    tmp = {
-      useTmpfs = true;
-      cleanOnBoot = true;
-    };
+    tmp.cleanOnBoot = true;
   };
 
   custom = {
     base = {
       enable = true;
-      allowReboot = false;
+      autoUpgrade = false;
     };
     server = {
       enable = true;

@@ -3,19 +3,13 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-
-    ./docker-registry.nix
     ./grafana.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
     ./matrix-irc.nix
-    ./matrix-googlechat.nix
     ./matrix-slack.nix
-    ./mosquitto.nix
     ./ghidra.nix
-    ./influx.nix
-    ./nextcloud.nix
     ./hedgedoc.nix
     ./obsidian.nix
   ];

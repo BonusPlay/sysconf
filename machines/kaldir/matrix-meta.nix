@@ -5,13 +5,12 @@ in
 {
   age.secrets.matrixMetaEnv = {
     file = ../../secrets/matrix/meta-environment.age;
-    mode = "0400";
-    owner = "mautrix-meta";
+    mode = "0440";
+    group = "mautrix-meta";
   };
 
-  services.mautrix-meta = {
+  services.mautrix-meta.instances.facebook = {
     enable = true;
-    package = pkgs.callPackage ../../pkgs/mautrix-meta.nix {};
     environmentFile = config.age.secrets.matrixMetaEnv.path;
     settings = {
       homeserver = {
@@ -25,7 +24,7 @@ in
         port = port;
         database = {
           type = "sqlite3-fk-wal";
-          uri = "file:${config.services.mautrix-meta.dataDir}/mautrix-meta.db?_txlock=immediate";
+          uri = "file:${config.services.mautrix-meta.instances.facebook.dataDir}/mautrix-meta.db?_txlock=immediate";
         };
         id = "facebook";
         bot = {

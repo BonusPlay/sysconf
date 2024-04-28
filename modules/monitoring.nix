@@ -25,14 +25,63 @@ in
       configuration = ''
         prometheus.exporter.unix "local_metrics" {}
 
+        discovery.relabel "relabel_prom" {
+          targets = prometheus.exporter.unix.local_metrics.targets
+
+          rule {
+            target_label = "instance"
+            replacement  = constants.hostname
+          }
+
+          rule {
+            target_label = "job"
+            replacement = "integrations/node_exporter"
+          }
+        }
+
         prometheus.scrape "local_prom" {
           scrape_interval = "10s"
-          targets = prometheus.exporter.unix.local_metrics.targets
-          forward_to = [ prometheus.remote_write.remote_prom.receiver, ]
+          targets = discovery.relabel.relabel_prom.output
+          forward_to = [ prometheus.relabel.relabel_prom2.receiver ]
+        }
+
+        prometheus.relabel "relabel_prom2" {
+          forward_to = [ prometheus.remote_write.remote_prom.receiver ]
+
+          rule {
+            source_labels = ["__name__"]
+            regex         = "node_scrape_collector_.+"
+            action        = "drop"
+          }
         }
 
         loki.source.journal "local_journald" {
+          relabel_rules = discovery.relabel.relabel_loki.rules
           forward_to    = [ loki.write.remote_loki.receiver ]
+        }
+
+        discovery.relabel "relabel_loki" {
+          targets = []
+
+          rule {
+            source_labels = ["__journal__systemd_unit"]
+            target_label  = "unit"
+          }
+
+          rule {
+            source_labels = ["__journal__boot_id"]
+            target_label  = "boot_id"
+          }
+
+          rule {
+            source_labels = ["__journal__transport"]
+            target_label  = "transport"
+          }
+
+          rule {
+            source_labels = ["__journal_priority_keyword"]
+            target_label  = "level"
+          }
         }
 
         prometheus.remote_write "remote_prom" {

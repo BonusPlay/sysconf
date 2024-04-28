@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.gpg = {
     enable = true;
@@ -27,7 +27,7 @@
     enableFishIntegration = false;
     enableSshSupport = true;
     enableZshIntegration = false;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-qt;
 
     # hardening
     # https://www.designed-cybersecurity.com/tutorials/harden-gnupg-config/

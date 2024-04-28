@@ -28,7 +28,7 @@
   custom = {
     base = {
       enable = true;
-      remoteBuild = false;
+      remoteBuild = true;
     };
     workstation = {
       enable = true;

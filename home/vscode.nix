@@ -16,16 +16,16 @@ in
         mktplcRef = {
           publisher = "Vue";
           name = "volar";
-          version = "1.8.27";
-          sha256 = "sha256-6FktlAJmOD3dQNn2TV83ROw41NXZ/MgquB0RFQqwwW0=";
+          version = "2.0.14";
+          sha256 = "sha256-UQGatAUuDCd5/sisp8UOTuP1gtNMxTpOHQLzO28eOYg=";
         };
       })
       (buildVscodeMarketplaceExtension {
         mktplcRef = {
           publisher = "mshr-h";
           name = "VerilogHDL";
-          version = "1.13.0";
-          sha256 = "sha256-axmXLwVmMCmf7Vov0MbSaqM921uKUDeggxhCNoc6eYA=";
+          version = "1.14.1";
+          sha256 = "sha256-XAA33fA2kqIdJoVx9lwsl8c0PVKGkt39cg3UWypfoFU=";
         };
       })
     ];

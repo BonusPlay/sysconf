@@ -34,7 +34,6 @@ in
   # openid_secret) via environment variables, so we have to treat the
   # config.yaml as a secret and can't use the nixos service
 
-  # User and group
   users = {
     users.vikunja = {
       isSystemUser = true;
@@ -42,17 +41,14 @@ in
       group = "vikunja";
     };
 
-    groups.vikunja = {
-      name = "vikunja";
-    };
+    groups.vikunja.name = "vikunja";
   };
 
-  # vikunja-api
-  systemd.services.vikunja-api = {
-    description = "vikunja-api";
+  systemd.services.vikunja = {
+    description = "vikunja";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.vikunja-api ];
+    path = [ pkgs.vikunja ];
     restartTriggers = [
       config.age.secrets."vikunja-config".path
     ];
@@ -95,34 +91,9 @@ in
       User = "vikunja";
       Group = "vikunja";
       StateDirectory = "vikunja";
-      ExecStart = "${pkgs.vikunja-api}/bin/vikunja";
+      ExecStart = "${pkgs.vikunja}/bin/vikunja";
       Restart = "always";
       BindReadOnlyPaths = [ "${config.age.secrets.vikunja-config.path}:/etc/vikunja/config.yaml" ];
-    };
-  };
-
-  # vikunja-frontend
-  services.nginx = {
-    enable = true;
-    virtualHosts."${domain}" = {
-      listen = [
-        {
-          addr = "127.0.0.1";
-          port = 3457;
-        }
-      ];
-      locations = {
-        "/" = {
-          root = "${config.services.vikunja.package-frontend}";
-          tryFiles = "try_files $uri $uri/ /";
-        };
-        "~* ^/(api|dav|\\.well-known)/" = {
-          proxyPass = "http://${config.systemd.services.vikunja-api.environment.VIKUNJA_SERVICE_INTERFACE}";
-          extraConfig = ''
-            client_max_body_size 20M;
-          '';
-        };
-      };
     };
   };
 }

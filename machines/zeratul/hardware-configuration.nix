@@ -27,7 +27,13 @@
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
-  swapDevices = [ ];
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/4f193cf6-5545-4f12-b2a7-7f37becf4d76";
+      fsType = "btrfs";
+      options = [ "subvol=swap" "noatime" ];
+    };
+
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

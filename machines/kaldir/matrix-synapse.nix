@@ -22,11 +22,6 @@
       mode = "0400";
       owner = "matrix-synapse";
     };
-    matrixGooglechatRegistration = {
-      file = ../../secrets/matrix/googlechat-registration.age;
-      mode = "0400";
-      owner = "matrix-synapse";
-    };
     matrixSlackRegistration = {
       file = ../../secrets/matrix/slack-registration.age;
       mode = "0400";
@@ -72,7 +67,6 @@
       app_service_config_files = [
         config.age.secrets.matrixTelegramRegistration.path
         config.age.secrets.matrixMetaRegistration.path
-        config.age.secrets.matrixGooglechatRegistration.path
         config.age.secrets.matrixSlackRegistration.path
         #config.age.secrets.matrixHookshotRegistration.path
         "/var/lib/heisenbridge/registration.yml"
