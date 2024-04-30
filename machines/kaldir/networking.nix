@@ -3,6 +3,7 @@
   networking = {
     hostName = "kaldir";
     dhcpcd.enable = false;
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
     firewall = {
       allowedTCPPorts = [ 13337 ];
       allowedUDPPorts = [ 13337 ];
@@ -26,4 +27,6 @@
       externalInterface = "enp3s0";
     };
   };
+
+  services.resolved.enable = true;
 }

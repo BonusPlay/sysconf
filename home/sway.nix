@@ -139,8 +139,6 @@
           # Add support for 10th workspace
           "${cfg.config.modifier}+0" = "workspace number 10";
           "${cfg.config.modifier}+Shift+0" = "move container to workspace number 10";
-
-          "${cfg.config.modifier}+G" = "exec /home/bonus/priv/gachi-login/run.sh";
         };
     };
   };

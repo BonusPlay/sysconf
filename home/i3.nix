@@ -86,7 +86,7 @@
           "${cfg.config.modifier}+Shift+9" = "move container to workspace number 9";
 
           "${cfg.config.modifier}+Shift+c" = "reload";
-          "${cfg.config.modifier}+Shift+e" = "${pkgs.i3}/bin/i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'";
+          "${cfg.config.modifier}+Shift+e" = "exec ${pkgs.i3}/bin/i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' '${pkgs.i3}/bin/i3-msg exit'";
 
           "${cfg.config.modifier}+r" = "mode resize";
 
@@ -110,11 +110,11 @@
           "${cfg.config.modifier}+Shift+0" = "move container to workspace number 10";
 
           Scroll_Lock = ''exec "if [ `xset -q | grep 'LED' | awk '{print $10}'` -eq '00000000' ]; then xset led 3; else xset -led 3; fi'';
-          "${cfg.config.modifier}+L" = "exec i3lock -e -f -c 212121";
+          "${cfg.config.modifier}+L" = "exec ${pkgs.i3lock}/bin/i3lock -e -f -c 212121";
+
+          # Goldwarden
+          "${cfg.config.modifier}+P" = "exec ${pkgs.dbus}/bin/dbus-send --type=method_call --dest=com.quexten.Goldwarden.autofill /com/quexten/Goldwarden com.quexten.Goldwarden.Autofill.autofill";
         };
     };
   };
-
-  home.packages = with pkgs; [
-  ];
 }

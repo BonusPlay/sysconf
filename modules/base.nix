@@ -13,7 +13,7 @@ in
     };
     autoUpgrade = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "allow auto upgrade mechanism";
     };
     allowReboot = mkOption {
