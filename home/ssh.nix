@@ -2,7 +2,7 @@
   programs.ssh = {
     enable = true;
     compression = true;
-    hashKnownHosts = true;
+    hashKnownHosts = false;
     serverAliveInterval = 60;
   };
 }
