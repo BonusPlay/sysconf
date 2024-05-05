@@ -2,6 +2,7 @@
 with lib;
 let
   cfg = config.custom.traefik;
+  recursiveMerge = objs: lib.foldl' lib.recursiveUpdate {} objs;
   publicEntrypoint = if (isNull cfg.publicIP) then {} else {
     webunsafe = {
       address = "${cfg.publicIP}:80";
@@ -9,6 +10,7 @@ let
         redirections.entrypoint.to = "webs";
         redirections.entrypoint.scheme = "https";
       };
+      http3 = {};
     };
     webs = {
       address = "${cfg.publicIP}:443";
@@ -22,6 +24,7 @@ let
         redirections.entrypoint.to = "warps";
         redirections.entrypoint.scheme = "https";
       };
+      http3 = {};
     };
     warps = {
       address = "${cfg.warpIP}:443";
@@ -125,16 +128,13 @@ in
 
     services.traefik = {
       enable = true;
-      staticConfigOptions = {
-        experimental = {
-          http3 = true;
-        };
-        api = {
-          dashboard = true;
-        };
-        accessLog = {};
-        entryPoints = publicEntrypoint // warpEntrypoint;
-      } // cfg.staticCfg;
+      staticConfigOptions = recursiveMerge [
+        {
+          accessLog = {};
+          entryPoints = publicEntrypoint // warpEntrypoint;
+        }
+	cfg.staticCfg
+      ];
       dynamicConfigOptions =
         let
           # traefik fails to load config if there are no middlewares
@@ -163,10 +163,13 @@ in
           };
           tlsConfig = map mkTlsEntry cfg.acmeDomains;
         in
-        {
-          http = httpConfig;
-          tls.certificates = tlsConfig;
-        } // cfg.dynamicCfg;
+	recursiveMerge [
+          {
+            http = httpConfig;
+            tls.certificates = tlsConfig;
+          }
+	  cfg.dynamicCfg
+	];
     };
   };
 }

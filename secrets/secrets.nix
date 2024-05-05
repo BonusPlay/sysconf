@@ -12,17 +12,19 @@ let
   zhakul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPO4gx3kfwSmuP5QGhx7M0dMEComlnf4/IWDkj+bkGE";
   warpprism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd9N8Cd/3cQGe+vxCCy4Ct7W06kUylfA7GJjozYnjUU";
   scv = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDytxrtFGC30xkdBCPqAyUROA78eLN/PTBXt2v+HZcmg";
+  bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
 
-  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv ];
+  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in
 {
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul bunker ];
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/authentik-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/vikunja-tunnel.age".publicKeys = users ++ [ braxis ];
+  "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
   "docker-registry-service-account.age".publicKeys = users;
@@ -38,8 +40,8 @@ in
   "matrix/slack-registration.age".publicKeys = users ++ [ kaldir ];
   "matrix/slack-environment.age".publicKeys = users ++ [ kaldir ];
 
-  "nextcloud/admin-pass.age".publicKeys = users ++ [ kaldir ];
-  "nextcloud/basic-auth.age".publicKeys = users ++ [ kaldir ];
+  "nextcloud/admin-pass.age".publicKeys = users ++ [ bunker ];
+  "nextcloud/basic-auth.age".publicKeys = users ++ [ bunker ];
 
   "authentik-env.age".publicKeys = users ++ [ braxis ];
   "hedgedoc-env.age".publicKeys = users ++ [ braxis ];

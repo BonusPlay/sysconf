@@ -90,6 +90,11 @@
           tags = [ "vm" "server" ];
         };
 
+	bunker.deployment = {
+          tags = [ "vm" "server" ];
+	  targetHost = "192.168.4.103";
+	};
+
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;

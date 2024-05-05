@@ -123,4 +123,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # network bridge
+  bunker = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./bunker
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }
