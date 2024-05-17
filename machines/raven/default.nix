@@ -1,13 +1,9 @@
+{ lib, config, pkgs, home-manager, ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    ./forgejo.nix
+    ./step-ca.nix
   ];
-
-  boot = {
-    loader.grub.device = "/dev/sda";
-    tmp.cleanOnBoot = true;
-  };
 
   custom = {
     base.enable = true;
@@ -19,7 +15,10 @@
     monitoring.enable = true;
   };
 
-  services.caddy.enable = true;
+  boot = {
+    loader.grub.device = "/dev/sda";
+    tmp.cleanOnBoot = true;
+  };
 
-  networking.hostName = "endion";
+  networking.hostName = "raven";
 }

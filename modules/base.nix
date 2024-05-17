@@ -67,9 +67,15 @@ in
     i18n.defaultLocale = "en_US.UTF-8";
 
     # solves issue with splitdns cloudflare overwriting our custom DNS
-    services.resolved.extraConfig = ''
-      Cache=no-negative
-    '';
+    services.resolved = {
+      enable = true;
+      extraConfig = ''
+        Cache=no-negative
+      '';
+    };
+
+    environment.etc."ssl/certs/warp-net.crt".source = ../files/warp-net-root.crt;
+    security.pki.certificateFiles = [ ../files/warp-net-root.crt ];
 
     environment.systemPackages = with pkgs; [
       neovim

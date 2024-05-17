@@ -37,6 +37,13 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = (import ./machines inputs);
+    #colmena = {
+    #  meta = {
+    #    nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+    #    nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
+    #    nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs) self.nixosConfigurations;
+    #  };
+    #} // builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations;
 
     colmena = lib.recursiveUpdate
       (builtins.mapAttrs (k: v: { imports = v._module.args.modules; }) self.nixosConfigurations)
@@ -90,17 +97,24 @@
           tags = [ "vm" "server" ];
         };
 
-	bunker.deployment = {
+        bunker.deployment = {
           tags = [ "vm" "server" ];
-	  targetHost = "192.168.4.103";
-	};
+        };
+
+        raven.deployment = {
+          tags = [ "vm" "server" ];
+        };
+
+        nexus.deployment = {
+          tags = [ "vm" "server" ];
+        };
 
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
-        };
+	};
       };
   };
 }

@@ -1,13 +1,22 @@
 { config, ... }:
 {
-  custom.traefik.entries = [
-    {
-      name = "git";
-      domain = "git.mlwr.dev";
-      port = config.services.forgejo.settings.server.HTTP_PORT;
-      entrypoints = [ "warps" ];
-    }
-  ];
+  services.caddy.virtualHosts.forgejo = {
+    listenAddresses = [ "100.99.52.31" ];
+    hostName = "git.warp.lan";
+    extraConfig = ''
+      tls {
+        curves secp384r1
+        key_type p384
+        issuer acme {
+          dir https://pki.warp.lan/acme/warp/directory
+          email acme@git.warp.lan
+          trusted_roots ${../../files/warp-net-root.crt}
+          disable_tlsalpn_challenge
+        }
+      }
+      reverse_proxy http://${config.services.forgejo.settings.server.HTTP_ADDRESS}:${toString config.services.forgejo.settings.server.HTTP_PORT}
+    '';
+  };
 
   services.forgejo = {
     enable = true;

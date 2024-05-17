@@ -2,11 +2,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./nextcloud.nix
-    ./onlyoffice.nix
+    ./home-assistant.nix
+    ./mosquitto.nix
   ];
-
-  # TODO: maybe tunnel via kaldir?
 
   custom = {
     base.enable = true;
@@ -24,18 +22,5 @@
     tmp.cleanOnBoot = true;
   };
 
-  networking = {
-    hostName = "bunker";
-    useDHCP = false;
-    bridges.br-docs.interfaces = [];
-    interfaces = {
-      enp6s18.useDHCP = true;
-      br-docs.ipv4.addresses = [
-        {
-          address = "172.28.0.1";
-          prefixLength = 24;
-        }
-      ];
-    };
-  };
+  networking.hostName = "nexus";
 }

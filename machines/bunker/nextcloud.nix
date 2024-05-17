@@ -1,14 +1,7 @@
 { config, ... }:
 let
   adminPassFile = "/run/adminPassFile";
-  nextcloudMiddleware = {
-    nextcloudHeaders.headers = {
-      hostsProxyHeaders = [
-        "X-Forwarded-Host"
-      ];
-      referrerPolicy = "same-origin";
-    };
-  };
+  containerAddr = "172.28.0.2";
 in
 {
   age.secrets.nextcloud-admin-pass = {
@@ -17,82 +10,38 @@ in
     owner = "root";
   };
 
-  age.secrets.nextcloudUsersFile = {
-    file = ../../secrets/nextcloud/basic-auth.age;
-    mode = "0400";
-    owner = "traefik";
-  };
+  custom.caddy.entries = [
+    {
+      entrypoints = [ "100.112.114.72" "172.28.0.1" ];
+      domain = "nextcloud.warp.lan";
+      #target = config.containers.nextcloud.localAddress;
+      target = containerAddr;
+      port = 80;
+    }
+  ];
 
-  # TODO: cloudflare doesn't have SSL cert for this domain
-
-  #age.secrets.nextcloud-tunnel = {
-  #  file = ../../secrets/cloudflare/nextcloud-tunnel.age;
-  #  mode = "0400";
-  #  owner = "cloudflared";
-  #};
-
-  #services.cloudflared = {
-  #  enable = true;
-  #  tunnels = {
-  #    "a246de8c-52fb-4958-8bae-ef0e9b6e663f" = {
-  #      credentialsFile = config.age.secrets.nextcloud-tunnel.path;
-  #      default = "http_status:404";
-  #      ingress = {
-  #        "nextcloud.bonusplay.pl" = {
-  #          service = "https://localhost:443";
-  #        };
-  #      };
-  #    };
-  #  };
-  #};
-
-  custom.traefik = {
-    entries = [
-      #{
-      #  name = "nextcloud-pub";
-      #  domain = "nextcloud.bonusplay.pl";
-      #  target = config.containers.nextcloud.localAddress;
-      #  port = 80;
-      #  middlewares = [
-      #    {
-      #      nextcloudAuth.basicAuth = {
-      #        usersFile = config.age.secrets.nextcloudUsersFile.path;
-      #        removeHeader = true;
-      #      };
-      #    }
-      #    nextcloudMiddleware
-      #  ];
-      #  entrypoints = [ "webs" ];
-      #}
-      {
-        name = "nextcloud-int";
-        domain = "nextcloud.mlwr.dev";
-        target = config.containers.nextcloud.localAddress;
-        port = 80;
-        middlewares = [
-          nextcloudMiddleware
-        ];
-        entrypoints = [ "warps" ];
-      }
-    ];
-  };
+  # for some unknown to me reason, nextcloud attempts to connect to onlyoffice to port :80 no matter what
+  # this is a workaround for that
+  networking.firewall.interfaces.br-docs.allowedTCPPorts = [ 80 443 ];
 
   containers.nextcloud = {
     autoStart = true;
+    privateNetwork = true;
+    extraVeths.ve-nc = {
+      hostBridge = "br-docs";
+      localAddress = "${containerAddr}/24";
+    };
     bindMounts.adminpassFile = {
       hostPath = config.age.secrets.nextcloud-admin-pass.path;
       mountPoint = adminPassFile;
       isReadOnly = true;
     };
-    privateNetwork = true;
-    hostAddress = "172.28.3.1";
-    localAddress = "172.28.3.2";
 
     config = { config, pkgs, ... }: {
       services.nextcloud = {
         enable = true;
 	package = pkgs.nextcloud29;
-        hostName = "nextcloud.bonusplay.pl";
+        hostName = "nextcloud.warp.lan";
         https = true;
         configureRedis = true;
         extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -104,13 +53,14 @@ in
           upload_max_filesize = "512M";
           post_max_size = "512M";
         };
-        settings = {
-          trusted_domains = [ "nextcloud.bonusplay.pl" "nextcloud.mlwr.dev" ];
-        };
         config.adminpassFile = adminPassFile;
       };
 
+      environment.etc."ssl/certs/warp-net.crt".source = ../../files/warp-net-root.crt;
+      security.pki.certificateFiles = [ ../../files/warp-net-root.crt ];
+
       system.stateVersion = "unstable";
+      networking.extraHosts = "172.28.0.1 onlyoffice.warp.lan";
       networking.firewall = {
         enable = true;
         allowedTCPPorts = [ 80 ];

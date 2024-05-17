@@ -3,6 +3,15 @@ let
   agenixOverlay = final: prev: {
     agenix = agenix.packages.${prev.system}.default;
   };
+  # hotfix for bug https://github.com/NixOS/nixpkgs/issues/290926
+  #pcscdOverlay = final: prev: {
+  #  pcsclite = prev.pcsclite.overrideAttrs (old: {
+  #    postPatch = ''
+  #      substituteInPlace src/libredirect.c src/spy/libpcscspy.c \
+  #        --replace-fail "libpcsclite_real.so.1" "$lib/lib/libpcsclite_real.so.1"
+  #    '';
+  #  });
+  #};
   pkgs = system: import nixpkgs {
     inherit system;
     overlays = [ agenixOverlay ];
@@ -124,11 +133,31 @@ in
     ];
   };
 
-  # network bridge
+  # nextcloud + onlyoffice
   bunker = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [
       ./bunker
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  # pki
+  raven = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./raven
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  # home-assistant
+  nexus = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./nexus
       ../modules/server.nix
       agenix.nixosModules.default
     ];
