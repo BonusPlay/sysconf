@@ -1,22 +1,13 @@
 { config, ... }:
 {
-  services.caddy.virtualHosts.forgejo = {
-    listenAddresses = [ "100.99.52.31" ];
-    hostName = "git.warp.lan";
-    extraConfig = ''
-      tls {
-        curves secp384r1
-        key_type p384
-        issuer acme {
-          dir https://pki.warp.lan/acme/warp/directory
-          email acme@git.warp.lan
-          trusted_roots ${../../files/warp-net-root.crt}
-          disable_tlsalpn_challenge
-        }
-      }
-      reverse_proxy http://${config.services.forgejo.settings.server.HTTP_ADDRESS}:${toString config.services.forgejo.settings.server.HTTP_PORT}
-    '';
-  };
+  custom.caddy.entries = [
+    {
+      entrypoints = [ "100.99.52.31" ];
+      domain = "git.warp.lan";
+      target = config.services.forgejo.settings.server.HTTP_ADDRESS;
+      port = config.services.forgejo.settings.server.HTTP_PORT;
+    }
+  ];
 
   services.forgejo = {
     enable = true;

@@ -17,9 +17,8 @@
     };
     warp-net.enable = true;
     monitoring.enable = true;
+    caddy.enable = true;
   };
-
-  services.caddy.enable = true;
 
   networking.hostName = "endion";
 }
