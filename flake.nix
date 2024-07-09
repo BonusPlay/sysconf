@@ -27,8 +27,7 @@
     };
 
     authentik-nix = {
-      #url = "github:nix-community/authentik-nix";
-      url = "github:BonusPlay/authentik-nix/fix/nodejs_21";
+      url = "github:nix-community/authentik-nix/node-22";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
