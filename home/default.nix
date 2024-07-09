@@ -19,7 +19,6 @@ in
     ./redshift.nix
     ./ssh.nix
     ./tmux.nix
-    ./vscode.nix
   ];
 
   home.packages = (with pkgs; [
