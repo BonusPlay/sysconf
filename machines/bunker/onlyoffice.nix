@@ -17,9 +17,9 @@ in
       target = containerAddr;
       port = 80;
       # https://github.com/ONLYOFFICE/DocumentServer/issues/2186#issuecomment-1768196783
-      extraConfig = ''
-        header +content-security-policy upgrade-insecure-requests
-      '';
+      #extraConfig = ''
+      #  header +content-security-policy upgrade-insecure-requests
+      #'';
     }
   ];
 
@@ -57,6 +57,22 @@ in
         onlyoffice-docservice.environment.NODE_EXTRA_CA_CERTS = ../../files/warp-net-root.crt;
         onlyoffice-converter.environment.NODE_EXTRA_CA_CERTS = ../../files/warp-net-root.crt;
       };
+
+      services.nginx.virtualHosts.${config.services.onlyoffice.hostname}.extraConfig = lib.mkForce ''
+        rewrite ^/$ /welcome/ redirect;
+        rewrite ^\/OfficeWeb(\/apps\/.*)$ /${config.services.onlyoffice.package.version}/web-apps$1 redirect;
+        rewrite ^(\/web-apps\/apps\/(?!api\/).*)$ /${config.services.onlyoffice.package.version}$1 redirect;
+
+        # Ensure standard forwarded headers are set correctly
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+        proxy_set_header X-Forwarded-Host $http_x_forwarded_host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # required for websocket
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+      '';
 
       system.stateVersion = "unstable";
       networking.extraHosts = "172.28.0.1 nextcloud.warp.lan";

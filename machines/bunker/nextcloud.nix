@@ -1,13 +1,21 @@
 { config, ... }:
 let
   adminPassFile = "/run/adminPassFile";
+  s3secretFile = "/run/s3secret";
   containerAddr = "172.28.0.2";
 in
 {
-  age.secrets.nextcloud-admin-pass = {
-    file = ../../secrets/nextcloud/admin-pass.age;
-    mode = "0444";
-    owner = "root";
+  age.secrets = {
+    nextcloud-admin-pass = {
+      file = ../../secrets/nextcloud/admin-pass.age;
+      mode = "0444";
+      owner = "root";
+    };
+    nextcloud-s3-secret = {
+      file = ../../secrets/nextcloud/s3-secret.age;
+      mode = "0444";
+      owner = "root";
+    };
   };
 
   custom.caddy.entries = [
@@ -36,6 +44,17 @@ in
       mountPoint = adminPassFile;
       isReadOnly = true;
     };
+    bindMounts.s3secretFile = {
+      hostPath = config.age.secrets.nextcloud-s3-secret.path;
+      mountPoint = s3secretFile;
+      isReadOnly = true;
+    };
+    bindMounts.warpCaCert = {
+      #hostPath = toString ../../files/warp-net-root.crt; WHY THE FUCK DOES THIS NOT WORK
+      hostPath = "/etc/ssl/certs/warp-net.crt";
+      mountPoint = "${config.containers.nextcloud.config.services.nextcloud.datadir}/data/files_external/warp.crt";
+      isReadOnly = true;
+    };
 
     config = { config, pkgs, ... }: {
       services.nextcloud = {
@@ -53,7 +72,19 @@ in
           upload_max_filesize = "512M";
           post_max_size = "512M";
         };
-        config.adminpassFile = adminPassFile;
+        config = {
+	  adminpassFile = adminPassFile;
+	  #objectstore.s3 = {
+	  #  enable = true;
+	  #  hostname = "s3.warp.lan";
+	  #  key = "iKqEzDBpQowqM7TuWdDC"; # access-key
+	  #  region = "eu-warp-1";
+	  #  bucket = "nextcloud";
+	  #  secretFile = s3secretFile;
+	  #  usePathStyle = true;
+	  #  autocreate = false;
+	  #};
+	};
       };
 
       environment.etc."ssl/certs/warp-net.crt".source = ../../files/warp-net-root.crt;
