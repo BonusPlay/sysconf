@@ -85,11 +85,10 @@ in
   #  ];
   #};
 
-  # nas
-  glacius = nixpkgs.lib.nixosSystem {
+  vortex = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [
-      ./glacius
+      ./vortex
       ../modules/server.nix
       agenix.nixosModules.default
     ];

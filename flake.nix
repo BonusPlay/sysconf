@@ -108,6 +108,10 @@
           tags = [ "vm" "server" ];
         };
 
+	vortex.deployment = {
+	  tags = [ "vm" "server" ];
+	};
+
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;
