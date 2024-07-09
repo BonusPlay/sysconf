@@ -94,16 +94,6 @@ in
     ];
   };
 
-  ## downloader VM
-  moria = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./moria
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
-
   # rpi whatsapp matrix bridge
   #redstone = nixpkgs.lib.nixosSystem {
   #  pkgs = pkgs "aarch64-linux";
