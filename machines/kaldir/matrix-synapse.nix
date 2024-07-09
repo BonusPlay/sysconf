@@ -34,12 +34,11 @@
     #};
   };
 
-  custom.traefik.entries = [
+  custom.caddy.entries = [
     {
-      name = "matrix";
+      entrypoints = [ "10.0.0.131" ];
       domain = "matrix.bonusplay.pl";
       port = 4080;
-      entrypoints = [ "webs" ];
     }
   ];
 

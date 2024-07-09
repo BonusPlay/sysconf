@@ -43,6 +43,11 @@ in
             default = "";
             description = "extra config per domain";
           };
+          extraProxyConfig = mkOption {
+            type = types.str;
+            default = "";
+            description = "extra config in reverse_proxy block";
+          };
         };
       });
     };
@@ -80,14 +85,18 @@ in
     };
 
     services.caddy = let
-      acmeDir = entry: "/var/lib/acme/${entry.domain}/";
+      acmeDir = entry: "/var/lib/acme/${extractMainDomain entry.domain}";
       mkPubDomainEntry = entry: {
-        entry.${entry.domain} = {
+        ${entry.domain} = {
           listenAddresses = entry.entrypoints;
           extraConfig = ''
             tls ${acmeDir entry}/fullchain.pem ${acmeDir entry}/key.pem
+            header -Server
             ${entry.extraConfig}
-            reverse_proxy http://${entry.target}:${toString entry.port}
+            reverse_proxy http://${entry.target}:${toString entry.port} {
+              header_down -Server
+              ${entry.extraProxyConfig}
+            }
           '';
         };
       };
@@ -103,11 +112,15 @@ in
                 dir https://pki.warp.lan/acme/warp/directory
                 email acme@${entry.domain}
                 trusted_roots ${../files/warp-net-root.crt}
-		disable_http_challenge
+                disable_http_challenge
               }
             }
+            header -Server
             ${entry.extraConfig}
-            reverse_proxy http://${entry.target}:${toString entry.port}
+            reverse_proxy http://${entry.target}:${toString entry.port} {
+              header_down -Server
+              ${entry.extraProxyConfig}
+            }
           '';
         };
       };

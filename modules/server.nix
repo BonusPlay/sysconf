@@ -6,7 +6,6 @@ in
 {
   imports = [
     ./base.nix
-    ./traefik.nix
     ./caddy.nix
     ./monitoring.nix
     ./warp-net.nix

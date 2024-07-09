@@ -22,12 +22,7 @@
     };
     warp-net.enable = true;
     monitoring.enable = true;
-    traefik = {
-      enable = true;
-      acmeDomains = [ "mlwr.dev" "bonusplay.pl" ];
-      publicIP = "10.0.0.131";
-      warpIP = "100.98.118.66";
-    };
+    caddy.enable = true;
   };
 
   boot = {

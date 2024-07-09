@@ -1,20 +1,4 @@
 { config, ... }:
-let
-  hostIP = "172.28.5.1";
-  containerIP = "172.28.5.2";
-  port = config.containers.obsidian.config.services.couchdb.port;
-  middleware = {
-    obsidiancors.headers = {
-      accessControlAllowMethods = [ "GET" "PUT" "POST" "HEAD" "DELETE" ];
-      accessControlAllowHeaders = [ "accept" "authorization" "content-type" "origin" "referer" ];
-      accessControlAllowOriginList = [ "app://obsidian.md" "capacitor://localhost" "http://localhost" ];
-      accessControlMaxAge = 3600;
-      addVaryHeader = true;
-      accessControlAllowCredentials = true;
-    };
-  };
-  obsidianEnvFile = "/run/obsidian-env";
-in
 {
   age.secrets.obsidian-env = {
     file = ../../secrets/obsidian-env.age;
@@ -22,22 +6,42 @@ in
     owner = "106"; # hope this works?
   };
 
-  custom.traefik.entries = [
+  # sadly, it seems like obsidian doesn't trust custom CA
+  # https://github.com/vrtmrz/obsidian-livesync/issues/12
+  # https://github.com/vrtmrz/obsidian-livesync/issues/37
+  custom.caddy.entries = [
     {
-      name = "obsidian";
+      entrypoints = [ "10.0.0.131" ];
       domain = "obsidian.bonusplay.pl";
       target = config.containers.obsidian.localAddress;
-      port = port;
-      entrypoints = [ "webs" ];
-      middlewares = [ middleware ];
+      port = config.containers.obsidian.config.services.couchdb.port;
+      extraConfig = ''
+        @allowedOrigin expression `
+          {http.request.header.Origin}.matches('^app://obsidian.md$') ||
+          {http.request.header.Origin}.matches('^capacitor://localhost$') ||
+          {http.request.header.Origin}.matches('^http://localhost$')
+        `
+
+        header {
+          Access-Control-Allow-Origin {http.request.header.Origin}
+          Access-Control-Allow-Methods "GET, PUT, POST, HEAD, DELETE"
+          Access-Control-Allow-Headers "accept, authorization, content-type, origin, referer"
+          Access-Control-Allow-Credentials "true"
+          Access-Control-Max-Age "3600"
+          Vary "Origin"
+          defer
+        }
+      '';
     }
   ];
 
-  containers.obsidian = {
+  containers.obsidian = let
+    obsidianEnvFile = "/run/obsidian-env";
+  in {
     autoStart = true;
     privateNetwork = true;
-    hostAddress = hostIP;
-    localAddress = containerIP;
+    hostAddress = "172.28.5.1";
+    localAddress = "172.28.5.2";
     bindMounts.obsidian-env = {
       hostPath = config.age.secrets.obsidian-env.path;
       mountPoint = obsidianEnvFile;
@@ -47,7 +51,7 @@ in
     config = { config, ... }: {
       services.couchdb = {
         enable = true;
-        bindAddress = containerIP;
+        bindAddress = "0.0.0.0";
         configFile = obsidianEnvFile;
         # https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server.md#configure
         extraConfig = ''
@@ -78,7 +82,7 @@ in
 
       networking.firewall = {
         enable = true;
-        allowedTCPPorts = [ port ];
+        allowedTCPPorts = [ config.services.couchdb.port ];
       };
 
       system.stateVersion = "23.11";
