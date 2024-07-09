@@ -74,7 +74,7 @@ in
         proxy_set_header Connection $connection_upgrade;
       '';
 
-      system.stateVersion = "unstable";
+      system.stateVersion = "24.05";
       networking.extraHosts = "172.28.0.1 nextcloud.warp.lan";
       networking.firewall = {
         enable = true;

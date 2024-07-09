@@ -54,9 +54,10 @@ in
       };
     };
 
+    virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+
     environment.systemPackages = with pkgs; [
       sbctl
-      virtiofsd
     ];
 
     # why is sudo so bloated

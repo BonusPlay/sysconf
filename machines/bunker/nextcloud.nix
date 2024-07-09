@@ -90,12 +90,12 @@ in
       environment.etc."ssl/certs/warp-net.crt".source = ../../files/warp-net-root.crt;
       security.pki.certificateFiles = [ ../../files/warp-net-root.crt ];
 
-      system.stateVersion = "unstable";
       networking.extraHosts = "172.28.0.1 onlyoffice.warp.lan";
       networking.firewall = {
         enable = true;
         allowedTCPPorts = [ 80 ];
       };
+      system.stateVersion = "24.05";
     };
   };
 }

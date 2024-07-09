@@ -8,7 +8,7 @@ in
     enable = mkEnableOption "base configuration of Bonus's machines";
     stateVersion = mkOption {
       type = types.str;
-      default = "23.05";
+      default = "24.05";
       description = "stateVersion to use";
     };
     autoUpgrade = mkOption {
@@ -41,11 +41,11 @@ in
           sshKey = "/run/agenix/scv-key";
           maxJobs = 4;
           hostName = "scv.mlwr.dev";
+          protocol = "ssh-ng"; # https://github.com/NixOS/nix/issues/2789#issuecomment-1868298547
         }
         {
           system = "aarch64-linux";
           sshUser = "bonus";
-          #sshKey = "/home/q3k/.ssh/id_ed25519";
           maxJobs = 2;
           hostName = "kaldir.bonusplay.pl";
         }
@@ -85,6 +85,7 @@ in
       git
       iftop
       iotop
+      rsync
     ];
 
     system.stateVersion = cfg.stateVersion;
