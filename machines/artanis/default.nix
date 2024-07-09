@@ -7,7 +7,10 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot = {
+        enable = lib.mkForce false;
+        configurationLimit = 5;
+      };
       efi.canTouchEfiVariables = true;
     };
     lanzaboote = {
