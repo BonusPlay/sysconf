@@ -29,7 +29,7 @@
       server = {
         DOMAIN = "mlwr.dev";
         SSH_PORT = 2222;
-        ROOT_URL = "https://git.mlwr.dev";
+        ROOT_URL = "https://git.warp.lan";
         HTTP_ADDRESS = "127.0.0.1";
         START_SSH_SERVER = true;
       };
