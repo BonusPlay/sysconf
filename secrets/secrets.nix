@@ -2,7 +2,7 @@ let
   bonus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFp8/Py31fozDvpKgvfn2lN5xYOggIo1F90DjxdhEbE5";
   users = [ bonus ];
 
-  artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDM0mEeN9Z7TRf0cnx0Gpkv8at2tl0++Sr1MmxpWIZn";
+  artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   kaldir = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBlMeDxPYW6dBbDfeCbfpn5UJpPHjyoE7NJQitfuKVPy";
   braxis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKUkgnjpgtrJOg9oIIsxE8mmmmmc8KsSfirQu+cD4u/n";
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
@@ -59,7 +59,7 @@ in
   "vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "grafana-alloy.age".publicKeys = users ++ servers;
-  "scv-key.age".publicKeys = users ++ servers ++ [ zeratul ];
+  "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 

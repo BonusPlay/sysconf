@@ -3,15 +3,6 @@ let
   agenixOverlay = final: prev: {
     agenix = agenix.packages.${prev.system}.default;
   };
-  # hotfix for bug https://github.com/NixOS/nixpkgs/issues/290926
-  #pcscdOverlay = final: prev: {
-  #  pcsclite = prev.pcsclite.overrideAttrs (old: {
-  #    postPatch = ''
-  #      substituteInPlace src/libredirect.c src/spy/libpcscspy.c \
-  #        --replace-fail "libpcsclite_real.so.1" "$lib/lib/libpcsclite_real.so.1"
-  #    '';
-  #  });
-  #};
   pkgs = system: import nixpkgs {
     inherit system;
     overlays = [ agenixOverlay ];
@@ -19,6 +10,18 @@ let
   };
 in
 {
+  artanis = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./artanis
+      ../modules/workstation.nix
+      nixos-hardware.nixosModules.framework-12th-gen-intel
+      home-manager.nixosModules.home-manager
+      agenix.nixosModules.default
+      lanzaboote.nixosModules.lanzaboote
+    ];
+  };
+
   zeratul = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [

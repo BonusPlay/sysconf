@@ -5,6 +5,9 @@
     defaultTimeout = 2000;
   };
 
+  # https://github.com/nix-community/home-manager/issues/5311
+  wayland.windowManager.sway.checkConfig = false;
+
   wayland.windowManager.sway = {
     enable = true;
     extraSessionCommands = ''
