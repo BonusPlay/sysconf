@@ -9,6 +9,7 @@ in
     group = "mautrix-meta";
   };
 
+  services.mautrix-meta.package = pkgs.callPackage ../../pkgs/mautrix-meta.nix {};
   services.mautrix-meta.instances.facebook = {
     enable = true;
     environmentFile = config.age.secrets.matrixMetaEnv.path;
@@ -22,10 +23,10 @@ in
         address = "http://localhost:${toString port}";
         hostname = "127.0.0.1";
         port = port;
-        database = {
-          type = "sqlite3-fk-wal";
-          uri = "file:${config.services.mautrix-meta.instances.facebook.dataDir}/mautrix-meta.db?_txlock=immediate";
-        };
+        #database = {
+        #  type = "sqlite3-fk-wal";
+        #  uri = "file:${config.services.mautrix-meta.instances.facebook.dataDir}/mautrix-meta.db?_txlock=immediate";
+        #};
         id = "facebook";
         bot = {
           username = "facebookbot";

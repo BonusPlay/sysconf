@@ -3,15 +3,15 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./grafana.nix
+    ./chibisafe.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./matrix-slack.nix
     ./ghidra.nix
-    ./hedgedoc.nix
     ./obsidian.nix
+    ./uptime.nix
   ];
 
   custom = {

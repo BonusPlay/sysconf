@@ -63,6 +63,7 @@
         type = "http";
         x_forwarded = true;
       }];
+      database.name = "psycopg2";
       app_service_config_files = [
         config.age.secrets.matrixTelegramRegistration.path
         #config.age.secrets.matrixMetaRegistration.path
@@ -75,6 +76,7 @@
 
   services.postgresql = {
     enable = true;
+    package = pkgs.postgresql_14;
     initialScript = pkgs.writeText "synapse-init.sql" ''
       CREATE ROLE "matrix-synapse WITH LOGIN";
       CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
