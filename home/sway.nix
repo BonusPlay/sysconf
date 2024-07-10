@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  imports = [
+    ./waybar.nix
+  ];
+
   services.gammastep = {
     enable = true;
     dawnTime = "06:00-08:00";
@@ -124,7 +128,7 @@
           "${cfg.config.modifier}+minus" = "scratchpad show";
 
           "${cfg.config.modifier}+Shift+c" = "reload";
-          "${cfg.config.modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+          "${cfg.config.modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' '${pkgs.sway}/bin/swaymsg exit'";
 
           "${cfg.config.modifier}+r" = "mode resize";
 
@@ -179,12 +183,6 @@
         command = "loginctl lock-session";
       }
     ];
-  };
-
-  programs.waybar = {
-    enable = true;
-    style = builtins.readFile ../files/waybar.css;
-    settings = builtins.fromJSON ( builtins.readFile ../files/waybar.json );
   };
 
   services.kanshi = {
