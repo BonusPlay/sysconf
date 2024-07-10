@@ -129,16 +129,6 @@ in
     ];
   };
 
-  # network bridge
-  warpprism = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./warpprism
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
-
   # nextcloud + onlyoffice
   bunker = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
