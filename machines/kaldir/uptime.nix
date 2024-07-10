@@ -19,7 +19,6 @@
 
   security.pki.certificateFiles = [ ../../files/warp-net-root.crt ];
 
-  system.stateVersion = "unstable";
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ (lib.strings.toInt config.services.uptime-kuma.settings.PORT) ];
