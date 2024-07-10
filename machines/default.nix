@@ -4,6 +4,8 @@
 , agenix
 , lanzaboote
 , authentik-nix
+, nixvim
+, nix-index-database
 , ... }:
 let
   agenixOverlay = final: prev: {
@@ -26,6 +28,9 @@ in
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
     ];
+    specialArgs = {
+      inherit nixvim nix-index-database;
+    };
   };
 
   zeratul = nixpkgs.lib.nixosSystem {
@@ -37,6 +42,9 @@ in
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
     ];
+    specialArgs = {
+      inherit nixvim nix-index-database;
+    };
   };
 
   # oci vm

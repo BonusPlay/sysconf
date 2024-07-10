@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 {
+  services.gammastep = {
+    enable = true;
+    dawnTime = "06:00-08:00";
+    duskTime = "22:00-23:00";
+  };
+
   services.mako = {
     enable = true;
     defaultTimeout = 2000;

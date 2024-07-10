@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config
+, lib
+, pkgs
+, nixvim
+, nix-index-database
+, ... }:
 with lib;
 let
   cfg = config.custom.workstation;
@@ -43,14 +48,17 @@ in
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
+      verbose = true;
       users.bonus = {
         imports = [
           ../home
           (if cfg.useWayland then ../home/sway.nix else ../home/i3.nix)
+          nixvim.homeManagerModules.nixvim
+          nix-index-database.hmModules.nix-index
         ];
         home.username = "bonus";
         home.homeDirectory = "/home/bonus";
-        home.stateVersion = "23.05";
+        home.stateVersion = "24.05";
       };
     };
 

@@ -40,6 +40,12 @@
       options = [ "subvol=tmp" ];
     };
 
+  fileSystems."/var/lib/libvirt/images" =
+    { device = "/dev/disk/by-uuid/a7d7746d-5f84-48c3-b585-2c7adb93e615";
+      fsType = "btrfs";
+      options = [ "subvol=libvirt" ];
+    };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

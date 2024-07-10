@@ -1,12 +1,4 @@
-{ config, pkgs, ... }:
-let
-  bitwarden-unfucked = (import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/f9c070a07e2e95f615e2a7bfcb00f1cc66153c23.tar.gz";
-    sha256 = "1snnv3s2yf45d214n1mj60if666psb00nnrxvkmawld15sipvk8j";
-  }) {
-    system = "x86_64-linux";
-  }).bitwarden;
-in
+{ pkgs, ... }:
 {
   imports = [
     ./alacritty.nix
@@ -14,15 +6,13 @@ in
     ./flameshot.nix
     ./git.nix
     ./gpg.nix
-    ./nix-index.nix
+    ./neovim.nix
     ./pass.nix
-    ./redshift.nix
     ./ssh.nix
     ./tmux.nix
   ];
 
   home.packages = (with pkgs; [
-    (import ./neovim.nix pkgs)
     imv
     htop
     vlc
@@ -40,7 +30,7 @@ in
     ]))
     man-pages
     man-pages-posix
-    bitwarden-unfucked
+    bitwarden
     waybar
     git
     qt5.qtwayland
@@ -48,7 +38,6 @@ in
     blender
     yt-dlp
     kicad
-    slack
     file
     gimp
     magic-wormhole

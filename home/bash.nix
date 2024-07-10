@@ -50,8 +50,6 @@
       # ty hswaw for this one
       shitssh = "ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss,ssh-rsa -oPubkeyAcceptedKeyTypes=+ssh-rsa";
       sshany = "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null";
-
-      nvim = "betterNvim";
     };
     initExtra = ''
       mkcd() {
