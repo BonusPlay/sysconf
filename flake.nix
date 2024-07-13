@@ -72,12 +72,12 @@
           tags = [ "vm" "server" ];
         };
 
-        endion.deployment = {
+        bunker.deployment = {
           tags = [ "vm" "server" ];
         };
 
-        glacius.deployment = {
-          tags = [ "phys" "server" ];
+        endion.deployment = {
+          tags = [ "vm" "server" ];
         };
 
         kaldir.deployment = {
@@ -85,28 +85,12 @@
           buildOnTarget = true;
         };
 
-        moria.deployment = {
-          tags = [ "vm" "server" ];
-        };
-
-        #redstone.deployment = {
-        #  tags = [ "phys" "server" ];
-        #};
-
         scv.deployment = {
           tags = [ "vm" "server" ];
           buildOnTarget = true;
         };
 
         shakuras.deployment = {
-          tags = [ "vm" "server" ];
-        };
-
-        warpprism.deployment = {
-          tags = [ "vm" "server" ];
-        };
-
-        bunker.deployment = {
           tags = [ "vm" "server" ];
         };
 
@@ -120,6 +104,13 @@
 
 	vortex.deployment = {
 	  tags = [ "vm" "server" ];
+	};
+
+        artanis.deployment = {
+          allowLocalDeployment = true;
+          buildOnTarget = true;
+          tags = [ "phys" ];
+          privilegeEscalationCommand = ["doas" "--"];
 	};
 
         zeratul.deployment = {
