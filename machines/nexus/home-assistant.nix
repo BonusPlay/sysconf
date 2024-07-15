@@ -17,7 +17,7 @@ in
   custom.caddy.entries = [
     {
       entrypoints = [ "100.84.139.31" ];
-      domain = "ha.warp.lan";
+      domain = "has.warp.lan";
       target = config.services.home-assistant.config.http.server_host;
       port = config.services.home-assistant.config.http.server_port;
     }
@@ -52,7 +52,7 @@ in
         themes = "!include_dir_merge_named themes";
       };
       http = {
-        base_url = "https://ha.warp.lan";
+        base_url = "https://has.warp.lan";
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" ];
 	server_port = 8123;
