@@ -1,4 +1,12 @@
 { pkgs, ... }:
+let
+  bitwarden-unfucked = (import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/f9c070a07e2e95f615e2a7bfcb00f1cc66153c23.tar.gz";
+    sha256 = "1snnv3s2yf45d214n1mj60if666psb00nnrxvkmawld15sipvk8j";
+  }) {
+    system = "x86_64-linux";
+  }).bitwarden;
+in
 {
   imports = [
     ./alacritty.nix
@@ -30,7 +38,7 @@
     ]))
     man-pages
     man-pages-posix
-    bitwarden
+    bitwarden-unfucked
     waybar
     git
     qt5.qtwayland
