@@ -54,7 +54,7 @@
     bridge-utils
     nmap
     hexyl
-    firefox-wayland
+    ungoogled-chromium
     mattermost-desktop
     element-desktop
     libreoffice
@@ -70,5 +70,6 @@
     virt-manager
     docker-compose
     ghidra
+    tidal-hifi
   ]);
 }
