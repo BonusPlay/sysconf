@@ -18,7 +18,9 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN_FOR_UPDATES }}
           pr-title: 'Update flake.lock'
+          pr-assignees: 'BonusPlay'
+          pr-reviewers: 'BonusPlay'
           git-author-name: 'UpdateBot'
           git-author-email: 'github-actions[bot]@users.noreply.github.com'
-          git-committer-name: 'Bonus'
-          git-committer-email: 'root@bonusplay.pl'
+          git-committer-name: 'UpdateBot'
+          git-committer-email: 'github-actions[bot]@users.noreply.github.com'
