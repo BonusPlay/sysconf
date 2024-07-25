@@ -34,7 +34,7 @@
         "@WIFI_3_NAME@".psk = "@WIFI_3_PASS@";
         "@WIFI_4_NAME@".psk = "@WIFI_4_PASS@";
         "@WIFI_5_NAME@" = {
-          psk = "@WIFI_1_PASS@";
+          psk = "@WIFI_5_PASS@";
           hidden = true;
         };
         "@WIFI_6_NAME@".auth = ''
