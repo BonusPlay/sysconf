@@ -102,23 +102,23 @@
           tags = [ "vm" "server" ];
         };
 
-	vortex.deployment = {
-	  tags = [ "vm" "server" ];
-	};
+        vortex.deployment = {
+          tags = [ "vm" "server" ];
+        };
 
         artanis.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
-	};
+        };
 
         zeratul.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
-	};
+        };
       };
   };
 }
