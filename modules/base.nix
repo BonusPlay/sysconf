@@ -30,7 +30,6 @@ in
 
   config = mkIf cfg.enable {
     nix = {
-      gc.automatic = true;
       extraOptions = ''
         experimental-features = nix-command flakes
       '';

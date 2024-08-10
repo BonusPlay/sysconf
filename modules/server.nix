@@ -20,6 +20,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    nix.gc.automatic = true;
     users.users.bonus = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
