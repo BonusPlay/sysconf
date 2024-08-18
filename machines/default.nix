@@ -11,9 +11,15 @@ let
   agenixOverlay = final: prev: {
     agenix = agenix.packages.${prev.system}.default;
   };
+  ghidraOverlay = final: prev: {
+    ghidra-extensions = {
+      arcompact = final.callPackage ../pkgs/ghidra-arcompact.nix {};
+      findcrypt = final.callPackage ../pkgs/ghidra-findcrypt.nix {};
+    } // prev.ghidra-extensions;
+  };
   pkgs = system: import nixpkgs {
     inherit system;
-    overlays = [ agenixOverlay ];
+    overlays = [ agenixOverlay ghidraOverlay ];
     config.allowUnfree = true;
   };
 in

@@ -55,6 +55,11 @@ in
     gef
     gdb
     mtr
+    (ghidra.withExtensions (p: with p; [
+      ghidra-extensions.arcompact
+      ghidra-extensions.gnudisassembler
+      ghidra-extensions.findcrypt
+    ]))
     iotop
     iftop
     nfs-utils
@@ -77,7 +82,6 @@ in
     signal-desktop
     virt-manager
     docker-compose
-    ghidra
     tidal-hifi
   ]);
 }
