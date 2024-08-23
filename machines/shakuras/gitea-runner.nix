@@ -16,7 +16,7 @@
     url = "https://git.warp.lan";
     tokenFile = config.age.secrets.giteaRunnerLinuxToken.path;
     labels = [
-      "linux_amd64:docker://node:16-bullseye"
+      "linux_amd64:docker://node:22-bullseye"
     ];
   };
 }
