@@ -10,7 +10,7 @@ ghidra.buildGhidraExtension {
     owner = "antoniovazquezblanco";
     repo = "GhidraFindcrypt";
     rev = "v3.0.1";
-    hash = "sha256-FSRuZtVEErEo4z134XRSsYcIccs/F41R2ydnBy+992o=";
+    hash = "sha256-/KA95NdoQFvR6XSGCHkX+ySKfftK84hJ8zjAvt0+O0o=";
   };
 
   meta = with lib; {
