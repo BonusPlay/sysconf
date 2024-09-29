@@ -44,6 +44,7 @@
           password="@WIFI_6_PASS@"
         '';
         "@WIFI_7_NAME@".psk = "@WIFI_7_PASS@";
+        "@WIFI_8_NAME@".psk = "@WIFI_8_PASS@";
       };
     };
     firewall = {
