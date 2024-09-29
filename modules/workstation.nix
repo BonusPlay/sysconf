@@ -130,6 +130,10 @@ in
 
       # ACS ACR1252U NFC Card Reader
       SUBSYSTEM=="usb", ATTR{idVendor}=="072f", ATTR{idProduct}=="223b", MODE="0666"
+
+      # Glasgow
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="20b7", ATTRS{idProduct}=="9db1", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="8613", TAG+="uaccess"
     '';
   };
 }
