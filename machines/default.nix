@@ -164,4 +164,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # x86 waydroid emulator
+  droid = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./droid
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }

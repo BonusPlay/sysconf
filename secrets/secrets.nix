@@ -15,8 +15,9 @@ let
   bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
+  droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
 
-  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus ];
+  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in
