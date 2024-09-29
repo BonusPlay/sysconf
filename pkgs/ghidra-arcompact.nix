@@ -1,5 +1,5 @@
 { lib
-, fetchgit
+, fetchFromGitHub
 , ghidra
 , ant
 }:
@@ -7,11 +7,11 @@ ghidra.buildGhidraExtension {
   pname = "arcompact";
   version = lib.getVersion ghidra;
 
-  # this is nothing special, just replaces a few files to convert it into external ghidra module
-  # feel free to ping me if you want a copy
-  src = fetchgit {
-    url = "ssh://forgejo@git.warp.lan:2222/Bonus/ghidra-arcompact.git";
-    hash = "sha256-CNAgjhqApFQjkuWZuat0UbSmbCQd+CeO6eKNOY1Xn68=";
+  src = fetchFromGitHub {
+    owner = "BonusPlay";
+    repo = "ghidra-arcompact";
+    rev = "e500daaa68797a8f8ce33064d9b3a653b2313dd8";
+    hash = "sha256-L/GUoq1KLeUlFOUm0g7WsifaR0XodvTSN8cm7BSg5Q8=";
   };
 
   # compile sleigh
@@ -28,8 +28,7 @@ ghidra.buildGhidraExtension {
   meta = with lib; {
     author = "niooss-ledger";
     description = "ARCompact instruction set support for ghidra";
-    homepage = "https://github.com/NationalSecurityAgency/ghidra/pull/3006";
+    homepage = "https://github.com/BonusPlay/ghidra-arcompact";
     license = licenses.gpl3;
   };
 }
-
