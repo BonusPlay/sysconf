@@ -39,7 +39,7 @@ in
           sshUser = "builder";
           sshKey = "/run/agenix/scv-key";
           maxJobs = 4;
-          hostName = "scv.mlwr.dev";
+          hostName = "scv.warp.lan";
           protocol = "ssh-ng"; # https://github.com/NixOS/nix/issues/2789#issuecomment-1868298547
         }
         {
