@@ -1,23 +1,31 @@
 { lib
 , fetchFromGitHub
 , buildHomeAssistantComponent
-, pyuptimekuma
+, pyuptimekuma-hass
 }:
-
-buildHomeAssistantComponent rec {
-  owner = "bonus";
+let
+  version = "2.3.0";
+in
+buildHomeAssistantComponent {
+  owner = "meichthys";
   domain = "uptime_kuma";
-  version = "2.1.0";
+  inherit version;
 
   src = fetchFromGitHub {
     owner = "meichthys";
     repo = "uptime_kuma";
     rev = "v${version}";
-    hash = "sha256-6NrRuBjpulT66pVUfW9ujULL5HSzfgyic1pKEBRupNA=";
+    hash = "sha256-7YSXqYeBaJvQA5lVyb95XbmXE9q8GxTWIIxuQ+HOrts=";
   };
 
+  # when building, tests check if `pyuptimekuma-hass` module imports
+  # however, the module is imported by `pyuptimekuma`
+  patchPhase = ''
+    sed -i 's/pyuptimekuma-hass/pyuptimekuma/' custom_components/uptime_kuma/manifest.json
+  '';
+
   propagatedBuildInputs = [
-    pyuptimekuma
+    pyuptimekuma-hass
   ];
 
   dontBuild = true;

@@ -12,6 +12,9 @@ let
   }).overrideAttrs (oldAttrs: {
     doInstallCheck = false;
   });
+
+  pyuptimekuma-hass = pkgs.callPackage ./pyuptimekuma-hass.nix { python3Packages = pkgs.home-assistant.python.pkgs; };
+  uptime-kuma-integration = pkgs.callPackage ./uptime-kuma-integration.nix { inherit pyuptimekuma-hass; };
 in
 {
   custom.caddy.entries = [
@@ -39,6 +42,9 @@ in
       "esphome"
       "tasmota"
     ];
+    customComponents = [
+      uptime-kuma-integration
+    ];
     config = {
       homeassistant = {
         name = "Home";
@@ -55,8 +61,8 @@ in
         base_url = "https://has.warp.lan";
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" ];
-	server_port = 8123;
-	server_host = "127.0.0.1";
+        server_port = 8123;
+        server_host = "127.0.0.1";
       };
     };
   };
