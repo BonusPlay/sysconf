@@ -8,20 +8,20 @@
 
 buildGoModule rec {
   pname = "mautrix-meta";
-  version = "0.3.1+unstable";
+  version = "0.4.0+03.10.2024";
 
-  subPackages = [ "." ];
+  subPackages = [ "cmd/mautrix-meta" ];
 
   src = fetchFromGitHub {
     owner = "mautrix";
     repo = "meta";
-    rev = "df9251e14c72fdbffb15632a704904041198da07";
-    hash = "sha256-+x3MdieEjT/maoYXt9oaDgPSBAUd6d/nFf0vzQ5f0Qo=";
+    rev = "321856b9a44242479f54a90a8facec10f115bdbe";
+    hash = "sha256-bhkEUjjFsqwj7ZyEO/GpOh+zZ86eGhNMNTf6RErj47Q=";
   };
 
   buildInputs = [ olm ];
 
-  vendorHash = "sha256-uwprj4G7HI87ZGr+6Bqkp77nzW6kgV3S5j4NGjbtOwQ=";
+  vendorHash = "sha256-TBtCEGLxMWb1aE+6VlAglRIu9sjfJZWWHlyVC6XscTg=";
 
   passthru = {
     tests = {
