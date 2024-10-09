@@ -176,7 +176,7 @@
     events = [
       {
         event = "lock";
-        command = "${pkgs.swaylock}/bin/swaylock -f -c 212121";
+        command = "${pkgs.swaylock}/bin/swaylock -f -i /etc/nixos/files/lockscreen.png";
       }
       {
         event = "before-sleep";
