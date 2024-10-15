@@ -21,6 +21,7 @@ in
 
     services.grafana-alloy = {
       enable = true;
+      package = pkgs.grafana-alloy;
       environmentFile = config.age.secrets.grafana-alloy.path;
       configuration = ''
         prometheus.exporter.unix "local_metrics" {}

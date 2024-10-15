@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix = {
       url = "github:ryantm/agenix";

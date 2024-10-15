@@ -1,4 +1,5 @@
 { nixpkgs
+, nixpkgs-unstable
 , home-manager
 , nixos-hardware
 , agenix
@@ -17,10 +18,17 @@ let
       findcrypt = final.callPackage ../pkgs/ghidra-findcrypt.nix {};
     } // prev.ghidra-extensions;
   };
+  alloyOverlay = final: prev: {
+    grafana-alloy = nixpkgs-unstable.legacyPackages.${prev.system}.grafana-alloy;
+  };
+  hotfixOverlay = final: prev: {
+    vscode-langservers-extracted = nixpkgs-unstable.legacyPackages.${prev.system}.vscode-langservers-extracted;
+  };
   pkgs = system: import nixpkgs {
     inherit system;
-    overlays = [ agenixOverlay ghidraOverlay ];
+    overlays = [ agenixOverlay ghidraOverlay alloyOverlay hotfixOverlay ];
     config.allowUnfree = true;
+    config.permittedInsecurePackages = [ "olm-3.2.16" ];
   };
 in
 {
