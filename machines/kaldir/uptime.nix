@@ -12,7 +12,7 @@
     enable = true;
     appriseSupport = true;
     settings = {
-      HOST = "0.0.0.0";
+      HOST = "127.0.0.1";
       NODE_EXTRA_CA_CERTS = "/etc/ssl/certs/warp-net.crt";
     };
   };
