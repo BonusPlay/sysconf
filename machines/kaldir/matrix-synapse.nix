@@ -38,7 +38,23 @@
     {
       entrypoints = [ "10.0.0.131" ];
       domain = "matrix.bonusplay.pl";
-      port = 4080;
+      target = null;
+      port = null;
+      extraConfig = ''
+        @client path_regexp client ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)
+        reverse_proxy @client http://localhost:4085 {
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
+            header_up Host {host}
+        }
+        # Proxy for _matrix and _synapse endpoints
+        @matrix path_regexp matrix ^(/_matrix|/_synapse/client)
+        reverse_proxy @matrix http://localhost:4080 {
+            header_up X-Forwarded-For {remote}
+            header_up X-Forwarded-Proto {scheme}
+            header_up Host {host}
+        }
+      '';
     }
   ];
 

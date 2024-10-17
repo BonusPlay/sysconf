@@ -20,6 +20,7 @@ in
   options.custom.caddy = {
     enable = mkEnableOption "caddy with more convenience";
     entries = mkOption {
+      default = [];
       type = types.listOf (types.submodule {
         options = {
           domain = mkOption {
@@ -30,12 +31,12 @@ in
             default = [ "0.0.0.0" ];
           };
           target = mkOption {
-            type = types.str;
+            type = types.nullOr types.str;
             default = "localhost";
             description = "host to forward to";
           };
           port = mkOption {
-            type = types.int;
+            type = types.nullOr types.int;
             description = "port to forward to";
           };
           extraConfig = mkOption {
@@ -86,6 +87,12 @@ in
 
     services.caddy = let
       acmeDir = entry: "/var/lib/acme/${extractMainDomain entry.domain}";
+      proxyEntry = entry: if entry.target == null && entry.port == null then "" else ''
+        reverse_proxy http://${entry.target}:${toString entry.port} {
+          header_down -Server
+          ${entry.extraProxyConfig}
+        }
+      '';
       mkPubDomainEntry = entry: {
         ${entry.domain} = {
           listenAddresses = entry.entrypoints;
@@ -93,10 +100,7 @@ in
             tls ${acmeDir entry}/fullchain.pem ${acmeDir entry}/key.pem
             header -Server
             ${entry.extraConfig}
-            reverse_proxy http://${entry.target}:${toString entry.port} {
-              header_down -Server
-              ${entry.extraProxyConfig}
-            }
+            ${proxyEntry entry}
           '';
         };
       };
@@ -117,10 +121,7 @@ in
             }
             header -Server
             ${entry.extraConfig}
-            reverse_proxy http://${entry.target}:${toString entry.port} {
-              header_down -Server
-              ${entry.extraProxyConfig}
-            }
+            ${proxyEntry entry}
           '';
         };
       };
