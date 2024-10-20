@@ -59,6 +59,7 @@ in
       ghidra-extensions.arcompact
       ghidra-extensions.gnudisassembler
       ghidra-extensions.findcrypt
+      ghidra-extensions.wasm
     ]))
     iotop
     iftop

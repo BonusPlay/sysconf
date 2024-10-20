@@ -13,9 +13,11 @@ let
     agenix = agenix.packages.${prev.system}.default;
   };
   ghidraOverlay = final: prev: {
+    ghidra = nixpkgs-unstable.legacyPackages.${prev.system}.ghidra;
     ghidra-extensions = {
-      arcompact = final.callPackage ../pkgs/ghidra-arcompact.nix {};
-      findcrypt = final.callPackage ../pkgs/ghidra-findcrypt.nix {};
+      arcompact = prev.callPackage ../pkgs/ghidra-arcompact.nix {};
+      findcrypt = prev.callPackage ../pkgs/ghidra-findcrypt.nix {};
+      wasm = prev.callPackage ../pkgs/ghidra-wasm.nix {};
     } // prev.ghidra-extensions;
   };
   alloyOverlay = final: prev: {
