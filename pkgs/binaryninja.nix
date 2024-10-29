@@ -10,6 +10,7 @@ buildFHSEnv {
     freetype
     libGL
     libxkbcommon
+    libxml2
     python3
     xorg.libX11
     xorg.libxcb
