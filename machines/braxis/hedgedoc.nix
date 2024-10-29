@@ -1,7 +1,7 @@
 { config, ... }:
 {
   age.secrets.hedgedoc-env = {
-    file = ../../secrets/hedgedoc-env.age;
+    file = ../../secrets/kncyber/hedgedoc-env.age;
     mode = "0440";
     group = "hedgedoc";
   };

@@ -120,6 +120,10 @@
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
         };
+
+        depot.deployment = {
+          tags = [ "vm" "server" ];
+        };
       };
   };
 }

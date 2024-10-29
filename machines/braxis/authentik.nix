@@ -7,7 +7,7 @@
   };
 
   age.secrets."authentik-env" = {
-    file = ../../secrets/authentik-env.age;
+    file = ../../secrets/kncyber/authentik-env.age;
     mode = "0400";
     owner = "authentik";
   };

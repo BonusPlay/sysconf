@@ -1,7 +1,7 @@
 { config, ... }:
 {
   age.secrets.discord-bot = {
-    file = ../../secrets/discord-bot.age;
+    file = ../../secrets/kncyber/discord-bot.age;
     mode = "0400";
   };
 

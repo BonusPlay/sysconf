@@ -184,4 +184,15 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # authentik
+  depot = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./depot
+      ../modules/server.nix
+      agenix.nixosModules.default
+      authentik-nix.nixosModules.default
+    ];
+  };
 }

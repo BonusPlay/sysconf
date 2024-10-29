@@ -9,7 +9,7 @@ in {
       enable = mkEnableOption (lib.mdDoc "Open source OpenTelemetry Collector distribution with built-in Prometheus pipelines and support for metrics, logs, traces, and profiles");
 
       package = mkOption {
-        default = pkgs.callPackage ../pkgs/grafana-alloy.nix {};
+        default = pkgs.grafana-alloy;
         type = types.package;
         defaultText = literalExpression "pkgs.grafana-alloy";
         description = lib.mdDoc "grafana-alloy derivation to use";

@@ -16,8 +16,9 @@ let
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
   droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
+  depot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMdhHmB288L1wiQisngWmtmaneAn3BvtI96rwkyqDEKO";
 
-  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid ];
+  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid depot ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in
@@ -55,15 +56,18 @@ in
   "nextcloud/ssl-key.age".publicKeys = users ++ [ bunker ];
   "nextcloud/onlyoffice-jwt.age".publicKeys = users ++ [ bunker ];
 
-  "authentik-env.age".publicKeys = users ++ [ braxis ];
-  "hedgedoc-env.age".publicKeys = users ++ [ braxis ];
-  "discord-bot.age".publicKeys = users ++ [ braxis ];
-  "vikunja-config.age".publicKeys = users ++ [ braxis ];
+  "kncyber/authentik-env.age".publicKeys = users ++ [ braxis ];
+  "kncyber/hedgedoc-env.age".publicKeys = users ++ [ braxis ];
+  "kncyber/discord-bot.age".publicKeys = users ++ [ braxis ];
+  "kncyber/vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "grafana-alloy.age".publicKeys = users ++ servers;
   "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
+
+  "authentik/main.age".publicKeys = users ++ [ depot ];
+  "authentik/radius.age".publicKeys = users ++ [ depot ];
 
   "wifi.age".publicKeys = users ++ [ artanis ];
 }

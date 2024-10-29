@@ -10,7 +10,7 @@ in
   };
 
   age.secrets."vikunja-config" = {
-    file = ../../secrets/vikunja-config.age;
+    file = ../../secrets/kncyber/vikunja-config.age;
     mode = "0440";
     group = "vikunja";
   };
