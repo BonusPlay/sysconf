@@ -18,7 +18,12 @@ let
   droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
   depot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMdhHmB288L1wiQisngWmtmaneAn3BvtI96rwkyqDEKO";
 
-  servers = [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid depot ];
+  vortex-alpha = "";
+  vortex-beta = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARXsFJHnnFuMA8krwgEkuK1BLTJnYnYQoCwmtD9QMUH";
+  vortex-gamma = "";
+
+  vortex = [ vortex-beta ];
+  servers = vortex ++ [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid depot ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in
@@ -65,6 +70,8 @@ in
   "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
+
+  "garage-env.age".publicKeys = users ++ vortex;
 
   "authentik/main.age".publicKeys = users ++ [ depot ];
   "authentik/radius.age".publicKeys = users ++ [ depot ];

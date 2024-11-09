@@ -103,8 +103,19 @@
           tags = [ "vm" "server" ];
         };
 
-        vortex.deployment = {
-          tags = [ "vm" "server" ];
+        vortex-alpha.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.119";
+        };
+
+        vortex-beta.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.118";
+        };
+
+        vortex-gamma.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.120";
         };
 
         artanis.deployment = {

@@ -1,30 +1,28 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/736ce10c-6308-4d31-bbbd-fa159a2ac69a";
+    { device = "/dev/disk/by-uuid/c0b23669-1145-4060-b7f7-e2e62c999066";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/736ce10c-6308-4d31-bbbd-fa159a2ac69a";
+    { device = "/dev/disk/by-uuid/c0b23669-1145-4060-b7f7-e2e62c999066";
       fsType = "btrfs";
       options = [ "subvol=nix" "noatime" ];
     };
 
-  fileSystems."/storage/minio" =
-    { device = "/dev/disk/by-uuid/a9e95823-19db-4f0b-898a-205511bba56b";
+  fileSystems."/var/lib/garage" =
+    { device = "/dev/disk/by-uuid/2d53ddeb-b2ce-44d9-861e-f1d4897f60ed";
       fsType = "btrfs";
-      options = [ "subvol=minio" ];
+      options = [ "subvol=storage" ];
     };
 
   swapDevices = [ ];

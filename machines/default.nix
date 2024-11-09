@@ -115,10 +115,28 @@ in
   #  ];
   #};
 
-  vortex = nixpkgs.lib.nixosSystem {
+  vortex-alpha = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [
-      ./vortex
+      ./vortex-alpha
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  vortex-beta = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./vortex-beta
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  vortex-gamma = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./vortex-gamma
       ../modules/server.nix
       agenix.nixosModules.default
     ];
