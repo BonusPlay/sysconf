@@ -85,6 +85,7 @@
         kaldir.deployment = {
           tags = [ "phys" "server" ];
           buildOnTarget = true;
+          targetHost = "kaldir.warp.lan";
         };
 
         scv.deployment = {

@@ -36,7 +36,7 @@ in
       };
 
       meta.mode = "facebook";
-    
+
       bridge = {
         username_template = "facebook_{{.}}";
         displayname_template = "{{or .DisplayName .Username}} (FB)";
@@ -50,11 +50,6 @@ in
           "@bonus:bonusplay.pl" = "admin";
         };
       };
-
-      #metrics = {
-      #  enabled = true;
-      #  listen_port = 9107;
-      #};
     };
   };
 }
