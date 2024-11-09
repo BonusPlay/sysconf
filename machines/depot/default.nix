@@ -7,7 +7,7 @@
   custom = {
     base = {
       enable = true;
-      autoUpgrade = true;
+      autoUpgrade = false;
     };
     server = {
       enable = true;
@@ -24,4 +24,10 @@
   };
 
   networking.hostName = "depot";
+
+  # no clue why server can't connect to itself over tailscale ip
+  # so this is a workaround
+  networking.hosts = {
+    "127.0.0.1" = [ "auth.warp.lan" ];
+  };
 }
