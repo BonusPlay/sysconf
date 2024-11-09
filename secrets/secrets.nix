@@ -60,6 +60,7 @@ in
   "nextcloud/basic-auth.age".publicKeys = users ++ [ bunker ];
   "nextcloud/ssl-key.age".publicKeys = users ++ [ bunker ];
   "nextcloud/onlyoffice-jwt.age".publicKeys = users ++ [ bunker ];
+  "nextcloud/s3-secret.age".publicKeys = users ++ [ bunker ];
 
   "kncyber/authentik-env.age".publicKeys = users ++ [ braxis ];
   "kncyber/hedgedoc-env.age".publicKeys = users ++ [ braxis ];

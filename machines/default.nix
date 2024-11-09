@@ -31,6 +31,9 @@ let
     overlays = [ agenixOverlay ghidraOverlay alloyOverlay hotfixOverlay ];
     config.allowUnfree = true;
     config.permittedInsecurePackages = [ "olm-3.2.16" ];
+    config.allowUnfreePredicate = pkg: builtins.elem (system.lib.getName pkg) [
+      "corefonts"
+    ];
   };
 in
 {

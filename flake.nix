@@ -75,6 +75,7 @@
 
         bunker.deployment = {
           tags = [ "vm" "server" ];
+          targetHost = "bunker.warp.lan";
         };
 
         endion.deployment = {
