@@ -29,7 +29,13 @@ in
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
 
-    # for now we do this, later we can add separate account
-    nix.settings.trusted-users = [ "bonus" ];
+    boot = {
+      kernelParams = [ "console=ttyS0,115200n8" ];
+      loader.grub.extraConfig = "
+        serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
+        terminal_input serial
+        terminal_output serial
+      ";
+    };
   };
 }
