@@ -14,7 +14,7 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "100.126.141.55" ];
+      entrypoints = [ "100.126.141.55" "127.0.0.1" ];
       domain = "auth.warp.lan";
       port = 9000;
     }

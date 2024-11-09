@@ -50,6 +50,7 @@ in
         }
       ];
       distributedBuilds = cfg.remoteBuild;
+      settings.trusted-users = [ "@wheel" ];
     };
 
     age.secrets.scv-key = mkIf cfg.remoteBuild {

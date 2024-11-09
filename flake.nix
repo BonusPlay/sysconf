@@ -75,6 +75,7 @@
 
         bunker.deployment = {
           tags = [ "vm" "server" ];
+          targetHost = "bunker.warp.lan";
         };
 
         endion.deployment = {
@@ -84,6 +85,7 @@
         kaldir.deployment = {
           tags = [ "phys" "server" ];
           buildOnTarget = true;
+          targetHost = "kaldir.warp.lan";
         };
 
         scv.deployment = {
@@ -103,8 +105,19 @@
           tags = [ "vm" "server" ];
         };
 
-        vortex.deployment = {
-          tags = [ "vm" "server" ];
+        vortex-alpha.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.119";
+        };
+
+        vortex-beta.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.118";
+        };
+
+        vortex-gamma.deployment = {
+          tags = [ "vm" "server" "vortex" ];
+          targetHost = "192.168.4.120";
         };
 
         artanis.deployment = {
@@ -123,6 +136,7 @@
 
         depot.deployment = {
           tags = [ "vm" "server" ];
+          targetHost = "depot.warp.lan";
         };
       };
   };

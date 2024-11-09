@@ -61,6 +61,7 @@
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
+    plugins = [ config.services.matrix-synapse.package.plugins.matrix-synapse-s3-storage-provider ];
     settings = {
       server_name = "bonusplay.pl";
       public_baseurl = "https://matrix.bonusplay.pl";
