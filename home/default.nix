@@ -57,8 +57,9 @@ in
     mtr
     (ghidra.withExtensions (p: with p; [
       ghidra-extensions.arcompact
-      ghidra-extensions.gnudisassembler
+      ghidra-extensions.ctrlp
       ghidra-extensions.findcrypt
+      ghidra-extensions.gnudisassembler
       ghidra-extensions.wasm
     ]))
     iotop

@@ -16,9 +16,9 @@ let
     ghidra = nixpkgs-unstable.legacyPackages.${prev.system}.ghidra;
     ghidra-extensions = {
       arcompact = prev.callPackage ../pkgs/ghidra-arcompact.nix {};
-      findcrypt = prev.callPackage ../pkgs/ghidra-findcrypt.nix {};
+      ctrlp = prev.callPackage ../pkgs/ghidra-ctrlp.nix {};
       wasm = prev.callPackage ../pkgs/ghidra-wasm.nix {};
-    } // prev.ghidra-extensions;
+    } // nixpkgs-unstable.legacyPackages.${prev.system}.ghidra-extensions;
   };
   alloyOverlay = final: prev: {
     grafana-alloy = nixpkgs-unstable.legacyPackages.${prev.system}.grafana-alloy;
