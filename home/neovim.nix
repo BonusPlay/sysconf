@@ -46,7 +46,7 @@
         "<leader>y" = "+y";
         "<leader>p" = "+p";
       };
-    in config.nixvim.helpers.keymaps.mkKeymaps
+    in config.lib.nixvim.keymaps.mkKeymaps
       {options.silent = true;}
       keys;
 
@@ -120,7 +120,7 @@
       treesitter = {
         enable = true;
         # https://github.com/nix-community/nixvim/commit/97fa47376b73d774b081c8e5dd54fcfd0ad278cb
-        moduleConfig = {
+        settings = {
           # Install languages synchronously (only applied to `ensure_installed`)
           sync_install = true;
 
@@ -135,6 +135,7 @@
       };
 
       coq-nvim.enable = true;
+      web-devicons.enable = true;
 
       lsp = {
         enable = true;
@@ -144,12 +145,12 @@
           gopls.enable = true;
           html.enable = true;
           pyright.enable = true;
-          rust-analyzer = {
-	    enable = true;
-	    installCargo = true;
+          rust_analyzer = {
+            enable = true;
+            installCargo = true;
             installRustc = true;
           };
-          tsserver.enable = true;
+          ts_ls.enable = true;
           volar.enable = true;
           zls.enable = true;
         };

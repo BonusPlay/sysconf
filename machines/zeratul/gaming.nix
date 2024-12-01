@@ -13,12 +13,6 @@
     nvidiaSettings = true;
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   services.xserver = {
     enable = true;
     windowManager.i3.enable = true;

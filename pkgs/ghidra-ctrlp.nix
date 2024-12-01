@@ -7,8 +7,7 @@ ghidra.buildGhidraScripts {
   version = "unstable-2024-12-01";
 
   src = fetchFromGitHub {
-    #owner = "msm-code";
-    owner = "BonusPlay";
+    owner = "msm-code";
     repo = "GhidraCtrlP";
     rev = "9f7ebd13b8ae8dec87b5c1f090bedf3fbc6d301e";
     sha256 = "sha256-NEVnuCGFbRLyYs2awz0ObtJeRmfp1hxTrmkQomaikxU=";

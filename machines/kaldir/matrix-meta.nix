@@ -35,11 +35,13 @@ in
         };
       };
 
-      meta.mode = "facebook";
+      network = {
+        displayname_template = "{{or .DisplayName .Username}} (FB)";
+        mode = "facebook";
+      };
 
       bridge = {
         username_template = "facebook_{{.}}";
-        displayname_template = "{{or .DisplayName .Username}} (FB)";
 
         encryption = {
           allow = true;

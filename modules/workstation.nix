@@ -28,7 +28,7 @@ in
 
     services.fwupd.enable = true;
     hardware.enableAllFirmware = true;
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
     hardware.bluetooth.enable = true;
 
     time.timeZone = "Europe/Warsaw";
@@ -36,7 +36,6 @@ in
 
     services.printing.enable = true;
 
-    sound.enable = true;
     services.pipewire.enable = true;
     services.pipewire.pulse.enable = true;
 
@@ -99,7 +98,7 @@ in
 
     fonts.packages = with pkgs; [
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       fira-code
       fira-code-symbols
