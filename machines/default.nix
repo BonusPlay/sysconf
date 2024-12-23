@@ -23,12 +23,9 @@ let
   alloyOverlay = final: prev: {
     grafana-alloy = nixpkgs-unstable.legacyPackages.${prev.system}.grafana-alloy;
   };
-  hotfixOverlay = final: prev: {
-    vscode-langservers-extracted = nixpkgs-unstable.legacyPackages.${prev.system}.vscode-langservers-extracted;
-  };
   pkgs = system: import nixpkgs {
     inherit system;
-    overlays = [ agenixOverlay ghidraOverlay alloyOverlay hotfixOverlay ];
+    overlays = [ agenixOverlay ghidraOverlay alloyOverlay ];
     config.allowUnfree = true;
     config.permittedInsecurePackages = [ "olm-3.2.16" ];
     config.allowUnfreePredicate = pkg: builtins.elem (system.lib.getName pkg) [
