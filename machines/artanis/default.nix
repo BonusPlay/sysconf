@@ -18,6 +18,7 @@
       pkiBundle = "/etc/secureboot";
     };
     tmp.cleanOnBoot = true;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   services.tlp.enable = true;
