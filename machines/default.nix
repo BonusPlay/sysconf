@@ -7,25 +7,11 @@
 , authentik-nix
 , nixvim
 , nix-index-database
-, ... }:
+, ... }@inputs:
 let
-  agenixOverlay = final: prev: {
-    agenix = agenix.packages.${prev.system}.default;
-  };
-  ghidraOverlay = final: prev: {
-    ghidra = nixpkgs-unstable.legacyPackages.${prev.system}.ghidra;
-    ghidra-extensions = {
-      arcompact = prev.callPackage ../pkgs/ghidra-arcompact.nix {};
-      ctrlp = prev.callPackage ../pkgs/ghidra-ctrlp.nix {};
-      wasm = prev.callPackage ../pkgs/ghidra-wasm.nix {};
-    } // nixpkgs-unstable.legacyPackages.${prev.system}.ghidra-extensions;
-  };
-  alloyOverlay = final: prev: {
-    grafana-alloy = nixpkgs-unstable.legacyPackages.${prev.system}.grafana-alloy;
-  };
   pkgs = system: import nixpkgs {
     inherit system;
-    overlays = [ agenixOverlay ghidraOverlay alloyOverlay ];
+    overlays = import ../overlays inputs;
     config.allowUnfree = true;
     config.permittedInsecurePackages = [ "olm-3.2.16" ];
     config.allowUnfreePredicate = pkg: builtins.elem (system.lib.getName pkg) [

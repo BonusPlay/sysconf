@@ -9,7 +9,6 @@ in
     group = "mautrix-meta";
   };
 
-  services.mautrix-meta.package = pkgs.callPackage ../../pkgs/mautrix-meta.nix {};
   services.mautrix-meta.instances.facebook = {
     enable = true;
     environmentFile = config.age.secrets.matrixMetaEnv.path;
@@ -47,6 +46,8 @@ in
           allow = true;
           default = true;
         };
+
+        backfill.enabled = true;
 
         permissions = {
           "@bonus:bonusplay.pl" = "admin";
