@@ -59,6 +59,7 @@ in
       ghidra-extensions.arcompact
       ghidra-extensions.ctrlp
       ghidra-extensions.findcrypt
+      ghidra-extensions.ghidralib
       ghidra-extensions.gnudisassembler
       ghidra-extensions.wasm
     ]))
