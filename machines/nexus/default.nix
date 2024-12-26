@@ -32,6 +32,7 @@
     "11-iot" = {
       matchConfig.Name = "enp6s19";
       networkConfig.DHCP = "yes";
+      dhcpV4Config.UseGateway = "no";
     };
   };
 }
