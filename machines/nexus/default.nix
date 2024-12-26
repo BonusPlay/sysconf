@@ -23,4 +23,15 @@
   };
 
   networking.hostName = "nexus";
+
+  systemd.network.networks = {
+    "10-wan" = {
+      matchConfig.Name = "enp6s18";
+      networkConfig.DHCP = "yes";
+    };
+    "11-iot" = {
+      matchConfig.Name = "enp6s19";
+      networkConfig.DHCP = "yes";
+    };
+  };
 }

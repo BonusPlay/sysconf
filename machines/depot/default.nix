@@ -30,4 +30,9 @@
   networking.hosts = {
     "127.0.0.1" = [ "auth.warp.lan" ];
   };
+
+  systemd.network.networks."10-wired" = {
+    matchConfig.Name = "enp6s18";
+    networkConfig.DHCP = "yes";
+  };
 }

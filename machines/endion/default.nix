@@ -21,4 +21,9 @@
   };
 
   networking.hostName = "endion";
+
+  systemd.network.networks."10-wired" = {
+    matchConfig.Name = "enp0s18";
+    networkConfig.DHCP = "yes";
+  };
 }

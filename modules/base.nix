@@ -74,6 +74,11 @@ in
       '';
     };
 
+    # networkd + resolved
+    systemd.network.enable = true;
+    networking.dhcpcd.enable = false;
+    networking.useDHCP = false;
+
     environment.etc."ssl/certs/warp-net.crt".source = ../files/warp-net-root.crt;
     security.pki.certificateFiles = [ ../files/warp-net-root.crt ];
 

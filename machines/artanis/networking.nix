@@ -8,17 +8,9 @@
     mode = "600";
   };
 
-  # use systemd-networkd
-  systemd.network.enable = true;
-  networking.dhcpcd.enable = false;
-
-  systemd.network = {
-    networks = {
-      "wlp166s0" = {
-        name = "wlp166s0";
-        DHCP = "yes";
-      };
-    };
+  systemd.network.networks."10-wifi" = {
+    matchConfig.Name = "wlp166s0";
+    networkConfig.DHCP = "yes";
   };
 
   networking = {

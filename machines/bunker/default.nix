@@ -24,18 +24,8 @@
     tmp.cleanOnBoot = true;
   };
 
-  networking = {
-    hostName = "bunker";
-    useDHCP = false;
-    bridges.br-docs.interfaces = [];
-    interfaces = {
-      enp6s18.useDHCP = true;
-      br-docs.ipv4.addresses = [
-        {
-          address = "172.28.0.1";
-          prefixLength = 24;
-        }
-      ];
-    };
+  systemd.network.networks."10-wired" = {
+    matchConfig.Name = "enp6s18";
+    networkConfig.DHCP = "yes";
   };
 }
