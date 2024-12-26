@@ -109,17 +109,17 @@
 
         vortex-alpha.deployment = {
           tags = [ "vm" "server" "vortex" ];
-          targetHost = "192.168.4.119";
+          targetHost = "vortex-alpha.warp.lan";
         };
 
         vortex-beta.deployment = {
           tags = [ "vm" "server" "vortex" ];
-          targetHost = "192.168.4.118";
+          targetHost = "vortex-beta.warp.lan";
         };
 
         vortex-gamma.deployment = {
           tags = [ "vm" "server" "vortex" ];
-          targetHost = "192.168.4.120";
+          targetHost = "vortex-gamma.warp.lan";
         };
 
         artanis.deployment = {
