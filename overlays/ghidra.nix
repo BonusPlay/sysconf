@@ -8,6 +8,7 @@ final: prev:
     ghidra-extensions = {
       arcompact = pkgs.callPackage ../pkgs/ghidra-arcompact.nix {};
       ctrlp = pkgs.callPackage ../pkgs/ghidra-ctrlp.nix {};
+      ghidralib = pkgs.callPackage ../pkgs/ghidra-lib.nix {};
       wasm = pkgs.callPackage ../pkgs/ghidra-wasm.nix {};
     } // pkgs.ghidra-extensions;
   }
