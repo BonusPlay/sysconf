@@ -57,6 +57,7 @@ in
     mtr
     (ghidra.withExtensions (p: with p; [
       ghidra-extensions.arcompact
+      ghidra-extensions.binexport
       ghidra-extensions.ctrlp
       ghidra-extensions.findcrypt
       ghidra-extensions.ghidralib
