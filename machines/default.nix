@@ -140,14 +140,14 @@ in
   #};
 
   # nix builder
-  scv = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./scv
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
+  #scv = nixpkgs.lib.nixosSystem {
+  #  pkgs = pkgs "x86_64-linux";
+  #  modules = [
+  #    ./scv
+  #    ../modules/server.nix
+  #    agenix.nixosModules.default
+  #  ];
+  #};
 
   # nextcloud + onlyoffice
   bunker = nixpkgs.lib.nixosSystem {

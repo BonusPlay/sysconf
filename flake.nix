@@ -90,10 +90,10 @@
           targetHost = "kaldir.warp.lan";
         };
 
-        scv.deployment = {
-          tags = [ "vm" "server" ];
-          buildOnTarget = true;
-        };
+        #scv.deployment = {
+        #  tags = [ "vm" "server" ];
+        #  buildOnTarget = true;
+        #};
 
         shakuras.deployment = {
           tags = [ "vm" "server" ];
