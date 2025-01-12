@@ -189,4 +189,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # changedetect / archive
+  observer = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./observer
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }

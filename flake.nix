@@ -135,6 +135,11 @@
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
         };
+
+        observer.deployment = {
+          tags = [ "vm" "server" ];
+          targetHost = "observer.warp.lan";
+        };
       };
   };
 }
