@@ -17,13 +17,14 @@ let
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
   droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
   depot = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMdhHmB288L1wiQisngWmtmaneAn3BvtI96rwkyqDEKO";
+  observer = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMqBkLIvU/zBT0Ya5+24EG8ESjaGFAhAf6nGeVd10Y6J";
 
   vortex-alpha = "";
   vortex-beta = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARXsFJHnnFuMA8krwgEkuK1BLTJnYnYQoCwmtD9QMUH";
   vortex-gamma = "";
 
   vortex = [ vortex-beta ];
-  servers = vortex ++ [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid depot ];
+  servers = vortex ++ [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid depot observer ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
 in

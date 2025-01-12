@@ -140,6 +140,11 @@
           tags = [ "vm" "server" ];
           targetHost = "depot.warp.lan";
         };
+
+        observer.deployment = {
+          tags = [ "vm" "server" ];
+          targetHost = "observer.warp.lan";
+        };
       };
   };
 }
