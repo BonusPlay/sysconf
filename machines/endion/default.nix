@@ -10,7 +10,10 @@
   };
 
   custom = {
-    base.enable = true;
+    base = {
+      enable = true;
+      autoUpgrade = false;
+    };
     server = {
       enable = true;
       vm = true;
