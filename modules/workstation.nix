@@ -26,6 +26,9 @@ in
   config = mkIf cfg.enable {
     custom.base.autoUpgrade = false;
 
+    # LET'S FUCKING GOOOO
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+
     services.fwupd.enable = true;
     hardware.enableAllFirmware = true;
     hardware.graphics.enable = true;
