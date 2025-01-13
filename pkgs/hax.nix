@@ -59,6 +59,7 @@ let
 
       # required for bwrap --bind
       mkdir -p var/lib/onlyoffice/ var/www/onlyoffice/documentserver/fonts/
+      mkdir -p var/www/onlyoffice/documentserver/sdkjs/slide/themes/
 
       mv * $out/
     '';
@@ -82,6 +83,7 @@ let
 
         extraBwrapArgs = [
           "--bind var/lib/onlyoffice/ var/lib/onlyoffice/"
+          "--bind var/lib/onlyoffice/ var/www/onlyoffice/"
           "--bind var/lib/onlyoffice/documentserver/sdkjs/common/ var/www/onlyoffice/documentserver/sdkjs/common/"
           "--bind var/lib/onlyoffice/documentserver/sdkjs/slide/themes/ var/www/onlyoffice/documentserver/sdkjs/slide/themes/"
           "--bind var/lib/onlyoffice/documentserver/fonts/ var/www/onlyoffice/documentserver/fonts/"
@@ -89,6 +91,9 @@ let
         ];
 
         extraPreBwrapCmds = ''
+          echo "============================================================"
+          pwd
+          id
           echo "============================================================"
           ls -lha var/
           ls -lha var/www/
@@ -107,7 +112,7 @@ let
           set -x
         '';
 
-        extraBuildCommands = "mkdir -p $out/var/lib/onlyoffice/";
+        extraBuildCommands = "mkdir -p $out/var/{lib,www} && cp -ar ${onlyoffice-documentserver}/var/www/* $out/var/www/";
 
         runScript = writeScript "onlyoffice-documentserver-run-script" ''
           export NODE_CONFIG_DIR=$2
