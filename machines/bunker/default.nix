@@ -24,6 +24,7 @@
     tmp.cleanOnBoot = true;
   };
 
+  networking.hostName = "bunker";
   systemd.network.networks."10-wired" = {
     matchConfig.Name = "enp6s18";
     networkConfig.DHCP = "yes";
