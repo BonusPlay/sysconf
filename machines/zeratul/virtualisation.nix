@@ -1,6 +1,15 @@
 {
   virtualisation.docker.enable = true;
 
+  boot = {
+    initrd.kernelModules = [
+      "vfio_pci"
+      "vfio"
+      "vfio_iommu_type1"
+    ];
+    kernelParams = [ "intel_iommu=on" ];
+  };
+
   virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.libvirtd = {
     enable = true;
