@@ -135,11 +135,6 @@
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
         };
-
-        depot.deployment = {
-          tags = [ "vm" "server" ];
-          targetHost = "depot.warp.lan";
-        };
       };
   };
 }
