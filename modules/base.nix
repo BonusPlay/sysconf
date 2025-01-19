@@ -74,6 +74,13 @@ in
       '';
     };
 
+    # harden openssh
+    services.openssh.settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+    };
+
     # networkd + resolved
     systemd.network.enable = true;
     networking.dhcpcd.enable = false;
