@@ -17,7 +17,7 @@ let
   uptime-kuma-integration = pkgs.callPackage ./uptime-kuma-integration.nix { inherit pyuptimekuma-hass; };
 in
 {
-  custom.caddy.entries = [
+  custom.nginx.entries = [
     {
       entrypoints = [ "100.84.139.31" ];
       domain = "has.warp.lan";

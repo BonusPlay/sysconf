@@ -22,6 +22,10 @@ in
             acl = [ "readwrite #" ];
             hashedPassword = "$7$101$/JRnReEzuZpPuDIO$H9tGTGSv8y6+l8UJsHuYjlJxxeDqfzxM2MeXBavoYigJ57UASmwnpY8s88RaSBBGyenZy8BGsyRtdsFXGICayA==";
           };
+          "frigate" = {
+            acl = [ "readwrite #" ];
+            hashedPassword = "$7$101$peTcw8zQj7QuAJZU$a60daOKaybZpYihEvuZfmkez+5tan7R13/8i+QB+9M+SM+hxsxaa1YcOTurTxtBLELRZd8eX6QROVuXbU4hheA==";
+          };
         };
       }
     ];

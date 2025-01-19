@@ -4,6 +4,8 @@
     ./hardware-configuration.nix
     ./home-assistant.nix
     ./mosquitto.nix
+    ./esphome.nix
+    #./frigate.nix
   ];
 
   custom = {
@@ -12,7 +14,7 @@
       enable = true;
       vm = true;
     };
-    caddy.enable = true;
+    nginx.enable = true;
     warp-net.enable = true;
     monitoring.enable = true;
   };
