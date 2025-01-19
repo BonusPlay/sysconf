@@ -26,7 +26,7 @@
   networking.hostName = "vortex-beta";
 
   systemd.network.networks."10-wired" = {
-    matchConfig.Name = "enp0s18";
+    matchConfig.Name = "enp6s18";
     networkConfig.DHCP = "yes";
   };
 }
