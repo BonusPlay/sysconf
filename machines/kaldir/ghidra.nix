@@ -6,7 +6,6 @@ in
 {
   networking.firewall.allowedTCPPorts = ports;
 
-  virtualisation.oci-containers.backend = "podman";
   virtualisation.oci-containers.containers.ghidra = {
     # 11.2.1-alpine ARM!!!
     image = "blacktop/ghidra@sha256:4a00f0a8447536800a68df6fbe2984b721617ad0bfa79c14a0347f8624b98913";

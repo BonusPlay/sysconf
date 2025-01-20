@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./chibisafe.nix
+    ./mailcow.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
@@ -38,4 +39,16 @@
   };
 
   services.fwupd.enable = true;
+
+  virtualisation = {
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+      autoPrune.enable = true;
+    };
+    oci-containers.backend = "podman";
+  };
 }
