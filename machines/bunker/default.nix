@@ -19,10 +19,7 @@
     monitoring.enable = true;
   };
 
-  boot = {
-    loader.grub.device = "/dev/sda";
-    tmp.cleanOnBoot = true;
-  };
+  boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "bunker";
   systemd.network.networks."10-wired" = {

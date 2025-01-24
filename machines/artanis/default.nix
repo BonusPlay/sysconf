@@ -17,7 +17,7 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    tmp.cleanOnBoot = true;
+    tmp.useTmpfs = true;
   };
 
   services.tlp.enable = true;

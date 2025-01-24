@@ -4,10 +4,7 @@
     ./forgejo.nix
   ];
 
-  boot = {
-    loader.grub.device = "/dev/sda";
-    tmp.cleanOnBoot = true;
-  };
+  boot.loader.grub.device = "/dev/sda";
 
   custom = {
     base = {

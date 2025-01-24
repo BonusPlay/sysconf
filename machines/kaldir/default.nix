@@ -31,10 +31,7 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.configurationLimit = 5;
     };
-    tmp = {
-      useTmpfs = true;
-      cleanOnBoot = true;
-    };
+    tmp.useTmpfs = true;
   };
 
   services.fwupd.enable = true;

@@ -63,6 +63,8 @@ in
       allowReboot = cfg.allowReboot;
     };
 
+    boot.tmp.cleanOnBoot = true;
+
     time.timeZone = mkDefault "UTC";
     i18n.defaultLocale = "en_US.UTF-8";
 
