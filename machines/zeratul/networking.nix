@@ -5,8 +5,8 @@
       matchConfig.Name = "enp3s0f0";
       networkConfig.DHCP = "yes";
     };
-    "12-eth" = {
-      matchConfig.Name = "enp0s31f6";
+    "11-eth" = {
+      matchConfig.Name = "enp8s0";
       networkConfig.DHCP = "yes";
     };
   };
