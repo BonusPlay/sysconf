@@ -57,7 +57,7 @@ in
         "${entry.domain}" = {
           server = "https://pki.warp.lan/acme/warp/directory";
           email = "acme@${entry.domain}";
-          renewInterval = "23h";
+          renewInterval = "daily";
           group = "nginx";
           reloadServices = [ "nginx" ];
         };
