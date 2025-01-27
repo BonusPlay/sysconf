@@ -20,4 +20,6 @@
     videoDrivers = ["nvidia"];
     xkb.layout = "pl";
   };
+
+  programs.gamemode.enable = true;
 }
