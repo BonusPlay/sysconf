@@ -18,12 +18,12 @@ in
 
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     hostName = domain;
     https = true;
     configureRedis = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts calendar maps onlyoffice tasks;
+      inherit contacts calendar maps onlyoffice tasks uppush;
     };
     extraAppsEnable = true;
     phpOptions = {
