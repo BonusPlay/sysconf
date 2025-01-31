@@ -9,6 +9,7 @@
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./matrix-slack.nix
+    ./ntfy.nix
     ./ghidra.nix
     ./obsidian.nix
     ./uptime.nix
