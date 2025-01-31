@@ -3,5 +3,4 @@
   (import ./agenix.nix { inherit agenix; })
   (import ./ghidra.nix { inherit nixpkgs-unstable; })
   (import ./mautrix.nix)
-  (import ./nextcloud.nix)
 ]
