@@ -52,13 +52,28 @@ in
         longitude = "!secret longitude";
         unit_system = "metric";
         time_zone = "!secret timezone";
+        external_url = "https://has.warp.lan";
+        internal_url = "https://has.warp.lan";
       };
+      notify = [
+        {
+          name = "ntfy";
+          platform = "rest";
+          method = "POST_JSON";
+          authentication = "basic";
+          username = "!secret ntfy_username";
+          password = "!secret ntfy_password";
+          data.topic = "has-general";
+          title_param_name = "title";
+          message_param_name = "message";
+          resource = "https://ntfy.warp.lan";
+        }
+      ];
       default_config = {};
       frontend = {
         themes = "!include_dir_merge_named themes";
       };
       http = {
-        base_url = "https://has.warp.lan";
         use_x_forwarded_for = true;
         trusted_proxies = [ "127.0.0.1" ];
         server_port = 8123;
