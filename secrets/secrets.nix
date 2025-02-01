@@ -46,6 +46,8 @@ in
 
   "home-assistant-secrets.age".publicKeys = users ++ [ nexus ];
 
+  "litellm-env.age".publicKeys = users ++ [ kaldir ];
+
   "matrix/synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix/synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "matrix/meta-registration.age".publicKeys = users ++ [ kaldir ];

@@ -12,6 +12,7 @@
     ./ntfy.nix
     ./ghidra.nix
     ./obsidian.nix
+    ./open-webui.nix
     ./uptime.nix
   ];
 

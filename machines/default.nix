@@ -56,6 +56,7 @@ in
       ./kaldir
       ../modules/server.nix
       ../modules/mautrix-slack.nix
+      ../modules/litellm.nix
       agenix.nixosModules.default
     ];
   };
