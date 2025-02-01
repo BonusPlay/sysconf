@@ -32,16 +32,16 @@ in
     };
     config = {
       adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
-      #objectstore.s3 = {
-      #  enable = true;
-      #  hostname = "s3.warp.lan";
-      #  key = "GKb9a92eff75e0da3789d057ca"; # access-key
-      #  region = "garage";
-      #  bucket = "nextcloud";
-      #  secretFile = config.age.secrets.nextcloud-s3-secret.path;
-      #  usePathStyle = true;
-      #  autocreate = false;
-      #};
+      objectstore.s3 = {
+        enable = true;
+        hostname = "s3.warp.lan";
+        key = "GKb9a92eff75e0da3789d057ca"; # access-key
+        region = "garage";
+        bucket = "nextcloud";
+        secretFile = config.age.secrets.nextcloud-s3-secret.path;
+        usePathStyle = true;
+        autocreate = false;
+      };
     };
   };
 
