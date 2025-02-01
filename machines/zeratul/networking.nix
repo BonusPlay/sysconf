@@ -2,7 +2,7 @@
 {
   systemd.network.networks = {
     "10-sfp" = {
-      matchConfig.Name = "enp3s0f0";
+      matchConfig.Name = "enp9s0";
       networkConfig.DHCP = "yes";
     };
     "11-eth" = {
