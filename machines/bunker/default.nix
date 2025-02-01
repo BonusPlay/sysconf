@@ -3,10 +3,8 @@
   imports = [
     ./hardware-configuration.nix
     ./nextcloud.nix
-    #./onlyoffice.nix
+    ./onlyoffice.nix
   ];
-
-  # TODO: maybe tunnel via kaldir?
 
   custom = {
     base.enable = true;
