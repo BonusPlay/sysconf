@@ -8,6 +8,7 @@ in
     ./base.nix
     ./caddy.nix
     ./monitoring.nix
+    ./beszel-agent.nix
     ./nginx.nix
     ./warp-net.nix
   ];

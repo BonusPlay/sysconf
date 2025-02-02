@@ -14,6 +14,7 @@
     ./obsidian.nix
     ./open-webui.nix
     ./uptime.nix
+    ./beszel.nix
   ];
 
   custom = {

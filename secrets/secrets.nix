@@ -70,6 +70,7 @@ in
 
   "grafana-alloy.age".publicKeys = users ++ servers;
   "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];
+  "beszel-env.age".publicKeys = users ++ servers;
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
