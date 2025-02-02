@@ -30,7 +30,7 @@
     '';
   };
 
-  oci-containers.containers.testing = {
+  virtualisation.oci-containers.containers.testing = {
     image = "selenium/standalone-chrome";
     environment = {
       VNC_NO_PASSWORD = "1";
