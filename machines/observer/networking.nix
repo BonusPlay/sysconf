@@ -18,7 +18,7 @@
     description = "setup podman macvlan";
     after = [ "network.target" ];
     wants = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "network-online.target" ];
 
     serviceConfig = {
       Type = "oneshot";
