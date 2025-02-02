@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   systemd.network = {
     networks = {
@@ -5,23 +6,30 @@
         matchConfig.Name = "enp6s18";
         networkConfig.DHCP = "yes";
       };
-      "20-vpn" = {
+      "20-ignore-vpn" = {
         matchConfig.Name = "enp6s19";
-        networkConfig.Bridge = "br-mullvad";
-        linkConfig.RequiredForOnline = "enslaved";
-      };
-      "30-bridge" = {
-        matchConfig.Name = "br-mullvad";
-        networkConfig.LinkLocalAddressing = "no";
-        linkConfig.RequiredForOnline = "carrier";
+        linkConfig.RequiredForOnline = "no";
+        linkConfig.Unmanaged = "yes";
       };
     };
-    netdevs.br-mullvad = {
-      enable = true;
-      netdevConfig = {
-        Kind = "bridge";
-        Name = "br-mullvad";
-      };
+  };
+
+  systemd.services."podman-macvlan" = {
+    description = "setup podman macvlan";
+    after = [ "podman.service" ];
+    wants = [ "podman.service" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
     };
+
+    script = ''
+      ${pkgs.podman}/bin/podman network exists mullvad_macvlan || \
+      ${pkgs.podman}/bin/podman network create \
+        --driver=macvlan \
+        -o parent=enp6s19 \
+        mullvad_macvlan
+    '';
   };
 }
