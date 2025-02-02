@@ -16,14 +16,13 @@
 
   systemd.services."podman-macvlan" = {
     description = "setup podman macvlan";
-    after = [ "podman.service" ];
-    wants = [ "podman.service" ];
+    after = [ "network.target" ];
+    wants = [ "network.target" ];
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
     };
-
     script = ''
       ${pkgs.podman}/bin/podman network exists mullvad_macvlan || \
       ${pkgs.podman}/bin/podman network create \
