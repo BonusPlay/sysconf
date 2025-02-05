@@ -1,14 +1,5 @@
 { config, ... }:
 {
-  custom.caddy.entries = [
-    {
-      entrypoints = [ "100.99.52.31" ];
-      domain = "git.warp.lan";
-      target = config.services.forgejo.settings.server.HTTP_ADDRESS;
-      port = config.services.forgejo.settings.server.HTTP_PORT;
-    }
-  ];
-
   services.forgejo = {
     enable = true;
     settings = {
@@ -18,7 +9,7 @@
       repository.DEFAULT_BRANCH = "master";
       DEFAULT.APP_NAME = "Bonus's git";
       server = {
-        DOMAIN = "mlwr.dev";
+        DOMAIN = "warp.lan";
         SSH_PORT = 2222;
         ROOT_URL = "https://git.warp.lan";
         HTTP_ADDRESS = "127.0.0.1";
@@ -27,6 +18,15 @@
     };
     lfs.enable = true;
   };
+
+  custom.caddy.entries = [
+    {
+      entrypoints = [ "100.99.52.31" ];
+      domain = "git.warp.lan";
+      target = config.services.forgejo.settings.server.HTTP_ADDRESS;
+      port = config.services.forgejo.settings.server.HTTP_PORT;
+    }
+  ];
 
   networking.firewall.allowedTCPPorts = [ config.services.forgejo.settings.server.SSH_PORT ];
 }
