@@ -6,13 +6,13 @@ in
   age.secrets = {
     nextcloud-admin-pass = {
       file = ../../secrets/nextcloud/admin-pass.age;
-      mode = "0444";
-      owner = "root";
+      mode = "0400";
+      owner = "nextcloud";
     };
     nextcloud-s3-secret = {
       file = ../../secrets/nextcloud/s3-secret.age;
-      mode = "0444";
-      owner = "root";
+      mode = "0400";
+      owner = "nextcloud";
     };
   };
 
@@ -49,7 +49,7 @@ in
   services.nginx.virtualHosts.${domain} = {
     enableACME = true;
     forceSSL = true;
-    listenAddresses = [ "100.112.114.72" "127.0.0.1" ];
+    listenAddresses = [ "100.112.114.72" ];
   };
   security.acme = {
     acceptTerms = true;
@@ -60,7 +60,4 @@ in
       group = "nginx";
     };
   };
-
-  # fix for tailscale blocking localhost
-  networking.hosts."127.0.0.1" = [ domain ];
 }

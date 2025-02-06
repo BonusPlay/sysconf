@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./collabora.nix
     ./nextcloud.nix
   ];
 
@@ -11,7 +12,7 @@
       enable = true;
       vm = true;
     };
-    caddy.enable = true;
+    nginx.enable = true;
     warp-net.enable = true;
     monitoring.enable = true;
   };
