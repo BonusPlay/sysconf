@@ -23,7 +23,7 @@ in
     https = true;
     configureRedis = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts calendar maps onlyoffice tasks;
+      inherit contacts calendar maps richdocuments tasks;
     };
     extraAppsEnable = true;
     phpOptions = {

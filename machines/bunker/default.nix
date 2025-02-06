@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./nextcloud.nix
-    ./onlyoffice.nix
   ];
 
   custom = {
