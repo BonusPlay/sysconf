@@ -11,6 +11,8 @@
     };
   };
 
+  systemd.network.wait-online.ignoredInterfaces = [ "enp8s0" ];
+
   networking = {
     hostName = "zeratul";
     useNetworkd = true;
