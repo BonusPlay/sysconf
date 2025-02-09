@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   age.secrets.giteaRunnerLinuxToken = {
     file = ../../secrets/gitea-runner-linux-token.age;
@@ -10,13 +10,16 @@
     storageDriver = "btrfs";
   };
 
-  services.gitea-actions-runner.instances.linux_amd64 = {
-    enable = true;
-    name = "linux_amd64";
-    url = "https://git.warp.lan";
-    tokenFile = config.age.secrets.giteaRunnerLinuxToken.path;
-    labels = [
-      "linux_amd64:docker://node:22-bullseye"
-    ];
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-runner;
+    instances.linux_amd64 = {
+      enable = true;
+      name = "linux_amd64";
+      url = "https://git.warp.lan";
+      tokenFile = config.age.secrets.giteaRunnerLinuxToken.path;
+      labels = [
+        "linux_amd64:docker://node:22-bullseye"
+      ];
+    };
   };
 }
