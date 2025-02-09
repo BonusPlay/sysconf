@@ -2,6 +2,7 @@
 {
   programs.git = {
     enable = true;
+    lfs.enable = true;
     userName = "Bonus";
     userEmail = "root@bonusplay.pl";
     extraConfig = {
