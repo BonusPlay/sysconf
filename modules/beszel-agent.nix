@@ -34,6 +34,13 @@ in
         File path containing environment variables for configuring the beszel-agent service in the format of an EnvironmentFile. See {manpage}`systemd.exec(5)`.
       '';
     };
+    extraPath = lib.mkOption {
+      type = lib.types.nullOr (lib.types.listOf lib.types.package);
+      default = null;
+      description = ''
+        Extra packages to add to beszel path (such as nvidia-smi or rocm-smi).
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -45,6 +52,7 @@ in
       after = [ "network-online.target" ];
 
       environment = cfg.environment;
+      path = lib.optionals (cfg.extraPath != null) cfg.extraPath;
 
       serviceConfig = {
         ExecStart = ''
