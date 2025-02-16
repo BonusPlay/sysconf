@@ -135,7 +135,8 @@ in
     pkgs = pkgs "x86_64-linux";
     modules = [
       ./warpgate
-      ./warpgate/zone.nix
+      ../modules/server.nix
+      agenix.nixosModules.default
     ];
   };
 }
