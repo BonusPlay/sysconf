@@ -22,7 +22,10 @@ in
   "ca/intermediate-crt.age".publicKeys = users ++ [ raven ];
   "ca/intermediate-key.age".publicKeys = users ++ [ raven ];
 
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion bunker ];
+  "warpgate/klisie-pl-zone.age".publicKeys = users;
+  "warpgate/warp-lan-zone.age".publicKeys = users;
+  "warpgate/dhcp-reservations.age".publicKeys = users;
+
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
 

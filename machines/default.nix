@@ -130,4 +130,12 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  warpgate = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./warpgate
+      ./warpgate/zone.nix
+    ];
+  };
 }

@@ -113,6 +113,10 @@
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
         };
+
+        warpgate.deployment = {
+          tags = [ "phys" ];
+        };
       };
   };
 }
