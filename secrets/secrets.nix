@@ -31,6 +31,10 @@ in
   "ca/intermediate-crt.age".publicKeys = users ++ [ raven ];
   "ca/intermediate-key.age".publicKeys = users ++ [ raven ];
 
+  "warpgate/klisie-pl-zone.age".publicKeys = users;
+  "warpgate/warp-lan-zone.age".publicKeys = users;
+  "warpgate/dhcp-reservations.age".publicKeys = users;
+
   "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul bunker ];
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/authentik-tunnel.age".publicKeys = users ++ [ braxis ];
