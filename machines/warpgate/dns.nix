@@ -19,7 +19,7 @@ in
 
       auth-zones=klisie.pl=${config.age.secrets.klisie-zone.path},warp.lan=${config.age.secrets.warp-zone.path}
     '';
-  }
+  };
 
   age.secrets = {
     klisie-zone = {
