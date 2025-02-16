@@ -1,7 +1,7 @@
 { lib, config, pkgs, home-manager, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    #./hardware-configuration.nix
     ./bridge.nix
     ./dhcp.nix
     ./dns.nix
