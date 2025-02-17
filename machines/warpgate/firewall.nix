@@ -100,7 +100,7 @@ in
           policy accept;
         }
       }
-      
+
       table inet nat {
         chain prerouting {
           type nat hook prerouting priority 0;
