@@ -3,7 +3,7 @@ let
   ifaceConfig = import ./interfaces.nix;
   inherit (ifaceConfig) vlans;
 
-  subnets = map (vlan: "192.168.${vlan.id}.0/24") vlans;
+  subnets = map (vlan: "192.168.${toString vlan.id}.0/24") vlans;
 in
 {
   services.powerdns = {
