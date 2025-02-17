@@ -9,6 +9,23 @@
     ./zerotier.nix
   ];
 
+  custom = {
+    base = {
+      enable = true;
+      autoUpgrade = false;
+      allowReboot = false;
+      remoteBuild = false;
+    };
+    server = {
+      enable = true;
+      vm = false;
+    };
+    warp-net = {
+      enable = true;
+      #exitNode = true;
+    };
+  };
+
   networking = {
     useNetworkd = true;
     useDHCP = false;
