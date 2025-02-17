@@ -23,12 +23,12 @@ in
 
   age.secrets = {
     klisie-zone = {
-      file = ../../secrets/dns/klisie-pl-zone.age;
+      file = ../../secrets/warpgate/klisie-pl-zone.age;
       mode = "0400";
       owner = "pdns";
     };
     warp-zone = {
-      file = ../../secrets/dns/warp-lan-zone.age;
+      file = ../../secrets/warpgate/warp-lan-zone.age;
       mode = "0400";
       owner = "pdns";
     };
