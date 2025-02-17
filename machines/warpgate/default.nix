@@ -13,7 +13,7 @@
     useNetworkd = true;
     useDHCP = false;
     hostName = "warpgate";
-    nameserver = "1.1.1.1";
+    nameservers = [ "1.1.1.1" ];
 
     # use nftables
     nat.enable = false;
