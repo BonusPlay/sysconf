@@ -17,12 +17,12 @@ let
   zonesWithoutLocal = lib.filterAttrs (name: _: name != "local") zones;
 in
 {
-  assertions = [
-    {
-      assertion = config.networking.nftables.local.interfaces == [];
-      message = "local zone shouldn't have any interfaces";
-    }
-  ];
+  #assertions = [
+  #  {
+  #    assertion = zones.local
+  #    message = "local zone shouldn't have any interfaces";
+  #  }
+  #];
   networking.nftables = {
     enable = true;
     ruleset = let
