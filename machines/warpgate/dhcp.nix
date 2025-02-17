@@ -51,7 +51,7 @@ in
   };
 
   age.secrets.dhcp-reservations = {
-    file = ../../secrets/dhcp-reservations.age;
+    file = ../../secrets/warpgate/dhcp-reservations.age;
     mode = "0400";
     owner = "root";
   };
