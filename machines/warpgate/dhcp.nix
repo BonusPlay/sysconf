@@ -5,16 +5,16 @@ let
 
   mkSubnetConfig = vlan: {
     id = vlan.id;
-    pools = [{ pool = "192.168.${vlan.id}.100-192.168.${vlan.id}.199"; }];
-    subnet = "192.168.${vlan.id}.0/24";
+    pools = [{ pool = "192.168.${toString vlan.id}.100-192.168.${toString vlan.id}.199"; }];
+    subnet = "192.168.${toString vlan.id}.0/24";
     option-data = [
       {
         name = "routers";
-        data = "192.168.${vlan.id}.1";
+        data = "192.168.${toString vlan.id}.1";
       }
       {
         name = "domain-name-servers";
-        data = "192.168.${vlan.id}.1";
+        data = "192.168.${toString vlan.id}.1";
       }
     ];
   };
