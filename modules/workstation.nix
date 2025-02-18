@@ -29,6 +29,8 @@ in
     # LET'S FUCKING GOOOO
     boot.kernelPackages = pkgs.linuxPackages_latest;
 
+    boot.initrd.systemd.enable = lib.mkDefault true;
+
     services.fwupd.enable = true;
     hardware.enableAllFirmware = true;
     hardware.graphics.enable = true;
