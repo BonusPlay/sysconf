@@ -20,7 +20,7 @@ let
     name = port.name;
     value = {
       matchConfig.MACAddress = port.mac;
-      linkConfig.MasterDevice = {
+      linkConfig = {
         Name = port.name;
         MasterDevice = "br0";
       };
