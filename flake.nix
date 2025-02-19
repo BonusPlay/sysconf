@@ -116,6 +116,7 @@
 
         warpgate.deployment = {
           tags = [ "phys" ];
+          targetHost = "192.168.4.109";
         };
       };
   };
