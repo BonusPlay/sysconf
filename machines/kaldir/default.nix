@@ -41,14 +41,10 @@
   services.fwupd.enable = true;
 
   virtualisation = {
-    docker.enable = false;
-    podman = {
+    docker = {
       enable = true;
-      dockerSocket.enable = true;
-      dockerCompat = true;
-      defaultNetwork.settings.dns_enabled = true;
       autoPrune.enable = true;
     };
-    oci-containers.backend = "podman";
+    oci-containers.backend = "docker";
   };
 }

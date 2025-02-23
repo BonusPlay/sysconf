@@ -2,19 +2,18 @@
 {
   systemd.services.mailcow = {
     description = "dockerized email stack";
-    requires = [ "podman.service" ];
-    after = [ "podman.service" ];
+
+    requires = [ "docker.service" ];
+    after = [ "docker.service" ];
     wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.podman ];
+
     serviceConfig = {
       Restart = "always";
-      User = "root";
-      Group = "podman";
       TimeoutStopSec = "15";
       WorkingDirectory = "/var/lib/mailcow";
-      ExecStartPre = "${pkgs.podman-compose}/bin/podman-compose -f docker-compose.yml down";
-      ExecStart = "${pkgs.podman-compose}/bin/podman-compose -f docker-compose.yml up";
-      ExecStop = "${pkgs.podman-compose}/bin/podman-compose -f docker-compose.yml down";
+      ExecStartPre = "${pkgs.docker-compose}/bin/docker-compose -f docker-compose.yml down";
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f docker-compose.yml up";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f docker-compose.yml down";
     };
   };
 
