@@ -44,6 +44,8 @@ in
 
   "litellm-env.age".publicKeys = users ++ [ kaldir ];
 
+  "mail/sieve-multibox.age".publicKeys = users ++ [ kaldir ];
+
   "matrix/synapse-extra-config.age".publicKeys = users ++ [ kaldir ];
   "matrix/synapse-signing-key.age".publicKeys = users ++ [ kaldir ];
   "matrix/meta-registration.age".publicKeys = users ++ [ kaldir ];

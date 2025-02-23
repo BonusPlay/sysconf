@@ -3,8 +3,8 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
+    ./beszel.nix
     ./chibisafe.nix
-    ./mailcow.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
@@ -14,8 +14,8 @@
     ./ghidra.nix
     ./obsidian.nix
     ./open-webui.nix
+    ./stalwart.nix
     ./uptime.nix
-    ./beszel.nix
   ];
 
   custom = {
