@@ -27,13 +27,6 @@
       };
     };
 
-    authentik-nix = {
-      # workaround for https://github.com/nix-community/authentik-nix/issues/38
-      url = "github:nix-community/authentik-nix";
-      #url = "github:fpletz/authentik-nix/24907f67ee4850179e46c19ce89334568d2b05c6";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixvim = {
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";

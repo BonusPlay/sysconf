@@ -33,9 +33,6 @@ in
 
   "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul bunker ];
   "cloudflare-tunnel.age".publicKeys = users;
-  "cloudflare/authentik-tunnel.age".publicKeys = users ++ [ braxis ];
-  "cloudflare/hedgedoc-tunnel.age".publicKeys = users ++ [ braxis ];
-  "cloudflare/vikunja-tunnel.age".publicKeys = users ++ [ braxis ];
   "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
@@ -63,10 +60,7 @@ in
   "nextcloud/onlyoffice-jwt.age".publicKeys = users ++ [ bunker ];
   "nextcloud/s3-secret.age".publicKeys = users ++ [ bunker ];
 
-  "kncyber/authentik-env.age".publicKeys = users ++ [ braxis ];
-  "kncyber/hedgedoc-env.age".publicKeys = users ++ [ braxis ];
   "kncyber/discord-bot.age".publicKeys = users ++ [ braxis ];
-  "kncyber/vikunja-config.age".publicKeys = users ++ [ braxis ];
 
   "grafana-alloy.age".publicKeys = users ++ servers;
   "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];

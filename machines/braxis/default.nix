@@ -2,9 +2,6 @@
   imports = [
     ./hardware-configuration.nix
     ./discord-bot.nix
-    ./authentik.nix
-    ./hedgedoc.nix
-    ./vikunja.nix
   ];
 
   custom = {

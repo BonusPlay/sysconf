@@ -4,7 +4,6 @@
 , nixos-hardware
 , agenix
 , lanzaboote
-, authentik-nix
 , nixvim
 , nix-index-database
 , ... }@inputs:
@@ -69,7 +68,6 @@ in
       ./braxis
       ../modules/server.nix
       agenix.nixosModules.default
-      authentik-nix.nixosModules.default
     ];
   };
 
