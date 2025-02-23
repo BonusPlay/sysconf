@@ -42,14 +42,22 @@ let
       mac = "20:7c:14:f2:9b:d1";
       name = "zeratul";
       pvid = 10;
+      vlans = 10;
+      bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:d3";
       name = "switch-trunk";
+      pvid = 1;
+      vlans = [2 3 4 5 9 10];
+      bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:cd";
       name = "capax-trunk";
+      pvid = 1;
+      vlans = [2 3 5 10];
+      bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:cf";
