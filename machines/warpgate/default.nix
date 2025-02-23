@@ -38,7 +38,14 @@
     nftables.enable = true;
   };
 
-  boot.loader.grub.device = "/dev/sda";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.configurationLimit = 5;
+      timeout = 5;
+    };
+  };
 
   systemd.network.networks."10-wan" = {
     matchConfig.MACAddress = "20:7c:14:f2:9b:cf";
