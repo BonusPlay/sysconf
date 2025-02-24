@@ -17,11 +17,11 @@ let
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
   droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
 
-  vortex-alpha = "";
+  vortex-alpha = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzbS1u1JegLXLXNtmhMtobEtb0hz3ILjlXrbE8GSRbS";
   vortex-beta = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARXsFJHnnFuMA8krwgEkuK1BLTJnYnYQoCwmtD9QMUH";
-  vortex-gamma = "";
+  vortex-gamma = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOVsHZ4MdKdVe0wmPskTGtGicwDlvmDmI9CTYvxdAlJ";
 
-  vortex = [ vortex-beta ];
+  vortex = [ vortex-alpha vortex-beta vortex-gamma ];
   servers = vortex ++ [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid ];
 
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
@@ -62,7 +62,6 @@ in
 
   "kncyber/discord-bot.age".publicKeys = users ++ [ braxis ];
 
-  "grafana-alloy.age".publicKeys = users ++ servers;
   "scv-key.age".publicKeys = users ++ servers ++ [ artanis zeratul ];
   "beszel-env.age".publicKeys = users ++ servers;
 
