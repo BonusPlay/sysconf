@@ -71,7 +71,7 @@ in
     bridge-utils
     nmap
     hexyl
-    ungoogled-chromium
+    librewolf
     mattermost-desktop
     element-desktop
     libreoffice
