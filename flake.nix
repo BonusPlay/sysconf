@@ -115,6 +115,11 @@
           targetHost = "vortex-gamma.warp.lan";
         };
 
+        glacius.deployment = {
+          tags = [ "server" ];
+          targetHost = "glacius.warp.lan";
+        };
+
         artanis.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;

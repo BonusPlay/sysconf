@@ -188,4 +188,13 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  glacius = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./glacius
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }
