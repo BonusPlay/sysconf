@@ -7,21 +7,18 @@ let
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
   shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
   glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIY8XAAact/o1QSOfmwJOEGb7cvcDXX6BUUMCKkeNnu5";
-  moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMc8a5YtCK/C0cS962UESqvJ9Ap1u/7ipza9p1ah16MQ";
-  zhakul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOPO4gx3kfwSmuP5QGhx7M0dMEComlnf4/IWDkj+bkGE";
   warpprism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd9N8Cd/3cQGe+vxCCy4Ct7W06kUylfA7GJjozYnjUU";
   scv = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDytxrtFGC30xkdBCPqAyUROA78eLN/PTBXt2v+HZcmg";
   bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
-  droid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHIhBSTW2lG6Hv5AxDyD814NSvnfzB0zsQf697na9eP8";
 
   vortex-alpha = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFzbS1u1JegLXLXNtmhMtobEtb0hz3ILjlXrbE8GSRbS";
   vortex-beta = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIARXsFJHnnFuMA8krwgEkuK1BLTJnYnYQoCwmtD9QMUH";
   vortex-gamma = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGOVsHZ4MdKdVe0wmPskTGtGicwDlvmDmI9CTYvxdAlJ";
 
   vortex = [ vortex-alpha vortex-beta vortex-gamma ];
-  servers = vortex ++ [ kaldir braxis endion shakuras glacius moria zhakul warpprism scv bunker raven nexus droid ];
+  servers = vortex ++ [ kaldir braxis endion shakuras glacius warpprism scv bunker raven nexus ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
@@ -32,7 +29,7 @@ in
   "ca/intermediate-crt.age".publicKeys = users ++ [ raven ];
   "ca/intermediate-key.age".publicKeys = users ++ [ raven ];
 
-  "cloudflare.age".publicKeys = users ++ [ kaldir endion moria zhakul bunker ];
+  "cloudflare.age".publicKeys = users ++ [ kaldir endion bunker ];
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
 
