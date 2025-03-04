@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.custom.server;
 in
@@ -14,14 +13,14 @@ in
   ];
 
   options.custom.server = {
-    enable = mkEnableOption "base configuration of Bonus's servers";
-    vm = mkOption {
-      type = types.bool;
+    enable = lib.mkEnableOption "base configuration of Bonus's servers";
+    vm = lib.mkOption {
+      type = lib.types.bool;
       description = "is this a VM (enable qemu agent)";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     nix.gc.automatic = true;
     users.users.bonus = {
       isNormalUser = true;
@@ -31,7 +30,7 @@ in
     services.openssh.enable = true;
     security.sudo.wheelNeedsPassword = false;
 
-    boot = {
+    boot = lib.mkIf cfg.vm {
       kernelParams = [ "console=ttyS0,115200n8" ];
       loader.grub.extraConfig = "
         serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
