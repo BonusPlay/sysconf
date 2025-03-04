@@ -65,7 +65,7 @@ in
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
-  "garage-env.age".publicKeys = users ++ vortex;
+  "garage-env.age".publicKeys = users ++ vortex ++ [ glacius ];
 
   "wifi.age".publicKeys = users ++ [ artanis ];
 }

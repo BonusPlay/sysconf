@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./garage.nix
   ];
 
   boot = {
@@ -72,7 +73,7 @@ in
     };
     warp-net.enable = true;
     monitoring.enable = true;
-    caddy.enable = false;
+    caddy.enable = true;
   };
 
   systemd.network = {
