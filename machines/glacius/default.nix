@@ -6,6 +6,7 @@ in
   imports = [
     ./hardware-configuration.nix
     ./garage.nix
+    ./nfs.nix
   ];
 
   boot = {
