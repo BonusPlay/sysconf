@@ -80,6 +80,8 @@ in
 
           # Jump to local zone chains
           ${localJumps}
+
+          counter reject
         }
 
         # Forward zone chains (for traffic between zones)
@@ -94,6 +96,8 @@ in
 
           # Jump to forward zone chains based on input interface
           ${forwardZoneJumps}
+
+          counter reject
         }
         chain output {
           type filter hook output priority 0;

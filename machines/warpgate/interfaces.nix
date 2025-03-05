@@ -14,7 +14,7 @@ let
     }
     {
       id =  4;
-      name = "dmz";
+      name = "labnet";
       internet = true;
       ip = "192.168.4.1/24";
     }
@@ -23,6 +23,12 @@ let
       name = "lan";
       internet = true;
       ip = "192.168.5.1/24";
+    }
+    {
+      id =  6;
+      name = "dmz";
+      internet = true;
+      ip = "192.168.6.1/24";
     }
     {
       id =  9;
@@ -89,24 +95,31 @@ let
       lan   = accept;
       mgmt  = accept;
     };
-    dmz.from = {
+    labnet.from = {
       mgmt  = accept;
     };
     lan.from = {
-      mgmt  = accept;
+      mgmt   = accept;
+      labnet = ''
+        # allow plex to access glacius
+        meta l4proto { tcp, udp } ip daddr 192.168.5.20 th dport 2049 counter accept
+
+        ${establishedRelated}
+      '';
     };
     mgmt.from = {
-      guest = establishedRelated;
-      iot   = establishedRelated;
-      dmz   = establishedRelated;
+      guest  = establishedRelated;
+      iot    = establishedRelated;
+      labnet = establishedRelated;
     };
     local.from =  {
-      wan   = establishedRelated;
-      guest = localGenericRules;
-      iot   = localGenericRules;
-      dmz   = localGenericRules;
-      lan   = localGenericRules;
-      mgmt  = accept;
+      wan    = establishedRelated;
+      guest  = localGenericRules;
+      iot    = localGenericRules;
+      labnet = localGenericRules;
+      lan    = localGenericRules;
+      dmz    = localGenericRules;
+      mgmt   = accept;
     };
     wan = {
       interfaces = [ "wan" ];
