@@ -100,21 +100,6 @@
           tags = [ "vm" "server" ];
         };
 
-        vortex-alpha.deployment = {
-          tags = [ "vm" "server" "vortex" ];
-          targetHost = "vortex-alpha.warp.lan";
-        };
-
-        vortex-beta.deployment = {
-          tags = [ "vm" "server" "vortex" ];
-          targetHost = "vortex-beta.warp.lan";
-        };
-
-        vortex-gamma.deployment = {
-          tags = [ "vm" "server" "vortex" ];
-          targetHost = "vortex-gamma.warp.lan";
-        };
-
         glacius.deployment = {
           tags = [ "server" ];
           targetHost = "glacius.warp.lan";
