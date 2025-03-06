@@ -33,28 +33,7 @@ in
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
-      buildMachines = [
-        {
-          system = "x86_64-linux";
-          sshUser = "builder";
-          sshKey = "/run/agenix/scv-key";
-          maxJobs = 4;
-          hostName = "scv.warp.lan";
-          protocol = "ssh-ng"; # https://github.com/NixOS/nix/issues/2789#issuecomment-1868298547
-        }
-        {
-          system = "aarch64-linux";
-          sshUser = "bonus";
-          maxJobs = 2;
-          hostName = "kaldir.bonusplay.pl";
-        }
-      ];
-      distributedBuilds = cfg.remoteBuild;
       settings.trusted-users = [ "@wheel" ];
-    };
-
-    age.secrets.scv-key = mkIf cfg.remoteBuild {
-      file = ../secrets/scv-key.age;
     };
 
     system.autoUpgrade = {

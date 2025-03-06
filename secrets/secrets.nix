@@ -7,13 +7,11 @@ let
   endion = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINuVWjxEUNQaP1Ie0p8vj8AEZNPorbwP25MuUmm7j6A/";
   shakuras = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA24tqea9vBJLiTMCgJV7q6UwKHdZAaiL8cUUO5bNd0A";
   glacius = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIY8XAAact/o1QSOfmwJOEGb7cvcDXX6BUUMCKkeNnu5";
-  warpprism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd9N8Cd/3cQGe+vxCCy4Ct7W06kUylfA7GJjozYnjUU";
-  scv = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDytxrtFGC30xkdBCPqAyUROA78eLN/PTBXt2v+HZcmg";
   bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
 
-  servers = [ kaldir braxis endion shakuras glacius warpprism scv bunker raven nexus ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
@@ -55,7 +53,6 @@ in
 
   "kncyber/discord-bot.age".publicKeys = users ++ [ braxis ];
 
-  "scv-key.age".publicKeys = users ++ servers ++ workstations;
   "beszel-env.age".publicKeys = users ++ servers;
 
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];

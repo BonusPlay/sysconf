@@ -91,37 +91,6 @@ in
     ];
   };
 
-  # gitea runner-x
-  #runner-x = nixpkgs.lib.nixosSystem {
-  #  pkgs = pkgs "x86_64-linux";
-  #  modules = [
-  #    ./runner-x
-  #    ../modules/server.nix
-  #    agenix.nixosModules.default
-  #  ];
-  #};
-
-  # rpi whatsapp matrix bridge
-  #redstone = nixpkgs.lib.nixosSystem {
-  #  pkgs = pkgs "aarch64-linux";
-  #  modules = [
-  #    ./redstone
-  #    ../modules/server.nix
-  #    agenix.nixosModules.default
-  #    nixos-hardware.nixosModules.raspberry-pi-4
-  #  ];
-  #};
-
-  # nix builder
-  #scv = nixpkgs.lib.nixosSystem {
-  #  pkgs = pkgs "x86_64-linux";
-  #  modules = [
-  #    ./scv
-  #    ../modules/server.nix
-  #    agenix.nixosModules.default
-  #  ];
-  #};
-
   # nextcloud + onlyoffice
   bunker = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
@@ -147,16 +116,6 @@ in
     pkgs = pkgs "x86_64-linux";
     modules = [
       ./nexus
-      ../modules/server.nix
-      agenix.nixosModules.default
-    ];
-  };
-
-  # x86 waydroid emulator
-  droid = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./droid
       ../modules/server.nix
       agenix.nixosModules.default
     ];
