@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ./fan2go.nix
     ./garage.nix
     ./nfs.nix
   ];

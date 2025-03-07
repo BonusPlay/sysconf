@@ -126,6 +126,7 @@ in
     modules = [
       ./glacius
       ../modules/server.nix
+      ../modules/fan2go.nix
       agenix.nixosModules.default
     ];
   };
