@@ -52,6 +52,12 @@
   # we use nf_tables
   boot.blacklistedKernelModules = [ "ip_tables" ];
 
+  environment.systemPackages = with pkgs; [
+    ethtool
+    htop
+    iperf3
+  ];
+
   boot.kernel.sysctl = {
     # if you use ipv4, this is all you need
     "net.ipv4.conf.all.forwarding" = true;
