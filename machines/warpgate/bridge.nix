@@ -4,7 +4,7 @@ let
   inherit (ifaceConfig) vlans ports;
 
   mkVlanNetdev = vlan: {
-    name = "50-vlan-${vlan.name}";
+    name = "40-vlan-${vlan.name}";
     value = {
       netdevConfig = {
         Name = vlan.name;
@@ -15,8 +15,17 @@ let
   };
   vlanNetdevs = builtins.listToAttrs(map mkVlanNetdev vlans);
 
+  mkPortLink = port: {
+    name = "20-port-${port.name}";
+    value = {
+      matchConfig.MACAddress = port.mac;
+      linkConfig.Name = port.name;
+    };
+  };
+  portLinks = builtins.listToAttrs(map mkPortLink ports);
+
   mkPortNetwork = port: {
-    name = "50-port-${port.name}";
+    name = "40-port-${port.name}";
     value = {
       matchConfig.Name = port.name;
       networkConfig.Bridge = "br0";
@@ -33,7 +42,7 @@ let
   portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
 
   mkVlanNetwork = vlan: {
-    name = "40-vlan-${vlan.name}";
+    name = "50-vlan-${vlan.name}";
     value = {
       matchConfig.Name = vlan.name;
       networkConfig = {
@@ -58,14 +67,11 @@ in {
 
     links = {
       # rename wan interface
-      "wan" = {
+      "11-wan" = {
         matchConfig.MACAddress = "20:7c:14:f2:9b:d0";
-
-        linkConfig = {
-          Name = "wan";
-        };
+        linkConfig.Name = "wan";
       };
-    };
+    } // portLinks;
 
     netdevs = {
       "10-br0" = {
