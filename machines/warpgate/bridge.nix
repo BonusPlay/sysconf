@@ -3,6 +3,15 @@ let
   ifaceConfig = import ./interfaces.nix;
   inherit (ifaceConfig) vlans ports;
 
+  sanity = {
+    LinkLocalAddressing = "no";
+    IPv6AcceptRA = "no";
+    IPv6SendRA = "no";
+    ConfigureWithoutCarrier = "yes";
+    LLDP = "no";
+    EmitLLDP = "no";
+  };
+
   mkVlanNetdev = vlan: {
     name = "40-vlan-${vlan.name}";
     value = {
@@ -28,7 +37,9 @@ let
     name = "40-port-${port.name}";
     value = {
       matchConfig.Name = port.name;
-      networkConfig.Bridge = "br0";
+      networkConfig = {
+        Bridge = "br0";
+      } // sanity;
       linkConfig.RequiredForOnline = "no";
       bridgeVLANs = [
         {
@@ -49,7 +60,7 @@ let
       networkConfig = {
         #Bridge = "br0";
         Address = vlan.ip;
-      };
+      } // sanity;
     };
   };
   vlanNetworks = builtins.listToAttrs(map mkVlanNetwork vlans);
@@ -59,14 +70,7 @@ in {
       "10-br0" = {
         matchConfig.Name = "br0";
         linkConfig.RequiredForOnline = "no";
-        networkConfig = {
-          LinkLocalAddressing = "no";
-          IPv6AcceptRA = "no";
-          IPv6SendRA = "no";
-          ConfigureWithoutCarrier = "yes";
-          LLDP = "no";
-          EmitLLDP = "no";
-        };
+        networkConfig = sanity;
         vlan = map (vlan: vlan.name) vlans;
         bridgeVLANs = map (vlan: { VLAN = vlan.id; }) vlans;
       };
