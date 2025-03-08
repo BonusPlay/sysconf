@@ -46,14 +46,14 @@ let
   ports = [
     {
       mac = "20:7c:14:f2:9b:d1";
-      name = "zeratul";
+      name = "sfp2-zeratul";
       pvid = 10;
       vlans = 10;
       bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:d3";
-      name = "switch-trunk";
+      name = "sfp4-switch";
       pvid = 1;
       vlans = [2 3 4 5 9 10];
       bridge = "br0";
@@ -67,7 +67,7 @@ let
     #}
     {
       mac = "20:7c:14:f2:9b:d0";
-      name = "wan";
+      name = "sfp1-wan";
     }
   ];
   zones = let
@@ -122,7 +122,7 @@ let
       mgmt   = accept;
     };
     wan = {
-      interfaces = [ "wan" ];
+      interfaces = [ "sfp1-wan" ];
       from  = wanFromRules;
       masquerade = true;
     };

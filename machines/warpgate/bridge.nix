@@ -71,18 +71,12 @@ in {
         bridgeVLANs = map (vlan: { VLAN = vlan.id; }) vlans;
       };
       "11-wan" = {
-        matchConfig.Name = "wan";
+        matchConfig.Name = "sfp1-wan";
         networkConfig.DHCP = "ipv4";
       };
     } // portNetworks // vlanNetworks;
 
-    links = {
-      # rename wan interface
-      "11-wan" = {
-        matchConfig.MACAddress = "20:7c:14:f2:9b:d0";
-        linkConfig.Name = "wan";
-      };
-    } // portLinks;
+    links = portLinks;
 
     netdevs = {
       "10-br0" = {
