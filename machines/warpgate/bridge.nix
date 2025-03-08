@@ -57,7 +57,7 @@ in {
     networks = {
       "10-br0" = {
         matchConfig.Name = "br0";
-        linkConfig.RequiredForOnline = "routable";
+        linkConfig.RequiredForOnline = "no";
       };
       "11-wan" = {
         matchConfig.Name = "wan";
