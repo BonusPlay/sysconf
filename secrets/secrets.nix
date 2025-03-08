@@ -10,8 +10,9 @@ let
   bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
+  warpgate = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+Tz8OlpKSJLGdfqYCSnsjeHAntAZXTAJ5eUp9+mMin";
 
-  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus warpgate ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
@@ -22,9 +23,9 @@ in
   "ca/intermediate-crt.age".publicKeys = users ++ [ raven ];
   "ca/intermediate-key.age".publicKeys = users ++ [ raven ];
 
-  "warpgate/klisie-pl-zone.age".publicKeys = users;
-  "warpgate/warp-lan-zone.age".publicKeys = users;
-  "warpgate/dhcp-reservations.age".publicKeys = users;
+  "warpgate/klisie-pl-zone.age".publicKeys = users ++ [ warpgate ];
+  "warpgate/warp-lan-zone.age".publicKeys = users ++ [ warpgate ];
+  "warpgate/dhcp-reservations.age".publicKeys = users ++ [ warpgate ];
 
   "cloudflare-tunnel.age".publicKeys = users;
   "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
