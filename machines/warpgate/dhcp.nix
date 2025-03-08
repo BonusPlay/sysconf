@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   ifaceConfig = import ./interfaces.nix;
   inherit (ifaceConfig) vlans;
@@ -52,7 +52,7 @@ in
 {
   services.kea.dhcp4 = {
     enable = true;
-    configFile = writeText "kea-dhcp4.conf" finalConfig;
+    configFile = pkgs.writeText "kea-dhcp4.conf" finalConfig;
   };
 
   age.secrets.dhcp-reservations = {
