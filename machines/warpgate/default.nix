@@ -56,6 +56,7 @@
     ethtool
     htop
     iperf3
+    conntrack-tools
   ];
 
   boot.kernel.sysctl = {
