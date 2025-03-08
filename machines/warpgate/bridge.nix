@@ -57,7 +57,12 @@ in {
     networks = {
       "10-br0" = {
         matchConfig.Name = "br0";
-        linkConfig.RequiredForOnline = "no";
+        linkConfig = {
+          LinkLocalAddressing = "no";
+          IPv6AcceptRA = "no";
+          IPv6SendRA = "no";
+          ConfigureWithoutCarrier = "yes";
+        };
       };
       "11-wan" = {
         matchConfig.Name = "wan";
