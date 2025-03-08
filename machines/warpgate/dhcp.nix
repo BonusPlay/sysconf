@@ -19,29 +19,31 @@ let
     ];
   };
   keaSettings = {
-    interfaces-config = {
-      interfaces = map (x: x.name) vlans;
-    };
-    lease-database = {
-      name = "/var/lib/kea/dhcp4.leases";
-      persist = true;
-      type = "memfile";
-    };
-    rebind-timer = 2000;
-    renew-timer = 1000;
-    valid-lifetime = 4000;
+    dhcp4 = {
+      interfaces-config = {
+        interfaces = map (x: x.name) vlans;
+      };
+      lease-database = {
+        name = "/var/lib/kea/dhcp4.leases";
+        persist = true;
+        type = "memfile";
+      };
+      rebind-timer = 2000;
+      renew-timer = 1000;
+      valid-lifetime = 4000;
 
-    # assume global reservations
-    reservations-global = true;
-    # assume no reservations per-subnet (only global)
-    reservations-in-subnet = false;
-    # assume reservations only out of dhcp pool
-    reservations-out-of-pool = true;
-    # assume reservations using mac-address
-    host-reservation-identifiers = [ "hw-address" ];
+      # assume global reservations
+      reservations-global = true;
+      # assume no reservations per-subnet (only global)
+      reservations-in-subnet = false;
+      # assume reservations only out of dhcp pool
+      reservations-out-of-pool = true;
+      # assume reservations using mac-address
+      host-reservation-identifiers = [ "hw-address" ];
 
-    # subnet configs
-    subnet4 = map mkSubnetConfig vlans;
+      # subnet configs
+      subnet4 = map mkSubnetConfig vlans;
+    };
   };
 
   settingsJson = builtins.toJSON keaSettings;
