@@ -50,11 +50,12 @@ in
 
       forwardZoneChains = iterZones zonesWithoutLocal makeChain;
       #forwardZoneJumps = iterZones zonesWithoutLocal makeJump;
+      forwardZoneJumps = "";
 
       localChains = lib.concatStrings (lib.mapAttrsToList (fromZoneName: rules:
         makeChain fromZoneName "local" rules
       ) zones.local.from);
-
+      localJumps = "";
       #localJumps = lib.concatStringsSep "\n" (lib.mapAttrsToList (fromZoneName: rules:
       #  "iifname { ${getZoneInterfaces fromZoneName} } jump ${fromZoneName}_to_local"
       #) zones.local.from);
