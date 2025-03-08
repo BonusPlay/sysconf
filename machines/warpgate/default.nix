@@ -49,11 +49,6 @@
     };
   };
 
-  systemd.network.networks."10-wan" = {
-    matchConfig.MACAddress = "20:7c:14:f2:9b:d0";
-    networkConfig.DHCP = "yes";
-  };
-
   # we use nf_tables
   boot.blacklistedKernelModules = [ "ip_tables" ];
 

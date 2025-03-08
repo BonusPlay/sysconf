@@ -52,6 +52,7 @@ in {
       "11-wan" = {
         matchConfig.Name = "wan";
         networkConfig.DHCP = "ipv4";
+        linkConfig.RequiredForOnline = "routable";
       };
     } // portNetworks // vlanNetworks;
 
@@ -59,7 +60,10 @@ in {
       # rename wan interface
       "wan" = {
         matchConfig.MACAddress = "20:7c:14:f2:9b:d0";
-        linkConfig.Name = "wan";
+
+        linkConfig = {
+          Name = "wan";
+        };
       };
     };
 
@@ -73,10 +77,6 @@ in {
         bridgeConfig = {
           DefaultPVID = 1;
           VLANFiltering = true;
-        };
-
-        linkConfig = {
-          RequiredForOnline = "routable";
         };
       };
     } // vlanNetdevs;
