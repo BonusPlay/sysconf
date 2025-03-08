@@ -68,7 +68,7 @@ in {
           EmitLLDP = "no";
         };
         vlan = map (vlan: vlan.name) vlans;
-        bridgeVLANs = map (vlan: vlan.id) vlans;
+        bridgeVLANs = map (vlan: { VLAN = vlan.id; }) vlans;
       };
       "11-wan" = {
         matchConfig.Name = "wan";
