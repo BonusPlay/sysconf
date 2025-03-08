@@ -74,6 +74,10 @@ in {
           DefaultPVID = 1;
           VLANFiltering = true;
         };
+
+        linkConfig = {
+          RequiredForOnline = "routable';
+        };
       };
     } // vlanNetdevs;
   };
