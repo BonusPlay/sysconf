@@ -46,8 +46,9 @@ let
 
   settingsJson = builtins.toJSON keaSettings;
   # include file from secrets
-  templateString = ''<?include "${config.age.secrets.dhcp-reservations.path}"?>'';
-  finalConfig = builtins.substring 0 (builtins.stringLength settingsJson - 1) settingsJson + ",${templateString}}";
+  #templateString = ''<?include "${config.age.secrets.dhcp-reservations.path}"?>'';
+  #finalConfig = builtins.substring 0 (builtins.stringLength settingsJson - 1) settingsJson + ",${templateString}}";
+  finalConfig = settingsJson;
 in
 {
   services.kea.dhcp4 = {
