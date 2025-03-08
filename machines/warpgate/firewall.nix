@@ -49,16 +49,14 @@ in
       );
 
       forwardZoneChains = iterZones zonesWithoutLocal makeChain;
-      #forwardZoneJumps = iterZones zonesWithoutLocal makeJump;
-      forwardZoneJumps = "";
+      forwardZoneJumps = iterZones zonesWithoutLocal makeJump;
 
       localChains = lib.concatStrings (lib.mapAttrsToList (fromZoneName: rules:
         makeChain fromZoneName "local" rules
       ) zones.local.from);
-      localJumps = "";
-      #localJumps = lib.concatStringsSep "\n" (lib.mapAttrsToList (fromZoneName: rules:
-      #  "iifname { ${getZoneInterfaces fromZoneName} } jump ${fromZoneName}_to_local"
-      #) zones.local.from);
+      localJumps = lib.concatStringsSep "\n" (lib.mapAttrsToList (fromZoneName: rules:
+        "iifname { ${getZoneInterfaces fromZoneName} } jump ${fromZoneName}_to_local"
+      ) zones.local.from);
 
       masqueradedZones = lib.attrNames (lib.filterAttrs(_: zone: zone.masquerade) zonesWithoutLocal);
       masqueradeRules = lib.concatStringsSep "\n" (
@@ -82,7 +80,8 @@ in
           # Jump to local zone chains
           ${localJumps}
 
-          counter reject
+          # TODO: counter reject
+          counter accept
         }
 
         # Forward zone chains (for traffic between zones)
@@ -98,7 +97,8 @@ in
           # Jump to forward zone chains based on input interface
           ${forwardZoneJumps}
 
-          counter reject
+          # TODO: counter reject
+          counter accept
         }
         chain output {
           type filter hook output priority 0;
