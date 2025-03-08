@@ -10,7 +10,6 @@ in
     enable = true;
     extraConfig = ''
       daemon=yes
-      threads=1
       allow-from=${lib.concatStringsSep "," subnets}
       log-common-errors=yes
       non-local-bind=yes
