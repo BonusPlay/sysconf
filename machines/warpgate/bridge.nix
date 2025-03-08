@@ -46,7 +46,7 @@ let
 in {
   systemd.network = {
     networks = {
-      "10-bridge" = {
+      "10-br0" = {
         matchConfig.Name = "br0";
         linkConfig.RequiredForOnline = "routable";
       };
