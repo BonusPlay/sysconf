@@ -10,17 +10,24 @@ in
     enable = true;
     extraConfig = ''
       daemon=yes
-      allow-from=${lib.concatStringsSep "," subnets}
       log-common-errors=yes
-      non-local-bind=yes
       export-etc-hosts=n
-      local-port=53
-      recursor=1.1.1.1
+      local-address=127.0.0.1
+      local-port=5300
       launch=bind
 
       auth-zones=klisie.pl=${config.age.secrets.klisie-zone.path},warp.lan=${config.age.secrets.warp-zone.path}
     '';
   };
+
+  services.pdns-recursor = {
+    enable = true;
+    dns.allowFrom = lib.concatStringsSep "," subnets;
+    forwardZones = {
+      "warp.lan" = "127.0.0.1:5300";
+      "klisie.pl" = "127.0.0.1:5300";
+    };
+  }
 
   age.secrets = {
     klisie-zone = {
