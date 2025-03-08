@@ -76,7 +76,7 @@ in {
         };
 
         linkConfig = {
-          RequiredForOnline = "routable';
+          RequiredForOnline = "routable";
         };
       };
     } // vlanNetdevs;
