@@ -27,7 +27,7 @@ in
       "warp.lan" = "127.0.0.1:5300";
       "klisie.pl" = "127.0.0.1:5300";
     };
-  }
+  };
 
   age.secrets = {
     klisie-zone = {
