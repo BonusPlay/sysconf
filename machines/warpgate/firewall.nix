@@ -49,15 +49,15 @@ in
       );
 
       forwardZoneChains = iterZones zonesWithoutLocal makeChain;
-      forwardZoneJumps = iterZones zonesWithoutLocal makeJump;
+      #forwardZoneJumps = iterZones zonesWithoutLocal makeJump;
 
       localChains = lib.concatStrings (lib.mapAttrsToList (fromZoneName: rules:
         makeChain fromZoneName "local" rules
       ) zones.local.from);
 
-      localJumps = lib.concatStringsSep "\n" (lib.mapAttrsToList (fromZoneName: rules:
-        "iifname { ${getZoneInterfaces fromZoneName} } jump ${fromZoneName}_to_local"
-      ) zones.local.from);
+      #localJumps = lib.concatStringsSep "\n" (lib.mapAttrsToList (fromZoneName: rules:
+      #  "iifname { ${getZoneInterfaces fromZoneName} } jump ${fromZoneName}_to_local"
+      #) zones.local.from);
 
       masqueradedZones = lib.attrNames (lib.filterAttrs(_: zone: zone.masquerade) zonesWithoutLocal);
       masqueradeRules = lib.concatStringsSep "\n" (
