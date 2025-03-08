@@ -10,7 +10,6 @@ in
     enable = true;
     extraConfig = ''
       daemon=yes
-      log-common-errors=yes
       export-etc-hosts=n
       local-address=127.0.0.1
       local-port=5300
