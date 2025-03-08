@@ -26,6 +26,8 @@
     };
   };
 
+  hardware.enableRedistributableFirmware = true;
+
   networking = {
     useNetworkd = true;
     useDHCP = false;
