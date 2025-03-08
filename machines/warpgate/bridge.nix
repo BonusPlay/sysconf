@@ -48,11 +48,11 @@ in {
     networks = {
       "10-bridge" = {
         matchConfig.Name = "br0";
+        linkConfig.RequiredForOnline = "routable";
       };
       "11-wan" = {
         matchConfig.Name = "wan";
         networkConfig.DHCP = "ipv4";
-        linkConfig.RequiredForOnline = "routable";
       };
     } // portNetworks // vlanNetworks;
 
