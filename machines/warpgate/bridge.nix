@@ -47,7 +47,7 @@ let
     value = {
       matchConfig.Name = vlan.name;
       networkConfig = {
-        Bridge = "br0";
+        #Bridge = "br0";
         Address = vlan.ip;
       };
     };
@@ -64,7 +64,11 @@ in {
           IPv6AcceptRA = "no";
           IPv6SendRA = "no";
           ConfigureWithoutCarrier = "yes";
+          LLDP = "no";
+          EmitLLDP = "no";
         };
+        vlan = map (vlan: vlan.name) vlans;
+        bridgeVLANs = map (vlan: vlan.id) vlans;
       };
       "11-wan" = {
         matchConfig.Name = "wan";
@@ -90,6 +94,7 @@ in {
         bridgeConfig = {
           DefaultPVID = 1;
           VLANFiltering = true;
+          STP = false;
         };
       };
     } // vlanNetdevs;
