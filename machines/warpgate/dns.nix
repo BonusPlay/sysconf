@@ -17,6 +17,7 @@ in
       export-etc-hosts=n
       local-port=53
       recursor=1.1.1.1
+      launch=bind
 
       auth-zones=klisie.pl=${config.age.secrets.klisie-zone.path},warp.lan=${config.age.secrets.warp-zone.path}
     '';
