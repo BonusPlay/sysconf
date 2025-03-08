@@ -57,7 +57,8 @@ in {
     networks = {
       "10-br0" = {
         matchConfig.Name = "br0";
-        linkConfig = {
+        linkConfig.RequiredForOnline = "no";
+        networkConfig = {
           LinkLocalAddressing = "no";
           IPv6AcceptRA = "no";
           IPv6SendRA = "no";
