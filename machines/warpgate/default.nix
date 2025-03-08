@@ -57,6 +57,7 @@
     htop
     iperf3
     conntrack-tools
+    bridge-utils
   ];
 
   boot.kernel.sysctl = {

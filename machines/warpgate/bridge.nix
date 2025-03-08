@@ -28,7 +28,10 @@ let
     name = "40-port-${port.name}";
     value = {
       matchConfig.Name = port.name;
-      networkConfig.Bridge = "br0";
+      networkConfig = {
+        Bridge = "br0";
+        RequiredForOnline = "no";
+      };
       bridgeVLANs = [
         {
           PVID = port.pvid;
