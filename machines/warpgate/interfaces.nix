@@ -66,7 +66,7 @@ let
     #  bridge = "br0";
     #}
     {
-      mac = "20:7c:14:f2:9b:cf";
+      mac = "20:7c:14:f2:9b:d0";
       name = "wan";
     }
   ];

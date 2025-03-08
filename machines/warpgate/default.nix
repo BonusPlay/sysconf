@@ -50,7 +50,7 @@
   };
 
   systemd.network.networks."10-wan" = {
-    matchConfig.MACAddress = "20:7c:14:f2:9b:cf";
+    matchConfig.MACAddress = "20:7c:14:f2:9b:d0";
     networkConfig.DHCP = "yes";
   };
 
