@@ -9,8 +9,6 @@ in
   services.powerdns = {
     enable = true;
     extraConfig = ''
-      daemon=yes
-      export-etc-hosts=n
       local-address=127.0.0.1
       local-port=5300
       launch=bind
