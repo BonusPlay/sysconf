@@ -76,7 +76,9 @@ in {
       };
       "11-wan" = {
         matchConfig.Name = "sfp1-wan";
-        networkConfig.DHCP = "ipv4";
+        networkConfig = {
+          DHCP = "ipv4";
+        } // sanity;
       };
     } // portNetworks // vlanNetworks;
 
