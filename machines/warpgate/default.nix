@@ -58,6 +58,7 @@
     iperf3
     conntrack-tools
     bridge-utils
+    tcpdump
   ];
 
   boot.kernel.sysctl = {
