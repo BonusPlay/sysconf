@@ -6,7 +6,7 @@
     ./dhcp.nix
     ./dns.nix
     ./firewall.nix
-    ./zerotier.nix
+    #./zerotier.nix
   ];
 
   custom = {
@@ -21,7 +21,7 @@
       vm = false;
     };
     warp-net = {
-      enable = true;
+      enable = false;
       #exitNode = true;
     };
   };
