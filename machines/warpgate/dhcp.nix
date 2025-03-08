@@ -18,7 +18,7 @@ let
       }
     ];
   };
-  keaSettings = toJson {
+  keaSettings = {
     interfaces-config = {
       interfaces = map (x: x.name) vlans;
     };
