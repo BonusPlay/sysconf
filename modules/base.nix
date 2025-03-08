@@ -49,7 +49,7 @@ in
 
     # solves issue with splitdns cloudflare overwriting our custom DNS
     services.resolved = {
-      enable = true;
+      enable = lib.mkDefault true;
       extraConfig = ''
         Cache=no-negative
       '';

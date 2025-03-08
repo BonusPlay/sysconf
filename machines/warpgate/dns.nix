@@ -12,8 +12,6 @@ in
       local-address=127.0.0.1
       local-port=5300
       launch=bind
-
-      auth-zones=klisie.pl=${config.age.secrets.klisie-zone.path},warp.lan=${config.age.secrets.warp-zone.path}
     '';
   };
 
@@ -25,6 +23,9 @@ in
       "klisie.pl" = "127.0.0.1:5300";
     };
   };
+
+  # disable resolved as it would clash for the port
+  services.resolved.enable = false;
 
   age.secrets = {
     klisie-zone = {
