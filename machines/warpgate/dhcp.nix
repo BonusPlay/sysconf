@@ -19,7 +19,7 @@ let
     ];
   };
   keaSettings = {
-    dhcp4 = {
+    Dhcp4 = {
       interfaces-config = {
         interfaces = map (x: x.name) vlans;
       };
