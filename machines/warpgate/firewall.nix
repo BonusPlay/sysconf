@@ -17,12 +17,6 @@ let
   zonesWithoutLocal = lib.filterAttrs (name: _: name != "local") zones;
 in
 {
-  #assertions = [
-  #  {
-  #    assertion = zones.local
-  #    message = "local zone shouldn't have any interfaces";
-  #  }
-  #];
   networking.nftables = {
     enable = true;
     ruleset = let
@@ -40,11 +34,11 @@ in
 
       iterZones = zones: func: lib.concatStrings (
         # { toZone.from = [...]; } => (toZone, { from = [...]; }
-        lib.mapAttrsToList (fromZoneName: fromZone: (
+        lib.mapAttrsToList (toZoneName: toZone: (
           # from = { "a" = "rule"; } => (a, rules)
-          lib.concatStrings (lib.mapAttrsToList (toZoneName: rules: (
+          lib.concatStrings (lib.mapAttrsToList (fromZoneName: rules: (
             func fromZoneName toZoneName rules
-          )) fromZone.from)
+          )) toZone.from)
         )) zones
       );
 
