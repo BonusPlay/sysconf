@@ -17,7 +17,7 @@ in
 
   services.pdns-recursor = {
     enable = true;
-    dns.allowFrom = subnets;
+    dns.allowFrom = subnets ++ [ "127.0.0.0/8" ];
     forwardZones = {
       "warp.lan" = "127.0.0.1:5300";
       "klisie.pl" = "127.0.0.1:5300";
