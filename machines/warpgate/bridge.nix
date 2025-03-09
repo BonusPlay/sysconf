@@ -44,8 +44,9 @@ let
       bridgeVLANs = [
         {
           PVID = port.pvid;
-          EgressUntagged = port.pvid;
           VLAN = port.vlans;
+          # if not trunk, untag
+          EgressUntagged = lib.mkIf !(builtins.isList port.vlans) port.pvid;
         }
       ];
     };
