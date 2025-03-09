@@ -47,7 +47,11 @@
       systemd-boot.configurationLimit = 5;
       timeout = 5;
     };
+    kernelParams = [ "intel_iommu=on" ];
   };
+
+  virtualisation.libvirtd.enable = true;
+  users.users.bonus.extraGroups = [ "libvirtd" ];
 
   # we use nf_tables
   boot.blacklistedKernelModules = [ "ip_tables" ];
