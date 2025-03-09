@@ -34,7 +34,7 @@ let
   portLinks = builtins.listToAttrs(map mkPortLink ports);
 
   mkPortNetwork = port: {
-    name = "40-port-${port.name}";
+    name = "30-port-${port.name}";
     value = {
       matchConfig.Name = port.name;
       networkConfig = {
