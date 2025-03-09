@@ -46,7 +46,7 @@ let
           PVID = port.pvid;
           VLAN = port.vlans;
           # if not trunk, untag
-          EgressUntagged = lib.mkIf !(builtins.isList port.vlans) port.pvid;
+          EgressUntagged = lib.mkIf (builtins.isInt port.vlans) port.pvid;
         }
       ];
     };
