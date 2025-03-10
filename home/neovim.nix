@@ -119,11 +119,7 @@
     plugins = {
       treesitter = {
         enable = true;
-        # https://github.com/nix-community/nixvim/commit/97fa47376b73d774b081c8e5dd54fcfd0ad278cb
         settings = {
-          # Install languages synchronously (only applied to `ensure_installed`)
-          sync_install = true;
-
           # who does these
           ignore_install = [ "beancount" "clojure" "comment" "commonlisp" "dart" "devicetree" "elixir" "elm" "erlang" "fennel" "fish" "fortran" "glimmer" "haskell" "hcl" "julia" "ledger" "ocaml" "ocaml_interface" "ocamllex" "php" "ql" "r" "rst" "ruby" "scala" "sparql" "supercollider" "svelte" "swift" "teal" "turtle" "yang" ];
 
