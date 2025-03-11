@@ -43,7 +43,7 @@ let
       linkConfig.RequiredForOnline = "no";
       bridgeVLANs = [
         {
-          PVID = lib.optional (port ? pvid) port.pvid;
+          #PVID = lib.optional (port ? pvid) port.pvid;
           VLAN = port.vlans;
           # if not trunk, untag
           EgressUntagged = lib.mkIf (builtins.isInt port.vlans) port.pvid;
@@ -52,8 +52,7 @@ let
     };
   };
   bridgePorts = builtins.filter (port: lib.hasAttr "bridge" port) ports;
-  #portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
-  portNetworks = {};
+  portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
 
   mkVlanNetwork = vlan: {
     name = "50-vlan-${vlan.name}";
