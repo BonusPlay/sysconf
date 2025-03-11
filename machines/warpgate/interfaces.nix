@@ -52,13 +52,6 @@ let
   ];
   ports = [
     {
-      mac = "20:7c:14:f2:9b:cd";
-      name = "capax-trunk";
-      pvid = 1;
-      vlans = [2 3 5 10];
-      bridge = "br0";
-    }
-    {
       mac = "20:7c:14:f2:9b:d0";
       name = "sfp1-wan";
     }
@@ -93,7 +86,10 @@ let
     }
     {
       mac = "20:7c:14:f2:9b:cd";
-      name = "ether3";
+      name = "ether3-capax";
+      pvid = 1;
+      vlans = [2 3 5 10];
+      bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:ce";
