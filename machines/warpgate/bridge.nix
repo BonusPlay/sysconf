@@ -13,7 +13,7 @@ let
   };
 
   mkVlanNetdev = vlan: {
-    name = "40-vlan-${vlan.name}";
+    name = "20-vlan-${vlan.name}";
     value = {
       netdevConfig = {
         Name = vlan.name;
@@ -25,7 +25,7 @@ let
   vlanNetdevs = builtins.listToAttrs(map mkVlanNetdev vlans);
 
   mkPortLink = port: {
-    name = "20-port-${port.name}";
+    name = "30-port-${port.name}";
     value = {
       matchConfig.MACAddress = port.mac;
       linkConfig.Name = port.name;
@@ -55,7 +55,7 @@ let
   portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
 
   mkVlanNetwork = vlan: {
-    name = "50-vlan-${vlan.name}";
+    name = "20-vlan-${vlan.name}";
     value = {
       matchConfig.Name = vlan.name;
       networkConfig = {
@@ -72,7 +72,7 @@ in {
         matchConfig.Name = "br0";
         linkConfig.RequiredForOnline = "no";
         networkConfig = sanity;
-        vlan = map (vlan: vlan.name) vlans;
+        #vlan = map (vlan: vlan.name) vlans;
         bridgeVLANs = map (vlan: { VLAN = vlan.id; }) vlans;
       };
       "11-wan" = {
