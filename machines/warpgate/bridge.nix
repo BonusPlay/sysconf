@@ -13,7 +13,7 @@ let
   };
 
   mkVlanNetdev = vlan: {
-    name = "20-vlan-${vlan.name}";
+    name = "40-vlan-${vlan.name}";
     value = {
       netdevConfig = {
         Name = vlan.name;
@@ -25,7 +25,7 @@ let
   vlanNetdevs = builtins.listToAttrs(map mkVlanNetdev vlans);
 
   mkPortLink = port: {
-    name = "30-port-${port.name}";
+    name = "20-port-${port.name}";
     value = {
       matchConfig.MACAddress = port.mac;
       linkConfig.Name = port.name;
@@ -34,7 +34,7 @@ let
   portLinks = builtins.listToAttrs(map mkPortLink ports);
 
   mkPortNetwork = port: {
-    name = "30-port-${port.name}";
+    name = "40-port-${port.name}";
     value = {
       matchConfig.Name = port.name;
       networkConfig = {
@@ -46,7 +46,7 @@ let
           PVID = port.pvid;
           VLAN = port.vlans;
           # if not trunk, untag
-          EgressUntagged = lib.optional (builtins.isInt port.vlans) port.pvid;
+          EgressUntagged = lib.mkIf (builtins.isInt port.vlans) port.pvid;
         }
       ];
     };
@@ -55,11 +55,11 @@ let
   portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
 
   mkVlanNetwork = vlan: {
-    name = "20-vlan-${vlan.name}";
+    name = "50-vlan-${vlan.name}";
     value = {
       matchConfig.Name = vlan.name;
       networkConfig = {
-        Bridge = vlan.bridge;
+        #Bridge = "br0";
         Address = vlan.ip;
       } // sanity;
     };
@@ -72,7 +72,7 @@ in {
         matchConfig.Name = "br0";
         linkConfig.RequiredForOnline = "no";
         networkConfig = sanity;
-        #vlan = map (vlan: vlan.name) vlans;
+        vlan = map (vlan: vlan.name) vlans;
         bridgeVLANs = map (vlan: { VLAN = vlan.id; }) vlans;
       };
       "11-wan" = {
@@ -93,7 +93,7 @@ in {
         };
 
         bridgeConfig = {
-          #DefaultPVID = "none";
+          DefaultPVID = 1;
           VLANFiltering = true;
           STP = false;
         };
