@@ -93,7 +93,7 @@ in {
         };
 
         bridgeConfig = {
-          DefaultPVID = "none";
+          #DefaultPVID = "none";
           VLANFiltering = true;
           STP = false;
         };
