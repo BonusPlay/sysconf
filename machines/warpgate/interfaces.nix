@@ -5,42 +5,49 @@ let
       name = "guest";
       internet = true;
       ip = "192.168.2.1/24";
+      bridge = "br0";
     }
     {
       id =  3;
       name = "iot";
       internet = false;
       ip = "192.168.3.1/24";
+      bridge = "br0";
     }
     {
       id =  4;
       name = "labnet";
       internet = true;
       ip = "192.168.4.1/24";
+      bridge = "br0";
     }
     {
       id =  5;
       name = "lan";
       internet = true;
       ip = "192.168.5.1/24";
+      bridge = "br0";
     }
     {
       id =  6;
       name = "dmz";
       internet = true;
       ip = "192.168.6.1/24";
+      bridge = "br0";
     }
     {
       id =  9;
       name = "luks";
       internet = true;
       ip = "192.168.9.1/24";
+      bridge = "br0";
     }
     {
       id = 10;
       name = "mgmt";
       internet = true;
       ip = "192.168.10.1/24";
+      bridge = "br0";
     }
   ];
   ports = [

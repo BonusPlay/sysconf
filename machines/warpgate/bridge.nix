@@ -59,7 +59,7 @@ let
     value = {
       matchConfig.Name = vlan.name;
       networkConfig = {
-        #Bridge = "br0";
+        Bridge = vlan.bridge;
         Address = vlan.ip;
       } // sanity;
     };
