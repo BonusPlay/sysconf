@@ -52,7 +52,8 @@ let
     };
   };
   bridgePorts = builtins.filter (port: lib.hasAttr "bridge" port) ports;
-  portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
+  #portNetworks = builtins.listToAttrs(map mkPortNetwork bridgePorts);
+  portNetworks = {};
 
   mkVlanNetwork = vlan: {
     name = "50-vlan-${vlan.name}";
