@@ -45,7 +45,8 @@ let
         {
           PVID = lib.optional (port ? pvid) port.pvid;
           VLAN = port.vlans;
-          EgressUntagged = lib.optional (port ? pvid) port.pvid;
+          # if not trunk, untag
+          EgressUntagged = lib.optional (builtins.isInt port.vlans) port.pvid;
         }
       ];
     };

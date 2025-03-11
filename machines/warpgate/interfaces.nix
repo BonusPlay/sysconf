@@ -66,19 +66,20 @@ let
       mac = "20:7c:14:f2:9b:d1";
       name = "sfp2-zeratul";
       pvid = 10;
-      vlans = [ 10 ];
+      vlans = 10;
       bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:d2";
       name = "sfp3-glacius";
       pvid = 5;
-      vlans = [ 5 ];
+      vlans = 5;
       bridge = "br0";
     }
     {
       mac = "20:7c:14:f2:9b:d3";
       name = "sfp4-switch";
+      pvid = 1;
       vlans = [ 2 3 4 5 9 10 ];
       bridge = "br0";
     }
