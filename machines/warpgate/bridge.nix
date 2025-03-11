@@ -43,7 +43,7 @@ let
       linkConfig.RequiredForOnline = "no";
       bridgeVLANs = [
         {
-          PVID = port.pvid;
+          PVID = lib.mkIf (port ? pvid) port.pvid;
           VLAN = port.vlans;
           # if not trunk, untag
           EgressUntagged = lib.mkIf (builtins.isInt port.vlans) port.pvid;
@@ -93,7 +93,7 @@ in {
         };
 
         bridgeConfig = {
-          DefaultPVID = 1;
+          DefaultPVID = "none";
           VLANFiltering = true;
           STP = false;
         };

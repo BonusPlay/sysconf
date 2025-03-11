@@ -72,8 +72,7 @@ let
     {
       mac = "20:7c:14:f2:9b:d3";
       name = "sfp4-switch";
-      pvid = 1;
-      vlans = [2 3 4 5 9 10];
+      vlans = [ 2 3 4 5 9 10 ];
       bridge = "br0";
     }
     {
