@@ -7,7 +7,7 @@
       "vfio"
       "vfio_iommu_type1"
     ];
-    kernelParams = [ "intel_iommu=on" ];
+    kernelParams = [ "amd_iommu=on" ];
   };
 
   virtualisation.spiceUSBRedirection.enable = true;
