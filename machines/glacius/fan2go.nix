@@ -2,7 +2,7 @@
 let
   # expect name of disk ("sda") as 1st argument
   checkDiskTemp = pkgs.writeShellScript "vibe-check" ''
-    ${pkgs.smartmontools}/bin/smartctl -a "/dev/$1" | ${pkgs.gawk}/bin/awk '/Temperature_Celsius/ {print $10 * 1000}'
+    ${pkgs.smartmontools}/bin/smartctl --nocheck=standby -A "/dev/$1" | ${pkgs.gawk}/bin/awk '/Current Temperature/ {print $3}'
   '';
   mkDiskSensor = name: {
     id = name;
