@@ -9,8 +9,6 @@ in
     package = pkgs.garage_1_0_1;
     environmentFile = config.age.secrets.garage-env.path;
     settings = {
-      data_dir = "/storage/garage/data";
-      metadata_dir = "/storage/garage/meta";
       replication_factor = 1;
       consistency_mode = "consistent";
       rpc_bind_addr = "${ts_ip}:3901";
