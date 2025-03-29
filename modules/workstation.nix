@@ -46,7 +46,7 @@ in
 
     users.users.bonus = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" ];
+      extraGroups = [ "wheel" "libvirtd" "wireshark" "dialout" "adbusers" ];
     };
 
     home-manager = {
@@ -84,6 +84,8 @@ in
     security.sudo.enable = false;
 
     programs.wireshark.enable = true;
+
+    programs.adb.enable = true;
 
     age.identityPaths = [
       "/etc/ssh/ssh_host_ed25519_key"
