@@ -25,6 +25,7 @@ in
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit contacts calendar maps richdocuments tasks;
     };
+    settings.trusted_domains = [ "nextcloud.bonus.re" ];
     extraAppsEnable = true;
     phpOptions = {
       upload_max_filesize = "512M";

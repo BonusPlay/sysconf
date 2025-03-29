@@ -121,12 +121,23 @@ in
     ];
   };
 
+  # nas
   glacius = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [
       ./glacius
       ../modules/server.nix
       ../modules/fan2go.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  # prism
+  prism = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./prism
+      ../modules/server.nix
       agenix.nixosModules.default
     ];
   };

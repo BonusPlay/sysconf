@@ -14,7 +14,6 @@
       enable = true;
       vm = true;
     };
-    nginx.enable = true;
     warp-net.enable = true;
     monitoring.enable = true;
   };

@@ -100,6 +100,11 @@
           targetHost = "glacius.warp.lan";
         };
 
+        prism.deployment = {
+          tags = [ "server" ];
+          targetHost = "192.168.116.29";
+        };
+
         artanis.deployment = {
           allowLocalDeployment = true;
           buildOnTarget = true;

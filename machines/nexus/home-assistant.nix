@@ -19,7 +19,7 @@ in
 {
   custom.nginx.entries = [
     {
-      entrypoints = [ "100.84.139.31" ];
+      entrypoints = [ "0.0.0.0" ];
       domain = "has.warp.lan";
       target = config.services.home-assistant.config.http.server_host;
       port = config.services.home-assistant.config.http.server_port;
@@ -52,7 +52,7 @@ in
         longitude = "!secret longitude";
         unit_system = "metric";
         time_zone = "!secret timezone";
-        external_url = "https://has.warp.lan";
+        external_url = "https://has.bonus.re";
         internal_url = "https://has.warp.lan";
       };
       notify = [

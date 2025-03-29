@@ -10,8 +10,9 @@ let
   bunker = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKzqBZOdyFfHH66glHDBvY842uQRapJefBk6hVzQM9cQ";
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
+  prism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH1S1TIViBA023RLDmnB3TmvaRH1cZAml0crJbqwawA";
 
-  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
@@ -24,7 +25,7 @@ in
 
   "cloudflare.age".publicKeys = users ++ [ kaldir endion bunker ];
   "cloudflare-tunnel.age".publicKeys = users;
-  "cloudflare/nextcloud-tunnel.age".publicKeys = users ++ [ bunker ];
+  "cloudflare/bonus.re.age".publicKeys = users ++ [ prism ];
 
   "docker-registry-users.age".publicKeys = users ++ [ kaldir ];
   "docker-registry-service-account.age".publicKeys = users;
