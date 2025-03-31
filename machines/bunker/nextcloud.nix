@@ -50,7 +50,7 @@ in
   services.nginx.virtualHosts.${domain} = {
     enableACME = true;
     forceSSL = true;
-    listenAddresses = [ "100.112.114.72" ];
+    listenAddresses = [ "0.0.0.0" ];
   };
   security.acme = {
     acceptTerms = true;

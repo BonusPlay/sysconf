@@ -21,7 +21,7 @@
 
   custom.nginx.entries = [
     {
-      entrypoints = [ "100.112.114.72" ];
+      entrypoints = [ "0.0.0.0" ];
       domain = config.services.collabora-online.settings.server_name;
       port = config.services.collabora-online.port;
     }
