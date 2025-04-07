@@ -45,7 +45,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 443 ];
+    # required for acme
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
 
     systemd.services.nginx = mkIf hasPrivateDomains {
       wants = ["tailscaled.service"];
