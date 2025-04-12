@@ -49,6 +49,11 @@ let
       domain = "git.bonus.re";
       target = "endion.bonus.re:2222";
     }
+    {
+      name = "mqtt";
+      domain = "mqtt.bonus.re";
+      target = "nexus.internal:1883";
+    }
   ];
 in
 {

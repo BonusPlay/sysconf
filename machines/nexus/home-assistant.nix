@@ -17,22 +17,6 @@ let
   uptime-kuma-integration = pkgs.callPackage ./uptime-kuma-integration.nix { inherit pyuptimekuma-hass; };
 in
 {
-  custom.nginx.entries = [
-    {
-      entrypoints = [ "0.0.0.0" ];
-      domain = "has.warp.lan";
-      target = config.services.home-assistant.config.http.server_host;
-      port = config.services.home-assistant.config.http.server_port;
-    }
-  ];
-
-  age.secrets.home-assistant-secrets = {
-    file = ../../secrets/home-assistant-secrets.age;
-    path = "${config.services.home-assistant.configDir}/secrets.yaml";
-    owner = "hass";
-    mode = "0400";
-  };
-
   services.home-assistant = {
     enable = true;
     package = package;
@@ -53,7 +37,7 @@ in
         unit_system = "metric";
         time_zone = "!secret timezone";
         external_url = "https://has.bonus.re";
-        internal_url = "https://has.warp.lan";
+        internal_url = "https://has.bonus.re";
       };
       notify = [
         {
@@ -75,10 +59,19 @@ in
       };
       http = {
         use_x_forwarded_for = true;
-        trusted_proxies = [ "127.0.0.1" ];
+        trusted_proxies = [ "192.168.116.29" ];
         server_port = 8123;
-        server_host = "127.0.0.1";
+        server_host = "0.0.0.0";
       };
     };
+  };
+
+  networking.firewall.allowedTCPPorts = [ config.services.home-assistant.config.http.server_port ];
+
+  age.secrets.home-assistant-secrets = {
+    file = ../../secrets/home-assistant-secrets.age;
+    path = "${config.services.home-assistant.configDir}/secrets.yaml";
+    owner = "hass";
+    mode = "0400";
   };
 }
