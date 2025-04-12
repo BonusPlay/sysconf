@@ -1,31 +1,15 @@
 { config, pkgs, ... }:
-let
-  domain = "nextcloud.warp.lan";
-in
 {
-  age.secrets = {
-    nextcloud-admin-pass = {
-      file = ../../secrets/nextcloud/admin-pass.age;
-      mode = "0400";
-      owner = "nextcloud";
-    };
-    nextcloud-s3-secret = {
-      file = ../../secrets/nextcloud/s3-secret.age;
-      mode = "0400";
-      owner = "nextcloud";
-    };
-  };
-
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
-    hostName = domain;
+    hostName = "nextcloud.bonus.re";
     https = true;
     configureRedis = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
       inherit contacts calendar maps richdocuments tasks;
     };
-    settings.trusted_domains = [ "nextcloud.bonus.re" ];
+    settings.trusted_proxies = [ "192.168.116.29" ];
     extraAppsEnable = true;
     phpOptions = {
       upload_max_filesize = "512M";
@@ -46,19 +30,18 @@ in
     };
   };
 
-  # https
-  services.nginx.virtualHosts.${domain} = {
-    enableACME = true;
-    forceSSL = true;
-    listenAddresses = [ "0.0.0.0" ];
-  };
-  security.acme = {
-    acceptTerms = true;
-    certs.${domain} = {
-      server = "https://pki.warp.lan/acme/warp/directory";
-      email = "acme@${domain}";
-      reloadServices = [ "nginx" ];
-      group = "nginx";
+  networking.firewall.allowedTCPPorts = [ 80 ];
+
+  age.secrets = {
+    nextcloud-admin-pass = {
+      file = ../../secrets/nextcloud/admin-pass.age;
+      mode = "0400";
+      owner = "nextcloud";
+    };
+    nextcloud-s3-secret = {
+      file = ../../secrets/nextcloud/s3-secret.age;
+      mode = "0400";
+      owner = "nextcloud";
     };
   };
 }
