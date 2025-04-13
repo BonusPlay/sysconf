@@ -117,12 +117,18 @@ in
           serversTransports.https-insecure.insecureSkipVerify = true;
         };
         tcp = tcpConfig;
-        tls.options.default = {
-          minVersion = "VersionTLS13";
-          sniStrict = true;
-          clientAuth = {
-            caFiles = [ "/etc/ssl/certs/warp-net.crt" ];
-            clientAuthType = "RequireAndVerifyClientCert";
+        tls.options = {
+          default = {
+            minVersion = "VersionTLS13";
+            sniStrict = true;
+            clientAuth = {
+              caFiles = [ "/etc/ssl/certs/warp-net.crt" ];
+              clientAuthType = "RequireAndVerifyClientCert";
+            };
+          };
+          nomtls = {
+            minVersion = "VersionTLS13";
+            sniStrict = true;
           };
         };
       };

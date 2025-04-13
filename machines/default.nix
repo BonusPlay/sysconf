@@ -132,11 +132,21 @@ in
     ];
   };
 
-  # prism
+  # prism mTLS proxy
   prism = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "x86_64-linux";
     modules = [
       ./prism
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
+
+  # moria downloader VM
+  moria = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./moria
       ../modules/server.nix
       agenix.nixosModules.default
     ];

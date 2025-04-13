@@ -11,8 +11,9 @@ let
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
   prism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH1S1TIViBA023RLDmnB3TmvaRH1cZAml0crJbqwawA";
+  moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILW2MoiPg5xZZSUcsxqSazpFmSWr4lRm/LpzyDY+xNA7";
 
-  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
   zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";

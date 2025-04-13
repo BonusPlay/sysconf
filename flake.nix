@@ -102,7 +102,12 @@
 
         prism.deployment = {
           tags = [ "server" ];
-          targetHost = "192.168.116.29";
+          targetHost = "prism.warp.lan";
+        };
+
+        moria.deployment = {
+          tags = [ "server" ];
+          targetHost = "192.168.121.43";
         };
 
         artanis.deployment = {
