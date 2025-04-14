@@ -26,6 +26,12 @@
     podman-compose
   ];
 
+  fileSystems."/storage" = {
+    device = "glacius.internal:/storage";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" ];
+  };
+
   virtualisation = {
     containers.enable = true;
     podman = {
