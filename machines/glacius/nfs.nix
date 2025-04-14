@@ -3,11 +3,11 @@
   services.nfs.server = {
     enable = true;
     exports = let
-      plex = "192.168.6.20(rw,sync,no_subtree_check,all_squash,anonuid=1250,anongid=1250)";
+      moria = "192.168.121.43(rw,sync,no_subtree_check,all_squash,anonuid=1250,anongid=1250)";
     in ''
-      /storage/music     ${plex}
-      /storage/movies    ${plex}
-      /storage/tvshows   ${plex}
+      /storage/music     ${moria}
+      /storage/movies    ${moria}
+      /storage/tvshows   ${moria}
     '';
   };
 
