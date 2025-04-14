@@ -1,6 +1,20 @@
 { config, lib, pkgs, ... }:
 let
   initrd-key = "/root/glacius-initrd/ssh_host_ed25519_key";
+  networks = {
+    "10-eth" = {
+      matchConfig.Name = "enp5s0";
+      networkConfig = {
+        LinkLocalAddressing = "no";
+        LLDP = "no";
+        EmitLLDP = "no";
+        IPv6AcceptRA = "no";
+        IPv6SendRA = "no";
+        DHCP = "yes";
+      };
+      linkConfig.RequiredForOnline = "routable";
+    };
+  };
 in
 {
   imports = [
@@ -49,11 +63,7 @@ in
         users.root.shell = "${zfsUnlock}/bin/zfs-unlock";
         network = {
           enable = true;
-          networks."10-lan" = {
-            matchConfig.Name = "enp5s0";
-            networkConfig.DHCP = "yes";
-            linkConfig.RequiredForOnline = "routable";
-          };
+          networks = networks;
         };
       };
     };
@@ -78,34 +88,7 @@ in
     caddy.enable = true;
   };
 
-  systemd.network = {
-    networks = {
-      "10-eth" = {
-        matchConfig.Name = "enp5s0";
-        networkConfig = {
-          VLAN = "lan";
-          LinkLocalAddressing = "no";
-          LLDP = "no";
-          EmitLLDP = "no";
-          IPv6AcceptRA = "no";
-          IPv6SendRA = "no";
-          ConfigureWithoutCarrier = "yes";
-        };
-        linkConfig.RequiredForOnline = "routable";
-      };
-      "20-lan" = {
-        matchConfig.Name = "lan";
-        networkConfig.DHCP = "yes";
-      };
-    };
-    netdevs."20-lan" = {
-      netdevConfig = {
-        Name = "lan";
-        Kind = "vlan";
-      };
-      vlanConfig.Id = 5;
-    };
-  };
+  systemd.network.networks = networks;
 
   networking.hostName = "glacius";
   networking.hostId = "06a43240";
