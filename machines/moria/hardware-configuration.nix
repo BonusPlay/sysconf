@@ -19,6 +19,18 @@
       options = [ "subvol=nix" "noatime" ];
     };
 
+  fileSystems."/var/lib/arr-stack/downloads" =
+    { device = "/dev/disk/by-uuid/869424d3-ea14-4e35-8217-be63e50c7fa3";
+      fsType = "btrfs";
+      options = [ "subvol=downloads" "noatime" ];
+    };
+
+  fileSystems."/storage" = {
+    device = "glacius.internal:/storage";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" ];
+  };
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

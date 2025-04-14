@@ -26,14 +26,12 @@
     podman-compose
   ];
 
-  fileSystems."/storage" = {
-    device = "glacius.internal:/storage";
-    fsType = "nfs";
-    options = [ "nfsvers=4.2" ];
-  };
-
   virtualisation = {
-    containers.enable = true;
+    containers = {
+      enable = true;
+      # https://github.com/containers/netavark/issues/339#issuecomment-2080432677
+      #containersConf.settings.network.firewall_driver = "none";
+    };
     podman = {
       enable = true;
       dockerCompat = true;
