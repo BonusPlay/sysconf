@@ -6,7 +6,7 @@ in
 {
   services.garage = {
     enable = true;
-    package = pkgs.garage_1_0_1;
+    package = pkgs.garage_1_1_0;
     environmentFile = config.age.secrets.garage-env.path;
     settings = {
       replication_factor = 1;
