@@ -15,6 +15,7 @@
     ./open-webui.nix
     ./uptime.nix
     ./beszel.nix
+    ./web-utils.nix
   ];
 
   custom = {
