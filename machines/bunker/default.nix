@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./collabora.nix
-    ./homebox.nix
     ./nextcloud.nix
   ];
 

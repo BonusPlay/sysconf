@@ -6,6 +6,7 @@
     ./mosquitto.nix
     ./esphome.nix
     #./frigate.nix
+    ./homebox.nix
   ];
 
   custom = {

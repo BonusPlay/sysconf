@@ -4,7 +4,7 @@ let
   httpApps = [
     {
       domain = "homebox.bonus.re";
-      target = "http://bunker.internal:7745";
+      target = "http://nexus.internal:7745";
     }
     {
       domain = "esphome.bonus.re";
