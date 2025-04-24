@@ -2,16 +2,16 @@
 {
   systemd.network.networks = {
     "10-sfp" = {
-      matchConfig.Name = "enp9s0";
+      matchConfig.Name = "enp11s0";
       networkConfig.DHCP = "yes";
     };
-    "11-eth" = {
-      matchConfig.Name = "enp8s0";
-      networkConfig.DHCP = "yes";
-    };
+    #"11-eth" = {
+    #  matchConfig.Name = "enp8s0";
+    #  networkConfig.DHCP = "yes";
+    #};
   };
 
-  systemd.network.wait-online.ignoredInterfaces = [ "enp8s0" ];
+  #systemd.network.wait-online.ignoredInterfaces = [ "enp8s0" ];
 
   networking = {
     hostName = "zeratul";

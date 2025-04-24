@@ -16,11 +16,11 @@
       timeout = 5;
     };
     initrd.kernelModules = [ "amdgpu" ];
-    kernelParams = [
-      "video=card2-DP-5:1920x1080@60" # DP monitor
-      "video=card1-HDMI-A-1:1920x1080@60" # kvm
-    ];
-    kernelModules = [ "lkrg" ];
+#    kernelParams = [
+#      "video=card2-DP-5:1920x1080@60" # DP monitor
+#      "video=card1-HDMI-A-1:1920x1080@60" # kvm
+#    ];
+#    kernelModules = [ "lkrg" ];
     bootspec.enable = true;
     lanzaboote = {
       enable = true;
@@ -37,7 +37,7 @@
     };
     workstation = {
       enable = true;
-      useWayland = false;
+      useWayland = true;
     };
     warp-net.enable = true;
   };
