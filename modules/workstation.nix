@@ -110,7 +110,7 @@ in
       fira-code
       fira-code-symbols
       dina-font
-      nerdfonts
+      #nerdfonts
       dejavu_fonts
       freefont_ttf
       gyre-fonts

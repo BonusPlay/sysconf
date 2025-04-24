@@ -1,6 +1,7 @@
 { nixpkgs
 , nixpkgs-unstable
 , home-manager
+, home-manager-unstable
 , nixos-hardware
 , agenix
 , lanzaboote
@@ -34,14 +35,18 @@ in
     };
   };
 
-  zeratul = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+  zeratul = nixpkgs-unstable.lib.nixosSystem {
+    system = "x86_64-linux";
     modules = [
       ./zeratul
       ../modules/workstation.nix
-      home-manager.nixosModules.home-manager
+      home-manager-unstable.nixosModules.home-manager
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
+      ({lib, ...}: {
+        nixpkgs.config.allowUnfree = true;
+        nixpkgs.overlays = import ../overlays inputs;
+      })
     ];
     specialArgs = {
       inherit nixvim nix-index-database;
