@@ -37,7 +37,7 @@
     };
     workstation = {
       enable = true;
-      useWayland = true;
+      useWayland = false;
     };
     warp-net.enable = true;
   };
