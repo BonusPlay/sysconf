@@ -4,9 +4,10 @@
 , nixvim
 , nix-index-database
 , ... }:
-with lib;
 let
   cfg = config.custom.workstation;
+  printerPkg = pkgs.callPackage ../pkgs/cups-brother-ql810w.nix {};
+  printerPpd = "${printerPkg}/opt/brother/PTouch/ql810w/cupswrapper/brother_ql810w_printer_en.ppd";
 in
 {
   imports = [
@@ -15,15 +16,15 @@ in
   ];
 
   options.custom.workstation = {
-    enable = mkEnableOption "base configuration of Bonus's workstations";
-    useWayland = mkOption {
-      type = types.bool;
+    enable = lib.mkEnableOption "base configuration of Bonus's workstations";
+    useWayland = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "use sway or i3";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     custom.base.autoUpgrade = false;
 
     # LET'S FUCKING GOOOO
@@ -39,7 +40,10 @@ in
     time.timeZone = "Europe/Warsaw";
     i18n.defaultLocale = "en_US.UTF-8";
 
-    services.printing.enable = true;
+    services.printing = {
+      enable = true;
+      drivers = [ printerPkg ];
+    };
 
     services.pipewire.enable = true;
     services.pipewire.pulse.enable = true;
