@@ -24,6 +24,8 @@ in
       "default_config"
       "met"
       "esphome"
+      "speedtestdotnet"
+      "plex"
     ];
     customComponents = [
       uptime-kuma-integration
