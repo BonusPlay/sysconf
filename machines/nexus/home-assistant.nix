@@ -24,7 +24,6 @@ in
       "default_config"
       "met"
       "esphome"
-      "tasmota"
     ];
     customComponents = [
       uptime-kuma-integration
