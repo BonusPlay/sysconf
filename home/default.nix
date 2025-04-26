@@ -87,5 +87,7 @@ in
     virt-manager
     docker-compose
     tidal-hifi
+    usbutils
+    pciutils
   ]);
 }
