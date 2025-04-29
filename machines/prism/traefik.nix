@@ -42,6 +42,11 @@ let
       target = "https://charlie.internal:8006";
       extra.services.charlie.loadBalancer.serversTransport = "https-insecure";
     }
+    {
+      name = "uptime-kuma";
+      domain = "uptime.bonus.re";
+      target = "https://uptime.warp.lan";
+    }
   ];
   tcpApps = [
     {
