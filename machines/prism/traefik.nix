@@ -68,7 +68,7 @@ let
       target = "http://moria.internal:9696";
     }
     {
-      domain = "overserr.bonus.re";
+      domain = "overseerr.bonus.re";
       target = "http://moria.internal:5055";
     }
     {
