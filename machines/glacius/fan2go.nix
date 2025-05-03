@@ -2,7 +2,7 @@
 let
   # expect name of disk ("sda") as 1st argument
   checkDiskTemp = pkgs.writeShellScript "vibe-check" ''
-    ${pkgs.smartmontools}/bin/smartctl --nocheck=standby -A "/dev/$1" | ${pkgs.gawk}/bin/awk '/Current Temperature/ {print $3}'
+    ${pkgs.smartmontools}/bin/smartctl --nocheck=standby -A "/dev/$1" | ${pkgs.gawk}/bin/awk '/Temperature_Celsius/ {print $10 * 1000}'
   '';
   mkDiskSensor = name: {
     id = name;
@@ -10,12 +10,14 @@ let
       exec = checkDiskTemp;
       args = [ name ];
     };
+    # once every 30 minutes
+    pollingRate = 30 * 60 * 1000;
   };
   mkDiskCurve = name: {
     id = name;
     linear = {
       sensor = name;
-      min = 30;
+      min = 40;
       max = 45;
     };
   };
