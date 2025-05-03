@@ -27,15 +27,22 @@
   ];
 
   virtualisation = {
-    containers = {
-      enable = true;
-      # https://github.com/containers/netavark/issues/339#issuecomment-2080432677
-      #containersConf.settings.network.firewall_driver = "none";
-    };
+    containers.enable = true;
     podman = {
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+
+  networking.firewall.allowedTCPPorts = [
+    9091  # transmission
+    7878  # radarr
+    8989  # sonarr
+    6767  # bazarr
+    9696  # prowlarr
+    5055  # overserr
+    8080  # sabnzbd
+    32400 # plex
+  ];
 }
