@@ -43,9 +43,10 @@ in
       home-manager-unstable.nixosModules.home-manager
       agenix.nixosModules.default
       lanzaboote.nixosModules.lanzaboote
-      ({lib, ...}: {
+      ({...}: {
         nixpkgs.config.allowUnfree = true;
         nixpkgs.overlays = import ../overlays inputs;
+        nixpkgs.config.rocmSupport = true;
       })
     ];
     specialArgs = {
