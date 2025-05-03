@@ -133,7 +133,12 @@ in
             url = entry.target;
           }];
         } extra ];
-        httpEntries = map mkHttpEntry httpApps;
+        httpEntries = (map mkHttpEntry httpApps) ++ [{
+          routers.api = {
+            rule = "Host(`traefik.bonus.re`)";
+            service = "api@internal";
+          };
+        }];
         httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
 
         mkTcpEntry = entry: {
