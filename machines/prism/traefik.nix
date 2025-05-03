@@ -47,6 +47,38 @@ let
       domain = "uptime.bonus.re";
       target = "https://uptime.warp.lan";
     }
+    {
+      domain = "transmission.bonus.re";
+      target = "http://moria.internal:9091";
+    }
+    {
+      domain = "radarr.bonus.re";
+      target = "http://moria.internal:7878";
+    }
+    {
+      domain = "sonarr.bonus.re";
+      target = "http://moria.internal:8989";
+    }
+    {
+      domain = "bazarr.bonus.re";
+      target = "http://moria.internal:6767";
+    }
+    {
+      domain = "prowlarr.bonus.re";
+      target = "http://moria.internal:9696";
+    }
+    {
+      domain = "overserr.bonus.re";
+      target = "http://moria.internal:5055";
+    }
+    {
+      domain = "sabnzbd.bonus.re";
+      target = "http://moria.internal:8080";
+    }
+    {
+      domain = "plex.bonus.re";
+      target = "http://moria.internal:32400";
+    }
   ];
   tcpApps = [
     {
