@@ -8,6 +8,7 @@
       /storage/music     ${moria}
       /storage/movies    ${moria}
       /storage/tvshows   ${moria}
+      /storage/backups   192.168.10.200(rw,sync,no_subtree_check,all_squash,anonuid=1249,anongid=1249)
     '';
   };
 
