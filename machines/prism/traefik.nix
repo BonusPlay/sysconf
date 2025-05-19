@@ -79,6 +79,10 @@ let
       domain = "plex.bonus.re";
       target = "http://moria.internal:32400";
     }
+    {
+      domain = "s3.bonus.re";
+      target = "http://glacius.internal:3900";
+    }
   ];
   tcpApps = [
     {
