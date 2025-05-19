@@ -84,7 +84,7 @@ let
     {
       name = "forgejo-ssh";
       domain = "git.bonus.re";
-      target = "endion.bonus.re:2222";
+      target = "endion.internal:2222";
     }
     {
       name = "mqtt";
