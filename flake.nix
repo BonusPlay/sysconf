@@ -48,7 +48,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = { self, nixpkgs, colmena, ... }@inputs: let
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = (import ./machines inputs);
@@ -59,6 +59,8 @@
     #    nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs) self.nixosConfigurations;
     #  };
     #} // builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations;
+
+    colmenaHive = colmena.lib.makeHive self.outputs.colmena;
 
     colmena = lib.recursiveUpdate
       (builtins.mapAttrs (k: v: { imports = v._module.args.modules; }) self.nixosConfigurations)
