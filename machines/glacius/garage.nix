@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
+  rpc_port = 3901;
   s3_port = 3900;
-  ts_ip = "100.103.141.53";
 in
 {
   services.garage = {
@@ -11,12 +11,11 @@ in
     settings = {
       replication_factor = 1;
       consistency_mode = "consistent";
-      rpc_bind_addr = "${ts_ip}:3901";
-      rpc_public_addr = "${ts_ip}:3901";
+      rpc_bind_addr = "0.0.0.0:${toString rpc_port}";
+      rpc_public_addr = "0.0.0.0:${toString rpc_port}";
       s3_api = {
-        api_bind_addr = "127.0.0.1:${toString s3_port}";
+        api_bind_addr = "0.0.0.0:${toString s3_port}";
         s3_region = "garage";
-        root_domain = ".s3.warp.lan";
       };
       #s3_web.bind_addr = null;
       #admin.api_bind_addr = null;
@@ -41,11 +40,5 @@ in
     owner = "garage";
   };
 
-  custom.caddy.entries = [
-    {
-      entrypoints = [ ts_ip ];
-      domain = "s3.warp.lan";
-      port = s3_port;
-    }
-  ];
+  networking.firewall.allowedTCPPorts = [ s3_port rpc_port ];
 }
