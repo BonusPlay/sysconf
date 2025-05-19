@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./collabora.nix
+    #./collabora.nix
     ./nextcloud.nix
   ];
 
