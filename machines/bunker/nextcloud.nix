@@ -19,7 +19,7 @@
       adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
       objectstore.s3 = {
         enable = true;
-        hostname = "s3.warp.lan";
+        hostname = "s3.bonus.re";
         key = "GKb9a92eff75e0da3789d057ca"; # access-key
         region = "garage";
         bucket = "nextcloud";
