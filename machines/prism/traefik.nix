@@ -80,6 +80,10 @@ let
       target = "http://moria.internal:32400";
     }
     {
+      domain = "bitmagnet.bonus.re";
+      target = "http://moria.internal:3333";
+    }
+    {
       domain = "s3.bonus.re";
       target = "http://glacius.internal:3900";
     }

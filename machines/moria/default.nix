@@ -45,5 +45,6 @@
     5055  # overserr
     8080  # sabnzbd
     32400 # plex
+    3333  # bitmagnet
   ];
 }
