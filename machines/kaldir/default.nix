@@ -16,6 +16,7 @@
     ./uptime.nix
     ./beszel.nix
     ./web-utils.nix
+    ./stalwart.nix
   ];
 
   custom = {

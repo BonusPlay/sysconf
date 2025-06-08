@@ -47,6 +47,9 @@ in
   "matrix/slack-environment.age".publicKeys = users ++ [ kaldir ];
   "matrix/sliding-sync-environment.age".publicKeys = users ++ [ kaldir ];
 
+  "mail/sieve-multibox.age".publicKeys = users ++ [ kaldir ];
+  "mail/admin-secret.age".publicKeys = users ++ [ kaldir ];
+
   "nextcloud/admin-pass.age".publicKeys = users ++ [ bunker ];
   "nextcloud/basic-auth.age".publicKeys = users ++ [ bunker ];
   "nextcloud/ssl-key.age".publicKeys = users ++ [ bunker ];
