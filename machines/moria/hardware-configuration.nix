@@ -25,6 +25,12 @@
       options = [ "subvol=downloads" "noatime" ];
     };
 
+  fileSystems."/var/lib/arr-stack/bitmagnet/postgres" =
+    { device = "/dev/disk/by-uuid/869424d3-ea14-4e35-8217-be63e50c7fa3";
+      fsType = "btrfs";
+      options = [ "subvol=bitmagnet" "noatime" ];
+    };
+
   fileSystems."/storage" = {
     device = "glacius.internal:/storage";
     fsType = "nfs";
