@@ -1,12 +1,6 @@
 { nixpkgs
 , nixpkgs-unstable
-, home-manager
-, home-manager-unstable
-, nixos-hardware
 , agenix
-, lanzaboote
-, nixvim
-, nix-index-database
 , ... }@inputs:
 let
   pkgs = system: import nixpkgs {
