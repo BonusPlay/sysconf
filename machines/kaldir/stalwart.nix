@@ -4,6 +4,8 @@ let
   # https://github.com/oddlama/nix-config/blob/main/hosts/envoy/stalwart-mail.nix
   mainDomain = "mail.bonusplay.pl";
   mailDomains = [
+#    "mail.mlwr.dev"
+#    "poste.dominikoso.me"
     "mail.kncyber.pl"
   ] ++ [ mainDomain ];
 
