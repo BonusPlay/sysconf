@@ -20,21 +20,6 @@ let
   };
 in
 {
-  artanis = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
-    modules = [
-      ./artanis
-      ../modules/workstation.nix
-      nixos-hardware.nixosModules.framework-12th-gen-intel
-      home-manager.nixosModules.home-manager
-      agenix.nixosModules.default
-      lanzaboote.nixosModules.lanzaboote
-    ];
-    specialArgs = {
-      inherit nixvim nix-index-database;
-    };
-  };
-
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "aarch64-linux";

@@ -14,9 +14,6 @@ let
   moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILW2MoiPg5xZZSUcsxqSazpFmSWr4lRm/LpzyDY+xNA7";
 
   servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria ];
-
-  artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
-  workstations = [ artanis ];
 in
 {
   "ca/password-file.age".publicKeys = users ++ [ raven ];
@@ -62,6 +59,4 @@ in
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
   "garage-env.age".publicKeys = users ++ [ glacius ];
-
-  "wifi.age".publicKeys = users ++ [ artanis ];
 }

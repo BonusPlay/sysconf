@@ -121,13 +121,6 @@
           tags = [ "server" ];
           targetHost = "192.168.121.43";
         };
-
-        artanis.deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
-          tags = [ "phys" ];
-          privilegeEscalationCommand = ["doas" "--"];
-        };
       };
   };
 }
