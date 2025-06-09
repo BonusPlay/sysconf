@@ -17,6 +17,7 @@
     };
     config = {
       adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
+      dbtype = "sqlite";
       objectstore.s3 = {
         enable = true;
         hostname = "s3.bonus.re";

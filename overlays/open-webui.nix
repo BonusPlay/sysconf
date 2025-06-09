@@ -8,7 +8,7 @@ _: prev: {
           then []
           else ["rapidocr_onnxruntime"];
         doCheck = !(python-prev.stdenv.isLinux && python-prev.stdenv.isAarch64);
-        meta = self.meta // {broken = false;};
+        meta = self.meta // {broken = false; badPlatforms = [];};
       });
 
       chromadb = python-prev.chromadb.overridePythonAttrs (self: {
