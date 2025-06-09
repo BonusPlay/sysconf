@@ -16,8 +16,7 @@ let
   servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria ];
 
   artanis = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDoHqwLsvv8YPig397EeuiSfh7c/4meVfy9ptEt5qt9a";
-  zeratul = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9lpLAJBIP9qSneD5SbfsPp4lMa3xbeldDbWP+UmBiW";
-  workstations = [ artanis zeratul ];
+  workstations = [ artanis ];
 in
 {
   "ca/password-file.age".publicKeys = users ++ [ raven ];

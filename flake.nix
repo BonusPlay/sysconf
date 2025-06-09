@@ -128,13 +128,6 @@
           tags = [ "phys" ];
           privilegeEscalationCommand = ["doas" "--"];
         };
-
-        zeratul.deployment = {
-          allowLocalDeployment = true;
-          buildOnTarget = true;
-          tags = [ "phys" ];
-          privilegeEscalationCommand = ["doas" "--"];
-        };
       };
   };
 }

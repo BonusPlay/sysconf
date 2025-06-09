@@ -35,25 +35,6 @@ in
     };
   };
 
-  zeratul = nixpkgs-unstable.lib.nixosSystem {
-    system = "x86_64-linux";
-    modules = [
-      ./zeratul
-      ../modules/workstation.nix
-      home-manager-unstable.nixosModules.home-manager
-      agenix.nixosModules.default
-      lanzaboote.nixosModules.lanzaboote
-      ({...}: {
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.overlays = import ../overlays inputs;
-        nixpkgs.config.rocmSupport = true;
-      })
-    ];
-    specialArgs = {
-      inherit nixvim nix-index-database;
-    };
-  };
-
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
     pkgs = pkgs "aarch64-linux";
