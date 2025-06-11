@@ -109,10 +109,19 @@ in
       api.insecure = true;
       entryPoints = {
         wan = {
+          address = ":444";
+          http.tls = {
+            certResolver = "letsencrypt";
+            domains = [{ main = "*.bonus.re"; }];
+          };
+          http3 = {};
+        };
+        lan = {
           address = ":443";
           http.tls = {
             certResolver = "letsencrypt";
             domains = [{ main = "*.bonus.re"; }];
+            options = "nomtls";
           };
           http3 = {};
         };
@@ -135,7 +144,7 @@ in
           routers."${name}" = {
             rule = "Host(`${entry.domain}`)";
             service = name;
-            entrypoints = [ "wan" ];
+            entrypoints = [ "wan" "lan" ];
           };
           services."${name}".loadBalancer.servers = [{
             url = entry.target;
@@ -168,15 +177,15 @@ in
         };
         tcp = tcpConfig;
         tls.options = {
-          #default = {
-          #  minVersion = "VersionTLS13";
-          #  sniStrict = true;
-          #  clientAuth = {
-          #    caFiles = [ "/etc/ssl/certs/warp-net.crt" ];
-          #    clientAuthType = "RequireAndVerifyClientCert";
-          #  };
-          #};
           default = {
+            minVersion = "VersionTLS13";
+            sniStrict = true;
+            clientAuth = {
+              caFiles = [ "/etc/ssl/certs/warp-net.crt" ];
+              clientAuthType = "RequireAndVerifyClientCert";
+            };
+          };
+          nomtls = {
             minVersion = "VersionTLS13";
             sniStrict = true;
           };
