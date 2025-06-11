@@ -8,7 +8,7 @@ stdenv.mkDerivation {
     owner = "strongtz";
     repo = "i915-sriov-dkms";
     rev = "master";
-    sha256 = "sha256-KDEFKa7bgDsm/GCvYDFObNDoZn2c71oaQlgYMAN2B0I=";
+    sha256 = "sha256-AMwYBAQvY6QYvRQ9aEPqUWhCr38DYgZySopFbDnuqUw=";
   };
 
   nativeBuildInputs = kernel.moduleBuildDependencies ++ [ xz ];
