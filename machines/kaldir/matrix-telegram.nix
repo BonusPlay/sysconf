@@ -9,6 +9,7 @@
   services.mautrix-telegram = {
     enable = true;
     environmentFile = config.age.secrets.matrixTelegramEnv.path;
+    registerToSynapse = false; # we do it manually for now
     settings = {
       homeserver = {
         address = "http://localhost:4080";
