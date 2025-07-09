@@ -26,6 +26,7 @@ in
       "esphome"
       "speedtestdotnet"
       "plex"
+      "prusalink"
     ];
     customComponents = [
       uptime-kuma-integration
