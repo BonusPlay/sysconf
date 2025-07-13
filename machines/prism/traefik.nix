@@ -80,6 +80,10 @@ let
       target = "http://moria.internal:32400";
     }
     {
+      domain = "plex.klisie.pl";
+      target = "http://moria.internal:32400";
+    }
+    {
       domain = "bitmagnet.bonus.re";
       target = "http://moria.internal:3333";
     }
@@ -108,24 +112,25 @@ in
     staticConfigOptions = {
       api.insecure = true;
       entryPoints = {
-        wan = {
-          address = ":444";
+        klisie = {
+          address = ":441";
           http.tls = {
             certResolver = "letsencrypt";
-            domains = [{ main = "*.bonus.re"; }];
-          };
-          http3 = {};
-        };
-        lan = {
-          address = ":443";
-          http.tls = {
-            certResolver = "letsencrypt";
-            domains = [{ main = "*.bonus.re"; }];
+            domains = [{ main = "*.klisie.pl"; }];
             options = "nomtls";
           };
           http3 = {};
         };
+        wan = {
+          address = ":442";
+          http.tls = {
+            certResolver = "letsencrypt";
+            domains = [{ main = "*.bonus.re"; }];
+          };
+          http3 = {};
+        };
         forgejo-ssh.address = ":2222";
+        mqtt.address = ":1883";
       };
       accessLog = {};
       certificatesResolvers.letsencrypt.acme = {
@@ -140,11 +145,12 @@ in
           nameFromDomain = builtins.head (lib.strings.splitString "." entry.domain);
           name = if (entry ? name) then entry.name else nameFromDomain;
           extra = if (entry ? extra) then entry.extra else {};
+          entrypoints = if (lib.hasSuffix "klisie.pl" entry.domain) then [ "klisie" ] else [ "wan" ];
         in recursiveMerge [{
           routers."${name}" = {
             rule = "Host(`${entry.domain}`)";
             service = name;
-            entrypoints = [ "wan" "lan" ];
+            entrypoints = entrypoints;
           };
           services."${name}".loadBalancer.servers = [{
             url = entry.target;
@@ -199,5 +205,8 @@ in
     owner = "traefik";
   };
 
-  networking.firewall.allowedTCPPorts = [ 443 ];
+  networking.firewall.allowedTCPPorts = let
+    parsePort = str: lib.strings.toInt (lib.removePrefix ":" str);
+  in
+    lib.mapAttrsToList (_: v: parsePort v.address) config.services.traefik.staticConfigOptions.entryPoints;
 }
