@@ -13,10 +13,12 @@ let
     {
       domain = "nextcloud.bonus.re";
       target = "http://bunker.internal:80";
+      entrypoints = [ "wan" "nextcloud" ];
     }
     {
       domain = "collabora.bonus.re";
       target = "http://bunker.internal:9980";
+      entrypoints = [ "wan" "nextcloud" ];
     }
     {
       domain = "has.bonus.re";
@@ -78,10 +80,12 @@ let
     {
       domain = "plex.bonus.re";
       target = "http://moria.internal:32400";
+      entrypoints = [ "wan" ];
     }
     {
       domain = "plex.klisie.pl";
       target = "http://moria.internal:32400";
+      entrypoints = [ "klisie" ];
     }
     {
       domain = "bitmagnet.bonus.re";
@@ -90,6 +94,7 @@ let
     {
       domain = "s3.bonus.re";
       target = "http://glacius.internal:3900";
+      entrypoints = [ "wan" "nextcloud" ];
     }
   ];
   tcpApps = [
@@ -112,6 +117,15 @@ in
     staticConfigOptions = {
       api.insecure = true;
       entryPoints = {
+        nextcloud = {
+          address = ":440";
+          http.tls = {
+            certResolver = "letsencrypt";
+            domains = [{ main = "*.bonus.re"; }];
+            options = "nomtls";
+          };
+          http3 = {};
+        };
         klisie = {
           address = ":441";
           http.tls = {
@@ -145,12 +159,13 @@ in
           nameFromDomain = builtins.head (lib.strings.splitString "." entry.domain);
           name = if (entry ? name) then entry.name else nameFromDomain;
           extra = if (entry ? extra) then entry.extra else {};
-          entrypoints = if (lib.hasSuffix "klisie.pl" entry.domain) then [ "klisie" ] else [ "wan" ];
+          entrypoints = if (entry ? entrypoints) then entry.entrypoints else [ "wan" ];
         in recursiveMerge [{
           routers."${name}" = {
             rule = "Host(`${entry.domain}`)";
             service = name;
             entrypoints = entrypoints;
+            tls = {};
           };
           services."${name}".loadBalancer.servers = [{
             url = entry.target;
