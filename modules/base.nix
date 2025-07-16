@@ -67,8 +67,8 @@ in
     networking.dhcpcd.enable = false;
     networking.useDHCP = false;
 
-    environment.etc."ssl/certs/warp-net.crt".source = ../files/warp-net-root.crt;
-    security.pki.certificateFiles = [ ../files/warp-net-root.crt ];
+    environment.etc."ssl/certs/xakep-lan.crt".source = ../files/xakep-lan-root.crt;
+    security.pki.certificateFiles = [ ../files/xakep-lan-root.crt ];
 
     environment.systemPackages = with pkgs; [
       neovim
