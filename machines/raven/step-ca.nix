@@ -1,35 +1,23 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
-  age.secrets = {
-    intermediate-crt = {
-      file = ../../secrets/ca/intermediate-crt.age;
-      owner = "step-ca";
-      mode = "0400";
-    };
-    intermediate-key = {
-      file = ../../secrets/ca/intermediate-key.age;
-      owner = "step-ca";
-      mode = "0400";
-    };
-    intermediate-key-pass = {
-      file = ../../secrets/ca/password-file.age;
-      owner = "step-ca";
-      mode = "0400";
-    };
-  };
-
   services.step-ca = {
     enable = true;
     address = "0.0.0.0";
     port = 443;
     openFirewall = true;
-    intermediatePasswordFile = config.age.secrets.intermediate-key-pass.path;
+    # dummy, we don't really have pass but nixos requires it
+    intermediatePasswordFile = "/dev/null";
     settings = {
-      root = "/etc/ssl/certs/warp-net.crt";
+      root = config.age.secrets.root-crt.path;
       federatedRoots = null;
       crt = config.age.secrets.intermediate-crt.path;
-      key = config.age.secrets.intermediate-key.path;
-      dnsNames = [ "pki.warp.lan" ];
+      key = "pkcs11:id=%03;object=Authentication%20key;token=OpenPGP%20card%20%28User%20PIN%29";
+      kms = {
+        type = "pkcs11";
+        uri = "pkcs11:module-path=${pkgs.opensc}/lib/opensc-pkcs11.so;slot-id=0?pin-source=${config.age.secrets.pkcs11-pass.path}";
+      };
+      crl.enabled = true;
+      dnsNames = [ "pki.xakep.lan" ];
       authority = {
         claims = {
           minTLSCertDuration = "5m";
@@ -39,11 +27,10 @@
         provisioners = [
           {
             type = "ACME";
-            name = "warp";
+            name = "acme";
             forceCN = true;
             challenges = ["http-01" "tls-alpn-01"];
             disableSmallstepExtensions = true;
-            options.x509.templateFile = "/etc/smallstep/leaf.tpl";
           }
           {
             type = "JWK";
@@ -68,19 +55,23 @@
     };
   };
 
-  environment.etc."smallstep/leaf.tpl".text = ''
-    {
-      "subject": {
-        "organization": "warp-net",
-        "commonName": {{ .Subject.CommonName | toJson }}
-      },
-      "sans": {{ toJson .SANs }},
-    {{- if typeIs "*rsa.PublicKey" .Insecure.CR.PublicKey }}
-      "keyUsage": ["keyEncipherment", "digitalSignature"],
-    {{- else }}
-      "keyUsage": ["digitalSignature"],
-    {{- end }}
-      "extKeyUsage": ["serverAuth", "clientAuth"]
-    }
-  '';
+  services.pcscd.enable = true;
+
+  age.secrets = {
+    root-crt = {
+      file = ../../secrets/ca/root-crt.age;
+      owner = "step-ca";
+      mode = "0400";
+    };
+    intermediate-crt = {
+      file = ../../secrets/ca/intermediate-crt.age;
+      owner = "step-ca";
+      mode = "0400";
+    };
+    pkcs11-pass = {
+      file = ../../secrets/ca/pkcs11-pass.age;
+      owner = "step-ca";
+      mode = "0400";
+    };
+  };
 }
