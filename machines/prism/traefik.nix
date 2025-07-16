@@ -187,7 +187,7 @@ in
             minVersion = "VersionTLS13";
             sniStrict = true;
             clientAuth = {
-              caFiles = [ "/etc/ssl/certs/warp-net.crt" ];
+              caFiles = [ ../../files/xakep-lan-root.crt ];
               clientAuthType = "RequireAndVerifyClientCert";
             };
           };
