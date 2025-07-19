@@ -96,7 +96,6 @@ let
     {
       domain = "s3.bonus.re";
       target = "http://glacius.internal:3900";
-      entrypoints = [ "wan" "nextcloud" ];
     }
   ];
   tcpApps = [
