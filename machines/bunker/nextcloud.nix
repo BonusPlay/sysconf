@@ -11,13 +11,14 @@
     };
     settings.trusted_proxies = [ "192.168.116.29" ];
     extraAppsEnable = true;
+    database.createLocally = true;
     phpOptions = {
       upload_max_filesize = "512M";
       post_max_size = "512M";
     };
     config = {
       adminpassFile = config.age.secrets.nextcloud-admin-pass.path;
-      dbtype = "sqlite";
+      dbtype = "pgsql";
       objectstore.s3 = {
         enable = true;
         hostname = "glacius.internal";
