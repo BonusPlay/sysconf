@@ -21,9 +21,17 @@
 
   networking.hostName = "plex";
 
+  environment.systemPackages = with pkgs; [
+    podman-compose
+  ];
+
   virtualisation = {
-    docker.enable = true;
-    oci-containers.backend = "docker";
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   hardware.graphics = {
