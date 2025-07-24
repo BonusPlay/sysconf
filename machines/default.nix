@@ -117,4 +117,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # plex VM
+  plex = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./plex
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }

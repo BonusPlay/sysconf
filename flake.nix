@@ -85,6 +85,11 @@
         tags = [ "vm" "server" ];
         targetHost = "moria";
       };
+
+      plex.deployment = {
+        tags = [ "vm" "server" ];
+        targetHost = "plex.internal";
+      };
     } // builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations;
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
   };
