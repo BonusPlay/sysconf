@@ -11,9 +11,10 @@ let
   raven = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPG39FzpJhP42iVzhy3dpmZyqRuKbbi94ckMLv5QWvoY";
   nexus = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGcl8ii1XpeEIn31+Z5gQR66SJJGlP0xi0kuBMGUxpv";
   prism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH1S1TIViBA023RLDmnB3TmvaRH1cZAml0crJbqwawA";
-  moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILW2MoiPg5xZZSUcsxqSazpFmSWr4lRm/LpzyDY+xNA7";
+  plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+8FjZH1l0o9s7KjWioH8ibNleeUTlNCqrM0+oa9bCC";
+  moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqDJ0Ol5DFHWM7hASijEJ0kUbWsuw1E9t5Mmy/2e9FG";
 
-  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria plex ];
 in
 {
   "ca/root-crt.age".publicKeys = users ++ [ raven ];
