@@ -2,7 +2,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./kernel.nix
   ];
 
   custom = {
@@ -44,7 +43,6 @@
     9696  # prowlarr
     5055  # overserr
     8080  # sabnzbd
-    32400 # plex
     3333  # bitmagnet
   ];
 }

@@ -4,31 +4,19 @@
 
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d4245aa3-16e7-4151-af83-cd2d78b3c6b7";
+    { device = "/dev/disk/by-uuid/f923e4d5-888e-45bc-a6e0-144dd29fcb2c";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/d4245aa3-16e7-4151-af83-cd2d78b3c6b7";
+    { device = "/dev/disk/by-uuid/f923e4d5-888e-45bc-a6e0-144dd29fcb2c";
       fsType = "btrfs";
       options = [ "subvol=nix" "noatime" ];
-    };
-
-  fileSystems."/var/lib/arr-stack/downloads" =
-    { device = "/dev/disk/by-uuid/869424d3-ea14-4e35-8217-be63e50c7fa3";
-      fsType = "btrfs";
-      options = [ "subvol=downloads" "noatime" ];
-    };
-
-  fileSystems."/var/lib/arr-stack/bitmagnet/postgres" =
-    { device = "/dev/disk/by-uuid/869424d3-ea14-4e35-8217-be63e50c7fa3";
-      fsType = "btrfs";
-      options = [ "subvol=bitmagnet" "noatime" ];
     };
 
   fileSystems."/storage" = {
@@ -38,6 +26,13 @@
   };
 
   swapDevices = [ ];
+
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
