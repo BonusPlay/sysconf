@@ -25,8 +25,20 @@
       options = [ "subvol=nix" "noatime" ];
     };
 
-  fileSystems."/storage" = {
-    device = "glacius.internal:/storage";
+  fileSystems."/storage/music" = {
+    device = "glacius.internal:/storage/music";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" ];
+  };
+
+  fileSystems."/storage/movies" = {
+    device = "glacius.internal:/storage/movies";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" ];
+  };
+
+  fileSystems."/storage/tvshows" = {
+    device = "glacius.internal:/storage/tvshows";
     fsType = "nfs";
     options = [ "nfsvers=4.2" ];
   };
