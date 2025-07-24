@@ -88,7 +88,7 @@
 
       plex.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "plex.internal";
+        targetHost = "plex";
       };
     } // builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations;
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;

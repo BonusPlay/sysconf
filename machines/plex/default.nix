@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -23,6 +24,11 @@
   virtualisation = {
     docker.enable = true;
     oci-containers.backend = "docker";
+  };
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [ vpl-gpu-rt ];
   };
 
   systemd.network.networks."10-wired" = {
