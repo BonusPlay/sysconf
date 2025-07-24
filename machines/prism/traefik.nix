@@ -80,13 +80,13 @@ let
     {
       name = "plex-wan";
       domain = "plex.bonus.re";
-      target = "http://moria.internal:32400";
+      target = "http://plex.internal:32400";
       entrypoints = [ "wan" ];
     }
     {
       name = "plex-klisie";
       domain = "plex.klisie.pl";
-      target = "http://moria.internal:32400";
+      target = "http://plex.internal:32400";
       entrypoints = [ "klisie" ];
     }
     {
