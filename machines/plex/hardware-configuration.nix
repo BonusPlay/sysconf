@@ -25,6 +25,12 @@
       options = [ "subvol=nix" "noatime" ];
     };
 
+  fileSystems."/storage" = {
+    device = "glacius.internal:/storage";
+    fsType = "nfs";
+    options = [ "nfsvers=4.2" ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
