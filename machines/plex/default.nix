@@ -31,4 +31,9 @@
     enable = true;
     extraPackages = with pkgs; [ vpl-gpu-rt intel-media-driver ];
   };
+
+  environment.systemPackages = with pkgs; [
+    libva-utils
+    vdpauinfo
+  ];
 }
