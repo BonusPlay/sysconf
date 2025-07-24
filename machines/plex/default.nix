@@ -32,8 +32,8 @@
     extraPackages = with pkgs; [ vpl-gpu-rt intel-media-driver ];
   };
 
-  environment.systemPackages = with pkgs; [
-    libva-utils
-    vdpauinfo
-  ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  hardware.enableAllFirmware = true;
+
+  environment.systemPackages = with pkgs; [ libva-utils intel-gpu-tools ];
 }
