@@ -114,6 +114,7 @@ in
     modules = [
       ./moria
       ../modules/server.nix
+      ../modules/podman.nix
       agenix.nixosModules.default
     ];
   };
@@ -124,6 +125,7 @@ in
     modules = [
       ./plex
       ../modules/server.nix
+      ../modules/podman.nix
       agenix.nixosModules.default
     ];
   };

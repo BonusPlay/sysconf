@@ -12,6 +12,7 @@
     };
     warp-net.enable = true;
     monitoring.enable = true;
+    podman.enable = true;
   };
 
   boot.loader.grub.device = "/dev/sda";
@@ -20,20 +21,6 @@
   systemd.network.networks."10-wired" = {
     matchConfig.Name = "enp6s18";
     networkConfig.DHCP = "yes";
-  };
-
-  environment.systemPackages = with pkgs; [
-    podman-compose
-  ];
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
   };
 
   networking.firewall.allowedTCPPorts = [

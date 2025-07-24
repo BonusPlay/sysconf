@@ -17,31 +17,18 @@
     };
     warp-net.enable = true;
     monitoring.enable = true;
+    podman.enable = true;
   };
 
   networking.hostName = "plex";
 
-  environment.systemPackages = with pkgs; [
-    podman-compose
-  ];
-
-  virtualisation = {
-    containers.enable = true;
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
-    };
+  systemd.network.networks."10-wired" = {
+    matchConfig.Name = "enp6s18";
+    networkConfig.DHCP = "yes";
   };
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [ vpl-gpu-rt ];
-  };
-
-  systemd.network.networks."10-wired" = {
-    matchConfig.Name = "enp6s18";
-    networkConfig.DHCP = "yes";
   };
 }
