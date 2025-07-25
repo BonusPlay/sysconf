@@ -78,16 +78,9 @@ let
       target = "http://moria.internal:8080";
     }
     {
-      name = "plex-wan";
-      domain = "plex.bonus.re";
-      target = "http://plex.internal:32400";
-      entrypoints = [ "wan" ];
-    }
-    {
-      name = "plex-klisie";
       domain = "plex.klisie.pl";
       target = "http://plex.internal:32400";
-      entrypoints = [ "klisie" ];
+      tls = "nomtls";
     }
     {
       domain = "bitmagnet.bonus.re";
@@ -127,15 +120,6 @@ in
           };
           http3 = {};
         };
-        klisie = {
-          address = ":441";
-          http.tls = {
-            certResolver = "letsencrypt";
-            domains = [{ main = "*.klisie.pl"; }];
-            options = "nomtls";
-          };
-          http3 = {};
-        };
         wan = {
           address = ":442";
           http.tls = {
@@ -160,13 +144,14 @@ in
           nameFromDomain = builtins.head (lib.strings.splitString "." entry.domain);
           name = if (entry ? name) then entry.name else nameFromDomain;
           extra = if (entry ? extra) then entry.extra else {};
+          tls = if (entry ? mtls) then entry.tls else "default";
           entrypoints = if (entry ? entrypoints) then entry.entrypoints else [ "wan" ];
         in recursiveMerge [{
           routers."${name}" = {
             rule = "Host(`${entry.domain}`)";
             service = name;
             entrypoints = entrypoints;
-            tls = {};
+            tls.options = tls;
           };
           services."${name}".loadBalancer.servers = [{
             url = entry.target;
