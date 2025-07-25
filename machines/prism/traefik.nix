@@ -144,7 +144,7 @@ in
           nameFromDomain = builtins.head (lib.strings.splitString "." entry.domain);
           name = if (entry ? name) then entry.name else nameFromDomain;
           extra = if (entry ? extra) then entry.extra else {};
-          tls = if (entry ? mtls) then entry.tls else "default";
+          tls = if (entry ? tls) then entry.tls else "default";
           entrypoints = if (entry ? entrypoints) then entry.entrypoints else [ "wan" ];
         in recursiveMerge [{
           routers."${name}" = {
