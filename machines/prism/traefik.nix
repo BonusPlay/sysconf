@@ -180,6 +180,7 @@ in
           routers.api = {
             rule = "Host(`traefik.bonus.re`)";
             service = "api@internal";
+            entrypoints = [ "wan" ];
           };
         }];
         httpConfig = lib.foldl' lib.recursiveUpdate {} httpEntries;
