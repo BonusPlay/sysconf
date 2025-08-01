@@ -19,6 +19,18 @@
       options = [ "subvol=nix" "noatime" ];
     };
 
+  fileSystems."/opt/arr/downloads" =
+    { device = "/dev/disk/by-uuid/929d9c77-deee-430a-b81b-ba83900d1e62";
+      fsType = "btrfs";
+      options = [ "subvol=downloads" "noatime" ];
+    };
+
+  fileSystems."/opt/arr/bitmagnet/postgres" =
+    { device = "/dev/disk/by-uuid/929d9c77-deee-430a-b81b-ba83900d1e62";
+      fsType = "btrfs";
+      options = [ "subvol=bitmagnet" "noatime" ];
+    };
+
   fileSystems."/storage" = {
     device = "glacius.internal:/storage";
     fsType = "nfs";
