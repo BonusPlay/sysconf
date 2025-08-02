@@ -27,6 +27,7 @@
     warp-net.enable = true;
     monitoring.enable = true;
     caddy.enable = true;
+    podman.enable = true;
   };
 
   boot = {
