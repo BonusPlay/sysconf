@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./chibisafe.nix
     ./matrix-synapse.nix
     ./matrix-meta.nix
     ./matrix-telegram.nix
