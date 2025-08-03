@@ -78,19 +78,10 @@ let
       target = "http://moria.internal:8080";
     }
     {
-      # for the webui
-      name = "plex-webui";
       domain = "plex.bonus.re";
       target = "http://plex.internal:32400";
+      entrypoints = [ "plex" ];
       tls = "nomtls";
-    }
-    {
-      # for the app
-      name = "plex-app";
-      domain = "plex.bonus.re";
-      target = "http://plex.internal:32400";
-      tls = "nomtlsplex";
-      entrypoints = [ "plex-app" ];
     }
     {
       domain = "bitmagnet.bonus.re";
@@ -130,12 +121,12 @@ in
           };
           http3 = {};
         };
-        plex-app = {
+        plex = {
           address = ":441";
           http.tls = {
             certResolver = "letsencrypt";
             domains = [{ main = "*.bonus.re"; }];
-            options = "nomtlsplex";
+            options = "nomtls";
           };
           http3 = {};
         };
@@ -215,9 +206,6 @@ in
           nomtls = {
             minVersion = "VersionTLS13";
             sniStrict = true;
-          };
-          nomtlsplex = {
-            minVersion = "VersionTLS13";
           };
         };
       };
