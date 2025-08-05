@@ -45,6 +45,7 @@
       entrypoints = [ "10.0.0.131" ];
       domain = "tools.bonusplay.pl";
       port = 4013;
+      isPublic = true;
     }
   ];
 }

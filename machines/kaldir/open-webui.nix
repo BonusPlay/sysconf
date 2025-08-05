@@ -36,8 +36,8 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "100.98.118.66" ];
-      domain = "ai.warp.lan";
+      entrypoints = [ "10.0.0.131" ];
+      domain = "ai.bonus.re";
       port = config.services.open-webui.port;
     }
   ];

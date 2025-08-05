@@ -1,8 +1,9 @@
-{ lib, config, pkgs, home-manager, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ./step-ca.nix
+    ./step-ca-module.nix
   ];
 
   custom = {
@@ -19,8 +20,12 @@
 
   networking.hostName = "raven";
 
-  systemd.network.networks."10-wired" = {
-    matchConfig.Name = "enp6s18";
-    networkConfig.DHCP = "yes";
+  environment.systemPackages = with pkgs; [ opensc openssl usbutils ];
+
+  systemd.network.networks = {
+    "10-wired" = {
+      matchConfig.Name = "enp6s18";
+      networkConfig.DHCP = "yes";
+    };
   };
 }

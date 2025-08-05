@@ -29,7 +29,7 @@
         bucket = "nextcloud";
         secretFile = config.age.secrets.nextcloud-s3-secret.path;
         usePathStyle = true;
-        autocreate = false;
+        verify_bucket_exists = false;
       };
     };
   };

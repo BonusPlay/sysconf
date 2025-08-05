@@ -15,6 +15,7 @@
       domain = "obsidian.bonusplay.pl";
       target = config.containers.obsidian.localAddress;
       port = config.containers.obsidian.config.services.couchdb.port;
+      isPublic = true; # auth done in-app
       extraConfig = ''
         @allowedOrigin expression `
           {http.request.header.Origin}.matches('^app://obsidian.md$') ||

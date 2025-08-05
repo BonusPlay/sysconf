@@ -45,11 +45,6 @@ let
       extra.services.charlie.loadBalancer.serversTransport = "https-insecure";
     }
     {
-      name = "uptime-kuma";
-      domain = "uptime.bonus.re";
-      target = "https://uptime.warp.lan";
-    }
-    {
       domain = "transmission.bonus.re";
       target = "http://moria.internal:9091";
     }
@@ -72,6 +67,7 @@ let
     {
       domain = "overseerr.bonus.re";
       target = "http://moria.internal:5055";
+      tls = "tier1";
     }
     {
       domain = "sabnzbd.bonus.re";
@@ -104,6 +100,10 @@ let
       target = "nexus.internal:1883";
     }
   ];
+
+  tier0-crt = config.age.secrets.tier0.path;
+  tier1-crt = config.age.secrets.tier1.path;
+  tier2-crt = config.age.secrets.tier2.path;
 in
 {
   services.traefik = {
@@ -195,11 +195,28 @@ in
         };
         tcp = tcpConfig;
         tls.options = {
+          # tier0
           default = {
             minVersion = "VersionTLS13";
             sniStrict = true;
             clientAuth = {
-              caFiles = [ ../../files/xakep-lan-root.crt ];
+              caFiles = [ tier0-crt ];
+              clientAuthType = "RequireAndVerifyClientCert";
+            };
+          };
+          tier1 = {
+            minVersion = "VersionTLS13";
+            sniStrict = true;
+            clientAuth = {
+              caFiles = [ tier0-crt tier1-crt ];
+              clientAuthType = "RequireAndVerifyClientCert";
+            };
+          };
+          tier2 = {
+            minVersion = "VersionTLS13";
+            sniStrict = true;
+            clientAuth = {
+              caFiles = [ tier0-crt tier2-crt ];
               clientAuthType = "RequireAndVerifyClientCert";
             };
           };
@@ -211,10 +228,24 @@ in
       };
   };
 
-  age.secrets.cloudflare = {
-    file = ../../secrets/cloudflare/bonus.re.age;
-    mode = "0400";
-    owner = "traefik";
+  age.secrets = {
+    cloudflare = {
+      file = ../../secrets/cloudflare/bonus.re.age;
+      mode = "0400";
+      owner = "traefik";
+    };
+    tier0 = {
+      file = ../../secrets/ca/tier0-crt.age;
+      mode = "0444";
+    };
+    tier1 = {
+      file = ../../secrets/ca/tier1-crt.age;
+      mode = "0444";
+    };
+    tier2 = {
+      file = ../../secrets/ca/tier2-crt.age;
+      mode = "0444";
+    };
   };
 
   networking.firewall.allowedTCPPorts = let

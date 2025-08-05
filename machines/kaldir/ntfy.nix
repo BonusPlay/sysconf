@@ -1,6 +1,7 @@
 { config, ... }:
 let
   dataDir = "/var/lib/ntfy-sh";
+  domain = "ntfy.bonus.re";
   port = 4050;
 in
 {
@@ -8,7 +9,7 @@ in
     enable = true;
     settings = {
       listen-http = ":${toString port}";
-      base-url = "https://ntfy.warp.lan";
+      base-url = "https://${domain}";
       auth-file = "${dataDir}/auth.db";
       auth-default-access = "deny-all";
       behind-proxy = true;
@@ -20,8 +21,7 @@ in
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "100.98.118.66" ];
-      domain = config.services.ntfy-sh.settings.base-url;
+      domain = domain;
       port = port;
     }
   ];

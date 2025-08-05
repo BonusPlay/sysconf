@@ -17,8 +17,10 @@ let
   servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria plex ];
 in
 {
-  "ca/root-crt.age".publicKeys = users ++ [ raven ];
-  "ca/intermediate-crt.age".publicKeys = users ++ [ raven ];
+  "ca/root-crt.age".publicKeys = users ++ [ raven prism kaldir ];
+  "ca/tier0-crt.age".publicKeys = users ++ [ raven prism kaldir ];
+  "ca/tier1-crt.age".publicKeys = users ++ [ raven prism kaldir ];
+  "ca/tier2-crt.age".publicKeys = users ++ [ raven prism kaldir ];
   "ca/pkcs11-pass.age".publicKeys = users ++ [ raven ];
 
   "cloudflare.age".publicKeys = users ++ [ kaldir endion bunker ];

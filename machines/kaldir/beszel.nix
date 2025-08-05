@@ -4,8 +4,7 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "100.98.118.66" ];
-      domain = "beszel.warp.lan";
+      domain = "beszel.bonus.re";
       port = config.custom.beszel-hub.port;
     }
   ];
