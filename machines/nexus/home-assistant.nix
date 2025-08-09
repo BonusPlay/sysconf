@@ -8,6 +8,13 @@ let
           extraCertificateFiles = [ ../../files/warp-net-root.crt ];
         };
       };
+      python3 = pkgs.python3.override {
+        packageOverrides = python-self: python-super: {
+          cfn-lint = prev.cfn-lint.overrideAttrs (attrs: {
+            doCheck = false;
+          });
+        };
+      };
     };
   }).overrideAttrs (oldAttrs: {
     doInstallCheck = false;
@@ -65,6 +72,10 @@ in
         server_port = 8123;
         server_host = "0.0.0.0";
       };
+      group = "!include groups.yaml";
+      automation = "!include automations.yaml";
+      script = "!include scripts.yaml";
+      scene = "!include scenes.yaml";
     };
   };
 
