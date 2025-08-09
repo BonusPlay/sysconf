@@ -127,6 +127,7 @@ in
       ./plex
       ../modules/server.nix
       ../modules/podman.nix
+      ../modules/watchtower.nix
       agenix.nixosModules.default
     ];
   };

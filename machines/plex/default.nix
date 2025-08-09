@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./plex.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
@@ -18,6 +19,7 @@
     warp-net.enable = true;
     monitoring.enable = true;
     podman.enable = true;
+    watchtower.enable = true;
   };
 
   networking.hostName = "plex";

@@ -60,4 +60,6 @@ in
   "obsidian-env.age".publicKeys = users ++ [ kaldir ];
 
   "garage-env.age".publicKeys = users ++ [ glacius ];
+
+  "plex-claim.age".publicKeys = users ++ [ plex ];
 }
