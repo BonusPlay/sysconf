@@ -8,6 +8,7 @@
     ./matrix-telegram.nix
     ./matrix-irc.nix
     ./matrix-slack.nix
+    ./change-detection.nix
     ./ntfy.nix
     ./ghidra.nix
     ./obsidian.nix
