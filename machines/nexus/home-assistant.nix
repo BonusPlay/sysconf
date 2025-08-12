@@ -2,20 +2,6 @@
 let
   package = (pkgs.home-assistant.override {
     extraPackages = py: with py; [ numpy ];
-    packageOverrides = final: prev: {
-      certifi = prev.certifi.override {
-        cacert = pkgs.cacert.override {
-          extraCertificateFiles = [ ../../files/warp-net-root.crt ];
-        };
-      };
-      python3 = pkgs.python3.override {
-        packageOverrides = python-self: python-super: {
-          cfn-lint = prev.cfn-lint.overrideAttrs (attrs: {
-            doCheck = false;
-          });
-        };
-      };
-    };
   }).overrideAttrs (oldAttrs: {
     doInstallCheck = false;
   });
