@@ -78,16 +78,7 @@ in
           recommendedProxySettings = true;
         };
       };
-      mkPubDomainEntry = entry: {};
-      mkLanDomainEntry = entry: {
-        ${entry.domain} = {
-          enableACME = true;
-          forceSSL = true;
-          listenAddresses = entry.entrypoints;
-          locations = proxyEntry entry;
-        };
-      };
-      mkDomainEntry = entry: if (isPublicDomain entry) then (mkPubDomainEntry entry) else (mkLanDomainEntry entry);
+      mkDomainEntry = entry: "";
       domainEntries = map mkDomainEntry cfg.entries;
     in {
       enable = true;

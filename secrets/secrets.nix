@@ -64,4 +64,6 @@ in
   "garage-env.age".publicKeys = users ++ [ glacius ];
 
   "plex-claim.age".publicKeys = users ++ [ plex ];
+
+  "iodine-pass.age".publicKeys = users ++ [ kaldir ];
 }
