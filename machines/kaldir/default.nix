@@ -16,6 +16,7 @@
     ./uptime.nix
     ./beszel.nix
     ./web-utils.nix
+    ./iodine.nix
     #./stalwart.nix
   ];
 
