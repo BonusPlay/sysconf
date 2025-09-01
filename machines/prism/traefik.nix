@@ -67,7 +67,7 @@ let
     {
       domain = "overseerr.bonus.re";
       target = "http://moria.internal:5055";
-      tls = "tier1";
+      tls = "tier2";
     }
     {
       domain = "sabnzbd.bonus.re";
