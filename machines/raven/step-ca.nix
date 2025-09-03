@@ -29,7 +29,7 @@ let
       authority = {
         claims = {
           minTLSCertDuration = "5m";
-          maxTLSCertDuration = "8760h";
+          maxTLSCertDuration = "87600h";
           defaultTLSCertDuration = "48h";
         };
         provisioners = [
