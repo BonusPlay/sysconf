@@ -1,18 +1,7 @@
 { config, pkgs, ... }:
-let
-  package = (pkgs.home-assistant.override {
-    extraPackages = py: with py; [ numpy ];
-  }).overrideAttrs (oldAttrs: {
-    doInstallCheck = false;
-  });
-
-  pyuptimekuma-hass = pkgs.callPackage ./pyuptimekuma-hass.nix { python3Packages = pkgs.home-assistant.python.pkgs; };
-  uptime-kuma-integration = pkgs.callPackage ./uptime-kuma-integration.nix { inherit pyuptimekuma-hass; };
-in
 {
   services.home-assistant = {
     enable = true;
-    package = package;
     extraComponents = [
       "default_config"
       "met"
@@ -21,9 +10,6 @@ in
       "plex"
       "prusalink"
       "octoprint"
-    ];
-    customComponents = [
-      uptime-kuma-integration
     ];
     config = {
       homeassistant = {
