@@ -20,6 +20,7 @@ in
       "speedtestdotnet"
       "plex"
       "prusalink"
+      "octoprint"
     ];
     customComponents = [
       uptime-kuma-integration
