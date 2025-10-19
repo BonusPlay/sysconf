@@ -17,7 +17,6 @@
     ./beszel.nix
     ./web-utils.nix
     ./iodine.nix
-    #./stalwart.nix
   ];
 
   custom = {
