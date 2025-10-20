@@ -85,7 +85,6 @@ in
     };
     warp-net.enable = true;
     monitoring.enable = true;
-    caddy.enable = true;
   };
 
   systemd.network.networks = networks;
