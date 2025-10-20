@@ -1,6 +1,9 @@
 { config, ... }:
 {
-  custom.beszel-hub.enable = true;
+  custom.beszel-hub = {
+    enable = true;
+    environment.BESZEL_HUB_AUTO_LOGIN = "admin@bonus.re";
+  };
 
   custom.caddy.entries = [
     {
