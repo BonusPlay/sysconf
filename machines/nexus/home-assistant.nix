@@ -8,8 +8,7 @@
       "esphome"
       "speedtestdotnet"
       "plex"
-      "prusalink"
-      "octoprint"
+      "ipp"
     ];
     config = {
       homeassistant = {
@@ -32,7 +31,7 @@
           data.topic = "has-general";
           title_param_name = "title";
           message_param_name = "message";
-          resource = "https://ntfy.warp.lan";
+          resource = "https://ntfy.bonus.re";
         }
       ];
       default_config = {};
