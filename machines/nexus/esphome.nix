@@ -7,5 +7,6 @@
     openFirewall = true;
   };
 
+  # required for mdns
   networking.firewall.allowedUDPPorts = [ 5353 ];
 }
