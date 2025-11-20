@@ -8,6 +8,7 @@
       "esphome"
       "speedtestdotnet"
       "plex"
+      "prusalink"
       "ipp"
     ];
     config = {
