@@ -21,7 +21,7 @@ let
       max = 45;
     };
   };
-  disks = [ "sda" "sdb" "sdc" ];
+  disks = [ "sda" "sdb" "sdc" "sdd" "sde" "sdf" ];
 in
 {
   custom.fan2go = {
