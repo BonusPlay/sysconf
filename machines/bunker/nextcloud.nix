@@ -2,12 +2,12 @@
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     hostName = "nextcloud.bonus.re";
     https = true;
     configureRedis = true;
     extraApps = with config.services.nextcloud.package.packages.apps; {
-      inherit contacts calendar maps richdocuments tasks;
+      inherit contacts calendar tasks;
     };
     settings.trusted_proxies = [ "192.168.116.29" ];
     extraAppsEnable = true;

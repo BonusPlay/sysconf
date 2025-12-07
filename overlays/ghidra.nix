@@ -1,7 +1,7 @@
 { nixpkgs-unstable }:
 final: prev:
   let
-    pkgs = nixpkgs-unstable.legacyPackages.${prev.system};
+    pkgs = nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system};
   in
   {
     ghidra = pkgs.ghidra;

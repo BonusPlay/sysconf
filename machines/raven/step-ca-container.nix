@@ -20,7 +20,7 @@ let
      ];
      config = { config, pkgs, ... }: {
        services.pcscd.enable = true;
-       system.stateVersion = "25.05";
+       system.stateVersion = "25.11";
        services.step-ca = {
          enable = true;
          address = "0.0.0.0";

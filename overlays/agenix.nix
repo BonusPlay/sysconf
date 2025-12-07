@@ -1,4 +1,4 @@
 { agenix }:
 final: prev: {
-  agenix = agenix.packages.${prev.system}.default;
+  agenix = agenix.packages.${prev.stdenv.hostPlatform.system}.default;
 }
