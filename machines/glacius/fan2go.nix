@@ -10,8 +10,6 @@ let
       exec = checkDiskTemp;
       args = [ name ];
     };
-    # once every 30 minutes
-    pollingRate = 30 * 60 * 1000;
   };
   mkDiskCurve = name: {
     id = name;
@@ -27,6 +25,7 @@ in
   custom.fan2go = {
     enable = true;
     settings = {
+      tempSensorPollingRate = "30m";
       fans = [
         {
           id = "sys";
