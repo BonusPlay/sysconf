@@ -13,10 +13,19 @@ let
   prism = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH1S1TIViBA023RLDmnB3TmvaRH1cZAml0crJbqwawA";
   plex = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+8FjZH1l0o9s7KjWioH8ibNleeUTlNCqrM0+oa9bCC";
   moria = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILqDJ0Ol5DFHWM7hASijEJ0kUbWsuw1E9t5Mmy/2e9FG";
+  khala = "";
 
-  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria plex ];
+  servers = [ kaldir braxis endion shakuras glacius bunker raven nexus prism moria plex khala ];
 in
 {
+  "authelia/jwt-secret.age".publicKeys = users ++ [ khala ];
+  "authelia/oidc-issuer-private-key.age".publicKeys = users ++ [ khala ];
+  "authelia/oidc-hmac-secret.age".publicKeys = users ++ [ khala ];
+  "authelia/session-secret.age".publicKeys = users ++ [ khala ];
+  "authelia/storage-encryption-key.age".publicKeys = users ++ [ khala ];
+  "authelia/users.age".publicKeys = users ++ [ khala ];
+  "authelia/acls.age".publicKeys = users ++ [ khala ];
+
   "ca/root-crt.age".publicKeys = users ++ [ raven prism kaldir ];
   "ca/tier0-crt.age".publicKeys = users ++ [ raven prism kaldir ];
   "ca/tier1-crt.age".publicKeys = users ++ [ raven prism kaldir ];

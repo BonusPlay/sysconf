@@ -134,4 +134,14 @@ in
       agenix.nixosModules.default
     ];
   };
+
+  # khala is SSO proxy
+  khala = nixpkgs.lib.nixosSystem {
+    pkgs = pkgs "x86_64-linux";
+    modules = [
+      ./khala
+      ../modules/server.nix
+      agenix.nixosModules.default
+    ];
+  };
 }
