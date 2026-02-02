@@ -38,6 +38,7 @@ in
     # solves issue with splitdns cloudflare overwriting our custom DNS
     services.resolved = {
       enable = true;
+      llmnr = lib.mkDefault "false";
       extraConfig = ''
         Cache=no-negative
       '';

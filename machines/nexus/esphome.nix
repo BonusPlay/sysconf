@@ -8,5 +8,6 @@
   };
 
   # required for mdns
+  services.resolved.llmnr = "true";
   networking.firewall.allowedUDPPorts = [ 5353 ];
 }
