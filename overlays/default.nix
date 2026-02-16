@@ -3,5 +3,6 @@
   (import ./agenix.nix { inherit agenix; })
   (import ./beszel.nix { inherit nixpkgs-unstable; })
   (import ./ghidra.nix { inherit nixpkgs-unstable; })
+  (import ./matrix.nix { inherit nixpkgs-unstable; })
   (import ./web-utils.nix { inherit web-utils; })
 ]

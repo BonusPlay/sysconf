@@ -29,7 +29,7 @@
     nixosConfigurations = (import ./machines inputs);
     colmena = {
       meta = {
-        nixpkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+        nixpkgs = (import ./nixpkgs.nix inputs) "x86_64-linux";
         nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
         nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs) self.nixosConfigurations;
       };
