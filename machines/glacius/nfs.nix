@@ -10,8 +10,7 @@
       /storage/music     ${moria} ${plex}
       /storage/movies    ${moria} ${plex}
       /storage/tvshows   ${moria} ${plex}
-      /storage/backups   ${zeratul}
-      /storage/warez     ${zeratul}
+      /storage           ${zeratul}
     '';
   };
 
