@@ -87,6 +87,10 @@ let
       domain = "s3.bonus.re";
       target = "http://glacius.internal:3900";
     }
+    {
+      domain = "ai-vmi.bonus.re";
+      target = "http://10.20.0.22:4096";
+    }
   ];
   tcpApps = [
     {
