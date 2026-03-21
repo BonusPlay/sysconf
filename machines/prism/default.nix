@@ -2,7 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./traefik.nix
+    ./caddy.nix
   ];
 
   custom = {
@@ -11,6 +11,7 @@
       enable = true;
       vm = true;
     };
+    caddy.enable = true;
     warp-net.enable = true;
     monitoring.enable = true;
   };

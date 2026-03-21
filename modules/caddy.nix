@@ -23,18 +23,20 @@ in
           domain = lib.mkOption {
             type = lib.types.str;
           };
-          entrypoints = lib.mkOption {
-            type = lib.types.listOf lib.types.str;
-            default = [ "0.0.0.0" ];
+          bindPort = lib.mkOption {
+            type = lib.types.port;
+            default = 443;
+            description = "port to listen on";
           };
           target = lib.mkOption {
             type = lib.types.nullOr lib.types.str;
             default = "localhost";
             description = "host to forward to";
           };
-          port = lib.mkOption {
+          toPort = lib.mkOption {
             type = lib.types.nullOr lib.types.int;
             description = "port to forward to";
+            default = null;
           };
           extraConfig = lib.mkOption {
             type = lib.types.str;
@@ -45,16 +47,6 @@ in
             type = lib.types.str;
             default = "";
             description = "extra config in reverse_proxy block";
-          };
-          allowTier1 = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "allow Tier1 users to access";
-          };
-          allowTier2 = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "allow Tier2 users to access";
           };
           isPublic = lib.mkOption {
             type = lib.types.bool;
@@ -71,19 +63,16 @@ in
       cloudflare = {
         file = ../secrets/cloudflare.age;
         mode = "0400";
+        owner = "caddy";
       };
-      tier0 = {
+      mtls-ca = {
+        # TODO: new CA
         file = ../secrets/ca/tier0-crt.age;
         mode = "0400";
         owner = "caddy";
       };
-      tier1 = {
-        file = ../secrets/ca/tier1-crt.age;
-        mode = "0400";
-        owner = "caddy";
-      };
-      tier2 = {
-        file = ../secrets/ca/tier2-crt.age;
+      authDefault = {
+        file = ../secrets/ca/auth-default.age;
         mode = "0400";
         owner = "caddy";
       };
@@ -107,39 +96,40 @@ in
       certs = recursiveMerge (map mkCertEntry mainDomains);
     };
 
-    networking.firewall.allowedTCPPorts = [ 443 ];
+    networking.firewall.allowedTCPPorts = map (item: item.bindPort) cfg.entries;
 
     services.caddy = let
       acmeDir = entry: "/var/lib/acme/${extractMainDomain entry.domain}";
-      proxyEntry = entry: if entry.target == null && entry.port == null then "" else ''
-        reverse_proxy http://${entry.target}:${toString entry.port} {
+      authFile = entry: if (entry ? allowedFile) then entry.allowedFile else config.age.secrets.authDefault.path;
+      authCheck = entry: if entry.isPublic then "" else ''
+        map {tls_client_subject} {is_allowed} {
+          import ${authFile entry}
+          default 0
+        }
+
+        @denied vars {is_allowed} 0
+        handle @denied {
+          respond <<END
+            Hello {tls_client_subject}, you do not have access to this service.
+            If you think this is a mistake, contact Bonus.
+          END 403
+        }
+      '';
+      proxyEntry = entry: if entry.target == null && entry.toPort == null then "" else ''
+        reverse_proxy ${entry.target}:${toString entry.toPort} {
           header_down -Server
           ${entry.extraProxyConfig}
         }
       '';
 
-      mkTlsCfg = entry: if entry.isPublic then "" else ''
-        import tier0
-        ${if entry.allowTier1 then "import tier1" else ""}
-        ${if entry.allowTier2 then "import tier2" else ""}
-      '';
-      mkTierCfg = level: ''
-        (tier${toString level}) {
-          protocols tls1.3
-          client_auth {
-            mode require_and_verify
-            trust_pool file ${config.age.secrets."tier${toString level}".path}
-          }
-        }
-      '';
       mkDomainEntry = entry: {
-        ${entry.domain} = {
-          listenAddresses = entry.entrypoints;
+        "${entry.domain}:${toString entry.bindPort}" = {
           extraConfig = ''
             tls ${acmeDir entry}/fullchain.pem ${acmeDir entry}/key.pem {
-              ${mkTlsCfg entry}
+              ${if entry.isPublic then "" else "import mtls-ca"}
             }
             header -Server
+            ${authCheck entry}
             ${entry.extraConfig}
             ${proxyEntry entry}
           '';
@@ -149,10 +139,17 @@ in
     in {
       enable = true;
       virtualHosts = recursiveMerge domainEntries;
+      globalConfig = ''
+        debug
+      '';
       extraConfig = ''
-        ${mkTierCfg 0}
-        ${mkTierCfg 1}
-        ${mkTierCfg 2}
+        (mtls-ca) {
+          protocols tls1.3
+          client_auth {
+            mode require_and_verify
+            trust_pool file ${config.age.secrets.mtls-ca.path}
+          }
+        }
       '';
     };
   };
