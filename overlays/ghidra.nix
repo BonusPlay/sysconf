@@ -1,15 +1,10 @@
-{ nixpkgs-unstable }:
-final: prev:
-  let
-    pkgs = nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system};
-  in
-  {
-    ghidra = pkgs.ghidra;
-    ghidra-extensions = {
-      arcompact = pkgs.callPackage ../pkgs/ghidra-arcompact.nix {};
-      binexport = pkgs.callPackage ../pkgs/ghidra-binexport {};
-      ctrlp = pkgs.callPackage ../pkgs/ghidra-ctrlp.nix {};
-      ghidralib = pkgs.callPackage ../pkgs/ghidra-lib.nix {};
-      wasm = pkgs.callPackage ../pkgs/ghidra-wasm.nix {};
-    } // pkgs.ghidra-extensions;
-  }
+final: prev: {
+  ghidra = final.pkgs-unstable.ghidra;
+  ghidra-extensions = {
+    arcompact = final.pkgs-unstable.callPackage ../pkgs/ghidra-arcompact.nix {};
+    binexport = final.pkgs-unstable.callPackage ../pkgs/ghidra-binexport {};
+    ctrlp = final.pkgs-unstable.callPackage ../pkgs/ghidra-ctrlp.nix {};
+    ghidralib = final.pkgs-unstable.callPackage ../pkgs/ghidra-lib.nix {};
+    wasm = final.pkgs-unstable.callPackage ../pkgs/ghidra-wasm.nix {};
+  } // final.pkgs-unstable.ghidra-extensions;
+}

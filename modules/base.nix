@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 with lib;
 let
   cfg = config.custom.base;
@@ -6,26 +6,6 @@ in
 {
   options.custom.base = {
     enable = mkEnableOption "base configuration of Bonus's machines";
-    stateVersion = mkOption {
-      type = types.str;
-      default = "24.05";
-      description = "stateVersion to use";
-    };
-    autoUpgrade = mkOption {
-      type = types.bool;
-      default = false;
-      description = "allow auto upgrade mechanism";
-    };
-    allowReboot = mkOption {
-      type = types.bool;
-      default = true;
-      description = "allow reboot (in case of luks)";
-    };
-    remoteBuild = mkOption {
-      type = types.bool;
-      default = true;
-      description = "use remote nix builders";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -36,10 +16,18 @@ in
       settings.trusted-users = [ "@wheel" ];
     };
 
-    system.autoUpgrade = {
-      enable = cfg.autoUpgrade;
-      flake = "github:BonusPlay/sysconf";
-      allowReboot = cfg.allowReboot;
+    nixpkgs = {
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+          "olm-3.2.16"
+          "python3.12-ecdsa-0.19.1"
+        ];
+        allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+          "corefonts"
+        ];
+      };
+      overlays = import ../overlays inputs;
     };
 
     boot.tmp.cleanOnBoot = true;
@@ -78,6 +66,6 @@ in
       rsync
     ];
 
-    system.stateVersion = cfg.stateVersion;
+    system.stateVersion = "24.05";
   };
 }

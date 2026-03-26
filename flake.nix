@@ -26,10 +26,10 @@
   outputs = { self, nixpkgs, colmena, ... }@inputs: let
     lib = nixpkgs.lib;
   in {
-    nixosConfigurations = (import ./machines inputs);
+    nixosConfigurations = import ./machines inputs;
     colmena = {
       meta = {
-        nixpkgs = (import ./nixpkgs.nix inputs) "x86_64-linux";
+        nixpkgs = import nixpkgs { system = "x86_64-linux"; };
         nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
         nodeSpecialArgs = builtins.mapAttrs (_: v: v._module.specialArgs) self.nixosConfigurations;
       };

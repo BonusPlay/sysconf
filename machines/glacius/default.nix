@@ -75,10 +75,7 @@ in
   ];
 
   custom = {
-    base = {
-      enable = true;
-      autoUpgrade = false;
-    };
+    base.enable = true;
     server = {
       enable = true;
       vm = false;

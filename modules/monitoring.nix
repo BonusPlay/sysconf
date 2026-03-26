@@ -1,7 +1,6 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.custom.monitoring;
-  port = 45876;
 in
 {
   options.custom.monitoring = {
@@ -9,18 +8,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    custom.beszel-agent = {
+    services.beszel.agent = {
       enable = true;
       environmentFile = config.age.secrets.beszel-env.path;
-      environment.PORT = toString port;
+      openFirewall = true;
     };
 
     age.secrets.beszel-env = {
       file = ../secrets/beszel-env.age;
       mode = "0400";
-      owner = config.custom.beszel-agent.user;
+      owner = "beszel-agent";
     };
-
-    networking.firewall.allowedTCPPorts = [ port ];
   };
 }

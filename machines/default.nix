@@ -1,14 +1,11 @@
 { nixpkgs
-, nixpkgs-unstable
 , agenix
 , ... }@inputs:
-let
-  pkgs = import ../nixpkgs.nix inputs;
-in
 {
   # oci vm
   kaldir = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "aarch64-linux";
+    system = "aarch64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./kaldir
       ../modules/server.nix
@@ -22,7 +19,8 @@ in
 
   # kncyber VM
   braxis = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./braxis
       ../modules/server.nix
@@ -32,7 +30,8 @@ in
 
   # self-hosted development
   endion = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./endion
       ../modules/server.nix
@@ -42,7 +41,8 @@ in
 
   # shakuras (git runner)
   shakuras = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./shakuras
       ../modules/server.nix
@@ -52,7 +52,8 @@ in
 
   # nextcloud + onlyoffice
   bunker = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./bunker
       ../modules/server.nix
@@ -62,7 +63,8 @@ in
 
   # pki
   raven = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./raven
       ../modules/server.nix
@@ -72,7 +74,8 @@ in
 
   # home-assistant
   nexus = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./nexus
       ../modules/server.nix
@@ -82,7 +85,8 @@ in
 
   # nas
   glacius = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./glacius
       ../modules/server.nix
@@ -93,7 +97,8 @@ in
 
   # prism mTLS proxy
   prism = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./prism
       ../modules/server.nix
@@ -103,7 +108,8 @@ in
 
   # moria downloader VM
   moria = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./moria
       ../modules/server.nix
@@ -114,7 +120,8 @@ in
 
   # plex VM
   plex = nixpkgs.lib.nixosSystem {
-    pkgs = pkgs "x86_64-linux";
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
     modules = [
       ./plex
       ../modules/server.nix
