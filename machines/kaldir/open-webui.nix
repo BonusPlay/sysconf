@@ -12,9 +12,9 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "ai.bonus.re";
-      port = config.services.open-webui.port;
+      toPort = config.services.open-webui.port;
     }
   ];
 }

@@ -107,9 +107,9 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "change.bonus.re";
-      port = lib.strings.toInt config.virtualisation.oci-containers.containers."changedetection".environment.PORT;
+      toPort = lib.strings.toInt config.virtualisation.oci-containers.containers."changedetection".environment.PORT;
     }
   ];
 }

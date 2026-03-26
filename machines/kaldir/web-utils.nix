@@ -42,9 +42,9 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "tools.bonusplay.pl";
-      port = 4013;
+      toPort = 4013;
       isPublic = true;
     }
   ];

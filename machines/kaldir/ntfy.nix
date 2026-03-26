@@ -22,7 +22,7 @@ in
   custom.caddy.entries = [
     {
       domain = domain;
-      port = port;
+      toPort = port;
     }
   ];
 }

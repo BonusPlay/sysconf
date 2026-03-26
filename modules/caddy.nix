@@ -23,6 +23,11 @@ in
           domain = lib.mkOption {
             type = lib.types.str;
           };
+          bindAddr = lib.mkOption {
+            type = lib.types.nullOr (lib.types.listOf lib.types.str);
+            default = null;
+            description = "address to bind on";
+          };
           bindPort = lib.mkOption {
             type = lib.types.port;
             default = 443;
@@ -124,6 +129,7 @@ in
 
       mkDomainEntry = entry: {
         "${entry.domain}:${toString entry.bindPort}" = {
+          listenAddresses = lib.mkIf (entry.bindAddr != null) entry.bindAddr;
           extraConfig = ''
             tls ${acmeDir entry}/fullchain.pem ${acmeDir entry}/key.pem {
               ${if entry.isPublic then "" else "import mtls-ca"}

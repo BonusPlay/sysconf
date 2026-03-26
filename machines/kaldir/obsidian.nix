@@ -11,10 +11,10 @@
   # https://github.com/vrtmrz/obsidian-livesync/issues/37
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "obsidian.bonusplay.pl";
       target = config.containers.obsidian.localAddress;
-      port = config.containers.obsidian.config.services.couchdb.port;
+      toPort = config.containers.obsidian.config.services.couchdb.port;
       isPublic = true; # auth done in-app
       extraConfig = ''
         @allowedOrigin expression `

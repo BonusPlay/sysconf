@@ -11,9 +11,9 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "uptime.bonus.re";
-      port = lib.strings.toInt config.services.uptime-kuma.settings.PORT;
+      toPort = lib.strings.toInt config.services.uptime-kuma.settings.PORT;
     }
   ];
 }

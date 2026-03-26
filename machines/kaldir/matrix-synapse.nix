@@ -36,10 +36,10 @@
 
   custom.caddy.entries = [
     {
-      entrypoints = [ "10.0.0.131" ];
+      bindAddr = [ "10.0.0.131" ];
       domain = "matrix.bonusplay.pl";
       target = null;
-      port = null;
+      toPort = null;
       isPublic = true;
       extraConfig = ''
         @client path_regexp client ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)
