@@ -1,31 +1,28 @@
 { config, lib, pkgs, ... }:
 let
   pkcs11-pass = config.age.secrets.pkcs11-pass.path;
-  tier-crt = tier: config.age.secrets."${tier}".path;
-  nitrokeys = {
-    tier0 = "000f661969d0";
-    tier1 = "000f8aa0a312";
-    tier2 = "000f57fba9fb";
-  };
-  nitro-serial = tier: builtins.getAttr tier nitrokeys;
-  root-crt = config.age.secrets.root.path;
-  mkStepCfg = port: tier: {
+  nitro-serial = "000f661969d0";
+  root-crt = config.age.secrets.root-crt.path;
+in
+{
+  services.step-ca = {
+    enable = true;
     address = "0.0.0.0";
-    port = port;
+    port = 8443;
     openFirewall = true;
     # dummy, we don't really have pass but nixos requires it
     intermediatePasswordFile = "/dev/null";
     settings = {
       root = root-crt;
       federatedRoots = null;
-      crt = tier-crt tier;
-      key = "pkcs11:id=%03;object=Authentication%20key;serial=${nitro-serial tier};token=OpenPGP%20card%20%28User%20PIN%29";
+      crt = root-crt;
+      key = "pkcs11:id=%03;object=Authentication%20key;serial=${nitro-serial};token=OpenPGP%20card%20%28User%20PIN%29";
       kms = {
         type = "pkcs11";
-        uri = "pkcs11:module-path=${pkgs.opensc}/lib/opensc-pkcs11.so;serial=${nitro-serial tier}?pin-source=${pkcs11-pass}";
+        uri = "pkcs11:module-path=${pkgs.opensc}/lib/opensc-pkcs11.so;serial=${nitro-serial}?pin-source=${pkcs11-pass}";
       };
       crl.enabled = true;
-      dnsNames = [ "${tier}.pki.xakep.lan" ];
+      dnsNames = [ "pki.xakep.lan" ];
       authority = {
         claims = {
           minTLSCertDuration = "5m";
@@ -55,21 +52,7 @@ let
           }
         ];
       };
-      db = {
-        type = "badger";
-        dataSource = "/var/lib/step-ca/${tier}/db";
-        valueDir = "/var/lib/step-ca/${tier}/valuedb";
-      };
-    };
-  };
-in
-{
-  custom.step-ca = {
-    enable = true;
-    instances = {
-      tier0 = mkStepCfg 8440 "tier0";
-      tier1 = mkStepCfg 8441 "tier1";
-      tier2 = mkStepCfg 8442 "tier2";
+      db.type = "badger";
     };
   };
 
@@ -80,20 +63,8 @@ in
       file = ../../secrets/ca/pkcs11-pass.age;
       mode = "0444";
     };
-    root = {
+    root-crt = {
       file = ../../secrets/ca/root-crt.age;
-      mode = "0444";
-    };
-    tier0 = {
-      file = ../../secrets/ca/tier0-crt.age;
-      mode = "0444";
-    };
-    tier1 = {
-      file = ../../secrets/ca/tier1-crt.age;
-      mode = "0444";
-    };
-    tier2 = {
-      file = ../../secrets/ca/tier2-crt.age;
       mode = "0444";
     };
   };

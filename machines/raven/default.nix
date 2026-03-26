@@ -3,7 +3,6 @@
   imports = [
     ./hardware-configuration.nix
     ./step-ca.nix
-    ./step-ca-module.nix
   ];
 
   custom = {
