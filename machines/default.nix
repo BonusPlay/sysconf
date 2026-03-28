@@ -11,7 +11,6 @@
       ../modules/server.nix
       ../modules/mautrix-slack.nix
       ../modules/litellm.nix
-      ../modules/beszel-hub.nix
       ../modules/podman.nix
       agenix.nixosModules.default
     ];

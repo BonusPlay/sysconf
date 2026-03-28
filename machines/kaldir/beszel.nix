@@ -1,6 +1,6 @@
 { config, ... }:
 {
-  custom.beszel-hub = {
+  services.beszel.hub = {
     enable = true;
     environment.BESZEL_HUB_AUTO_LOGIN = "admin@bonus.re";
   };
@@ -9,7 +9,7 @@
     {
       bindAddr = [ "10.0.0.131" ];
       domain = "beszel.bonus.re";
-      toPort = config.custom.beszel-hub.port;
+      toPort = config.services.beszel.hub.port;
     }
   ];
 }
