@@ -24,6 +24,8 @@ in
     ./nfs.nix
   ];
 
+  services.beszel.agent.smartmon.enable = true;
+
   boot = {
     kernelModules = [ "it87" ];
     kernelParams = [ "zfs.zfs_arc_max=${toString (26*1024*1024*1024)}" ];
