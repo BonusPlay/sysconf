@@ -26,11 +26,6 @@ let
       toPort = 80;
     }
     {
-      domain = "collabora.bonus.re";
-      target = "bunker.internal";
-      toPort = 9980;
-    }
-    {
       domain = "has.bonus.re";
       target = "nexus.internal";
       toPort = 8123;
