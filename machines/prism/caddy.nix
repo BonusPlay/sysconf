@@ -122,5 +122,7 @@ in
     ++ (withBindPort regular 442)
     ++ (withBindPort (withProxyToHttps proxmox) 442);
 
+  services.caddy.virtualHosts."http://".extraConfig = "abort";
+
   networking.firewall.allowedTCPPorts = [ 441 442 ];
 }
