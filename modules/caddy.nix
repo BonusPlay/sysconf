@@ -58,6 +58,11 @@ in
             default = false;
             description = "allow service without mTLS";
           };
+          authFile = lib.mkOption {
+            type = lib.types.str;
+            default = config.age.secrets.authDefault.path;
+            description = "allowed users file";
+          };
         };
       });
     };
@@ -107,10 +112,9 @@ in
 
     services.caddy = let
       acmeDir = entry: "/var/lib/acme/${extractMainDomain entry.domain}";
-      authFile = entry: if (entry ? allowedFile) then entry.allowedFile else config.age.secrets.authDefault.path;
       authCheck = entry: if entry.isPublic then "" else ''
         map {tls_client_subject} {is_allowed} {
-          import ${authFile entry}
+          import ${entry.authFile}
           default 0
         }
 

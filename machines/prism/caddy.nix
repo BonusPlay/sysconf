@@ -61,10 +61,10 @@ let
       toPort = 9696;
     }
     {
-      domain = "overseerr.bonus.re";
+      domain = "seerr.bonus.re";
       target = "moria.internal";
       toPort = 5055;
-      #authFile = config.age.secrets.auth-overseer.path;
+      authFile = config.age.secrets.auth-seerr.path;
     }
     {
       domain = "sabnzbd.bonus.re";
@@ -128,6 +128,12 @@ in
     ++ (withBindPort (withProxyToHttps proxmox) 442);
 
   services.caddy.virtualHosts."http://".extraConfig = "abort";
+
+  age.secrets.auth-seerr = {
+    file = ../../secrets/ca/auth-seerr.age;
+    mode = "0400";
+    owner = "caddy";
+  };
 
   networking.firewall.allowedTCPPorts = [ 441 442 ];
 }

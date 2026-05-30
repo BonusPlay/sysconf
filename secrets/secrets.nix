@@ -21,6 +21,7 @@ in
   "ca/tier0-crt.age".publicKeys = users ++ [ raven prism kaldir ];
   "ca/pkcs11-pass.age".publicKeys = users ++ [ raven ];
   "ca/auth-default.age".publicKeys = users ++ [ kaldir prism ];
+  "ca/auth-seerr.age".publicKeys = users ++ [ prism ];
 
   "cloudflare.age".publicKeys = users ++ [ kaldir endion bunker prism ];
   "cloudflare/bonus.re.age".publicKeys = users ++ [ prism ];
