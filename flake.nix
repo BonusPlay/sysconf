@@ -27,7 +27,7 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = import ./machines inputs;
-    colmena = {
+    colmena = lib.recursiveUpdate {
       meta = {
         nixpkgs = import nixpkgs { system = "x86_64-linux"; };
         nodeNixpkgs = builtins.mapAttrs (_: v: v.pkgs) self.nixosConfigurations;
@@ -42,55 +42,55 @@
 
       bunker.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "bunker";
+        targetHost = "bunker.internal";
       };
 
       endion.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "endion";
+        targetHost = "endion.internal";
       };
 
       kaldir.deployment = {
         tags = [ "phys" "server" ];
         buildOnTarget = true;
-        targetHost = "kaldir";
+        targetHost = "kaldir.internal";
       };
 
       shakuras.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "shakuras";
+        targetHost = "shakuras.internal";
       };
 
       raven.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "raven";
+        targetHost = "raven.internal";
       };
 
       nexus.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "nexus";
+        targetHost = "nexus.internal";
       };
 
       glacius.deployment = {
         tags = [ "phys" "server" ];
-        targetHost = "glacius";
+        targetHost = "glacius.internal";
       };
 
       prism.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "prism";
+        targetHost = "prism.internal";
       };
 
       moria.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "moria";
+        targetHost = "moria.internal";
       };
 
       plex.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "plex";
+        targetHost = "plex.internal";
       };
-    } // builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations;
+    } (builtins.mapAttrs (_: v: { imports = v._module.args.modules; }) self.nixosConfigurations);
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
   };
 }
