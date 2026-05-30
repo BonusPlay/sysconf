@@ -103,6 +103,8 @@ in
 
     networking.firewall.allowedTCPPorts = map (item: item.bindPort) cfg.entries;
 
+    systemd.services.caddy.serviceConfig.ReadOnlyPaths = [ "/var/lib/acme" ];
+
     services.caddy = let
       acmeDir = entry: "/var/lib/acme/${extractMainDomain entry.domain}";
       authFile = entry: if (entry ? allowedFile) then entry.allowedFile else config.age.secrets.authDefault.path;
