@@ -32,5 +32,6 @@
     5055  # overserr
     8080  # sabnzbd
     3333  # bitmagnet
+    6868  # profilarr
   ];
 }

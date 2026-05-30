@@ -77,6 +77,11 @@ let
       toPort = 3333;
     }
     {
+      domain = "profilarr.bonus.re";
+      target = "moria.internal";
+      toPort = 6868;
+    }
+    {
       domain = "s3.bonus.re";
       target = "glacius.internal";
       toPort = 3900;
