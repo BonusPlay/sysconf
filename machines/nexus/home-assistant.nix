@@ -7,9 +7,12 @@
       "met"
       "esphome"
       "speedtestdotnet"
-      "plex"
       "prusalink"
       "ipp"
+      "radarr"
+      "sonarr"
+      "plex"
+      "gios"
     ];
     config = {
       homeassistant = {
