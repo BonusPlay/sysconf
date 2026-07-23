@@ -15,7 +15,7 @@
     podman.enable = true;
   };
 
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sdb";
 
   networking.hostName = "moria";
   systemd.network.networks."10-wired" = {

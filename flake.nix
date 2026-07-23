@@ -37,7 +37,7 @@
 
       braxis.deployment = {
         tags = [ "vm" "server" ];
-        targetHost = "braxis";
+        targetHost = "braxis.internal";
       };
 
       bunker.deployment = {
@@ -53,7 +53,7 @@
       kaldir.deployment = {
         tags = [ "phys" "server" ];
         buildOnTarget = true;
-        targetHost = "kaldir.internal";
+        targetHost = "kaldir.bonusplay.pl";
       };
 
       shakuras.deployment = {
