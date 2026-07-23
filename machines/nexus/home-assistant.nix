@@ -13,6 +13,7 @@
       "sonarr"
       "plex"
       "gios"
+      "trmnl"
     ];
     config = {
       homeassistant = {
