@@ -38,10 +38,10 @@ in
     # solves issue with splitdns cloudflare overwriting our custom DNS
     services.resolved = {
       enable = true;
-      llmnr = lib.mkDefault "false";
-      extraConfig = ''
-        Cache=no-negative
-      '';
+      settings.Resolve = {
+        LLMNR = lib.mkDefault false;
+        Cache = "no-negative";
+      };
     };
 
     # harden openssh

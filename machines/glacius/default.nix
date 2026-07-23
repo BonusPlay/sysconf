@@ -30,7 +30,10 @@ in
     kernelModules = [ "it87" ];
     kernelParams = [ "zfs.zfs_arc_max=${toString (26*1024*1024*1024)}" ];
     extraModulePackages = with config.boot.kernelPackages; [ it87 ];
-    zfs.extraPools = [ "tank" ];
+    zfs = {
+      extraPools = [ "tank" ];
+      forceImportRoot = false;
+    };
     tmp.cleanOnBoot = true;
     loader = {
       systemd-boot = {

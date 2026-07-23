@@ -89,7 +89,7 @@ in
         "${domain}" = {
           domain = "*.${domain}";
           dnsProvider = "cloudflare";
-          credentialsFile = config.age.secrets.cloudflare.path;
+          environmentFile = config.age.secrets.cloudflare.path;
           email = "acme@${domain}";
           renewInterval = "weekly";
           group = "caddy";

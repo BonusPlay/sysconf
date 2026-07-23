@@ -9,9 +9,7 @@
   };
 
   # we need port 53 for iodine
-  services.resolved.extraConfig = ''
-    DNSStubListener=no
-  '';
+  services.resolved.settings.Resolve.DNSStubListener = "no";
 
   age.secrets.iodinePass = {
     file = ../../secrets/iodine-pass.age;
