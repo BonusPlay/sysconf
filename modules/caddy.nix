@@ -76,8 +76,7 @@ in
         owner = "caddy";
       };
       mtls-ca = {
-        # TODO: new CA
-        file = ../secrets/ca/tier0-crt.age;
+        file = ../secrets/ca/root-crt.age;
         mode = "0400";
         owner = "caddy";
       };

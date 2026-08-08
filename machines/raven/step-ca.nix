@@ -2,7 +2,6 @@
 let
   pkcs11-pass = config.age.secrets.pkcs11-pass.path;
   nitro-serial = "000f661969d0";
-  root-crt = config.age.secrets.root-crt.path;
 in
 {
   services.step-ca = {
@@ -13,21 +12,22 @@ in
     # dummy, we don't really have pass but nixos requires it
     intermediatePasswordFile = "/dev/null";
     settings = {
-      root = root-crt;
+      root = config.age.secrets.root-crt.path;
       federatedRoots = null;
-      crt = root-crt;
+      crt = config.age.secrets.interm-crt.path;
       key = "pkcs11:id=%03;object=Authentication%20key;serial=${nitro-serial};token=OpenPGP%20card%20%28User%20PIN%29";
       kms = {
         type = "pkcs11";
         uri = "pkcs11:module-path=${pkgs.opensc}/lib/opensc-pkcs11.so;serial=${nitro-serial}?pin-source=${pkcs11-pass}";
       };
       crl.enabled = true;
-      dnsNames = [ "pki.xakep.lan" ];
+      dnsNames = [ "pki.bonus.re" ];
       authority = {
         claims = {
           minTLSCertDuration = "5m";
           maxTLSCertDuration = "87600h";
           defaultTLSCertDuration = "48h";
+          disableSmallstepExtensions = true;
         };
         provisioners = [
           {
@@ -52,7 +52,10 @@ in
           }
         ];
       };
-      db.type = "badger";
+      db = {
+        type = "badger";
+        dataSource = "/var/lib/step-ca/db";
+      };
     };
   };
 
@@ -65,6 +68,10 @@ in
     };
     root-crt = {
       file = ../../secrets/ca/root-crt.age;
+      mode = "0444";
+    };
+    interm-crt = {
+      file = ../../secrets/ca/interm-crt.age;
       mode = "0444";
     };
   };

@@ -18,7 +18,7 @@ let
 in
 {
   "ca/root-crt.age".publicKeys = users ++ [ raven prism kaldir ];
-  "ca/tier0-crt.age".publicKeys = users ++ [ raven prism kaldir ];
+  "ca/interm-crt.age".publicKeys = users ++ [ raven prism kaldir ];
   "ca/pkcs11-pass.age".publicKeys = users ++ [ raven ];
   "ca/auth-default.age".publicKeys = users ++ [ kaldir prism ];
   "ca/auth-seerr.age".publicKeys = users ++ [ prism ];
